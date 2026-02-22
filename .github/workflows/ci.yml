@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'package.json'
+      - 'package-lock.json'
       - 'cli/**'
       - 'components/**'
       - 'types/**'
@@ -17,6 +18,7 @@ on:
     branches: [main]
     paths:
       - 'package.json'
+      - 'package-lock.json'
       - 'cli/**'
       - 'components/**'
       - 'types/**'
