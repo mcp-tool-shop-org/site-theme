@@ -1,0 +1,12 @@
+---
+const { apis } = Astro.props;
+---
+
+<div class="mt-8 grid gap-6">
+  {apis.map((a: { signature: string; description: string }) => (
+    <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-6">
+      <h3 class="text-lg font-semibold"><code set:html={a.signature} /></h3>
+      <p class="mt-2 text-sm text-zinc-400" set:html={a.description} />
+    </div>
+  ))}
+</div>

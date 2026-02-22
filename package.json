@@ -1,0 +1,48 @@
+{
+  "name": "@mcptoolshop/site-theme",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shared Astro theme for MCP Tool Shop org repo landing pages",
+  "keywords": ["astro-component", "withastro", "theme", "mcp"],
+  "author": "mcp-tool-shop <64996768+mcp-tool-shop@users.noreply.github.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcp-tool-shop-org/site-theme.git"
+  },
+  "homepage": "https://github.com/mcp-tool-shop-org/site-theme",
+  "exports": {
+    ".": "./types/config.ts",
+    "./components/BaseLayout.astro": "./components/BaseLayout.astro",
+    "./components/Hero.astro": "./components/Hero.astro",
+    "./components/Section.astro": "./components/Section.astro",
+    "./components/FeatureGrid.astro": "./components/FeatureGrid.astro",
+    "./components/DataTable.astro": "./components/DataTable.astro",
+    "./components/CodeCardGrid.astro": "./components/CodeCardGrid.astro",
+    "./components/ApiList.astro": "./components/ApiList.astro"
+  },
+  "files": [
+    "components",
+    "styles",
+    "types",
+    "templates",
+    "cli",
+    "README.md",
+    "LICENSE"
+  ],
+  "bin": {
+    "site-theme": "./cli/init.mjs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "peerDependencies": {
+    "astro": ">=5.0.0",
+    "tailwindcss": ">=4.0.0",
+    "@tailwindcss/vite": ">=4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

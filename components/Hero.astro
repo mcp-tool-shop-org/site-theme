@@ -1,0 +1,55 @@
+---
+const {
+  badge,
+  headline,
+  headlineAccent,
+  description,
+  primaryCta,
+  secondaryCta,
+  previews = [],
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900/60 to-zinc-950 px-6 py-16 md:px-12">
+  <div class="absolute inset-0 opacity-40 [background:radial-gradient(900px_circle_at_20%_20%,rgba(255,255,255,0.10),transparent_60%),radial-gradient(700px_circle_at_80%_30%,rgba(255,255,255,0.06),transparent_60%)]"></div>
+
+  <div class="relative">
+    <div class="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950/60 px-3 py-1 text-xs text-zinc-300">
+      <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+      <span set:html={badge} />
+    </div>
+
+    <h1 class="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+      {headline}
+      <span class="text-zinc-300"> {headlineAccent}</span>
+    </h1>
+
+    <p class="mt-4 max-w-2xl text-lg text-zinc-300" set:html={description} />
+
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a
+        href={primaryCta.href}
+        class="inline-flex items-center justify-center rounded-xl bg-zinc-50 px-5 py-3 text-sm font-medium text-zinc-950 hover:bg-zinc-200"
+      >
+        {primaryCta.label}
+      </a>
+      <a
+        href={secondaryCta.href}
+        class="inline-flex items-center justify-center rounded-xl border border-zinc-800 px-5 py-3 text-sm text-zinc-200 hover:bg-zinc-900"
+      >
+        {secondaryCta.label}
+      </a>
+    </div>
+
+    {previews.length > 0 && (
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {previews.map((p: { label: string; code: string }) => (
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5">
+            <p class="text-xs text-zinc-400">{p.label}</p>
+            <p class="mt-2 text-sm text-zinc-200"><code>{p.code}</code></p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,12 @@
+---
+const { features } = Astro.props;
+---
+
+<div class="mt-8 grid gap-6 md:grid-cols-3">
+  {features.map((f: { title: string; desc: string }) => (
+    <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-6">
+      <h3 class="text-lg font-semibold">{f.title}</h3>
+      <p class="mt-2 text-sm text-zinc-400">{f.desc}</p>
+    </div>
+  ))}
+</div>

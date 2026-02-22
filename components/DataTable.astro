@@ -1,0 +1,18 @@
+---
+const { columns, rows } = Astro.props;
+const colCount = columns.length;
+---
+
+<div class="mt-8 overflow-hidden rounded-2xl border border-zinc-900">
+  <div class={`grid gap-0 bg-zinc-950 text-xs text-zinc-400`} style={`grid-template-columns: repeat(${colCount}, minmax(0, 1fr))`}>
+    {columns.map((col: string) => (
+      <div class="border-b border-zinc-900 p-4">{col}</div>
+    ))}
+
+    {rows.map((row: string[]) => (
+      row.map((cell: string, i: number) => (
+        <div class={`border-b border-zinc-900 p-4${i === 0 ? ' font-medium text-zinc-200' : ''}`}>{cell}</div>
+      ))
+    ))}
+  </div>
+</div>
