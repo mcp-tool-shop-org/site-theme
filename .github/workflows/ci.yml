@@ -6,8 +6,11 @@ on:
     paths:
       - 'package.json'
       - 'package-lock.json'
-      - 'src/**'
-      - 'lib/**'
+      - 'components/**'
+      - 'styles/**'
+      - 'types/**'
+      - 'templates/**'
+      - 'cli/**'
       - 'tests/**'
       - '.github/workflows/**'
   pull_request:
@@ -15,8 +18,11 @@ on:
     paths:
       - 'package.json'
       - 'package-lock.json'
-      - 'src/**'
-      - 'lib/**'
+      - 'components/**'
+      - 'styles/**'
+      - 'types/**'
+      - 'templates/**'
+      - 'cli/**'
       - 'tests/**'
       - '.github/workflows/**'
   workflow_dispatch:
