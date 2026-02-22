@@ -1,1 +1,39 @@
-@import "tailwindcss";
+/*
+ * @mcptoolshop/site-theme — Design tokens
+ *
+ * Import in your site's global.css AFTER @import "tailwindcss".
+ * Override any token with your own @theme block after the import.
+ *
+ *   @import "tailwindcss";
+ *   @import "@mcptoolshop/site-theme/styles/theme.css";
+ *   @source "../../../node_modules/@mcptoolshop/site-theme";
+ *
+ *   @theme {
+ *     --color-accent: #60a5fa;
+ *   }
+ */
+
+@theme {
+  /* ── Surfaces ─────────────────────────────────── */
+  --color-surface:        #09090b;   /* page background        */
+  --color-surface-raised: #18181b;   /* elevated / code blocks  */
+  --color-surface-strong: #27272a;   /* badges, emphasized bg   */
+
+  /* ── Borders ──────────────────────────────────── */
+  --color-edge:        #27272a;      /* primary border          */
+  --color-edge-subtle: #18181b;      /* card / table border     */
+
+  /* ── Text ─────────────────────────────────────── */
+  --color-heading: #fafafa;          /* headings, primary text  */
+  --color-body:    #e4e4e7;          /* body / secondary text   */
+  --color-muted:   #d4d4d8;          /* muted text              */
+  --color-dim:     #a1a1aa;          /* labels, descriptions    */
+
+  /* ── Accent ───────────────────────────────────── */
+  --color-accent: #34d399;           /* status indicators       */
+
+  /* ── Actions (primary button = inverted) ──────── */
+  --color-action:       #fafafa;     /* button background       */
+  --color-action-text:  #09090b;     /* button text             */
+  --color-action-hover: #e4e4e7;     /* button hover bg         */
+}

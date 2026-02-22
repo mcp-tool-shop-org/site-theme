@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/site-theme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Shared Astro theme for MCP Tool Shop org repo landing pages",
   "keywords": ["astro-component", "withastro", "theme", "mcp"],
@@ -13,6 +13,7 @@
   "homepage": "https://github.com/mcp-tool-shop-org/site-theme",
   "exports": {
     ".": "./types/config.ts",
+    "./styles/theme.css": "./styles/theme.css",
     "./components/BaseLayout.astro": "./components/BaseLayout.astro",
     "./components/Hero.astro": "./components/Hero.astro",
     "./components/Section.astro": "./components/Section.astro",

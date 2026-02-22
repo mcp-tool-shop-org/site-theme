@@ -21,26 +21,26 @@ const {
     <title>{title}</title>
   </head>
 
-  <body class="min-h-screen bg-zinc-950 text-zinc-50 antialiased">
+  <body class="min-h-screen bg-surface text-heading antialiased">
     <div class="mx-auto max-w-6xl px-4">
       <header class="flex items-center justify-between py-6">
         <a href="/" class="flex items-center gap-2 font-semibold tracking-tight">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-800">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-surface-strong">
             {logoBadge}
           </span>
           <span>{brandName}</span>
         </a>
 
-        <nav class="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
+        <nav class="hidden items-center gap-6 text-sm text-muted md:flex">
           {nav.map((item: { href: string; label: string }) => (
-            <a href={item.href} class="hover:text-zinc-50">{item.label}</a>
+            <a href={item.href} class="hover:text-heading">{item.label}</a>
           ))}
         </nav>
 
         <div class="flex items-center gap-3">
           {npmUrl && (
             <a
-              class="hidden rounded-xl border border-zinc-800 px-4 py-2 text-sm text-zinc-200 hover:bg-zinc-900 md:inline-flex"
+              class="hidden rounded-xl border border-edge px-4 py-2 text-sm text-body hover:bg-surface-raised md:inline-flex"
               href={npmUrl}
               target="_blank"
               rel="noreferrer"
@@ -49,7 +49,7 @@ const {
             </a>
           )}
           <a
-            class="inline-flex rounded-xl bg-zinc-50 px-4 py-2 text-sm font-medium text-zinc-950 hover:bg-zinc-200"
+            class="inline-flex rounded-xl bg-action px-4 py-2 text-sm font-medium text-action-text hover:bg-action-hover"
             href={repoUrl}
             target="_blank"
             rel="noreferrer"
@@ -63,15 +63,15 @@ const {
         <slot />
       </main>
 
-      <footer class="border-t border-zinc-900 py-10 text-sm text-zinc-400">
+      <footer class="border-t border-edge-subtle py-10 text-sm text-dim">
         <div class="flex flex-col justify-between gap-4 md:flex-row">
           <p set:html={footerText} />
           <div class="flex gap-4">
             {npmUrl && (
-              <a class="hover:text-zinc-200" href={npmUrl} target="_blank" rel="noreferrer">npm</a>
+              <a class="hover:text-body" href={npmUrl} target="_blank" rel="noreferrer">npm</a>
             )}
-            <a class="hover:text-zinc-200" href={repoUrl} target="_blank" rel="noreferrer">GitHub</a>
-            <a class="hover:text-zinc-200" href="https://opensource.org/license/mit/" target="_blank" rel="noreferrer">License</a>
+            <a class="hover:text-body" href={repoUrl} target="_blank" rel="noreferrer">GitHub</a>
+            <a class="hover:text-body" href="https://opensource.org/license/mit/" target="_blank" rel="noreferrer">License</a>
           </div>
         </div>
       </footer>

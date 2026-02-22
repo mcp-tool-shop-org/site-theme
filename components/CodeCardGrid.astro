@@ -4,9 +4,9 @@ const { cards } = Astro.props;
 
 <div class="mt-6 grid gap-6 md:grid-cols-2">
   {cards.map((c: { title: string; code: string }) => (
-    <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-6">
+    <div class="rounded-2xl border border-edge-subtle bg-surface p-6">
       <h3 class="text-lg font-semibold">{c.title}</h3>
-      <pre class="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 text-sm text-zinc-200"><code set:html={c.code} /></pre>
+      <pre class="mt-4 overflow-x-auto rounded-xl bg-surface-raised p-4 text-sm text-body"><code set:html={c.code} /></pre>
     </div>
   ))}
 </div>

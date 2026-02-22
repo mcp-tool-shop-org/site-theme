@@ -1,6 +1,10 @@
 # @mcptoolshop/site-theme
 
-Shared Astro theme for MCP Tool Shop org repo landing pages. Dark zinc palette, Tailwind CSS v4, config-driven content.
+Shared Astro theme for MCP Tool Shop org repo landing pages. Dark palette, Tailwind CSS v4, config-driven content, fully customizable via design tokens.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/site-theme/main/assets/preview.png" alt="site-theme preview" width="800" />
+</p>
 
 ## Quick Start
 
@@ -34,6 +38,48 @@ export const config: SiteConfig = {
   sections: [ /* ... */ ],
 };
 ```
+
+## Design Tokens
+
+The theme ships semantic design tokens via `styles/theme.css`. Components reference these tokens instead of hardcoded colors, so you can reskin the entire theme by overriding a few values.
+
+### Default tokens
+
+| Token | Default | Used for |
+|-------|---------|----------|
+| `--color-surface` | `#09090b` | Page background |
+| `--color-surface-raised` | `#18181b` | Elevated elements, code blocks |
+| `--color-surface-strong` | `#27272a` | Badges, emphasized backgrounds |
+| `--color-edge` | `#27272a` | Primary borders |
+| `--color-edge-subtle` | `#18181b` | Card / table borders |
+| `--color-heading` | `#fafafa` | Headings, primary text |
+| `--color-body` | `#e4e4e7` | Body / secondary text |
+| `--color-muted` | `#d4d4d8` | Muted text |
+| `--color-dim` | `#a1a1aa` | Labels, descriptions |
+| `--color-accent` | `#34d399` | Status indicators |
+| `--color-action` | `#fafafa` | Primary button background |
+| `--color-action-text` | `#09090b` | Primary button text |
+| `--color-action-hover` | `#e4e4e7` | Primary button hover |
+
+### Customizing
+
+Override any token in your site's `global.css` by adding a `@theme` block after the import:
+
+```css
+@import "tailwindcss";
+@import "@mcptoolshop/site-theme/styles/theme.css";
+@source "../../../node_modules/@mcptoolshop/site-theme";
+
+/* Override tokens */
+@theme {
+  --color-accent: #60a5fa;          /* blue status dot   */
+  --color-surface: #0a0a1a;         /* navy background   */
+  --color-action: #60a5fa;          /* blue buttons      */
+  --color-action-hover: #3b82f6;
+}
+```
+
+Tokens generate standard Tailwind v4 utilities (`bg-surface`, `text-heading`, `border-edge`, etc.) so you can also use them in your own components.
 
 ## Components
 
@@ -113,10 +159,11 @@ Sections render in the order they appear in the array.
 
 ## Tailwind Setup
 
-The theme uses Tailwind CSS v4. Your site's `global.css` needs the `@source` directive to scan theme components:
+The theme uses Tailwind CSS v4. Your site's `global.css` imports the theme tokens and scans components:
 
 ```css
 @import "tailwindcss";
+@import "@mcptoolshop/site-theme/styles/theme.css";
 @source "../../../node_modules/@mcptoolshop/site-theme";
 ```
 
