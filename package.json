@@ -1,9 +1,14 @@
 {
   "name": "@mcptoolshop/site-theme",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "Shared Astro theme for MCP Tool Shop org repo landing pages",
-  "keywords": ["astro-component", "withastro", "theme", "mcp"],
+  "keywords": [
+    "astro-component",
+    "withastro",
+    "theme",
+    "mcp"
+  ],
   "author": "mcp-tool-shop <64996768+mcp-tool-shop@users.noreply.github.com>",
   "license": "MIT",
   "repository": {
