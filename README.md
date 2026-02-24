@@ -1,10 +1,27 @@
-# @mcptoolshop/site-theme
-
-Shared Astro theme for MCP Tool Shop org repo landing pages. Dark palette, Tailwind CSS v4, config-driven content, fully customizable via design tokens.
+<p align="center">
+  <strong>English</strong> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português</a>
+</p>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/site-theme/main/assets/preview.png" alt="site-theme preview" width="800" />
 </p>
+
+<h1 align="center">@mcptoolshop/site-theme</h1>
+
+<p align="center">
+  Config-driven Astro theme for MCP Tool Shop project landing pages.<br/>
+  Dark palette · Tailwind CSS v4 · GitHub Pages ready.
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> &middot;
+  <a href="#design-tokens">Design Tokens</a> &middot;
+  <a href="#components">Components</a> &middot;
+  <a href="#deploy">Deploy</a> &middot;
+  <a href="#license">License</a>
+</p>
+
+---
 
 ## Quick Start
 
@@ -16,7 +33,7 @@ cd site && npm install
 npm run dev
 ```
 
-This creates a `site/` directory with Astro + Tailwind + theme wired up, plus a GitHub Pages workflow.
+This creates a `site/` directory with Astro + Tailwind + theme wired up, plus a GitHub Pages workflow. The CSS import, `@source` path, and base path are all pre-configured — no manual setup needed.
 
 ### Edit your content
 
@@ -38,6 +55,8 @@ export const config: SiteConfig = {
   sections: [ /* ... */ ],
 };
 ```
+
+---
 
 ## Design Tokens
 
@@ -63,7 +82,7 @@ The theme ships semantic design tokens via `styles/theme.css`. Components refere
 
 ### Customizing
 
-Override any token in your site's `global.css` by adding a `@theme` block after the import:
+Override any token in your site's `global.css` by adding a `@theme` block after the imports:
 
 ```css
 @import "tailwindcss";
@@ -80,6 +99,8 @@ Override any token in your site's `global.css` by adding a `@theme` block after 
 ```
 
 Tokens generate standard Tailwind v4 utilities (`bg-surface`, `text-heading`, `border-edge`, etc.) so you can also use them in your own components.
+
+---
 
 ## Components
 
@@ -99,22 +120,22 @@ import ApiList from '@mcptoolshop/site-theme/components/ApiList.astro';
 
 ### BaseLayout
 
-Full page shell with header (logo, nav, GitHub/npm buttons) and footer.
+Full page shell with sticky header (logo badge, nav links, GitHub/npm buttons) and footer.
 
 | Prop | Type | Description |
 |------|------|-------------|
 | `title` | `string` | Page `<title>` |
 | `description` | `string` | Meta description |
-| `logoBadge` | `string` | 1-2 char logo badge (e.g. "RS") |
+| `logoBadge` | `string` | 1–2 char badge (e.g. `"RS"`) |
 | `brandName` | `string` | Name in header |
 | `nav` | `{ href, label }[]` | Anchor nav links |
 | `repoUrl` | `string` | GitHub repo URL |
 | `npmUrl?` | `string` | npm package URL |
-| `footerText` | `string` | Footer left text (HTML allowed) |
+| `footerText` | `string` | Footer text (HTML allowed) |
 
 ### Hero
 
-Gradient hero section with status badge, headline, CTAs, and code preview cards.
+Gradient hero with status badge, headline, CTAs, and optional code preview cards.
 
 | Prop | Type | Description |
 |------|------|-------------|
@@ -128,57 +149,53 @@ Gradient hero section with status badge, headline, CTAs, and code preview cards.
 
 ### Section
 
-Section wrapper with anchor id, heading, and optional subtitle.
+Section wrapper with anchor `id`, heading, and optional subtitle.
 
 ### FeatureGrid
 
-3-column grid of feature cards. Props: `features: { title, desc }[]`
+3-column responsive card grid. Props: `features: { title, desc }[]`
 
 ### DataTable
 
-Grid-based table. Props: `columns: string[]`, `rows: string[][]`
+Grid-based bordered table. Props: `columns: string[]`, `rows: string[][]`
 
 ### CodeCardGrid
 
-2-column grid of code block cards. Props: `cards: { title, code }[]`
+2-column grid of dark code block cards. Props: `cards: { title, code }[]`
 
 ### ApiList
 
-Full-width API reference cards. Props: `apis: { signature, description }[]`
+Full-width stacked API reference cards. Props: `apis: { signature, description }[]`
+
+---
 
 ## Section Types
 
 The `sections` array in your config supports these `kind` values:
 
-- `features` — 3-col feature card grid
-- `data-table` — bordered data table
-- `code-cards` — 2-col code example cards
-- `api` — stacked API reference cards
+| Kind | Component | Props |
+|------|-----------|-------|
+| `features` | FeatureGrid | `features: { title, desc }[]` |
+| `data-table` | DataTable | `columns: string[]`, `rows: string[][]` |
+| `code-cards` | CodeCardGrid | `cards: { title, code }[]` |
+| `api` | ApiList | `apis: { signature, description }[]` |
 
 Sections render in the order they appear in the array.
 
-## Tailwind Setup
+---
 
-The theme uses Tailwind CSS v4. Your site's `global.css` imports the theme tokens and scans components:
+## Deploy
 
-```css
-@import "tailwindcss";
-@import "@mcptoolshop/site-theme/styles/theme.css";
-@source "../../node_modules/@mcptoolshop/site-theme";
-```
-
-The `init` CLI generates this file automatically, and `src/pages/index.astro` already imports it — no manual wiring needed.
-
-## Deploy to GitHub Pages
-
-The `init` CLI creates `.github/workflows/pages.yml` automatically. To activate it:
+The `init` CLI creates `.github/workflows/pages.yml` automatically. To go live:
 
 1. Push your repo to GitHub
 2. Go to your repo → **Settings → Pages**
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**
-4. Push any change to `site/` to trigger the first build and deployment
+4. Push any change to `site/` to trigger the first build
 
 Your site will be live at `https://<org>.github.io/<repo>/`.
+
+---
 
 ## License
 
