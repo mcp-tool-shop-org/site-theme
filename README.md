@@ -68,7 +68,7 @@ Override any token in your site's `global.css` by adding a `@theme` block after 
 ```css
 @import "tailwindcss";
 @import "@mcptoolshop/site-theme/styles/theme.css";
-@source "../../../node_modules/@mcptoolshop/site-theme";
+@source "../../node_modules/@mcptoolshop/site-theme";
 
 /* Override tokens */
 @theme {
@@ -164,10 +164,21 @@ The theme uses Tailwind CSS v4. Your site's `global.css` imports the theme token
 ```css
 @import "tailwindcss";
 @import "@mcptoolshop/site-theme/styles/theme.css";
-@source "../../../node_modules/@mcptoolshop/site-theme";
+@source "../../node_modules/@mcptoolshop/site-theme";
 ```
 
-The `init` CLI generates this automatically.
+The `init` CLI generates this file automatically, and `src/pages/index.astro` already imports it — no manual wiring needed.
+
+## Deploy to GitHub Pages
+
+The `init` CLI creates `.github/workflows/pages.yml` automatically. To activate it:
+
+1. Push your repo to GitHub
+2. Go to your repo → **Settings → Pages**
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**
+4. Push any change to `site/` to trigger the first build and deployment
+
+Your site will be live at `https://<org>.github.io/<repo>/`.
 
 ## License
 

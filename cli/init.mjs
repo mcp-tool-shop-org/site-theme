@@ -134,6 +134,11 @@ function main() {
   console.log(`  Edit src/site-config.ts with your content`);
   console.log(`  npm run dev`);
   console.log('');
+  console.log('To deploy to GitHub Pages:');
+  console.log(`  1. Push to GitHub`);
+  console.log(`  2. Repo → Settings → Pages → Source → "GitHub Actions"`);
+  console.log(`  3. Push any change to site/ to trigger the first deploy`);
+  console.log('');
 }
 
 main();
