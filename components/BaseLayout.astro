@@ -9,6 +9,8 @@ const {
   npmUrl,
   footerText,
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 
 <!doctype html>
@@ -17,14 +19,14 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <title>{title}</title>
   </head>
 
   <body class="min-h-screen bg-surface text-heading antialiased">
     <div class="mx-auto max-w-6xl px-4">
       <header class="flex items-center justify-between py-6">
-        <a href={import.meta.env.BASE_URL} class="flex items-center gap-2 font-semibold tracking-tight">
+        <a href={base} class="flex items-center gap-2 font-semibold tracking-tight">
           <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-surface-strong">
             {logoBadge}
           </span>
