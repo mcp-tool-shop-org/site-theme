@@ -7,7 +7,7 @@ export const config: SiteConfig = {
   brandName: '{{BRAND_NAME}}',
   repoUrl: '{{REPO_URL}}',
   npmUrl: '{{NPM_URL}}',
-  footerText: 'MIT Licensed',
+  footerText: 'MIT Licensed — built by <a href="https://github.com/mcp-tool-shop-org" style="color:var(--color-muted);text-decoration:underline">mcp-tool-shop-org</a>',
 
   hero: {
     badge: 'Open source',
@@ -19,7 +19,7 @@ export const config: SiteConfig = {
     previews: [
       { label: 'Install', code: 'npm install {{PACKAGE_NAME}}' },
       { label: 'Import', code: "import { ... } from '{{PACKAGE_NAME}}'" },
-      { label: 'Use', code: '// your code here' },
+      { label: 'Use', code: '// replace with a compelling one-liner' },
     ],
   },
 
@@ -30,9 +30,9 @@ export const config: SiteConfig = {
       title: 'Features',
       subtitle: 'What makes {{BRAND_NAME}} useful.',
       features: [
-        { title: 'Feature one', desc: 'Describe the first feature.' },
-        { title: 'Feature two', desc: 'Describe the second feature.' },
-        { title: 'Feature three', desc: 'Describe the third feature.' },
+        { title: 'Fast', desc: 'Describe what makes {{BRAND_NAME}} fast or efficient.' },
+        { title: 'Typed', desc: 'Describe the type safety or schema guarantees.' },
+        { title: 'Tested', desc: 'Describe the test coverage or reliability story.' },
       ],
     },
     {
@@ -41,7 +41,7 @@ export const config: SiteConfig = {
       title: 'Usage',
       cards: [
         { title: 'Install', code: 'npm install {{PACKAGE_NAME}}' },
-        { title: 'Basic usage', code: "import { ... } from '{{PACKAGE_NAME}}';\n\n// your code here" },
+        { title: 'Basic usage', code: "import { ... } from '{{PACKAGE_NAME}}';\n\n// replace with real usage" },
       ],
     },
   ],

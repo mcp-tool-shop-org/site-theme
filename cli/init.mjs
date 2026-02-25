@@ -3,6 +3,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const templatesDir = join(__dirname, '..', 'templates');
@@ -37,6 +38,16 @@ function extractRepoName(repoUrl) {
   // "https://github.com/mcp-tool-shop-org/registry-stats.git" → "registry-stats"
   if (!repoUrl) return '';
   return repoUrl.replace(/\.git$/, '').split('/').pop() || '';
+}
+
+function extractRepoNameFromGit() {
+  // Read the case-correct repo name from git remote (most reliable source)
+  try {
+    const url = execSync('git remote get-url origin', { encoding: 'utf-8' }).trim();
+    return extractRepoName(url);
+  } catch {
+    return '';
+  }
 }
 
 function readTemplate(name) {
@@ -77,9 +88,9 @@ function main() {
   const description = pkg.description || 'A tool by mcp-tool-shop';
   const repoUrl = (typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url)
     ?.replace(/\.git$/, '')
-    ?.replace(/^git\+/, '') || `https://github.com/mcp-tool-shop-org/${brandName}`;
-  const npmUrl = packageName.startsWith('@')
-    ? `https://www.npmjs.com/package/${packageName}`
+    ?.replace(/^git\+/, '') || `https://github.com/mcp-tool-shop-org/${extractRepoNameFromGit() || brandName}`;
+  const npmUrl = pkg.private
+    ? ''
     : `https://www.npmjs.com/package/${packageName}`;
   const logoBadge = deriveBadge(brandName);
   const basePath = `/${extractRepoName(repoUrl) || brandName}`;
@@ -110,7 +121,11 @@ function main() {
   ];
 
   for (const [dest, tpl] of files) {
-    const content = applyVars(readTemplate(tpl), vars);
+    let content = applyVars(readTemplate(tpl), vars);
+    // Strip npmUrl line when package is private (no npm page)
+    if (dest === 'src/site-config.ts' && !npmUrl) {
+      content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
+    }
     writeFile(join(siteDir, dest), content);
     info(`Created site/${dest}`);
   }
@@ -124,6 +139,21 @@ function main() {
     info('Created .github/workflows/pages.yml');
   } else {
     info('Skipped .github/workflows/pages.yml (already exists)');
+  }
+
+  // Update .gitignore with site/.astro/ if needed
+  const gitignorePath = join(cwd, '.gitignore');
+  if (existsSync(gitignorePath)) {
+    const gitignoreContent = readFileSync(gitignorePath, 'utf-8');
+    if (!gitignoreContent.includes('site/.astro/')) {
+      writeFileSync(gitignorePath, gitignoreContent.trimEnd() + '\nsite/.astro/\n', 'utf-8');
+      info('Added site/.astro/ to .gitignore');
+    } else {
+      info('Skipped .gitignore (site/.astro/ already present)');
+    }
+  } else {
+    writeFileSync(gitignorePath, 'node_modules/\nsite/.astro/\n', 'utf-8');
+    info('Created .gitignore with site/.astro/');
   }
 
   console.log('');
