@@ -21,8 +21,8 @@ import { config } from '../site-config';
   nav={config.sections.map(s => ({ href: `#${s.id}`, label: s.title }))}
 >
   {config.hero.imageUrl && (
-    <div style="padding:2rem 1.5rem 0;max-width:1200px;margin:0 auto">
-      <img src={config.hero.imageUrl} alt={config.title} width="540" height="540" style="border-radius:12px;display:block" />
+    <div style="padding:1rem 0 0 1rem">
+      <img src={config.hero.imageUrl} alt={config.title} width="400" height="400" style="border-radius:12px;display:block" />
     </div>
   )}
 
