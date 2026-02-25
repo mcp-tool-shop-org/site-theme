@@ -36,6 +36,8 @@ export interface HeroDef {
   secondaryCta: CtaDef;
   /** Code preview cards (typically 3) */
   previews: PreviewDef[];
+  /** Full-width image displayed below CTAs/previews (path relative to site/public/) */
+  imageUrl?: string;
 }
 
 export interface CtaDef {
