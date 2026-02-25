@@ -20,12 +20,6 @@ import { config } from '../site-config';
   footerText={config.footerText}
   nav={config.sections.map(s => ({ href: `#${s.id}`, label: s.title }))}
 >
-  {config.hero.imageUrl && (
-    <div style="padding:1rem 0 0 1rem">
-      <img src={config.hero.imageUrl} alt={config.title} width="400" height="400" style="border-radius:12px;display:block" />
-    </div>
-  )}
-
   <Hero {...config.hero} />
 
   {config.sections.map((s) => (
