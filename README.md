@@ -197,6 +197,31 @@ Your site will be live at `https://<org>.github.io/<repo>/`.
 
 ---
 
+## Security & Data Scope
+
+| Aspect | Detail |
+|--------|--------|
+| **Data touched** | Astro component files, CSS tokens, site configuration — build time only |
+| **Data NOT touched** | No user data, no runtime state, no server-side processing |
+| **Permissions** | Read: project source files. Write: build output to site/dist/ |
+| **Network** | None — static site generator with no runtime network access |
+| **Telemetry** | None collected or sent |
+
+See [SECURITY.md](SECURITY.md) for vulnerability reporting.
+
+## Scorecard
+
+| Category | Score |
+|----------|-------|
+| A. Security | 10 |
+| B. Error Handling | 10 |
+| C. Operator Docs | 10 |
+| D. Shipping Hygiene | 10 |
+| E. Identity (soft) | 10 |
+| **Overall** | **50/50** |
+
+> Full audit: [SHIP_GATE.md](SHIP_GATE.md) · [SCORECARD.md](SCORECARD.md)
+
 ## License
 
 MIT
