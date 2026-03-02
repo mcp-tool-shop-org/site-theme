@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -50,8 +50,8 @@ function extractRepoNameFromGit() {
   }
 }
 
-function readTemplate(name) {
-  return readFileSync(join(templatesDir, name), 'utf-8');
+function readTemplate(templateName, fileName) {
+  return readFileSync(join(templatesDir, templateName, fileName), 'utf-8');
 }
 
 function applyVars(content, vars) {
@@ -63,9 +63,69 @@ function writeFile(path, content) {
   writeFileSync(path, content, 'utf-8');
 }
 
-// --- Main ---
+// --- Argument parsing ---
 
-function main() {
+function parseArgs(argv) {
+  const args = argv.slice(2);
+  const command = args[0] && !args[0].startsWith('-') ? args[0] : 'init';
+  const rest = command === args[0] ? args.slice(1) : args;
+
+  const flags = { template: 'default' };
+  for (let i = 0; i < rest.length; i++) {
+    if (rest[i] === '--template' && rest[i + 1]) {
+      flags.template = rest[++i];
+    }
+  }
+
+  return { command, flags };
+}
+
+function getAvailableTemplates() {
+  return readdirSync(templatesDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => {
+      const metaPath = join(templatesDir, d.name, 'template.json');
+      if (!existsSync(metaPath)) return null;
+      try {
+        const meta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+        return { name: d.name, ...meta };
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+
+// --- Commands ---
+
+function runListTemplates() {
+  const templates = getAvailableTemplates();
+
+  if (templates.length === 0) {
+    die('No templates found.');
+  }
+
+  console.log('');
+  console.log('Available templates:');
+  console.log('');
+  for (const t of templates) {
+    const tags = t.tags?.length ? ` \x1b[90m[${t.tags.join(', ')}]\x1b[0m` : '';
+    console.log(`  \x1b[36m${t.name.padEnd(14)}\x1b[0m ${t.description}${tags}`);
+  }
+  console.log('');
+  console.log('Usage: npx @mcptoolshop/site-theme init --template <name>');
+  console.log('');
+}
+
+function runInit(flags) {
+  const templateName = flags.template;
+  const templateDir = join(templatesDir, templateName);
+
+  if (!existsSync(templateDir)) {
+    const available = getAvailableTemplates().map((t) => t.name).join(', ');
+    die(`Template "${templateName}" not found. Available: ${available}`);
+  }
+
   const siteDir = join(cwd, 'site');
 
   if (existsSync(siteDir)) {
@@ -105,23 +165,32 @@ function main() {
     BASE_PATH: basePath,
   };
 
+  info(`Template: ${templateName}`);
   info(`Package: ${packageName}`);
   info(`Brand: ${brandName} (${logoBadge})`);
   info(`Base path: ${basePath}`);
   info('');
 
-  // Create site/ files
-  const files = [
-    ['astro.config.mjs', 'astro.config.mjs.tpl'],
-    ['package.json', 'package.json.tpl'],
-    ['tsconfig.json', 'tsconfig.json.tpl'],
-    ['src/styles/global.css', 'global.css.tpl'],
-    ['src/pages/index.astro', 'index.astro.tpl'],
-    ['src/site-config.ts', 'site-config.ts.tpl'],
-  ];
+  // Discover .tpl files from the template directory and map to output paths
+  const tplFiles = readdirSync(templateDir).filter((f) => f.endsWith('.tpl'));
 
-  for (const [dest, tpl] of files) {
-    let content = applyVars(readTemplate(tpl), vars);
+  // Map template filenames to site/ output paths
+  const fileMap = {
+    'astro.config.mjs.tpl': 'astro.config.mjs',
+    'package.json.tpl': 'package.json',
+    'tsconfig.json.tpl': 'tsconfig.json',
+    'global.css.tpl': 'src/styles/global.css',
+    'index.astro.tpl': 'src/pages/index.astro',
+    'site-config.ts.tpl': 'src/site-config.ts',
+  };
+
+  // Scaffold site/ files (excluding pages.yml.tpl which goes to .github/workflows/)
+  for (const tpl of tplFiles) {
+    if (tpl === 'pages.yml.tpl') continue;
+    const dest = fileMap[tpl];
+    if (!dest) continue;
+
+    let content = applyVars(readTemplate(templateName, tpl), vars);
     // Strip npmUrl line when package is private (no npm page)
     if (dest === 'src/site-config.ts' && !npmUrl) {
       content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
@@ -131,14 +200,15 @@ function main() {
   }
 
   // Create .github/workflows/pages.yml
-  const workflowDir = join(cwd, '.github', 'workflows');
-  const workflowDest = join(workflowDir, 'pages.yml');
-  if (!existsSync(workflowDest)) {
-    const content = applyVars(readTemplate('pages.yml.tpl'), vars);
-    writeFile(workflowDest, content);
-    info('Created .github/workflows/pages.yml');
-  } else {
-    info('Skipped .github/workflows/pages.yml (already exists)');
+  if (tplFiles.includes('pages.yml.tpl')) {
+    const workflowDest = join(cwd, '.github', 'workflows', 'pages.yml');
+    if (!existsSync(workflowDest)) {
+      const content = applyVars(readTemplate(templateName, 'pages.yml.tpl'), vars);
+      writeFile(workflowDest, content);
+      info('Created .github/workflows/pages.yml');
+    } else {
+      info('Skipped .github/workflows/pages.yml (already exists)');
+    }
   }
 
   // Update .gitignore with site/.astro/ if needed
@@ -171,4 +241,17 @@ function main() {
   console.log('');
 }
 
-main();
+// --- Dispatch ---
+
+const { command, flags } = parseArgs(process.argv);
+
+switch (command) {
+  case 'init':
+    runInit(flags);
+    break;
+  case 'list-templates':
+    runListTemplates();
+    break;
+  default:
+    die(`Unknown command: "${command}". Use "init" or "list-templates".`);
+}

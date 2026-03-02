@@ -1,0 +1,17 @@
+---
+const { headline, stats = [] } = Astro.props;
+---
+
+<section class="border-y border-edge-subtle py-12">
+  {headline && (
+    <p class="mb-8 text-center text-sm text-muted">{headline}</p>
+  )}
+  <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+    {stats.map((s: { value: string; label: string }) => (
+      <div class="text-center">
+        <p class="text-4xl font-bold text-heading">{s.value}</p>
+        <p class="mt-1 text-sm text-dim">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>

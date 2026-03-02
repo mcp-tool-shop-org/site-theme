@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/site-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Shared Astro theme for MCP Tool Shop org repo landing pages",
   "keywords": [
@@ -18,6 +18,8 @@
   "homepage": "https://mcp-tool-shop-org.github.io/site-theme/",
   "exports": {
     ".": "./types/config.ts",
+    "./types/docs-config": "./types/docs-config.ts",
+    "./types/product-config": "./types/product-config.ts",
     "./styles/theme.css": "./styles/theme.css",
     "./components/BaseLayout.astro": "./components/BaseLayout.astro",
     "./components/Hero.astro": "./components/Hero.astro",
@@ -25,7 +27,15 @@
     "./components/FeatureGrid.astro": "./components/FeatureGrid.astro",
     "./components/DataTable.astro": "./components/DataTable.astro",
     "./components/CodeCardGrid.astro": "./components/CodeCardGrid.astro",
-    "./components/ApiList.astro": "./components/ApiList.astro"
+    "./components/ApiList.astro": "./components/ApiList.astro",
+    "./components/DocLayout.astro": "./components/DocLayout.astro",
+    "./components/Sidebar.astro": "./components/Sidebar.astro",
+    "./components/TableOfContents.astro": "./components/TableOfContents.astro",
+    "./components/ContentSection.astro": "./components/ContentSection.astro",
+    "./components/SocialProof.astro": "./components/SocialProof.astro",
+    "./components/PricingGrid.astro": "./components/PricingGrid.astro",
+    "./components/TestimonialGrid.astro": "./components/TestimonialGrid.astro",
+    "./components/CtaBanner.astro": "./components/CtaBanner.astro"
   },
   "files": [
     "components",

@@ -1,0 +1,16 @@
+---
+const { id, title, content } = Astro.props;
+---
+
+<section id={id} class="mb-12 scroll-mt-6">
+  <h2 class="group mb-4 text-2xl font-semibold tracking-tight">
+    <a href={`#${id}`} class="flex items-center gap-2">
+      {title}
+      <span class="text-dim opacity-0 transition-opacity group-hover:opacity-100">#</span>
+    </a>
+  </h2>
+  <div
+    class="prose-custom space-y-4 text-body [&_a]:text-accent [&_a]:underline [&_code]:rounded [&_code]:bg-surface-raised [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_h3]:mt-8 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-heading [&_li]:text-body [&_p]:leading-relaxed [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-edge [&_pre]:bg-surface-raised [&_pre]:p-4 [&_pre]:text-sm [&_ul]:list-disc [&_ul]:pl-6"
+    set:html={content}
+  />
+</section>

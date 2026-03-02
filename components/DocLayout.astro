@@ -1,0 +1,29 @@
+---
+import Sidebar from './Sidebar.astro';
+
+const { sidebar, currentPath } = Astro.props;
+---
+
+<div class="lg:grid lg:grid-cols-[240px_1fr] lg:gap-8">
+  <!-- Mobile sidebar toggle -->
+  <details class="mb-6 rounded-xl border border-edge bg-surface-raised lg:hidden">
+    <summary class="cursor-pointer px-4 py-3 text-sm font-medium text-body">
+      Navigation
+    </summary>
+    <div class="border-t border-edge px-4 py-3">
+      <Sidebar groups={sidebar} currentPath={currentPath} />
+    </div>
+  </details>
+
+  <!-- Desktop sidebar -->
+  <aside class="hidden lg:block">
+    <div class="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto">
+      <Sidebar groups={sidebar} currentPath={currentPath} />
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div class="min-w-0">
+    <slot />
+  </div>
+</div>

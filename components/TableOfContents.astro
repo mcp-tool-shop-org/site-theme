@@ -1,0 +1,26 @@
+---
+const { headings = [] } = Astro.props;
+---
+
+{headings.length > 0 && (
+  <nav class="space-y-1">
+    <h4 class="mb-3 text-xs font-semibold uppercase tracking-wider text-dim">
+      On this page
+    </h4>
+    <ul class="space-y-1 border-l border-edge">
+      {headings.map((h: { text: string; id: string; depth: 2 | 3 }) => (
+        <li>
+          <a
+            href={`#${h.id}`}
+            class:list={[
+              'block border-l-2 border-transparent py-1 text-sm text-muted transition-colors hover:border-accent hover:text-body',
+              h.depth === 2 ? 'pl-4' : 'pl-8',
+            ]}
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

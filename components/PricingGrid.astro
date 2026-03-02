@@ -1,0 +1,55 @@
+---
+const { tiers = [] } = Astro.props;
+const cols = tiers.length <= 2 ? 'md:grid-cols-2' : 'md:grid-cols-3';
+---
+
+<div class={`mt-8 grid gap-6 ${cols}`}>
+  {tiers.map((tier: {
+    name: string;
+    price: string;
+    description: string;
+    features: string[];
+    cta: { href: string; label: string };
+    highlighted?: boolean;
+  }) => (
+    <div
+      class:list={[
+        'relative flex flex-col rounded-2xl border p-6',
+        tier.highlighted
+          ? 'border-accent bg-surface-raised'
+          : 'border-edge-subtle bg-surface',
+      ]}
+    >
+      {tier.highlighted && (
+        <span class="absolute -top-3 left-6 rounded-full bg-accent px-3 py-0.5 text-xs font-semibold text-surface">
+          Popular
+        </span>
+      )}
+
+      <h3 class="text-lg font-semibold">{tier.name}</h3>
+      <p class="mt-2 text-3xl font-bold text-heading">{tier.price}</p>
+      <p class="mt-2 text-sm text-dim">{tier.description}</p>
+
+      <ul class="mt-6 flex-1 space-y-3">
+        {tier.features.map((f) => (
+          <li class="flex items-start gap-2 text-sm text-body">
+            <span class="mt-0.5 text-accent">&#10003;</span>
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={tier.cta.href}
+        class:list={[
+          'mt-6 block rounded-xl px-5 py-3 text-center text-sm font-medium',
+          tier.highlighted
+            ? 'bg-action text-action-text hover:bg-action-hover'
+            : 'border border-edge text-body hover:bg-surface-raised',
+        ]}
+      >
+        {tier.cta.label}
+      </a>
+    </div>
+  ))}
+</div>

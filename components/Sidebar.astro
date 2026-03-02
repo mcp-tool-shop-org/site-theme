@@ -1,0 +1,33 @@
+---
+const { groups, currentPath = '' } = Astro.props;
+---
+
+<nav class="space-y-6">
+  {groups.map((group: { title: string; items: { label: string; href: string }[] }) => (
+    <div>
+      <h4 class="mb-2 text-xs font-semibold uppercase tracking-wider text-dim">
+        {group.title}
+      </h4>
+      <ul class="space-y-1">
+        {group.items.map((item) => {
+          const isActive = currentPath === item.href;
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'block rounded-lg px-3 py-1.5 text-sm transition-colors',
+                  isActive
+                    ? 'border-l-2 border-accent bg-surface-raised text-heading font-medium'
+                    : 'text-muted hover:bg-surface-raised hover:text-body',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ))}
+</nav>

@@ -1,4 +1,9 @@
-export interface SiteConfig {
+import type { DocsSiteConfig } from './docs-config';
+import type { ProductSiteConfig } from './product-config';
+
+export interface DefaultSiteConfig {
+  /** Template discriminant (optional for backward compat) */
+  template?: 'default';
   /** Page <title>, e.g. "@mcptoolshop/registry-stats" */
   title: string;
   /** Meta description */
@@ -20,6 +25,14 @@ export interface SiteConfig {
   /** Ordered page sections (rendered top-to-bottom) */
   sections: SectionDef[];
 }
+
+/** Discriminated union — determines which template config is in use */
+export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig;
+
+export type { DocsSiteConfig } from './docs-config';
+export type { ProductSiteConfig } from './product-config';
+export type { SidebarGroup, SidebarItem, DocsSection } from './docs-config';
+export type { SocialProofDef, PricingTier, PricingDef, TestimonialDef, CtaBannerDef } from './product-config';
 
 export interface HeroDef {
   /** Status badge text */
