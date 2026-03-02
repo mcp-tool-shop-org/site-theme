@@ -58,8 +58,7 @@ jobs:
       - name: Create temp project
         run: |
           mkdir -p /tmp/test-${{ matrix.template }}
-          cd /tmp/test-${{ matrix.template }}
-          npm init -y --name test-${{ matrix.template }}
+          echo '{"name":"test-${{ matrix.template }}","version":"1.0.0","description":"template validation"}' > /tmp/test-${{ matrix.template }}/package.json
 
       - name: Scaffold with template
         run: |

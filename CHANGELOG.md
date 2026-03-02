@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] - 2026-03-02
+
+### Added
+
+- `list-templates --json` for automation-friendly output
+- `init --dry-run` to preview files and variables without writing
+- `init --out <dir>` to scaffold into a different directory
+
+### Fixed
+
+- CI template validation: replaced `npm init` with direct package.json creation
+
 ## [1.1.0] - 2026-03-02
 
 ### Added

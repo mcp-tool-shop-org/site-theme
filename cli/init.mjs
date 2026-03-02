@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
@@ -21,7 +21,6 @@ function info(msg) {
 }
 
 function deriveBadge(name) {
-  // "registry-stats" → "RS", "mcpt" → "M", "tool-compass" → "TC"
   return name
     .split('-')
     .map((w) => w[0]?.toUpperCase() ?? '')
@@ -30,18 +29,15 @@ function deriveBadge(name) {
 }
 
 function unscopeName(name) {
-  // "@mcptoolshop/registry-stats" → "registry-stats"
   return name.replace(/^@[^/]+\//, '');
 }
 
 function extractRepoName(repoUrl) {
-  // "https://github.com/mcp-tool-shop-org/registry-stats.git" → "registry-stats"
   if (!repoUrl) return '';
   return repoUrl.replace(/\.git$/, '').split('/').pop() || '';
 }
 
 function extractRepoNameFromGit() {
-  // Read the case-correct repo name from git remote (most reliable source)
   try {
     const url = execSync('git remote get-url origin', { encoding: 'utf-8' }).trim();
     return extractRepoName(url);
@@ -70,10 +66,16 @@ function parseArgs(argv) {
   const command = args[0] && !args[0].startsWith('-') ? args[0] : 'init';
   const rest = command === args[0] ? args.slice(1) : args;
 
-  const flags = { template: 'default' };
+  const flags = { template: 'default', json: false, dryRun: false, out: '' };
   for (let i = 0; i < rest.length; i++) {
     if (rest[i] === '--template' && rest[i + 1]) {
       flags.template = rest[++i];
+    } else if (rest[i] === '--json') {
+      flags.json = true;
+    } else if (rest[i] === '--dry-run') {
+      flags.dryRun = true;
+    } else if (rest[i] === '--out' && rest[i + 1]) {
+      flags.out = rest[++i];
     }
   }
 
@@ -98,11 +100,16 @@ function getAvailableTemplates() {
 
 // --- Commands ---
 
-function runListTemplates() {
+function runListTemplates(flags) {
   const templates = getAvailableTemplates();
 
   if (templates.length === 0) {
     die('No templates found.');
+  }
+
+  if (flags.json) {
+    console.log(JSON.stringify({ templates }, null, 2));
+    return;
   }
 
   console.log('');
@@ -120,20 +127,22 @@ function runListTemplates() {
 function runInit(flags) {
   const templateName = flags.template;
   const templateDir = join(templatesDir, templateName);
+  const dryRun = flags.dryRun;
+  const outDir = flags.out ? resolve(cwd, flags.out) : cwd;
 
   if (!existsSync(templateDir)) {
     const available = getAvailableTemplates().map((t) => t.name).join(', ');
     die(`Template "${templateName}" not found. Available: ${available}`);
   }
 
-  const siteDir = join(cwd, 'site');
+  const siteDir = join(outDir, 'site');
 
-  if (existsSync(siteDir)) {
+  if (!dryRun && existsSync(siteDir)) {
     die('site/ directory already exists. Remove it first or run from a different repo.');
   }
 
-  // Read repo's package.json
-  const pkgPath = join(cwd, 'package.json');
+  // Read repo's package.json (from outDir, which is the target project root)
+  const pkgPath = join(outDir, 'package.json');
   let pkg = {};
   if (existsSync(pkgPath)) {
     try {
@@ -165,16 +174,9 @@ function runInit(flags) {
     BASE_PATH: basePath,
   };
 
-  info(`Template: ${templateName}`);
-  info(`Package: ${packageName}`);
-  info(`Brand: ${brandName} (${logoBadge})`);
-  info(`Base path: ${basePath}`);
-  info('');
-
-  // Discover .tpl files from the template directory and map to output paths
+  // Discover .tpl files and map to output paths
   const tplFiles = readdirSync(templateDir).filter((f) => f.endsWith('.tpl'));
 
-  // Map template filenames to site/ output paths
   const fileMap = {
     'astro.config.mjs.tpl': 'astro.config.mjs',
     'package.json.tpl': 'package.json',
@@ -184,35 +186,64 @@ function runInit(flags) {
     'site-config.ts.tpl': 'src/site-config.ts',
   };
 
-  // Scaffold site/ files (excluding pages.yml.tpl which goes to .github/workflows/)
+  // Build the manifest of files to create
+  const plan = [];
+
   for (const tpl of tplFiles) {
     if (tpl === 'pages.yml.tpl') continue;
     const dest = fileMap[tpl];
     if (!dest) continue;
-
-    let content = applyVars(readTemplate(templateName, tpl), vars);
-    // Strip npmUrl line when package is private (no npm page)
-    if (dest === 'src/site-config.ts' && !npmUrl) {
-      content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
-    }
-    writeFile(join(siteDir, dest), content);
-    info(`Created site/${dest}`);
+    plan.push({ dest: `site/${dest}`, tpl, target: join(siteDir, dest) });
   }
 
-  // Create .github/workflows/pages.yml
   if (tplFiles.includes('pages.yml.tpl')) {
-    const workflowDest = join(cwd, '.github', 'workflows', 'pages.yml');
+    const workflowDest = join(outDir, '.github', 'workflows', 'pages.yml');
     if (!existsSync(workflowDest)) {
-      const content = applyVars(readTemplate(templateName, 'pages.yml.tpl'), vars);
-      writeFile(workflowDest, content);
-      info('Created .github/workflows/pages.yml');
-    } else {
-      info('Skipped .github/workflows/pages.yml (already exists)');
+      plan.push({ dest: '.github/workflows/pages.yml', tpl: 'pages.yml.tpl', target: workflowDest });
     }
+  }
+
+  // --- Dry run: print what would be created and exit ---
+  if (dryRun) {
+    console.log('');
+    console.log(`\x1b[33mDry run\x1b[0m — template: ${templateName}`);
+    console.log('');
+    console.log('Files that would be created:');
+    for (const f of plan) {
+      console.log(`  ${f.dest}`);
+    }
+    const gitignorePath = join(outDir, '.gitignore');
+    if (!existsSync(gitignorePath) || !readFileSync(gitignorePath, 'utf-8').includes('site/.astro/')) {
+      console.log('  .gitignore (updated)');
+    }
+    console.log('');
+    console.log('Variables:');
+    for (const [k, v] of Object.entries(vars)) {
+      if (v) console.log(`  ${k}: ${v}`);
+    }
+    console.log('');
+    return;
+  }
+
+  // --- Execute: create files ---
+  info(`Template: ${templateName}`);
+  info(`Package: ${packageName}`);
+  info(`Brand: ${brandName} (${logoBadge})`);
+  info(`Base path: ${basePath}`);
+  if (flags.out) info(`Output: ${outDir}`);
+  info('');
+
+  for (const f of plan) {
+    let content = applyVars(readTemplate(templateName, f.tpl), vars);
+    if (f.dest === 'site/src/site-config.ts' && !npmUrl) {
+      content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
+    }
+    writeFile(f.target, content);
+    info(`Created ${f.dest}`);
   }
 
   // Update .gitignore with site/.astro/ if needed
-  const gitignorePath = join(cwd, '.gitignore');
+  const gitignorePath = join(outDir, '.gitignore');
   if (existsSync(gitignorePath)) {
     const gitignoreContent = readFileSync(gitignorePath, 'utf-8');
     if (!gitignoreContent.includes('site/.astro/')) {
@@ -250,7 +281,7 @@ switch (command) {
     runInit(flags);
     break;
   case 'list-templates':
-    runListTemplates();
+    runListTemplates(flags);
     break;
   default:
     die(`Unknown command: "${command}". Use "init" or "list-templates".`);
