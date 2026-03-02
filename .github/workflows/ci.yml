@@ -65,9 +65,12 @@ jobs:
           cd /tmp/test-${{ matrix.template }}
           node $GITHUB_WORKSPACE/cli/init.mjs init --template ${{ matrix.template }}
 
+      - name: Pack theme for local install
+        run: npm pack --pack-destination /tmp/
+
       - name: Install site deps
         working-directory: /tmp/test-${{ matrix.template }}/site
-        run: npm install
+        run: npm install /tmp/mcptoolshop-site-theme-*.tgz
 
       - name: Build site
         working-directory: /tmp/test-${{ matrix.template }}/site

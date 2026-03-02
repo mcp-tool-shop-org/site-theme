@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.2] - 2026-03-02
+
+### Fixed
+
+- CI template validation uses `npm pack` + local tarball install (no npm registry dependency)
+
 ## [1.1.1] - 2026-03-02
 
 ### Added
