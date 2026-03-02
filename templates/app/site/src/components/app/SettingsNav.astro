@@ -1,0 +1,28 @@
+---
+import { siteConfig } from '../../config/site.config';
+
+interface Props {
+  activeSetting?: string;
+}
+
+const { activeSetting } = Astro.props;
+---
+
+<nav class="w-44 shrink-0 space-y-1">
+  {siteConfig.settings.map((item) => {
+    const key = item.label.toLowerCase();
+    return (
+      <a
+        href={item.href}
+        class:list={[
+          'block px-3 py-2 rounded-md text-sm transition-colors',
+          activeSetting === key
+            ? 'bg-surface-strong text-heading font-medium'
+            : 'text-muted hover:text-heading hover:bg-surface-strong/50',
+        ]}
+      >
+        {item.label}
+      </a>
+    );
+  })}
+</nav>

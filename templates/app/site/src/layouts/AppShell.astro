@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import Sidebar from '../components/app/Sidebar.astro';
+import Topbar from '../components/app/Topbar.astro';
+import { siteConfig } from '../config/site.config';
+
+interface Props {
+  title: string;
+  activeNav?: string;
+}
+
+const { title, activeNav } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-surface text-body">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — {siteConfig.brand}</title>
+  </head>
+  <body style="opacity:0" class="min-h-screen flex">
+    <Sidebar activeNav={activeNav} />
+    <div class="flex-1 flex flex-col min-w-0">
+      <Topbar />
+      <main class="flex-1 p-6 overflow-auto">
+        <slot />
+      </main>
+    </div>
+    <script>
+      import { guardPage } from '../lib/auth';
+      guardPage();
+    </script>
+  </body>
+</html>

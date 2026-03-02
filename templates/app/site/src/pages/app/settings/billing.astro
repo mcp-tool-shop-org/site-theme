@@ -1,0 +1,41 @@
+---
+import SettingsLayout from '../../../layouts/SettingsLayout.astro';
+import PlanCards from '../../../components/app/PlanCards.astro';
+
+const plans = [
+  {
+    name: 'Free',
+    price: '$0',
+    period: 'month',
+    features: ['1 project', '100 API calls/day', 'Community support'],
+  },
+  {
+    name: 'Pro',
+    price: '$29',
+    period: 'month',
+    highlighted: true,
+    features: ['Unlimited projects', '10k API calls/day', 'Priority support', 'Custom domains'],
+    ctaLabel: 'Current plan',
+  },
+  {
+    name: 'Enterprise',
+    price: '$99',
+    period: 'month',
+    features: ['Everything in Pro', 'Unlimited API calls', 'Dedicated support', 'SLA guarantee', 'SSO'],
+    ctaLabel: 'Contact sales',
+  },
+];
+---
+
+<SettingsLayout title="Billing" activeSetting="billing">
+  <h2 class="text-lg font-semibold text-heading mb-4">Billing & Plans</h2>
+  <PlanCards plans={plans} />
+
+  <div class="mt-8 bg-surface-raised border border-edge rounded-lg p-6">
+    <h3 class="text-base font-semibold text-heading mb-2">Payment Method</h3>
+    <p class="text-sm text-dim">No payment method on file. Add one to upgrade your plan.</p>
+    <button class="mt-3 px-4 py-2 bg-surface-strong text-heading text-sm font-medium rounded-md hover:bg-edge transition-colors">
+      Add payment method
+    </button>
+  </div>
+</SettingsLayout>

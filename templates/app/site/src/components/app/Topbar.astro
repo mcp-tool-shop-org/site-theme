@@ -1,0 +1,20 @@
+---
+import WorkspaceSwitcher from './WorkspaceSwitcher.astro';
+import UserMenu from './UserMenu.astro';
+---
+
+<header class="h-14 border-b border-edge flex items-center justify-between px-4 bg-surface-raised shrink-0">
+  <div class="flex items-center gap-4">
+    <WorkspaceSwitcher />
+  </div>
+  <div class="flex items-center gap-3">
+    <div class="relative">
+      <input
+        type="search"
+        placeholder="Search..."
+        class="bg-surface border border-edge rounded-md px-3 py-1.5 text-sm text-body placeholder:text-dim focus:outline-none focus:border-accent w-48"
+      />
+    </div>
+    <UserMenu />
+  </div>
+</header>

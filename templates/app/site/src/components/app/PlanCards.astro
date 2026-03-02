@@ -1,0 +1,51 @@
+---
+interface Plan {
+  name: string;
+  price: string;
+  period?: string;
+  features: string[];
+  highlighted?: boolean;
+  ctaLabel?: string;
+}
+
+interface Props {
+  plans: Plan[];
+}
+
+const { plans } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {plans.map((plan) => (
+    <div
+      class:list={[
+        'bg-surface-raised border rounded-lg p-6 flex flex-col',
+        plan.highlighted ? 'border-accent' : 'border-edge',
+      ]}
+    >
+      <h3 class="text-lg font-bold text-heading">{plan.name}</h3>
+      <div class="mt-2 mb-4">
+        <span class="text-3xl font-bold text-heading">{plan.price}</span>
+        {plan.period && <span class="text-sm text-dim">/{plan.period}</span>}
+      </div>
+      <ul class="space-y-2 mb-6 flex-1">
+        {plan.features.map((feature) => (
+          <li class="flex items-start gap-2 text-sm text-body">
+            <span class="text-accent mt-0.5">✓</span>
+            {feature}
+          </li>
+        ))}
+      </ul>
+      <button
+        class:list={[
+          'w-full py-2 px-4 rounded-md text-sm font-medium transition-colors',
+          plan.highlighted
+            ? 'bg-action text-action-text hover:bg-action-hover'
+            : 'bg-surface-strong text-heading hover:bg-edge',
+        ]}
+      >
+        {plan.ctaLabel || 'Get started'}
+      </button>
+    </div>
+  ))}
+</div>

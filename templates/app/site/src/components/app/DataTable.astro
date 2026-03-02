@@ -1,0 +1,58 @@
+---
+interface Column {
+  key: string;
+  label: string;
+  align?: 'left' | 'center' | 'right';
+}
+
+interface Props {
+  columns: Column[];
+  rows: Record<string, string>[];
+  emptyMessage?: string;
+}
+
+const { columns, rows, emptyMessage = 'No data yet.' } = Astro.props;
+---
+
+<div class="bg-surface-raised border border-edge rounded-lg overflow-hidden">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-edge">
+        {columns.map((col) => (
+          <th
+            class:list={[
+              'px-4 py-3 font-medium text-dim',
+              col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left',
+            ]}
+          >
+            {col.label}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.length > 0 ? (
+        rows.map((row) => (
+          <tr class="border-b border-edge/50 last:border-0 hover:bg-surface-strong/30 transition-colors">
+            {columns.map((col) => (
+              <td
+                class:list={[
+                  'px-4 py-3 text-body',
+                  col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left',
+                ]}
+              >
+                {row[col.key]}
+              </td>
+            ))}
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colspan={columns.length} class="px-4 py-12 text-center text-dim">
+            {emptyMessage}
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>

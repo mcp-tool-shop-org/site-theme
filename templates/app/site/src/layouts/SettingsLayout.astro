@@ -1,0 +1,23 @@
+---
+import AppShell from './AppShell.astro';
+import SettingsNav from '../components/app/SettingsNav.astro';
+
+interface Props {
+  title: string;
+  activeSetting?: string;
+}
+
+const { title, activeSetting } = Astro.props;
+---
+
+<AppShell title={title} activeNav="settings">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold text-heading mb-6">Settings</h1>
+    <div class="flex gap-8">
+      <SettingsNav activeSetting={activeSetting} />
+      <div class="flex-1 min-w-0">
+        <slot />
+      </div>
+    </div>
+  </div>
+</AppShell>

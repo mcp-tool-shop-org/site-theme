@@ -1,0 +1,39 @@
+---
+import AuthLayout from '../../layouts/AuthLayout.astro';
+import FormField from '../../components/app/FormField.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<AuthLayout title="Sign up">
+  <h2 class="text-xl font-bold text-heading mb-1">Create an account</h2>
+  <p class="text-sm text-dim mb-6">Get started with your free account.</p>
+
+  <form id="sign-up-form">
+    <FormField label="Full name" name="name" placeholder="Jane Doe" required />
+    <FormField label="Email" name="email" type="email" placeholder="you@example.com" required />
+    <FormField label="Password" name="password" type="password" placeholder="••••••••" required />
+
+    <button
+      type="submit"
+      class="w-full bg-action text-action-text font-medium py-2 px-4 rounded-md hover:bg-action-hover transition-colors text-sm"
+    >
+      Create account
+    </button>
+  </form>
+
+  <p class="mt-4 text-center text-sm text-dim">
+    Already have an account?
+    <a href={`${base}auth/sign-in`} class="text-accent hover:underline">Sign in</a>
+  </p>
+</AuthLayout>
+
+<script>
+  import { signIn } from '../../lib/auth';
+
+  document.getElementById('sign-up-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    signIn();
+    window.location.replace(`${import.meta.env.BASE_URL}app`);
+  });
+</script>

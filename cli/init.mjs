@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
-import { join, dirname, resolve } from 'node:path';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync } from 'node:fs';
+import { join, dirname, resolve, relative, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
@@ -57,6 +57,39 @@ function applyVars(content, vars) {
 function writeFile(path, content) {
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, content, 'utf-8');
+}
+
+const IGNORE_DIRS = new Set(['node_modules', 'dist', '.git', '.turbo', '.astro']);
+const IGNORE_FILES = new Set(['.DS_Store', 'Thumbs.db']);
+const TEXT_EXT = new Set(['.ts', '.mjs', '.js', '.json', '.astro', '.css', '.html', '.md', '.yml', '.yaml', '.toml']);
+
+function walkDir(dir, base) {
+  if (!base) base = dir;
+  const results = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      if (IGNORE_DIRS.has(entry.name)) continue;
+      results.push(...walkDir(join(dir, entry.name), base));
+    } else {
+      if (IGNORE_FILES.has(entry.name)) continue;
+      const abs = join(dir, entry.name);
+      const rel = relative(base, abs);
+      if (rel.startsWith('..')) continue;
+      results.push(abs);
+    }
+  }
+  return results.sort();
+}
+
+function shouldTokenReplace(filePath) {
+  if (TEXT_EXT.has(extname(filePath).toLowerCase())) return true;
+  try {
+    const buf = readFileSync(filePath, { encoding: null });
+    const sample = buf.subarray(0, 512);
+    return !sample.includes(0);
+  } catch {
+    return false;
+  }
 }
 
 // --- Argument parsing ---
@@ -174,29 +207,40 @@ function runInit(flags) {
     BASE_PATH: basePath,
   };
 
-  // Discover .tpl files and map to output paths
-  const tplFiles = readdirSync(templateDir).filter((f) => f.endsWith('.tpl'));
-
-  const fileMap = {
-    'astro.config.mjs.tpl': 'astro.config.mjs',
-    'package.json.tpl': 'package.json',
-    'tsconfig.json.tpl': 'tsconfig.json',
-    'global.css.tpl': 'src/styles/global.css',
-    'index.astro.tpl': 'src/pages/index.astro',
-    'site-config.ts.tpl': 'src/site-config.ts',
-  };
-
   // Build the manifest of files to create
   const plan = [];
+  const templateSiteDir = join(templateDir, 'site');
+  const useRecursive = existsSync(templateSiteDir);
 
-  for (const tpl of tplFiles) {
-    if (tpl === 'pages.yml.tpl') continue;
-    const dest = fileMap[tpl];
-    if (!dest) continue;
-    plan.push({ dest: `site/${dest}`, tpl, target: join(siteDir, dest) });
+  if (useRecursive) {
+    // Recursive mode: walk templates/<name>/site/ and copy all files
+    const files = walkDir(templateSiteDir, templateSiteDir);
+    for (const abs of files) {
+      const rel = relative(templateSiteDir, abs).replace(/\\/g, '/');
+      plan.push({ dest: `site/${rel}`, source: abs, target: join(siteDir, rel) });
+    }
+  } else {
+    // Flat .tpl mode: map template files to output paths
+    const tplFiles = readdirSync(templateDir).filter((f) => f.endsWith('.tpl'));
+    const fileMap = {
+      'astro.config.mjs.tpl': 'astro.config.mjs',
+      'package.json.tpl': 'package.json',
+      'tsconfig.json.tpl': 'tsconfig.json',
+      'global.css.tpl': 'src/styles/global.css',
+      'index.astro.tpl': 'src/pages/index.astro',
+      'site-config.ts.tpl': 'src/site-config.ts',
+    };
+    for (const tpl of tplFiles) {
+      if (tpl === 'pages.yml.tpl') continue;
+      const dest = fileMap[tpl];
+      if (!dest) continue;
+      plan.push({ dest: `site/${dest}`, tpl, target: join(siteDir, dest) });
+    }
   }
 
-  if (tplFiles.includes('pages.yml.tpl')) {
+  // pages.yml.tpl lives at template root for all modes
+  const pagesYmlPath = join(templateDir, 'pages.yml.tpl');
+  if (existsSync(pagesYmlPath)) {
     const workflowDest = join(outDir, '.github', 'workflows', 'pages.yml');
     if (!existsSync(workflowDest)) {
       plan.push({ dest: '.github/workflows/pages.yml', tpl: 'pages.yml.tpl', target: workflowDest });
@@ -234,11 +278,26 @@ function runInit(flags) {
   info('');
 
   for (const f of plan) {
-    let content = applyVars(readTemplate(templateName, f.tpl), vars);
-    if (f.dest === 'site/src/site-config.ts' && !npmUrl) {
-      content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
+    if (f.source) {
+      // Recursive mode: copy with optional token replacement
+      mkdirSync(dirname(f.target), { recursive: true });
+      if (shouldTokenReplace(f.source)) {
+        let content = applyVars(readFileSync(f.source, 'utf-8'), vars);
+        if (f.dest === 'site/src/site-config.ts' && !npmUrl) {
+          content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
+        }
+        writeFileSync(f.target, content, 'utf-8');
+      } else {
+        copyFileSync(f.source, f.target);
+      }
+    } else {
+      // Flat .tpl mode
+      let content = applyVars(readTemplate(templateName, f.tpl), vars);
+      if (f.dest === 'site/src/site-config.ts' && !npmUrl) {
+        content = content.replace(/^\s*npmUrl:.*\r?\n/m, '');
+      }
+      writeFile(f.target, content);
     }
-    writeFile(f.target, content);
     info(`Created ${f.dest}`);
   }
 

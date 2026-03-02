@@ -1,0 +1,28 @@
+---
+import AppShell from '../../../layouts/AppShell.astro';
+import DataTable from '../../../components/app/DataTable.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const columns = [
+  { key: 'name', label: 'Name' },
+  { key: 'status', label: 'Status' },
+  { key: 'updated', label: 'Last Updated', align: 'right' as const },
+];
+
+const rows = [
+  { name: 'Marketing Site', status: 'Active', updated: '2 hours ago' },
+  { name: 'API Gateway', status: 'Active', updated: '1 day ago' },
+  { name: 'Mobile App', status: 'Draft', updated: '3 days ago' },
+];
+---
+
+<AppShell title="Projects" activeNav="projects">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-heading">Projects</h1>
+    <button class="inline-flex items-center px-4 py-2 bg-action text-action-text text-sm font-medium rounded-md hover:bg-action-hover transition-colors">
+      New project
+    </button>
+  </div>
+  <DataTable columns={columns} rows={rows} emptyMessage="No projects yet. Create your first project to get started." />
+</AppShell>

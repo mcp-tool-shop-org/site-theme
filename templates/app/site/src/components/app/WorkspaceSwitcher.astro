@@ -1,0 +1,57 @@
+---
+/**
+ * Workspace switcher using <details> for CSS-only dropdown.
+ * Reads/writes localStorage via inline script.
+ */
+---
+
+<div class="relative" id="ws-switcher">
+  <details class="group">
+    <summary class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-heading cursor-pointer hover:bg-surface-strong transition-colors list-none">
+      <span id="ws-name" class="truncate max-w-[140px]">Loading...</span>
+      <span class="text-dim text-xs">▾</span>
+    </summary>
+    <div class="absolute top-full left-0 mt-1 w-56 bg-surface-raised border border-edge rounded-lg shadow-lg z-50 py-1">
+      <div id="ws-list"></div>
+    </div>
+  </details>
+</div>
+
+<script>
+  import { WORKSPACES, getActiveWorkspace, setActiveWorkspace } from '../../lib/workspaces';
+
+  const nameEl = document.getElementById('ws-name')!;
+  const listEl = document.getElementById('ws-list')!;
+  const detailsEl = document.querySelector('#ws-switcher details')!;
+
+  function render() {
+    const active = getActiveWorkspace();
+    nameEl.textContent = active.name;
+
+    listEl.innerHTML = WORKSPACES.map((ws) => {
+      const isActive = ws.id === active.id;
+      return `<button
+        data-ws-id="${ws.id}"
+        class="w-full text-left px-3 py-2 text-sm transition-colors ${
+          isActive ? 'text-accent font-medium bg-surface-strong/50' : 'text-body hover:bg-surface-strong/50 hover:text-heading'
+        }"
+      >${ws.name}</button>`;
+    }).join('');
+  }
+
+  listEl.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-ws-id]');
+    if (!btn) return;
+    setActiveWorkspace(btn.dataset.wsId!);
+    detailsEl.removeAttribute('open');
+    render();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('#ws-switcher')) {
+      detailsEl.removeAttribute('open');
+    }
+  });
+
+  render();
+</script>

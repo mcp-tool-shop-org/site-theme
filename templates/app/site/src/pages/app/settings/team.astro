@@ -1,0 +1,26 @@
+---
+import SettingsLayout from '../../../layouts/SettingsLayout.astro';
+import DataTable from '../../../components/app/DataTable.astro';
+
+const columns = [
+  { key: 'name', label: 'Name' },
+  { key: 'email', label: 'Email' },
+  { key: 'role', label: 'Role' },
+];
+
+const rows = [
+  { name: 'Jane Doe', email: 'jane@example.com', role: 'Owner' },
+  { name: 'Bob Smith', email: 'bob@example.com', role: 'Admin' },
+  { name: 'Carol Lee', email: 'carol@example.com', role: 'Member' },
+];
+---
+
+<SettingsLayout title="Team" activeSetting="team">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-semibold text-heading">Team Members</h2>
+    <button class="px-4 py-2 bg-action text-action-text text-sm font-medium rounded-md hover:bg-action-hover transition-colors">
+      Invite member
+    </button>
+  </div>
+  <DataTable columns={columns} rows={rows} />
+</SettingsLayout>

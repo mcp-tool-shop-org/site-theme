@@ -1,0 +1,5 @@
+{
+  "name": "app",
+  "description": "SaaS dashboard with auth, workspace switcher, and settings",
+  "tags": ["saas", "dashboard", "app"]
+}

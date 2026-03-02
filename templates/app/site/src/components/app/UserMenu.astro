@@ -1,0 +1,35 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="relative" id="user-menu">
+  <details class="group">
+    <summary class="w-8 h-8 rounded-full bg-surface-strong border border-edge flex items-center justify-center text-sm font-medium text-heading cursor-pointer hover:border-accent transition-colors list-none">
+      U
+    </summary>
+    <div class="absolute right-0 top-full mt-1 w-44 bg-surface-raised border border-edge rounded-lg shadow-lg z-50 py-1">
+      <a href={`${base}app/settings/profile`} class="block px-3 py-2 text-sm text-body hover:bg-surface-strong/50 hover:text-heading transition-colors">
+        Settings
+      </a>
+      <hr class="border-edge my-1" />
+      <button id="sign-out-btn" class="w-full text-left px-3 py-2 text-sm text-body hover:bg-surface-strong/50 hover:text-heading transition-colors">
+        Sign out
+      </button>
+    </div>
+  </details>
+</div>
+
+<script>
+  import { signOut } from '../../lib/auth';
+
+  document.getElementById('sign-out-btn')?.addEventListener('click', () => {
+    signOut();
+    window.location.replace(`${import.meta.env.BASE_URL}auth/sign-in`);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('#user-menu')) {
+      document.querySelector('#user-menu details')?.removeAttribute('open');
+    }
+  });
+</script>
