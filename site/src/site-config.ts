@@ -2,7 +2,7 @@ import type { SiteConfig } from '@mcptoolshop/site-theme';
 
 export const config: SiteConfig = {
   title: '@mcptoolshop/site-theme',
-  description: 'Config-driven Astro theme for MCP Tool Shop project landing pages. Dark palette, Tailwind CSS v4, GitHub Pages ready.',
+  description: 'Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards. Dark palette, Tailwind CSS v4, GitHub Pages ready.',
   logoBadge: 'ST',
   brandName: 'site-theme',
   repoUrl: 'https://github.com/mcp-tool-shop-org/site-theme',
@@ -13,12 +13,12 @@ export const config: SiteConfig = {
     badge: 'Open source',
     headline: 'Landing pages,',
     headlineAccent: 'zero fuss.',
-    description: 'One CLI command scaffolds a full Astro site with a dark theme, Tailwind CSS v4, and a GitHub Pages workflow — all wired up and ready to deploy.',
+    description: 'Four templates — landing page, docs, product, and SaaS app — each scaffolded by one CLI command. Dark theme, Tailwind CSS v4, and GitHub Pages workflow included.',
     primaryCta: { href: '#quick-start', label: 'Get started' },
-    secondaryCta: { href: '#components', label: 'See components' },
+    secondaryCta: { href: '#templates', label: 'See templates' },
     previews: [
-      { label: 'Scaffold', code: 'npx @mcptoolshop/site-theme init' },
-      { label: 'Edit', code: 'site/src/site-config.ts' },
+      { label: 'Scaffold', code: 'npx @mcptoolshop/site-theme init --template app' },
+      { label: 'Edit', code: 'site/src/config/site.config.ts' },
       { label: 'Deploy', code: 'git push  # GitHub Actions handles the rest' },
     ],
   },
@@ -31,8 +31,8 @@ export const config: SiteConfig = {
       subtitle: 'Everything a project landing page needs, pre-wired.',
       features: [
         {
-          title: 'Config-driven',
-          desc: 'All page content lives in site-config.ts. No JSX, no HTML — just a typed SiteConfig object.',
+          title: 'Four templates',
+          desc: 'Landing page, docs, product marketing, and multi-tenant SaaS app. Pick one, scaffold, build — done.',
         },
         {
           title: 'Dark by default',
@@ -43,17 +43,30 @@ export const config: SiteConfig = {
           desc: 'The init CLI writes .github/workflows/pages.yml automatically. Push and set the source — done.',
         },
         {
-          title: 'Six composable components',
-          desc: 'Hero, FeatureGrid, DataTable, CodeCardGrid, ApiList, and Section — mix and match in any order.',
+          title: 'SaaS architecture',
+          desc: 'App template ships with RBAC, feature flags, workspace routing, and 31 static pages — credible SaaS foundation out of the box.',
         },
         {
           title: 'Zero surprise setup',
-          desc: 'The CSS import, @source path, and base path are all pre-wired by the CLI. No manual config hunting.',
+          desc: 'CSS imports, @source paths, base paths, and CI workflows are all pre-wired by the CLI. No manual config hunting.',
         },
         {
           title: 'Fully customizable',
           desc: 'Every color, radius, and spacing value is a CSS custom property. Override in @theme — no config file needed.',
         },
+      ],
+    },
+    {
+      kind: 'data-table',
+      id: 'templates',
+      title: 'Templates',
+      subtitle: 'Pick a starting point. Every template is CI-tested and builds clean.',
+      columns: ['Template', 'Description', 'Pages'],
+      rows: [
+        ['default', 'Project landing page with hero, features, and code examples', '1'],
+        ['docs', 'Documentation site with sidebar navigation and content sections', '1'],
+        ['product', 'Marketing page with pricing, testimonials, and CTAs', '1'],
+        ['app', 'Multi-tenant SaaS dashboard with RBAC, feature flags, and workspace routing', '31'],
       ],
     },
     {

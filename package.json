@@ -2,12 +2,16 @@
   "name": "@mcptoolshop/site-theme",
   "version": "1.3.0",
   "type": "module",
-  "description": "Shared Astro theme for MCP Tool Shop org repo landing pages",
+  "description": "Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards",
   "keywords": [
     "astro-component",
     "withastro",
     "theme",
-    "mcp"
+    "mcp",
+    "saas",
+    "scaffold",
+    "multi-tenant",
+    "rbac"
   ],
   "author": "mcp-tool-shop <64996768+mcp-tool-shop@users.noreply.github.com>",
   "license": "MIT",

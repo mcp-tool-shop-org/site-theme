@@ -1,31 +1,59 @@
 <p align="center">
-  <a href="README.md">English</a> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <strong>Français</strong> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português</a>
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.md">English</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/site-theme/main/assets/preview.png" alt="aperçu de site-theme" width="800" />
+  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/site-theme/main/assets/preview.png" alt="site-theme preview" width="800" />
 </p>
 
 <h1 align="center">@mcptoolshop/site-theme</h1>
 
 <p align="center">
-  Thème Astro piloté par configuration pour les pages d'accueil des projets MCP Tool Shop.<br/>
-  Palette sombre · Tailwind CSS v4 · Prêt pour GitHub Pages.
+  Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards.<br/>
+  Dark palette · Tailwind CSS v4 · GitHub Pages ready.
 </p>
 
 <p align="center">
-  <a href="#démarrage-rapide">Démarrage rapide</a> &middot;
-  <a href="#tokens-de-conception">Tokens de conception</a> &middot;
-  <a href="#composants">Composants</a> &middot;
-  <a href="#déploiement">Déploiement</a> &middot;
-  <a href="#licence">Licence</a>
+  <a href="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/site-theme"><img src="https://img.shields.io/npm/v/@mcptoolshop/site-theme" alt="npm version" /></a>
+  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_app-34d399" alt="Templates: default · docs · product · app" />
+  <a href="https://mcp-tool-shop-org.github.io/site-theme/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="MIT License" /></a>
 </p>
+
+<p align="center">
+  <a href="#templates">Templates</a> &middot;
+  <a href="#quick-start">Quick Start</a> &middot;
+  <a href="#design-tokens">Design Tokens</a> &middot;
+  <a href="#components">Components</a> &middot;
+  <a href="#deploy">Deploy</a> &middot;
+  <a href="#license">License</a>
+</p>
+
+---
+
+## Templates
+
+Choisissez un modèle, créez une structure de base, développez. Chaque modèle est testé avec CI et prêt pour GitHub Pages.
+
+| Modèle | Description | Pages |
+|----------|-------------|-------|
+| **default** | Page d'accueil de projet avec une section d'introduction, des fonctionnalités et des exemples de code. | 1 |
+| **docs** | Site de documentation avec une barre de navigation latérale et des sections de contenu. | 1 |
+| **product** | Page d'atterrissage marketing avec des informations sur les prix, des témoignages et des appels à l'action. | 1 |
+| **app** | Tableau de bord SaaS multi-tenant avec contrôle d'accès basé sur les rôles, fonctionnalités et routage des espaces de travail. | 31 |
+
+```bash
+npx @mcptoolshop/site-theme list-templates        # see all options
+npx @mcptoolshop/site-theme init --template app    # scaffold a template
+npx @mcptoolshop/site-theme init --template app --dry-run  # preview files
+```
 
 ---
 
 ## Démarrage rapide
 
-### Créer un nouveau site
+### Créez un nouveau site
 
 ```bash
 npx @mcptoolshop/site-theme init
@@ -33,23 +61,23 @@ cd site && npm install
 npm run dev
 ```
 
-Cela crée un répertoire `site/` avec Astro + Tailwind + le thème déjà configurés, ainsi qu'un workflow GitHub Pages. L'import CSS, le chemin `@source` et le chemin de base sont préconfigurés — aucune configuration manuelle requise.
+Cela crée un répertoire `site/` avec Astro + Tailwind + un thème préconfiguré, ainsi qu'un flux de travail pour GitHub Pages. Les importations CSS, le chemin `@source` et le chemin de base sont tous préconfigurés : aucun paramétrage manuel n'est nécessaire.
 
-### Modifier votre contenu
+### Modifiez votre contenu
 
-Tout le contenu de la page se trouve dans `site/src/site-config.ts`. Modifiez l'objet de configuration pour personnaliser votre page d'accueil :
+Tout le contenu des pages se trouve dans `site/src/site-config.ts`. Modifiez l'objet de configuration pour personnaliser votre page d'accueil :
 
 ```typescript
 import type { SiteConfig } from '@mcptoolshop/site-theme';
 
 export const config: SiteConfig = {
   title: '@mcptoolshop/my-tool',
-  description: 'Ce que fait mon outil.',
+  description: 'What my tool does.',
   logoBadge: 'MT',
   brandName: 'my-tool',
   repoUrl: 'https://github.com/mcp-tool-shop-org/my-tool',
   npmUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
-  footerText: 'Licence MIT',
+  footerText: 'MIT Licensed',
 
   hero: { /* ... */ },
   sections: [ /* ... */ ],
@@ -58,53 +86,53 @@ export const config: SiteConfig = {
 
 ---
 
-## Tokens de conception
+## Jetons de conception
 
-Le thème fournit des tokens de conception sémantiques via `styles/theme.css`. Les composants référencent ces tokens plutôt que des couleurs codées en dur, ce qui permet de personnaliser l'apparence entière du thème en remplaçant quelques valeurs.
+Le thème fournit des jetons de conception sémantiques via `styles/theme.css`. Les composants référencent ces jetons au lieu de couleurs codées en dur, ce qui vous permet de modifier l'apparence de l'ensemble du thème en remplaçant quelques valeurs.
 
-### Tokens par défaut
+### Jetons par défaut
 
-| Token | Valeur par défaut | Utilisé pour |
-|-------|------------------|--------------|
-| `--color-surface` | `#09090b` | Arrière-plan de la page |
-| `--color-surface-raised` | `#18181b` | Éléments surélevés, blocs de code |
-| `--color-surface-strong` | `#27272a` | Badges, arrière-plans accentués |
+| Jeton | Valeur par défaut | Utilisation |
+|-------|---------|----------|
+| `--color-surface` | `#09090b` | Couleur de fond de la page |
+| `--color-surface-raised` | `#18181b` | Éléments mis en évidence, blocs de code |
+| `--color-surface-strong` | `#27272a` | Boutons, arrière-plans mis en évidence |
 | `--color-edge` | `#27272a` | Bordures principales |
-| `--color-edge-subtle` | `#18181b` | Bordures des cartes/tableaux |
+| `--color-edge-subtle` | `#18181b` | Bordures de cartes/tableaux |
 | `--color-heading` | `#fafafa` | Titres, texte principal |
-| `--color-body` | `#e4e4e7` | Corps / texte secondaire |
+| `--color-body` | `#e4e4e7` | Texte du corps/secondaire |
 | `--color-muted` | `#d4d4d8` | Texte atténué |
 | `--color-dim` | `#a1a1aa` | Étiquettes, descriptions |
 | `--color-accent` | `#34d399` | Indicateurs d'état |
-| `--color-action` | `#fafafa` | Arrière-plan du bouton principal |
-| `--color-action-text` | `#09090b` | Texte du bouton principal |
-| `--color-action-hover` | `#e4e4e7` | Survol du bouton principal |
+| `--color-action` | `#fafafa` | Couleur de fond du bouton principal |
+| `--color-action-text` | `#09090b` | Couleur du texte du bouton principal |
+| `--color-action-hover` | `#e4e4e7` | Couleur de survol du bouton principal |
 
 ### Personnalisation
 
-Remplacez n'importe quel token dans le `global.css` de votre site en ajoutant un bloc `@theme` après les imports :
+Remplacez n'importe quel jeton dans le fichier `global.css` de votre site en ajoutant un bloc `@theme` après les importations :
 
 ```css
 @import "tailwindcss";
 @import "@mcptoolshop/site-theme/styles/theme.css";
 @source "../../node_modules/@mcptoolshop/site-theme";
 
-/* Remplacement des tokens */
+/* Override tokens */
 @theme {
-  --color-accent: #60a5fa;          /* point d'état bleu    */
-  --color-surface: #0a0a1a;         /* fond bleu marine     */
-  --color-action: #60a5fa;          /* boutons bleus        */
+  --color-accent: #60a5fa;          /* blue status dot   */
+  --color-surface: #0a0a1a;         /* navy background   */
+  --color-action: #60a5fa;          /* blue buttons      */
   --color-action-hover: #3b82f6;
 }
 ```
 
-Les tokens génèrent des utilitaires Tailwind v4 standards (`bg-surface`, `text-heading`, `border-edge`, etc.) utilisables également dans vos propres composants.
+Les jetons génèrent des utilitaires Tailwind v4 standard (`bg-surface`, `text-heading`, `border-edge`, etc.), vous pouvez donc également les utiliser dans vos propres composants.
 
 ---
 
 ## Composants
 
-Importez les composants individuellement depuis le package :
+Importez les composants individuellement depuis le paquet :
 
 ```astro
 ---
@@ -120,24 +148,24 @@ import ApiList from '@mcptoolshop/site-theme/components/ApiList.astro';
 
 ### BaseLayout
 
-Coquille de page complète avec en-tête fixe (badge logo, liens de navigation, boutons GitHub/npm) et pied de page.
+Structure de page complète avec une barre d'en-tête fixe (badge du logo, liens de navigation, boutons GitHub/npm) et un pied de page.
 
-| Prop | Type | Description |
+| Propriété | Type | Description |
 |------|------|-------------|
-| `title` | `string` | `<title>` de la page |
-| `description` | `string` | Meta description |
-| `logoBadge` | `string` | Badge de 1–2 caractères (ex. `"RS"`) |
+| `title` | `string` | Titre de la page `<title>` |
+| `description` | `string` | Description méta |
+| `logoBadge` | `string` | Badge de 1 à 2 caractères (par exemple, "RS") |
 | `brandName` | `string` | Nom dans l'en-tête |
-| `nav` | `{ href, label }[]` | Liens de navigation par ancre |
+| `nav` | `{ href, label }[]` | Liens de navigation ancrés |
 | `repoUrl` | `string` | URL du dépôt GitHub |
-| `npmUrl?` | `string` | URL du package npm |
+| `npmUrl?` | `string` | URL du paquet npm |
 | `footerText` | `string` | Texte du pied de page (HTML autorisé) |
 
 ### Hero
 
-Hero avec dégradé, badge d'état, titre, CTAs et cartes de prévisualisation de code optionnelles.
+Bannière avec un dégradé, un badge d'état, un titre, des appels à l'action et des cartes de prévisualisation de code facultatives.
 
-| Prop | Type | Description |
+| Propriété | Type | Description |
 |------|------|-------------|
 | `badge` | `string` | Texte du badge d'état |
 | `headline` | `string` | Titre principal |
@@ -149,54 +177,83 @@ Hero avec dégradé, badge d'état, titre, CTAs et cartes de prévisualisation d
 
 ### Section
 
-Wrapper de section avec `id` d'ancre, titre et sous-titre optionnel.
+Conteneur de section avec un identifiant d'ancrage, un titre et un sous-titre facultatif.
 
 ### FeatureGrid
 
-Grille responsive de cartes à 3 colonnes. Props : `features: { title, desc }[]`
+Grille de cartes réactive en 3 colonnes. Propriétés : `features: { title, desc }[]`
 
 ### DataTable
 
-Tableau avec bordure basé sur une grille. Props : `columns: string[]`, `rows: string[][]`
+Tableau borduré basé sur une grille. Propriétés : `columns: string[]`, `rows: string[][]`
 
 ### CodeCardGrid
 
-Grille à 2 colonnes de cartes de blocs de code sombres. Props : `cards: { title, code }[]`
+Grille de 2 colonnes de cartes de code sombres. Propriétés : `cards: { title, code }[]`
 
 ### ApiList
 
-Cartes de référence API empilées pleine largeur. Props : `apis: { signature, description }[]`
+Cartes de référence d'API empilées en largeur. Propriétés : `apis: { signature, description }[]`
 
 ---
 
-## Types de section
+## Types de sections
 
-Le tableau `sections` dans votre configuration prend en charge ces valeurs de `kind` :
+Le tableau `sections` dans votre configuration prend en charge les valeurs `kind` suivantes :
 
-| Kind | Composant | Props |
+| Kind | Composant | Propriété |
 |------|-----------|-------|
 | `features` | FeatureGrid | `features: { title, desc }[]` |
 | `data-table` | DataTable | `columns: string[]`, `rows: string[][]` |
 | `code-cards` | CodeCardGrid | `cards: { title, code }[]` |
 | `api` | ApiList | `apis: { signature, description }[]` |
 
-Les sections sont rendues dans l'ordre où elles apparaissent dans le tableau.
+Les sections sont affichées dans l'ordre dans lequel elles apparaissent dans le tableau.
 
 ---
 
 ## Déploiement
 
-La CLI `init` crée automatiquement `.github/workflows/pages.yml`. Pour mettre en ligne :
+L'outil en ligne de commande `init` crée automatiquement le fichier `.github/workflows/pages.yml`. Pour mettre votre site en ligne :
 
-1. Poussez votre dépôt sur GitHub
-2. Accédez à votre dépôt → **Settings → Pages**
-3. Sous **Build and deployment**, définissez **Source** sur **GitHub Actions**
-4. Poussez n'importe quelle modification dans `site/` pour déclencher le premier déploiement
+1. Poussez votre dépôt sur GitHub.
+2. Allez dans votre dépôt → **Paramètres → Pages**.
+3. Sous **Construction et déploiement**, définissez **Source** sur **GitHub Actions**.
+4. Effectuez une modification et envoyez-la vers le dossier `site/` pour déclencher la première construction.
 
-Votre site sera disponible à l'adresse `https://<org>.github.io/<repo>/`.
+Votre site sera accessible à l'adresse `https://<org>.github.io/<repo>/`.
 
 ---
+
+## Sécurité et portée des données
+
+| Aspect | Détail |
+|--------|--------|
+| **Data touched** | Fichiers de composants Astro, jetons CSS, configuration du site : uniquement pendant la phase de construction. |
+| **Data NOT touched** | Aucune donnée utilisateur, aucun état en cours d'exécution, aucun traitement côté serveur. |
+| **Permissions** | Lecture : fichiers sources du projet. Écriture : résultats de la construction vers `site/dist/`. |
+| **Network** | Aucun – générateur de site statique sans accès réseau en cours d'exécution. |
+| **Telemetry** | Aucune donnée collectée ou envoyée. |
+
+Consultez le fichier [SECURITY.md](SECURITY.md) pour signaler les vulnérabilités.
+
+## Tableau de bord
+
+| Catégorie | Score |
+|----------|-------|
+| A. Sécurité | 10 |
+| B. Gestion des erreurs | 10 |
+| C. Documentation pour les utilisateurs | 10 |
+| D. Hygiène de déploiement | 10 |
+| E. Identité (logicielle) | 10 |
+| **Overall** | **50/50** |
+
+> Audit complet : [SHIP_GATE.md](SHIP_GATE.md) · [SCORECARD.md](SCORECARD.md)
 
 ## Licence
 
 MIT
+
+---
+
+Créé par [MCP Tool Shop](https://mcp-tool-shop.github.io/)

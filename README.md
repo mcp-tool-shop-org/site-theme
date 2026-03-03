@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>English</strong> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português</a>
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@
 <h1 align="center">@mcptoolshop/site-theme</h1>
 
 <p align="center">
-  Config-driven Astro theme for MCP Tool Shop project landing pages.<br/>
+  Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards.<br/>
   Dark palette · Tailwind CSS v4 · GitHub Pages ready.
 </p>
 
@@ -41,7 +41,7 @@ Pick a template, scaffold, build. Every template ships CI-tested and GitHub Page
 | **default** | Project landing page with hero, features, and code examples | 1 |
 | **docs** | Documentation site with sidebar navigation and content sections | 1 |
 | **product** | Marketing landing page with pricing, testimonials, and CTAs | 1 |
-| **app** | SaaS dashboard with auth, workspace switcher, projects, and settings | 13 |
+| **app** | Multi-tenant SaaS dashboard with RBAC, feature flags, and workspace routing | 31 |
 
 ```bash
 npx @mcptoolshop/site-theme list-templates        # see all options
@@ -253,3 +253,7 @@ See [SECURITY.md](SECURITY.md) for vulnerability reporting.
 ## License
 
 MIT
+
+---
+
+Built by [MCP Tool Shop](https://mcp-tool-shop.github.io/)
