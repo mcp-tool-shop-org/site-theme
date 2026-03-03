@@ -14,12 +14,40 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/site-theme"><img src="https://img.shields.io/npm/v/@mcptoolshop/site-theme" alt="npm version" /></a>
+  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_app-34d399" alt="Templates: default · docs · product · app" />
+  <a href="https://mcp-tool-shop-org.github.io/site-theme/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="MIT License" /></a>
+</p>
+
+<p align="center">
+  <a href="#templates">Templates</a> &middot;
   <a href="#quick-start">Quick Start</a> &middot;
   <a href="#design-tokens">Design Tokens</a> &middot;
   <a href="#components">Components</a> &middot;
   <a href="#deploy">Deploy</a> &middot;
   <a href="#license">License</a>
 </p>
+
+---
+
+## Templates
+
+Pick a template, scaffold, build. Every template ships CI-tested and GitHub Pages-ready.
+
+| Template | Description | Pages |
+|----------|-------------|-------|
+| **default** | Project landing page with hero, features, and code examples | 1 |
+| **docs** | Documentation site with sidebar navigation and content sections | 1 |
+| **product** | Marketing landing page with pricing, testimonials, and CTAs | 1 |
+| **app** | SaaS dashboard with auth, workspace switcher, projects, and settings | 13 |
+
+```bash
+npx @mcptoolshop/site-theme list-templates        # see all options
+npx @mcptoolshop/site-theme init --template app    # scaffold a template
+npx @mcptoolshop/site-theme init --template app --dry-run  # preview files
+```
 
 ---
 
