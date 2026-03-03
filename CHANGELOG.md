@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.1] - 2026-03-02
+
+### Changed
+
+- README: updated tagline and app template description for v1.3.0
+- package.json: updated description and keywords
+- Landing page: updated hero, features, added templates data-table section
+- All 7 translations refreshed
+
 ## [1.3.0] - 2026-03-02
 
 ### Added

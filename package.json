@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/site-theme",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "description": "Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards",
   "keywords": [
