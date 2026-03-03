@@ -1,50 +1,73 @@
 ---
 /**
- * Workspace switcher using <details> for CSS-only dropdown.
- * Reads/writes localStorage via inline script.
+ * Workspace switcher with plan badge and path-preserving navigation.
+ * Server-rendered from URL param — no localStorage needed.
  */
+import { WORKSPACES, getWorkspaceBySlug } from '../../lib/workspaces';
+
+interface Props {
+  workspace: string;
+}
+
+const { workspace } = Astro.props;
+const active = getWorkspaceBySlug(workspace) ?? WORKSPACES[0];
+
+const planColors: Record<string, string> = {
+  starter: 'text-dim bg-surface-strong',
+  pro: 'text-accent bg-surface-strong',
+  business: 'text-heading bg-surface-strong',
+};
 ---
 
 <div class="relative" id="ws-switcher">
   <details class="group">
     <summary class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-heading cursor-pointer hover:bg-surface-strong transition-colors list-none">
-      <span id="ws-name" class="truncate max-w-[140px]">Loading...</span>
-      <span class="text-dim text-xs">▾</span>
+      <span class="truncate max-w-[140px]">{active.name}</span>
+      <span class:list={['text-xs px-1.5 py-0.5 rounded', planColors[active.plan] ?? 'text-dim']}>
+        {active.plan.charAt(0).toUpperCase() + active.plan.slice(1)}
+      </span>
+      <span class="text-dim text-xs">&#9662;</span>
     </summary>
     <div class="absolute top-full left-0 mt-1 w-56 bg-surface-raised border border-edge rounded-lg shadow-lg z-50 py-1">
-      <div id="ws-list"></div>
+      {WORKSPACES.map((ws) => (
+        <button
+          data-ws-slug={ws.slug}
+          class:list={[
+            'w-full text-left px-3 py-2 text-sm transition-colors flex items-center justify-between',
+            ws.slug === active.slug
+              ? 'text-accent font-medium bg-surface-strong/50'
+              : 'text-body hover:bg-surface-strong/50 hover:text-heading',
+          ]}
+        >
+          <span>{ws.name}</span>
+          <span class:list={['text-xs', planColors[ws.plan] ?? 'text-dim']}>
+            {ws.plan.charAt(0).toUpperCase() + ws.plan.slice(1)}
+          </span>
+        </button>
+      ))}
     </div>
   </details>
 </div>
 
 <script>
-  import { WORKSPACES, getActiveWorkspace, setActiveWorkspace } from '../../lib/workspaces';
+  const base = import.meta.env.BASE_URL;
+  const switcher = document.getElementById('ws-switcher')!;
+  const detailsEl = switcher.querySelector('details')!;
 
-  const nameEl = document.getElementById('ws-name')!;
-  const listEl = document.getElementById('ws-list')!;
-  const detailsEl = document.querySelector('#ws-switcher details')!;
-
-  function render() {
-    const active = getActiveWorkspace();
-    nameEl.textContent = active.name;
-
-    listEl.innerHTML = WORKSPACES.map((ws) => {
-      const isActive = ws.id === active.id;
-      return `<button
-        data-ws-id="${ws.id}"
-        class="w-full text-left px-3 py-2 text-sm transition-colors ${
-          isActive ? 'text-accent font-medium bg-surface-strong/50' : 'text-body hover:bg-surface-strong/50 hover:text-heading'
-        }"
-      >${ws.name}</button>`;
-    }).join('');
-  }
-
-  listEl.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-ws-id]');
+  switcher.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-ws-slug]');
     if (!btn) return;
-    setActiveWorkspace(btn.dataset.wsId!);
-    detailsEl.removeAttribute('open');
-    render();
+    const newSlug = btn.dataset.wsSlug!;
+    const path = window.location.pathname;
+    const appPrefix = `${base}app/`;
+    if (path.startsWith(appPrefix)) {
+      const afterApp = path.slice(appPrefix.length);
+      const slashIdx = afterApp.indexOf('/');
+      const rest = slashIdx >= 0 ? afterApp.slice(slashIdx) : '/';
+      window.location.href = `${appPrefix}${newSlug}${rest}`;
+    } else {
+      window.location.href = `${appPrefix}${newSlug}/`;
+    }
   });
 
   document.addEventListener('click', (e) => {
@@ -52,6 +75,4 @@
       detailsEl.removeAttribute('open');
     }
   });
-
-  render();
 </script>

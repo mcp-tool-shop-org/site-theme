@@ -1,0 +1,55 @@
+---
+import SettingsLayout from '../../../../layouts/SettingsLayout.astro';
+import AccessDenied from '../../../../components/app/AccessDenied.astro';
+import { getWorkspaceSlugs, getWorkspaceBySlug } from '../../../../lib/workspaces';
+import { getCurrentUser } from '../../../../lib/auth';
+import { canViewBilling } from '../../../../lib/policy';
+
+export function getStaticPaths() {
+  return getWorkspaceSlugs().map((workspace) => ({ params: { workspace } }));
+}
+
+const { workspace } = Astro.params;
+const base = import.meta.env.BASE_URL;
+const user = getCurrentUser();
+const allowed = canViewBilling(user.role);
+const ws = getWorkspaceBySlug(workspace!);
+const planLabel = ws ? ws.plan.charAt(0).toUpperCase() + ws.plan.slice(1) : 'Starter';
+---
+
+<SettingsLayout title="Billing" activeSetting="billing" workspace={workspace!}>
+  {allowed ? (
+    <div class="space-y-6">
+      <div class="bg-surface-raised border border-edge rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-heading mb-4">Current Plan</h2>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-body">
+              You are on the <span class="font-semibold text-heading">{planLabel}</span> plan.
+            </p>
+            <p class="text-xs text-dim mt-1">Manage your subscription and billing details.</p>
+          </div>
+          <button class="px-3 py-1.5 text-sm bg-action text-action-text rounded-md hover:bg-action-hover transition-colors">
+            Upgrade
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-surface-raised border border-edge rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-heading mb-4">Payment Method</h2>
+        <p class="text-sm text-dim">
+          No payment method on file. Add one to unlock paid features.
+        </p>
+        <button class="mt-3 px-3 py-1.5 text-sm bg-surface-strong text-heading rounded-md hover:bg-edge transition-colors">
+          Add payment method
+        </button>
+      </div>
+    </div>
+  ) : (
+    <AccessDenied
+      message="You need Owner or Admin access to view billing settings."
+      backHref={`${base}app/${workspace}/settings/profile`}
+      backLabel="Back to Profile"
+    />
+  )}
+</SettingsLayout>

@@ -1,0 +1,34 @@
+---
+import SettingsLayout from '../../../../layouts/SettingsLayout.astro';
+import DataTable from '../../../../components/app/DataTable.astro';
+import { getWorkspaceSlugs } from '../../../../lib/workspaces';
+
+export function getStaticPaths() {
+  return getWorkspaceSlugs().map((workspace) => ({ params: { workspace } }));
+}
+
+const { workspace } = Astro.params;
+
+const columns = [
+  { key: 'name', label: 'Name' },
+  { key: 'email', label: 'Email' },
+  { key: 'role', label: 'Role' },
+  { key: 'joined', label: 'Joined', align: 'right' as const },
+];
+
+const rows = [
+  { name: 'Jane Doe', email: 'jane@example.com', role: 'Owner', joined: '2024-01-15' },
+  { name: 'Alex Chen', email: 'alex@example.com', role: 'Admin', joined: '2024-03-22' },
+  { name: 'Sam Rivera', email: 'sam@example.com', role: 'Member', joined: '2024-06-10' },
+];
+---
+
+<SettingsLayout title="Team" activeSetting="team" workspace={workspace!}>
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-semibold text-heading">Team Members</h2>
+    <button class="inline-flex items-center px-3 py-1.5 bg-action text-action-text text-sm font-medium rounded-md hover:bg-action-hover transition-colors">
+      Invite member
+    </button>
+  </div>
+  <DataTable columns={columns} rows={rows} emptyMessage="No team members yet. Invite someone to get started." />
+</SettingsLayout>

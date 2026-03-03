@@ -39,3 +39,22 @@ export function guardPage(): void {
   }
   document.body.style.opacity = '1';
 }
+
+// --- RBAC ---
+
+export type Role = 'owner' | 'admin' | 'member';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+}
+
+/**
+ * Stubbed current user. Replace with session/token lookup
+ * when connecting a real auth provider.
+ */
+export function getCurrentUser(): User {
+  return { id: 'user_1', name: 'Jane Doe', email: 'jane@example.com', role: 'owner' };
+}

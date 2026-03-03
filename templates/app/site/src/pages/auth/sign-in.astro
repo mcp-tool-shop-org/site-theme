@@ -39,12 +39,13 @@ const base = import.meta.env.BASE_URL;
 
 <script>
   import { signIn } from '../../lib/auth';
+  import { getDefaultWorkspace } from '../../lib/workspaces';
 
   document.getElementById('sign-in-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     signIn();
     const params = new URLSearchParams(window.location.search);
-    const next = params.get('next') || `${import.meta.env.BASE_URL}app`;
+    const next = params.get('next') || `${import.meta.env.BASE_URL}app/${getDefaultWorkspace().slug}/`;
     window.location.replace(next);
   });
 </script>

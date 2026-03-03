@@ -5,16 +5,17 @@ import SettingsNav from '../components/app/SettingsNav.astro';
 interface Props {
   title: string;
   activeSetting?: string;
+  workspace: string;
 }
 
-const { title, activeSetting } = Astro.props;
+const { title, activeSetting, workspace } = Astro.props;
 ---
 
-<AppShell title={title} activeNav="settings">
+<AppShell title={title} activeNav="settings" workspace={workspace}>
   <div class="max-w-4xl mx-auto">
     <h1 class="text-2xl font-bold text-heading mb-6">Settings</h1>
     <div class="flex gap-8">
-      <SettingsNav activeSetting={activeSetting} />
+      <SettingsNav activeSetting={activeSetting} workspace={workspace} />
       <div class="flex-1 min-w-0">
         <slot />
       </div>

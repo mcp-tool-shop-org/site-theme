@@ -1,4 +1,9 @@
 ---
+interface Props {
+  workspace: string;
+}
+
+const { workspace } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -8,7 +13,7 @@ const base = import.meta.env.BASE_URL;
       U
     </summary>
     <div class="absolute right-0 top-full mt-1 w-44 bg-surface-raised border border-edge rounded-lg shadow-lg z-50 py-1">
-      <a href={`${base}app/settings/profile`} class="block px-3 py-2 text-sm text-body hover:bg-surface-strong/50 hover:text-heading transition-colors">
+      <a href={`${base}app/${workspace}/settings/profile`} class="block px-3 py-2 text-sm text-body hover:bg-surface-strong/50 hover:text-heading transition-colors">
         Settings
       </a>
       <hr class="border-edge my-1" />

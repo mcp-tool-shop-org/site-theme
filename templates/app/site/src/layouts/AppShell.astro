@@ -7,9 +7,10 @@ import { siteConfig } from '../config/site.config';
 interface Props {
   title: string;
   activeNav?: string;
+  workspace: string;
 }
 
-const { title, activeNav } = Astro.props;
+const { title, activeNav, workspace } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,9 +21,9 @@ const { title, activeNav } = Astro.props;
     <title>{title} — {siteConfig.brand}</title>
   </head>
   <body style="opacity:0" class="min-h-screen flex">
-    <Sidebar activeNav={activeNav} />
+    <Sidebar activeNav={activeNav} workspace={workspace} />
     <div class="flex-1 flex flex-col min-w-0">
-      <Topbar />
+      <Topbar workspace={workspace} />
       <main class="flex-1 p-6 overflow-auto">
         <slot />
       </main>

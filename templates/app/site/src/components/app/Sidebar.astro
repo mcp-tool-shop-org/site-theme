@@ -1,23 +1,27 @@
 ---
-import { siteConfig } from '../../config/site.config';
+import { siteConfig, getNav } from '../../config/site.config';
+import { isEnabled } from '../../lib/features';
+import type { FeatureFlags } from '../../lib/features';
 
 interface Props {
   activeNav?: string;
+  workspace: string;
 }
 
-const { activeNav } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const { activeNav, workspace } = Astro.props;
+const nav = getNav(workspace);
 
-const navItems = [
-  { key: 'dashboard', icon: '▦', ...siteConfig.nav.dashboard },
-  { key: 'projects', icon: '◫', ...siteConfig.nav.projects },
-  { key: 'settings', icon: '⚙', ...siteConfig.nav.settings },
-];
+const navItems = Object.entries(nav)
+  .filter(([_, item]) => {
+    if (item.featureFlag && !isEnabled(item.featureFlag as keyof FeatureFlags)) return false;
+    return true;
+  })
+  .map(([key, item]) => ({ key, ...item }));
 ---
 
 <aside class="w-56 bg-surface-raised border-r border-edge flex flex-col shrink-0">
   <div class="p-4 border-b border-edge">
-    <a href={base} class="font-bold text-heading text-lg hover:text-accent transition-colors">
+    <a href={import.meta.env.BASE_URL} class="font-bold text-heading text-lg hover:text-accent transition-colors">
       {siteConfig.brand}
     </a>
   </div>

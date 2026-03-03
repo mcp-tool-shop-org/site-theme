@@ -1,5 +1,5 @@
 {
   "name": "app",
-  "description": "SaaS dashboard with auth, workspace switcher, and settings",
+  "description": "Multi-tenant SaaS dashboard with RBAC, feature flags, and workspace routing",
   "tags": ["saas", "dashboard", "app"]
 }

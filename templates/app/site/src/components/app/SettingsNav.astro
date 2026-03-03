@@ -1,15 +1,32 @@
 ---
-import { siteConfig } from '../../config/site.config';
+import { getSettingsNav } from '../../config/site.config';
+import { getCurrentUser } from '../../lib/auth';
+import { isEnabled } from '../../lib/features';
+import type { FeatureFlags } from '../../lib/features';
 
 interface Props {
   activeSetting?: string;
+  workspace: string;
 }
 
-const { activeSetting } = Astro.props;
+const { activeSetting, workspace } = Astro.props;
+const user = getCurrentUser();
+
+const roleHierarchy: Record<string, number> = { owner: 3, admin: 2, member: 1 };
+const userLevel = roleHierarchy[user.role] ?? 0;
+
+const items = getSettingsNav(workspace).filter((item) => {
+  if (item.featureFlag && !isEnabled(item.featureFlag as keyof FeatureFlags)) return false;
+  if (item.requiredRole) {
+    const requiredLevel = roleHierarchy[item.requiredRole] ?? 0;
+    if (userLevel < requiredLevel) return false;
+  }
+  return true;
+});
 ---
 
 <nav class="w-44 shrink-0 space-y-1">
-  {siteConfig.settings.map((item) => {
+  {items.map((item) => {
     const key = item.label.toLowerCase();
     return (
       <a

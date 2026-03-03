@@ -1,0 +1,29 @@
+---
+import AppShell from '../../../layouts/AppShell.astro';
+import StatCards from '../../../components/app/StatCards.astro';
+import DataTable from '../../../components/app/DataTable.astro';
+import { getWorkspaceSlugs } from '../../../lib/workspaces';
+import { getMetrics, getActivity } from '../../../data';
+
+export function getStaticPaths() {
+  return getWorkspaceSlugs().map((workspace) => ({ params: { workspace } }));
+}
+
+const { workspace } = Astro.params;
+const stats = getMetrics(workspace!);
+
+const columns = [
+  { key: 'event', label: 'Event' },
+  { key: 'user', label: 'User' },
+  { key: 'time', label: 'Time', align: 'right' as const },
+];
+
+const rows = getActivity(workspace!);
+---
+
+<AppShell title="Dashboard" activeNav="dashboard" workspace={workspace!}>
+  <h1 class="text-2xl font-bold text-heading mb-6">Dashboard</h1>
+  <StatCards stats={stats} />
+  <h2 class="text-lg font-semibold text-heading mb-3">Recent Activity</h2>
+  <DataTable columns={columns} rows={rows} />
+</AppShell>

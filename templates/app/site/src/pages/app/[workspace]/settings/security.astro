@@ -1,0 +1,41 @@
+---
+import SettingsLayout from '../../../../layouts/SettingsLayout.astro';
+import FormField from '../../../../components/app/FormField.astro';
+import { getWorkspaceSlugs } from '../../../../lib/workspaces';
+
+export function getStaticPaths() {
+  return getWorkspaceSlugs().map((workspace) => ({ params: { workspace } }));
+}
+
+const { workspace } = Astro.params;
+---
+
+<SettingsLayout title="Security" activeSetting="security" workspace={workspace!}>
+  <div class="space-y-6">
+    <div class="bg-surface-raised border border-edge rounded-lg p-6">
+      <h2 class="text-lg font-semibold text-heading mb-4">Change Password</h2>
+      <form class="max-w-md">
+        <FormField label="Current password" name="current_password" type="password" placeholder="••••••••" required />
+        <FormField label="New password" name="new_password" type="password" placeholder="••••••••" required />
+        <FormField label="Confirm new password" name="confirm_password" type="password" placeholder="••••••••" required />
+
+        <button
+          type="submit"
+          class="mt-2 px-4 py-2 bg-action text-action-text text-sm font-medium rounded-md hover:bg-action-hover transition-colors"
+        >
+          Update password
+        </button>
+      </form>
+    </div>
+
+    <div class="bg-surface-raised border border-edge rounded-lg p-6">
+      <h2 class="text-lg font-semibold text-heading mb-4">Two-Factor Authentication</h2>
+      <p class="text-sm text-dim mb-3">
+        Add an extra layer of security to your account by enabling two-factor authentication.
+      </p>
+      <button class="px-3 py-1.5 text-sm bg-surface-strong text-heading rounded-md hover:bg-edge transition-colors">
+        Enable 2FA
+      </button>
+    </div>
+  </div>
+</SettingsLayout>

@@ -1,29 +1,29 @@
 ---
-import AppShell from '../../../layouts/AppShell.astro';
-import Breadcrumbs from '../../../components/app/Breadcrumbs.astro';
+import AppShell from '../../../../layouts/AppShell.astro';
+import Breadcrumbs from '../../../../components/app/Breadcrumbs.astro';
+import { getAllProjectParams, getProject } from '../../../../data';
 
 export function getStaticPaths() {
-  return [
-    { params: { id: '1' } },
-    { params: { id: '2' } },
-    { params: { id: '3' } },
-  ];
+  return getAllProjectParams().map(({ workspace, id }) => ({
+    params: { workspace, id },
+  }));
 }
 
+const { workspace, id } = Astro.params;
 const base = import.meta.env.BASE_URL;
-const { id } = Astro.params;
+const project = getProject(workspace!, id!);
 
 const tabs = ['Overview', 'Settings', 'Deployments', 'Logs'];
 ---
 
-<AppShell title={`Project ${id}`} activeNav="projects">
+<AppShell title={project?.name ?? `Project ${id}`} activeNav="projects" workspace={workspace!}>
   <Breadcrumbs items={[
-    { label: 'Projects', href: `${base}app/projects` },
-    { label: `Project ${id}` },
+    { label: 'Projects', href: `${base}app/${workspace}/projects` },
+    { label: project?.name ?? `Project ${id}` },
   ]} />
 
   <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-heading">Project {id}</h1>
+    <h1 class="text-2xl font-bold text-heading">{project?.name ?? `Project ${id}`}</h1>
     <div class="flex gap-2">
       <button class="px-3 py-1.5 text-sm bg-surface-strong text-heading rounded-md hover:bg-edge transition-colors">
         Edit
@@ -59,4 +59,3 @@ const tabs = ['Overview', 'Settings', 'Deployments', 'Logs'];
     </p>
   </div>
 </AppShell>
-

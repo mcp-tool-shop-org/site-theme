@@ -1,0 +1,31 @@
+---
+import SettingsLayout from '../../../../layouts/SettingsLayout.astro';
+import FormField from '../../../../components/app/FormField.astro';
+import { getWorkspaceSlugs } from '../../../../lib/workspaces';
+import { getCurrentUser } from '../../../../lib/auth';
+
+export function getStaticPaths() {
+  return getWorkspaceSlugs().map((workspace) => ({ params: { workspace } }));
+}
+
+const { workspace } = Astro.params;
+const user = getCurrentUser();
+---
+
+<SettingsLayout title="Profile" activeSetting="profile" workspace={workspace!}>
+  <div class="bg-surface-raised border border-edge rounded-lg p-6">
+    <h2 class="text-lg font-semibold text-heading mb-4">Profile</h2>
+    <form class="max-w-md">
+      <FormField label="Name" name="name" value={user.name} placeholder="Your name" />
+      <FormField label="Email" name="email" type="email" value={user.email} placeholder="you@example.com" />
+      <FormField label="Job Title" name="title" placeholder="e.g. Software Engineer" />
+
+      <button
+        type="submit"
+        class="mt-2 px-4 py-2 bg-action text-action-text text-sm font-medium rounded-md hover:bg-action-hover transition-colors"
+      >
+        Save changes
+      </button>
+    </form>
+  </div>
+</SettingsLayout>

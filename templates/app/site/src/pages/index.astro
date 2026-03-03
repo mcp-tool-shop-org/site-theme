@@ -1,6 +1,6 @@
 ---
 /**
- * Root redirect — sends to /app if authenticated, /auth/sign-in otherwise.
+ * Root redirect — sends to default workspace if authenticated, sign-in otherwise.
  */
 ---
 
@@ -13,8 +13,10 @@
   <body>
     <script>
       import { isAuthenticated } from '../lib/auth';
+      import { getDefaultWorkspace } from '../lib/workspaces';
       const base = import.meta.env.BASE_URL;
-      window.location.replace(isAuthenticated() ? `${base}app` : `${base}auth/sign-in`);
+      const ws = getDefaultWorkspace().slug;
+      window.location.replace(isAuthenticated() ? `${base}app/${ws}/` : `${base}auth/sign-in`);
     </script>
   </body>
 </html>

@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] - 2026-03-02
+
+### Added
+
+- Multi-tenant workspace routing: all app pages under `/app/[workspace]/`
+- RBAC policy layer (`canViewBilling`, `canManageTeam`, `canManageWorkspace`)
+- Feature flag registry with `isEnabled()` gating (`billing`, `teams`, `auditLog`, `apiKeys`)
+- Centralized data layer: `listProjects()`, `getMetrics()`, `getActivity()` — workspace-keyed
+- `getAllProjectParams()` for cartesian `getStaticPaths()` (workspace × project ID)
+- `AccessDenied` component for RBAC-blocked pages
+- In-shell 404 catch-all (`[...rest].astro`) with "Back to Dashboard" link
+- Billing page RBAC gate — renders AccessDenied if user lacks permission
+- Workspace plan badges in switcher (`starter`, `pro`, `business`)
+- Path-preserving workspace switcher (keeps current sub-route on switch)
+
+### Changed
+
+- `site.config.ts`: static nav replaced with `getNav(workspace)` / `getSettingsNav(workspace)` functions
+- `workspaces.ts`: URL is source of truth (removed localStorage persistence)
+- Workspace slugs shortened: `acme`, `startup`, `side-project`
+- All components now accept `workspace: string` prop (threaded through layouts)
+- `SettingsNav` filters links by feature flags and RBAC role
+- `Sidebar` filters links by feature flags
+
+### Removed
+
+- Flat `/app/` route pages (replaced by `/app/[workspace]/` routes)
+- `getActiveWorkspace()` / `setActiveWorkspace()` localStorage functions
+
 ## [1.2.0] - 2026-03-02
 
 ### Added

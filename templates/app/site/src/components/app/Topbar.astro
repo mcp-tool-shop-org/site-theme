@@ -1,11 +1,17 @@
 ---
 import WorkspaceSwitcher from './WorkspaceSwitcher.astro';
 import UserMenu from './UserMenu.astro';
+
+interface Props {
+  workspace: string;
+}
+
+const { workspace } = Astro.props;
 ---
 
 <header class="h-14 border-b border-edge flex items-center justify-between px-4 bg-surface-raised shrink-0">
   <div class="flex items-center gap-4">
-    <WorkspaceSwitcher />
+    <WorkspaceSwitcher workspace={workspace} />
   </div>
   <div class="flex items-center gap-3">
     <div class="relative">
@@ -15,6 +21,6 @@ import UserMenu from './UserMenu.astro';
         class="bg-surface border border-edge rounded-md px-3 py-1.5 text-sm text-body placeholder:text-dim focus:outline-none focus:border-accent w-48"
       />
     </div>
-    <UserMenu />
+    <UserMenu workspace={workspace} />
   </div>
 </header>
