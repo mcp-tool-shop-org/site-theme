@@ -15,7 +15,7 @@ export const config: SiteConfig = {
     headlineAccent: 'zero fuss.',
     description: 'Four templates — landing page, docs, product, and SaaS app — each scaffolded by one CLI command. Dark theme, Tailwind CSS v4, and GitHub Pages workflow included.',
     primaryCta: { href: '#quick-start', label: 'Get started' },
-    secondaryCta: { href: '#templates', label: 'See templates' },
+    secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
       { label: 'Scaffold', code: 'npx @mcptoolshop/site-theme init --template app' },
       { label: 'Edit', code: 'site/src/config/site.config.ts' },
