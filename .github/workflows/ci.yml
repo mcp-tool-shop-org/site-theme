@@ -37,6 +37,33 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Dependency audit
+        run: npm audit --audit-level=high
+
+      - name: Secret scan
+        run: |
+          echo "Scanning for hardcoded secrets..."
+          cat > /tmp/secret-patterns.txt <<PATTERNS
+          PRIVATE.KEY
+          sk_live_
+          sk_test_
+          aws_secret
+          PATTERNS
+          FOUND=0
+          while IFS= read -r pattern; do
+            pattern=$(echo "$pattern" | xargs)
+            [ -z "$pattern" ] && continue
+            if git grep -lI "$pattern" -- ':!*.md' ':!.github/workflows/*' ':!node_modules' 2>/dev/null; then
+              echo "FAIL: potential secret pattern '$pattern' found"
+              FOUND=1
+            fi
+          done < /tmp/secret-patterns.txt
+          if [ "$FOUND" -eq 1 ]; then exit 1; fi
+          echo "No hardcoded secrets detected"
+
       - name: Lint
         run: npm run lint --if-present
 
