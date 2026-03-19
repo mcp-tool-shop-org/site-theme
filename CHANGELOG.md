@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.0] - 2026-03-19
+
+### Added
+
+- **Test suite**: 56 tests via vitest covering CLI arg parsing, template scaffolding, token replacement helpers, RBAC policy, feature flags, and workspace model
+- **TypeScript checking**: root tsconfig.json with strict mode, `tsc --noEmit` in CI validates exported types
+- **Props interfaces**: all 15 shared Astro components now declare `interface Props` for IDE autocomplete and compile-time safety
+- **Biome linter**: lint + format enforcement for cli/, types/, tests/ with CI integration
+- **CLI --help/-h and --version/-V flags**
+- **CLI path traversal guard**: `--template` validates resolved path stays within templates/
+- **set:html security docs**: README documents which props accept raw HTML and recommends sanitization
+
+### Fixed
+
+- **Accessibility**: DataTable converted from div-grid to semantic `<table>` with `<thead>`/`<tbody>`/`<th>`/`<td>`
+- **Accessibility**: ARIA labels added to all `<nav>` elements (main, footer, sidebar, table of contents)
+- **Accessibility**: `aria-label` on mobile sidebar toggle, `aria-hidden` on decorative PricingGrid checkmark
+- **Supply chain**: all GitHub Actions SHA-pinned (no mutable tag refs)
+- **Secrets safety**: `.env` / `.env.*` added to `.gitignore`
+- **CLI**: `execSync` for git calls now has 5s timeout
+- **Types**: removed unused `CtaDef` import from docs-config.ts
+
+### Changed
+
+- CI now runs typecheck, lint, and test steps (no longer `--if-present`)
+- `tests/**` and `tsconfig.json` added to CI paths trigger
+
 ## [1.3.1] - 2026-03-02
 
 ### Changed
