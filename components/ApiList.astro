@@ -1,4 +1,9 @@
 ---
+interface Props {
+  /** API entries — `signature` and `description` accept raw HTML. Sanitize if sourced from user input. */
+  apis: { signature: string; description: string }[];
+}
+
 const { apis } = Astro.props;
 ---
 

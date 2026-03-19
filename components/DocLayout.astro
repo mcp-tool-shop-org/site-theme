@@ -1,6 +1,11 @@
 ---
 import Sidebar from './Sidebar.astro';
 
+interface Props {
+  sidebar: { title: string; items: { label: string; href: string }[] }[];
+  currentPath: string;
+}
+
 const { sidebar, currentPath } = Astro.props;
 ---
 

@@ -1,4 +1,16 @@
 ---
+interface Props {
+  title: string;
+  description: string;
+  logoBadge: string;
+  brandName: string;
+  nav?: { href: string; label: string }[];
+  repoUrl: string;
+  npmUrl?: string;
+  /** Footer text — accepts raw HTML. Sanitize if sourced from user input. */
+  footerText: string;
+}
+
 const {
   title,
   description,

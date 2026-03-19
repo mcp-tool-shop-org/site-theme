@@ -1,4 +1,16 @@
 ---
+interface Props {
+  /** Status badge text — accepts raw HTML. Sanitize if sourced from user input. */
+  badge: string;
+  headline: string;
+  headlineAccent: string;
+  /** Description paragraph — accepts raw HTML. Sanitize if sourced from user input. */
+  description: string;
+  primaryCta: { href: string; label: string };
+  secondaryCta: { href: string; label: string };
+  previews?: { label: string; code: string }[];
+}
+
 const {
   badge,
   headline,

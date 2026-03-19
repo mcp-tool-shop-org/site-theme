@@ -1,4 +1,9 @@
 ---
+interface Props {
+  /** Code cards — the `code` field accepts raw HTML. Sanitize if sourced from user input. */
+  cards: { title: string; code: string }[];
+}
+
 const { cards } = Astro.props;
 ---
 

@@ -1,4 +1,15 @@
 ---
+interface Props {
+  tiers?: {
+    name: string;
+    price: string;
+    description: string;
+    features: string[];
+    cta: { href: string; label: string };
+    highlighted?: boolean;
+  }[];
+}
+
 const { tiers = [] } = Astro.props;
 const cols = tiers.length <= 2 ? 'md:grid-cols-2' : 'md:grid-cols-3';
 ---

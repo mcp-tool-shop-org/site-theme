@@ -1,4 +1,9 @@
 ---
+interface Props {
+  columns: string[];
+  rows: string[][];
+}
+
 const { columns, rows } = Astro.props;
 const colCount = columns.length;
 ---

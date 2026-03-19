@@ -1,4 +1,8 @@
 ---
+interface Props {
+  headings?: { text: string; id: string; depth: 2 | 3 }[];
+}
+
 const { headings = [] } = Astro.props;
 ---
 

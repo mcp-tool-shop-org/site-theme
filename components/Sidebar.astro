@@ -1,4 +1,9 @@
 ---
+interface Props {
+  groups: { title: string; items: { label: string; href: string }[] }[];
+  currentPath?: string;
+}
+
 const { groups, currentPath = '' } = Astro.props;
 ---
 

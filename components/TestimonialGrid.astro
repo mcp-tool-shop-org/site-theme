@@ -1,4 +1,13 @@
 ---
+interface Props {
+  testimonials?: {
+    quote: string;
+    author: string;
+    role: string;
+    avatarUrl?: string;
+  }[];
+}
+
 const { testimonials = [] } = Astro.props;
 ---
 

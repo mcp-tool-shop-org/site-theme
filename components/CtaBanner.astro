@@ -1,4 +1,10 @@
 ---
+interface Props {
+  headline: string;
+  description?: string;
+  cta: { href: string; label: string };
+}
+
 const { headline, description, cta } = Astro.props;
 ---
 
