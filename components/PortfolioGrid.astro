@@ -1,0 +1,181 @@
+---
+interface PortfolioItem {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+  badge?: string;
+  tags?: string[];
+  category?: string;
+  status?: string;
+  meta?: string;
+  secondaryAction?: { href: string; label: string };
+}
+
+interface Props {
+  items: PortfolioItem[];
+  /** Grid columns on large screens: 2 | 3 | 4 (default: 3) */
+  columns?: 2 | 3 | 4;
+  /** Group items under category headings */
+  groupByCategory?: boolean;
+}
+
+const { items, columns = 3, groupByCategory = false } = Astro.props;
+
+const colsClass =
+  columns === 2 ? 'md:grid-cols-2' : columns === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-3';
+
+const statusColors: Record<string, string> = {
+  stable: 'bg-accent text-surface',
+  new: 'bg-accent text-surface',
+  beta: 'bg-surface-strong text-muted',
+  archived: 'bg-surface-strong text-dim',
+};
+
+function getStatusClass(status: string): string {
+  return statusColors[status.toLowerCase()] ?? 'bg-surface-strong text-muted';
+}
+
+// Group items by category if requested
+type GroupedItems = { category: string; items: PortfolioItem[] }[];
+let grouped: GroupedItems = [];
+
+if (groupByCategory) {
+  const categoryMap = new Map<string, PortfolioItem[]>();
+  for (const item of items) {
+    const cat = item.category ?? 'Other';
+    if (!categoryMap.has(cat)) categoryMap.set(cat, []);
+    categoryMap.get(cat)!.push(item);
+  }
+  grouped = Array.from(categoryMap.entries()).map(([category, items]) => ({ category, items }));
+}
+
+const flatItems = groupByCategory ? [] : items;
+---
+
+<div data-portfolio-grid>
+  {groupByCategory ? (
+    grouped.map((group) => (
+      <div data-portfolio-category={group.category} class="mb-12">
+        <h3 class="mb-6 text-xl font-semibold tracking-tight">{group.category}</h3>
+        <div class={`grid gap-6 ${colsClass}`}>
+          {group.items.map((item) => (
+            <a
+              href={item.href}
+              data-portfolio-card
+              data-tags={item.tags?.join(',') ?? ''}
+              data-category={item.category ?? ''}
+              data-search-text={`${item.title} ${item.description} ${item.tags?.join(' ') ?? ''} ${item.category ?? ''} ${item.meta ?? ''}`}
+              class="group relative flex flex-col rounded-2xl border border-edge-subtle bg-surface p-6 transition-colors hover:border-edge hover:bg-surface-raised"
+            >
+              <div class="flex items-start gap-4">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={`${item.title} thumbnail`}
+                    class="h-12 w-12 rounded-xl object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-strong text-sm font-semibold text-heading">
+                    {item.badge ?? item.title.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
+                  </div>
+                )}
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center gap-2">
+                    <h4 class="truncate text-lg font-semibold text-heading group-hover:text-accent">{item.title}</h4>
+                    {item.status && (
+                      <span class={`inline-flex shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusClass(item.status)}`}>
+                        {item.status}
+                      </span>
+                    )}
+                  </div>
+                  {item.meta && (
+                    <p class="mt-0.5 text-xs text-dim">{item.meta}</p>
+                  )}
+                </div>
+              </div>
+
+              <p class="mt-3 flex-1 text-sm text-dim leading-relaxed">{item.description}</p>
+
+              {(item.tags?.length ?? 0) > 0 && (
+                <div class="mt-4 flex flex-wrap gap-1.5">
+                  {item.tags!.map((tag) => (
+                    <span class="rounded-md bg-surface-strong px-2 py-0.5 text-[10px] font-medium text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {item.secondaryAction && (
+                <div class="mt-4 border-t border-edge-subtle pt-3">
+                  <span class="text-xs font-medium text-accent">{item.secondaryAction.label} &rarr;</span>
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))
+  ) : (
+    <div class={`grid gap-6 ${colsClass}`}>
+      {flatItems.map((item) => (
+        <a
+          href={item.href}
+          data-portfolio-card
+          data-tags={item.tags?.join(',') ?? ''}
+          data-category={item.category ?? ''}
+          data-search-text={`${item.title} ${item.description} ${item.tags?.join(' ') ?? ''} ${item.category ?? ''} ${item.meta ?? ''}`}
+          class="group relative flex flex-col rounded-2xl border border-edge-subtle bg-surface p-6 transition-colors hover:border-edge hover:bg-surface-raised"
+        >
+          <div class="flex items-start gap-4">
+            {item.image ? (
+              <img
+                src={item.image}
+                alt={`${item.title} thumbnail`}
+                class="h-12 w-12 rounded-xl object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-strong text-sm font-semibold text-heading">
+                {item.badge ?? item.title.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
+              </div>
+            )}
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2">
+                <h4 class="truncate text-lg font-semibold text-heading group-hover:text-accent">{item.title}</h4>
+                {item.status && (
+                  <span class={`inline-flex shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusClass(item.status)}`}>
+                    {item.status}
+                  </span>
+                )}
+              </div>
+              {item.meta && (
+                <p class="mt-0.5 text-xs text-dim">{item.meta}</p>
+              )}
+            </div>
+          </div>
+
+          <p class="mt-3 flex-1 text-sm text-dim leading-relaxed">{item.description}</p>
+
+          {(item.tags?.length ?? 0) > 0 && (
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {item.tags!.map((tag) => (
+                <span class="rounded-md bg-surface-strong px-2 py-0.5 text-[10px] font-medium text-muted">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {item.secondaryAction && (
+            <div class="mt-4 border-t border-edge-subtle pt-3">
+              <span class="text-xs font-medium text-accent">{item.secondaryAction.label} &rarr;</span>
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  )}
+</div>

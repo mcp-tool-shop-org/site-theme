@@ -1,0 +1,99 @@
+---
+interface Props {
+  /** All available tags extracted from items */
+  tags: string[];
+  /** Enable text search input (default: true) */
+  searchable?: boolean;
+  /** Placeholder text for search input */
+  searchPlaceholder?: string;
+}
+
+const { tags, searchable = true, searchPlaceholder = 'Search...' } = Astro.props;
+---
+
+<div class="mb-8 space-y-4" data-filter-bar>
+  {searchable && (
+    <div>
+      <input
+        type="search"
+        placeholder={searchPlaceholder}
+        aria-label="Search items"
+        data-search-input
+        class="w-full rounded-xl border border-edge bg-surface px-4 py-2.5 text-sm text-heading placeholder:text-dim focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent md:max-w-sm"
+      />
+    </div>
+  )}
+
+  {tags.length > 0 && (
+    <nav aria-label="Filter by tag" class="flex flex-wrap gap-2">
+      <button
+        data-tag-filter="all"
+        class="rounded-lg border border-edge px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-surface-raised data-[active]:border-accent data-[active]:bg-accent data-[active]:text-surface"
+        data-active
+      >
+        All
+      </button>
+      {tags.map((tag) => (
+        <button
+          data-tag-filter={tag}
+          class="rounded-lg border border-edge px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-surface-raised data-[active]:border-accent data-[active]:bg-accent data-[active]:text-surface"
+        >
+          {tag}
+        </button>
+      ))}
+    </nav>
+  )}
+</div>
+
+<script>
+  function initFilterBar() {
+    const bar = document.querySelector('[data-filter-bar]');
+    if (!bar) return;
+
+    const searchInput = bar.querySelector<HTMLInputElement>('[data-search-input]');
+    const tagButtons = bar.querySelectorAll<HTMLButtonElement>('[data-tag-filter]');
+    const cards = document.querySelectorAll<HTMLElement>('[data-portfolio-card]');
+    const categories = document.querySelectorAll<HTMLElement>('[data-portfolio-category]');
+
+    let activeTag = 'all';
+
+    function applyFilters() {
+      const query = searchInput?.value.toLowerCase().trim() ?? '';
+      let visibleByCategory: Record<string, number> = {};
+
+      cards.forEach((card) => {
+        const tags = (card.dataset.tags ?? '').toLowerCase();
+        const text = (card.dataset.searchText ?? '').toLowerCase();
+        const category = card.dataset.category ?? '';
+
+        const matchesTag = activeTag === 'all' || tags.includes(activeTag.toLowerCase());
+        const matchesSearch = !query || text.includes(query);
+        const visible = matchesTag && matchesSearch;
+
+        card.style.display = visible ? '' : 'none';
+        if (visible) {
+          visibleByCategory[category] = (visibleByCategory[category] ?? 0) + 1;
+        }
+      });
+
+      categories.forEach((cat) => {
+        const name = cat.dataset.portfolioCategory ?? '';
+        cat.style.display = (visibleByCategory[name] ?? 0) > 0 ? '' : 'none';
+      });
+    }
+
+    searchInput?.addEventListener('input', applyFilters);
+
+    tagButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tagButtons.forEach((b) => delete b.dataset.active);
+        btn.dataset.active = '';
+        activeTag = btn.dataset.tagFilter ?? 'all';
+        applyFilters();
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFilterBar);
+  initFilterBar();
+</script>

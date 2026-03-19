@@ -1,4 +1,5 @@
 import type { DocsSiteConfig } from './docs-config';
+import type { PortfolioSiteConfig } from './portfolio-config';
 import type { ProductSiteConfig } from './product-config';
 
 export interface DefaultSiteConfig {
@@ -27,9 +28,10 @@ export interface DefaultSiteConfig {
 }
 
 /** Discriminated union — determines which template config is in use */
-export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig;
+export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig | PortfolioSiteConfig;
 
 export type { DocsSection, DocsSiteConfig, SidebarGroup, SidebarItem } from './docs-config';
+export type { PortfolioItem, PortfolioSiteConfig } from './portfolio-config';
 export type {
   CtaBannerDef,
   PricingDef,

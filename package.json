@@ -2,13 +2,15 @@
   "name": "@mcptoolshop/site-theme",
   "version": "1.4.0",
   "type": "module",
-  "description": "Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards",
+  "description": "Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards",
   "keywords": [
     "astro-component",
     "withastro",
     "theme",
     "mcp",
     "saas",
+    "portfolio",
+    "catalog",
     "scaffold",
     "multi-tenant",
     "rbac"
@@ -23,6 +25,7 @@
   "exports": {
     ".": "./types/config.ts",
     "./types/docs-config": "./types/docs-config.ts",
+    "./types/portfolio-config": "./types/portfolio-config.ts",
     "./types/product-config": "./types/product-config.ts",
     "./styles/theme.css": "./styles/theme.css",
     "./components/BaseLayout.astro": "./components/BaseLayout.astro",
@@ -39,7 +42,9 @@
     "./components/SocialProof.astro": "./components/SocialProof.astro",
     "./components/PricingGrid.astro": "./components/PricingGrid.astro",
     "./components/TestimonialGrid.astro": "./components/TestimonialGrid.astro",
-    "./components/CtaBanner.astro": "./components/CtaBanner.astro"
+    "./components/CtaBanner.astro": "./components/CtaBanner.astro",
+    "./components/PortfolioGrid.astro": "./components/PortfolioGrid.astro",
+    "./components/FilterBar.astro": "./components/FilterBar.astro"
   },
   "files": [
     "components",
