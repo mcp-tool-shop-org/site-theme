@@ -5,19 +5,25 @@ interface Props {
 }
 
 const { columns, rows } = Astro.props;
-const colCount = columns.length;
 ---
 
 <div class="mt-8 overflow-hidden rounded-2xl border border-edge-subtle">
-  <div class={`grid gap-0 bg-surface text-xs text-dim`} style={`grid-template-columns: repeat(${colCount}, minmax(0, 1fr))`}>
-    {columns.map((col: string) => (
-      <div class="border-b border-edge-subtle p-4">{col}</div>
-    ))}
-
-    {rows.map((row: string[]) => (
-      row.map((cell: string, i: number) => (
-        <div class={`border-b border-edge-subtle p-4${i === 0 ? ' font-medium text-body' : ''}`}>{cell}</div>
-      ))
-    ))}
-  </div>
+  <table class="w-full text-xs text-dim">
+    <thead>
+      <tr>
+        {columns.map((col: string) => (
+          <th scope="col" class="border-b border-edge-subtle bg-surface p-4 text-left font-semibold">{col}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row: string[]) => (
+        <tr>
+          {row.map((cell: string, i: number) => (
+            <td class={`border-b border-edge-subtle bg-surface p-4${i === 0 ? ' font-medium text-body' : ''}`}>{cell}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
 </div>

@@ -7,7 +7,7 @@ interface Props {
 const { groups, currentPath = '' } = Astro.props;
 ---
 
-<nav class="space-y-6">
+<nav aria-label="Sidebar navigation" class="space-y-6">
   {groups.map((group: { title: string; items: { label: string; href: string }[] }) => (
     <div>
       <h4 class="mb-2 text-xs font-semibold uppercase tracking-wider text-dim">

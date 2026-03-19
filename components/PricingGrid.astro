@@ -44,7 +44,7 @@ const cols = tiers.length <= 2 ? 'md:grid-cols-2' : 'md:grid-cols-3';
       <ul class="mt-6 flex-1 space-y-3">
         {tier.features.map((f) => (
           <li class="flex items-start gap-2 text-sm text-body">
-            <span class="mt-0.5 text-accent">&#10003;</span>
+            <span aria-hidden="true" class="mt-0.5 text-accent">&#10003;</span>
             <span>{f}</span>
           </li>
         ))}
