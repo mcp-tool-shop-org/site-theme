@@ -235,6 +235,18 @@ Your site will be live at `https://<org>.github.io/<repo>/`.
 | **Network** | None — static site generator with no runtime network access |
 | **Telemetry** | None collected or sent |
 
+### HTML Props (set:html)
+
+Several component props render raw HTML via Astro's `set:html` directive. If your data source is untrusted (user-generated content, external APIs), **sanitize the HTML before passing it** using a library like [DOMPurify](https://github.com/cure53/DOMPurify) or [sanitize-html](https://github.com/apostrophecms/sanitize-html).
+
+| Component | Props using set:html |
+|-----------|---------------------|
+| BaseLayout | `footerText` |
+| Hero | `badge`, `description` |
+| CodeCardGrid | `cards[].code` |
+| ApiList | `apis[].signature`, `apis[].description` |
+| ContentSection | `content` |
+
 See [SECURITY.md](SECURITY.md) for vulnerability reporting.
 
 ## Scorecard
