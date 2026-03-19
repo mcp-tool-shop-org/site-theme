@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 /**
  * Workspace model tests — validates the app template's workspace functions.
@@ -34,8 +34,8 @@ describe('getWorkspaceBySlug', () => {
   it('returns workspace for valid slug', () => {
     const ws = getWorkspaceBySlug('acme');
     expect(ws).toBeDefined();
-    expect(ws!.name).toBe('Acme Corp');
-    expect(ws!.plan).toBe('pro');
+    expect(ws?.name).toBe('Acme Corp');
+    expect(ws?.plan).toBe('pro');
   });
 
   it('returns undefined for invalid slug', () => {

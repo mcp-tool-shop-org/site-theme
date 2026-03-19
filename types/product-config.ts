@@ -1,4 +1,4 @@
-import type { HeroDef, CtaDef } from './config';
+import type { CtaDef, HeroDef } from './config';
 
 export interface SocialProofDef {
   headline?: string;

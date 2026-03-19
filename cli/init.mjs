@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, copyFileSync } from 'node:fs';
-import { join, dirname, resolve, relative, extname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, extname, join, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const templatesDir = resolve(join(__dirname, '..', 'templates'));
@@ -35,7 +35,12 @@ function unscopeName(name) {
 
 function extractRepoName(repoUrl) {
   if (!repoUrl) return '';
-  return repoUrl.replace(/\.git$/, '').split('/').pop() || '';
+  return (
+    repoUrl
+      .replace(/\.git$/, '')
+      .split('/')
+      .pop() || ''
+  );
 }
 
 function extractRepoNameFromGit() {
@@ -197,7 +202,9 @@ function runInit(flags) {
   }
 
   if (!existsSync(templateDir)) {
-    const available = getAvailableTemplates().map((t) => t.name).join(', ');
+    const available = getAvailableTemplates()
+      .map((t) => t.name)
+      .join(', ');
     die(`Template "${templateName}" not found. Available: ${available}`);
   }
 
@@ -221,12 +228,11 @@ function runInit(flags) {
   const packageName = pkg.name || 'my-package';
   const brandName = unscopeName(packageName);
   const description = pkg.description || 'A tool by mcp-tool-shop';
-  const repoUrl = (typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url)
-    ?.replace(/\.git$/, '')
-    ?.replace(/^git\+/, '') || `https://github.com/mcp-tool-shop-org/${extractRepoNameFromGit() || brandName}`;
-  const npmUrl = pkg.private
-    ? ''
-    : `https://www.npmjs.com/package/${packageName}`;
+  const repoUrl =
+    (typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url)
+      ?.replace(/\.git$/, '')
+      ?.replace(/^git\+/, '') || `https://github.com/mcp-tool-shop-org/${extractRepoNameFromGit() || brandName}`;
+  const npmUrl = pkg.private ? '' : `https://www.npmjs.com/package/${packageName}`;
   const logoBadge = deriveBadge(brandName);
   const basePath = `/${extractRepoName(repoUrl) || brandName}`;
 
@@ -339,7 +345,7 @@ function runInit(flags) {
   if (existsSync(gitignorePath)) {
     const gitignoreContent = readFileSync(gitignorePath, 'utf-8');
     if (!gitignoreContent.includes('site/.astro/')) {
-      writeFileSync(gitignorePath, gitignoreContent.trimEnd() + '\nsite/.astro/\n', 'utf-8');
+      writeFileSync(gitignorePath, `${gitignoreContent.trimEnd()}\nsite/.astro/\n`, 'utf-8');
       info('Added site/.astro/ to .gitignore');
     } else {
       info('Skipped .gitignore (site/.astro/ already present)');

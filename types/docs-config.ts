@@ -1,5 +1,3 @@
-import type { CtaDef } from './config';
-
 export interface SidebarGroup {
   title: string;
   items: SidebarItem[];

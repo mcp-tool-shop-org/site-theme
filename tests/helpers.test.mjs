@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 /**
  * Tests for pure helper functions extracted from cli/init.mjs.
@@ -22,7 +22,12 @@ function unscopeName(name) {
 
 function extractRepoName(repoUrl) {
   if (!repoUrl) return '';
-  return repoUrl.replace(/\.git$/, '').split('/').pop() || '';
+  return (
+    repoUrl
+      .replace(/\.git$/, '')
+      .split('/')
+      .pop() || ''
+  );
 }
 
 function applyVars(content, vars) {

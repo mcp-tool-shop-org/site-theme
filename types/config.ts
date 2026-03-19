@@ -29,10 +29,15 @@ export interface DefaultSiteConfig {
 /** Discriminated union — determines which template config is in use */
 export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig;
 
-export type { DocsSiteConfig } from './docs-config';
-export type { ProductSiteConfig } from './product-config';
-export type { SidebarGroup, SidebarItem, DocsSection } from './docs-config';
-export type { SocialProofDef, PricingTier, PricingDef, TestimonialDef, CtaBannerDef } from './product-config';
+export type { DocsSection, DocsSiteConfig, SidebarGroup, SidebarItem } from './docs-config';
+export type {
+  CtaBannerDef,
+  PricingDef,
+  PricingTier,
+  ProductSiteConfig,
+  SocialProofDef,
+  TestimonialDef,
+} from './product-config';
 
 export interface HeroDef {
   /** Status badge text */
@@ -68,11 +73,7 @@ export interface NavItem {
 
 // --- Section variants ---
 
-export type SectionDef =
-  | FeatureSectionDef
-  | DataTableSectionDef
-  | CodeCardSectionDef
-  | ApiSectionDef;
+export type SectionDef = FeatureSectionDef | DataTableSectionDef | CodeCardSectionDef | ApiSectionDef;
 
 interface BaseSectionDef {
   id: string;
