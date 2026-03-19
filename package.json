@@ -64,12 +64,14 @@
   },
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
+    "typescript": "^5.8.3",
     "vitest": "^4.1.0"
   }
 }

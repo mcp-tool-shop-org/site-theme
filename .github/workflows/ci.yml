@@ -10,6 +10,8 @@ on:
       - 'types/**'
       - 'templates/**'
       - 'styles/**'
+      - 'tests/**'
+      - 'tsconfig.json'
       - '.github/workflows/**'
   pull_request:
     branches: [main]
@@ -20,6 +22,8 @@ on:
       - 'types/**'
       - 'templates/**'
       - 'styles/**'
+      - 'tests/**'
+      - 'tsconfig.json'
       - '.github/workflows/**'
   workflow_dispatch:
 
@@ -64,11 +68,14 @@ jobs:
           if [ "$FOUND" -eq 1 ]; then exit 1; fi
           echo "No hardcoded secrets detected"
 
+      - name: Typecheck
+        run: npm run typecheck
+
       - name: Lint
         run: npm run lint --if-present
 
       - name: Test
-        run: npm test --if-present
+        run: npm test
 
   validate-templates:
     runs-on: ubuntu-latest
