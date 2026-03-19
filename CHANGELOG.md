@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.0] - 2026-03-19
+
+### Added
+
+- **portfolio** template: filterable catalog grid for tools, projects, team members, recipes, or any collection
+- **FilterBar** component: client-side tag filtering + text search with `data-*` attribute matching
+- **PortfolioGrid** component: configurable card grid with status badges, category grouping, image/badge fallbacks, and secondary actions
+- `PortfolioSiteConfig` type added to the `SiteConfig` discriminated union
+- `PortfolioItem` type with generic fields (tags, categories, status, meta) for any content type
+- Handbook pages for portfolio template and new components
+- CI validates portfolio template scaffolding
+
 ## [1.4.0] - 2026-03-19
 
 ### Added
