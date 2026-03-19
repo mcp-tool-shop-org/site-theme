@@ -9,14 +9,14 @@
 <h1 align="center">@mcptoolshop/site-theme</h1>
 
 <p align="center">
-  Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards.<br/>
+  Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards.<br/>
   Dark palette · Tailwind CSS v4 · GitHub Pages ready.
 </p>
 
 <p align="center">
   <a href="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/@mcptoolshop/site-theme"><img src="https://img.shields.io/npm/v/@mcptoolshop/site-theme" alt="npm version" /></a>
-  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_app-34d399" alt="Templates: default · docs · product · app" />
+  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_portfolio_·_app-34d399" alt="Templates: default · docs · product · portfolio · app" />
   <a href="https://mcp-tool-shop-org.github.io/site-theme/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="MIT License" /></a>
 </p>
@@ -41,6 +41,7 @@ Pick a template, scaffold, build. Every template ships CI-tested and GitHub Page
 | **default** | Project landing page with hero, features, and code examples | 1 |
 | **docs** | Documentation site with sidebar navigation and content sections | 1 |
 | **product** | Marketing landing page with pricing, testimonials, and CTAs | 1 |
+| **portfolio** | Filterable catalog grid for tools, projects, or any collection | 1 |
 | **app** | Multi-tenant SaaS dashboard with RBAC, feature flags, and workspace routing | 31 |
 
 ```bash
@@ -194,6 +195,14 @@ Grid-based bordered table. Props: `columns: string[]`, `rows: string[][]`
 ### ApiList
 
 Full-width stacked API reference cards. Props: `apis: { signature, description }[]`
+
+### FilterBar
+
+Client-side search + tag filtering bar for portfolio grids. Props: `tags: string[]`, `searchable?: boolean`, `searchPlaceholder?: string`
+
+### PortfolioGrid
+
+Configurable card grid with status badges, category grouping, and image/badge fallbacks. Props: `items: PortfolioItem[]`, `columns?: 2 | 3 | 4`, `groupByCategory?: boolean`
 
 ---
 

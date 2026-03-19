@@ -14,6 +14,7 @@ Every template is CI-tested and builds clean out of the box. Pick the one that f
 | **default** | Project landing page with hero, features, and code examples              | 1     |
 | **docs**    | Documentation site with sidebar navigation and content sections          | 1     |
 | **product** | Marketing landing page with pricing, testimonials, and CTAs              | 1     |
+| **portfolio** | Filterable catalog grid for tools, projects, or any collection         | 1     |
 | **app**     | Multi-tenant SaaS dashboard with RBAC, feature flags, workspace routing  | 31    |
 
 ## Choosing a template
@@ -40,6 +41,48 @@ Marketing-focused layout with pricing tables, testimonial quotes, and prominent 
 
 ```bash
 npx @mcptoolshop/site-theme init --template product
+```
+
+### portfolio
+
+A filterable, searchable catalog grid. Works for any collection — tools, projects, team members, recipes, courses, integrations. Items support tags, categories, status badges, metadata, and secondary action links.
+
+Features:
+- **Tag filtering** — click tags to narrow results
+- **Text search** — real-time search across titles and descriptions
+- **Category grouping** — optional section headings by category
+- **Status badges** — stable, beta, new, archived (or any custom label)
+- **Configurable grid** — 2, 3, or 4 columns
+
+```bash
+npx @mcptoolshop/site-theme init --template portfolio
+```
+
+The scaffold includes 6 demo items across 3 categories. Replace them with your own content in `site-config.ts`:
+
+```typescript
+import type { PortfolioSiteConfig } from '@mcptoolshop/site-theme/types/portfolio-config';
+
+export const config: PortfolioSiteConfig = {
+  template: 'portfolio',
+  title: 'My Catalog',
+  // ...
+  filterable: true,
+  searchable: true,
+  groupByCategory: false,
+  columns: 3,
+  items: [
+    {
+      title: 'My Item',
+      description: 'What it does.',
+      href: 'https://example.com',
+      tags: ['typescript', 'cli'],
+      category: 'Tools',
+      status: 'stable',
+      meta: 'v1.0.0 · MIT',
+    },
+  ],
+};
 ```
 
 ### app
