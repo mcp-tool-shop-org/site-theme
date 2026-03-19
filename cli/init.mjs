@@ -6,8 +6,9 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const templatesDir = join(__dirname, '..', 'templates');
+const templatesDir = resolve(join(__dirname, '..', 'templates'));
 const cwd = process.cwd();
+const pkgVersion = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf-8')).version;
 
 // --- Helpers ---
 
@@ -39,7 +40,7 @@ function extractRepoName(repoUrl) {
 
 function extractRepoNameFromGit() {
   try {
-    const url = execSync('git remote get-url origin', { encoding: 'utf-8' }).trim();
+    const url = execSync('git remote get-url origin', { encoding: 'utf-8', timeout: 5000 }).trim();
     return extractRepoName(url);
   } catch {
     return '';
@@ -96,6 +97,11 @@ function shouldTokenReplace(filePath) {
 
 function parseArgs(argv) {
   const args = argv.slice(2);
+
+  // Top-level flags that short-circuit
+  if (args.includes('--help') || args.includes('-h')) return { command: 'help', flags: {} };
+  if (args.includes('--version') || args.includes('-V')) return { command: 'version', flags: {} };
+
   const command = args[0] && !args[0].startsWith('-') ? args[0] : 'init';
   const rest = command === args[0] ? args.slice(1) : args;
 
@@ -113,6 +119,28 @@ function parseArgs(argv) {
   }
 
   return { command, flags };
+}
+
+function runHelp() {
+  console.log(`
+Usage: site-theme <command> [options]
+
+Commands:
+  init              Scaffold a new site from a template (default)
+  list-templates    Show available templates
+
+Options:
+  --template <name> Template to use (default: "default")
+  --dry-run         Preview files without creating them
+  --out <dir>       Output directory (default: current directory)
+  --json            Output as JSON (list-templates only)
+  --help, -h        Show this help message
+  --version, -V     Show version number
+`);
+}
+
+function runVersion() {
+  console.log(pkgVersion);
 }
 
 function getAvailableTemplates() {
@@ -159,9 +187,14 @@ function runListTemplates(flags) {
 
 function runInit(flags) {
   const templateName = flags.template;
-  const templateDir = join(templatesDir, templateName);
+  const templateDir = resolve(join(templatesDir, templateName));
   const dryRun = flags.dryRun;
   const outDir = flags.out ? resolve(cwd, flags.out) : cwd;
+
+  // Path traversal guard: resolved path must stay within templates/
+  if (!templateDir.startsWith(templatesDir)) {
+    die(`Invalid template name "${templateName}" — path traversal not allowed.`);
+  }
 
   if (!existsSync(templateDir)) {
     const available = getAvailableTemplates().map((t) => t.name).join(', ');
@@ -341,6 +374,12 @@ switch (command) {
     break;
   case 'list-templates':
     runListTemplates(flags);
+    break;
+  case 'help':
+    runHelp();
+    break;
+  case 'version':
+    runVersion();
     break;
   default:
     die(`Unknown command: "${command}". Use "init" or "list-templates".`);
