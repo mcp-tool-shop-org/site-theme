@@ -1,0 +1,167 @@
+name: Dogfood
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cli/**"
+      - "templates/**"
+      - "package.json"
+      - ".github/workflows/dogfood.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: dogfood-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dogfood:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+
+      # --- Scenario: scaffold-and-verify ---
+      # Exercise the real CLI: scaffold a template and verify outputs
+
+      - name: "Step: scaffold-template"
+        id: scaffold_template
+        run: |
+          node cli/init.mjs --template default --out /tmp/site-test --dry-run
+          if [ $? -eq 0 ]; then
+            echo "status=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=fail" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: "Step: list-templates"
+        id: list_templates
+        run: |
+          node cli/init.mjs list-templates --json | tee /tmp/templates.log
+          if [ $? -eq 0 ]; then
+            echo "status=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=fail" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: "Step: verify-output"
+        id: verify_output
+        run: |
+          # Confirm /tmp/templates.log contains non-empty JSON output
+          if [ -s /tmp/templates.log ]; then
+            echo "status=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=fail" >> "$GITHUB_OUTPUT"
+          fi
+
+      # --- Verdict ---
+
+      - name: Determine overall verdict
+        id: verdict
+        run: |
+          S="${{ steps.scaffold_template.outputs.status }}"
+          L="${{ steps.list_templates.outputs.status }}"
+          V="${{ steps.verify_output.outputs.status }}"
+          if [ "$S" = "pass" ] && [ "$L" = "pass" ] && [ "$V" = "pass" ]; then
+            echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          else
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+          fi
+
+      # --- Build + dispatch ---
+
+      - name: Build submission
+        run: |
+          FINISHED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          cat > /tmp/submission.json << 'INNER_EOF'
+          {
+            "schema_version": "1.0.0",
+            "run_id": "site-theme-RUN_ID-ATTEMPT",
+            "repo": "REPO_SLUG",
+            "ref": {
+              "branch": "REF_NAME",
+              "commit_sha": "COMMIT_SHA"
+            },
+            "source": {
+              "provider": "github",
+              "workflow": "dogfood.yml",
+              "provider_run_id": "PROVIDER_RUN_ID",
+              "attempt": ATTEMPT_NUM,
+              "run_url": "RUN_URL_PLACEHOLDER",
+              "actor": "ACTOR_NAME"
+            },
+            "timing": {
+              "started_at": "STARTED_PLACEHOLDER",
+              "finished_at": "FINISHED_PLACEHOLDER",
+              "duration_ms": 0
+            },
+            "ci_checks": [],
+            "scenario_results": [
+              {
+                "scenario_id": "scaffold-and-verify",
+                "scenario_name": "Scaffold template and verify CLI outputs",
+                "scenario_version": "1.0.0",
+                "product_surface": "npm-package",
+                "execution_mode": "bot",
+                "verdict": "VERDICT_PLACEHOLDER",
+                "step_results": [
+                  { "step_id": "scaffold-template", "status": "SCAFFOLD_STATUS" },
+                  { "step_id": "list-templates", "status": "LIST_STATUS" },
+                  { "step_id": "verify-output", "status": "VERIFY_STATUS" }
+                ],
+                "evidence": [
+                  {
+                    "kind": "log",
+                    "url": "RUN_URL_PLACEHOLDER",
+                    "description": "CI run log with scaffold and template list output"
+                  }
+                ],
+                "notes": "Bot-driven scaffold dry-run and template listing"
+              }
+            ],
+            "overall_verdict": "VERDICT_PLACEHOLDER",
+            "notes": "site-theme CLI dogfood: scaffold-and-verify scenario."
+          }
+          INNER_EOF
+
+          sed -i "s|REPO_SLUG|${GITHUB_REPOSITORY}|g" /tmp/submission.json
+          sed -i "s|REF_NAME|${GITHUB_REF_NAME}|g" /tmp/submission.json
+          sed -i "s|COMMIT_SHA|${GITHUB_SHA}|g" /tmp/submission.json
+          sed -i "s|PROVIDER_RUN_ID|${GITHUB_RUN_ID}|g" /tmp/submission.json
+          sed -i "s|ATTEMPT_NUM|${GITHUB_RUN_ATTEMPT}|g" /tmp/submission.json
+          sed -i "s|RUN_URL_PLACEHOLDER|https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|g" /tmp/submission.json
+          sed -i "s|ACTOR_NAME|${GITHUB_ACTOR}|g" /tmp/submission.json
+          sed -i "s|STARTED_PLACEHOLDER|${{ github.event.head_commit.timestamp || github.event.repository.pushed_at }}|g" /tmp/submission.json
+          sed -i "s|FINISHED_PLACEHOLDER|${FINISHED_AT}|g" /tmp/submission.json
+          sed -i "s|site-theme-RUN_ID-ATTEMPT|site-theme-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}|g" /tmp/submission.json
+          sed -i "s|VERDICT_PLACEHOLDER|${{ steps.verdict.outputs.verdict }}|g" /tmp/submission.json
+          sed -i "s|SCAFFOLD_STATUS|${{ steps.scaffold_template.outputs.status }}|g" /tmp/submission.json
+          sed -i "s|LIST_STATUS|${{ steps.list_templates.outputs.status }}|g" /tmp/submission.json
+          sed -i "s|VERIFY_STATUS|${{ steps.verify_output.outputs.status }}|g" /tmp/submission.json
+
+          jq empty /tmp/submission.json
+          echo "Submission built:"
+          jq '.run_id, .overall_verdict' /tmp/submission.json
+
+      - name: Dispatch to dogfood-labs
+        env:
+          GH_TOKEN: ${{ secrets.DOGFOOD_TOKEN }}
+        run: |
+          SUBMISSION=$(cat /tmp/submission.json)
+          RUN_ID=$(echo "$SUBMISSION" | jq -r '.run_id')
+
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::DOGFOOD_TOKEN not set — skipping dispatch"
+            exit 0
+          fi
+
+          jq -n --argjson sub "$SUBMISSION" \
+            '{"event_type":"dogfood_submission","client_payload":{"submission":$sub}}' \
+            | gh api repos/mcp-tool-shop-org/dogfood-labs/dispatches \
+              --input - --silent
+
+          echo "Dispatched $RUN_ID to dogfood-labs"
