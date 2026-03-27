@@ -45,6 +45,7 @@ The default scaffold uses the **default** template (a single landing page). To s
 ```bash
 npx @mcptoolshop/site-theme init --template docs
 npx @mcptoolshop/site-theme init --template product
+npx @mcptoolshop/site-theme init --template portfolio
 npx @mcptoolshop/site-theme init --template app
 ```
 
@@ -52,6 +53,12 @@ Preview what files will be created without writing anything:
 
 ```bash
 npx @mcptoolshop/site-theme init --template app --dry-run
+```
+
+Scaffold into a different directory (useful for monorepos):
+
+```bash
+npx @mcptoolshop/site-theme init --out ../other-repo
 ```
 
 See the [Templates](/site-theme/handbook/templates/) page for details on each option.

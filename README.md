@@ -45,9 +45,11 @@ Pick a template, scaffold, build. Every template ships CI-tested and GitHub Page
 | **app** | Multi-tenant SaaS dashboard with RBAC, feature flags, and workspace routing | 31 |
 
 ```bash
-npx @mcptoolshop/site-theme list-templates        # see all options
-npx @mcptoolshop/site-theme init --template app    # scaffold a template
-npx @mcptoolshop/site-theme init --template app --dry-run  # preview files
+npx @mcptoolshop/site-theme list-templates            # see all options
+npx @mcptoolshop/site-theme list-templates --json      # machine-readable output
+npx @mcptoolshop/site-theme init --template app        # scaffold a template
+npx @mcptoolshop/site-theme init --template app --dry-run   # preview files
+npx @mcptoolshop/site-theme init --out ../other-repo   # scaffold into another directory
 ```
 
 ---
@@ -144,8 +146,20 @@ import FeatureGrid from '@mcptoolshop/site-theme/components/FeatureGrid.astro';
 import DataTable from '@mcptoolshop/site-theme/components/DataTable.astro';
 import CodeCardGrid from '@mcptoolshop/site-theme/components/CodeCardGrid.astro';
 import ApiList from '@mcptoolshop/site-theme/components/ApiList.astro';
+import DocLayout from '@mcptoolshop/site-theme/components/DocLayout.astro';
+import Sidebar from '@mcptoolshop/site-theme/components/Sidebar.astro';
+import TableOfContents from '@mcptoolshop/site-theme/components/TableOfContents.astro';
+import ContentSection from '@mcptoolshop/site-theme/components/ContentSection.astro';
+import SocialProof from '@mcptoolshop/site-theme/components/SocialProof.astro';
+import PricingGrid from '@mcptoolshop/site-theme/components/PricingGrid.astro';
+import TestimonialGrid from '@mcptoolshop/site-theme/components/TestimonialGrid.astro';
+import CtaBanner from '@mcptoolshop/site-theme/components/CtaBanner.astro';
+import PortfolioGrid from '@mcptoolshop/site-theme/components/PortfolioGrid.astro';
+import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 ---
 ```
+
+The theme ships 17 Astro components across five categories: layout shells, content sections, marketing blocks, portfolio, and documentation.
 
 ### BaseLayout
 
@@ -157,7 +171,7 @@ Full page shell with sticky header (logo badge, nav links, GitHub/npm buttons) a
 | `description` | `string` | Meta description |
 | `logoBadge` | `string` | 1–2 char badge (e.g. `"RS"`) |
 | `brandName` | `string` | Name in header |
-| `nav` | `{ href, label }[]` | Anchor nav links |
+| `nav` | `{ href, label }[]` | Anchor nav links (optional, defaults to `[]`) |
 | `repoUrl` | `string` | GitHub repo URL |
 | `npmUrl?` | `string` | npm package URL |
 | `footerText` | `string` | Footer text (HTML allowed) |
@@ -174,7 +188,7 @@ Gradient hero with status badge, headline, CTAs, and optional code preview cards
 | `description` | `string` | Description (HTML allowed) |
 | `primaryCta` | `{ href, label }` | Primary button |
 | `secondaryCta` | `{ href, label }` | Secondary button |
-| `previews` | `{ label, code }[]` | Code preview cards |
+| `previews` | `{ label, code }[]` | Code preview cards (optional) |
 
 ### Section
 
@@ -203,6 +217,38 @@ Client-side search + tag filtering bar for portfolio grids. Props: `tags: string
 ### PortfolioGrid
 
 Configurable card grid with status badges, category grouping, and image/badge fallbacks. Props: `items: PortfolioItem[]`, `columns?: 2 | 3 | 4`, `groupByCategory?: boolean`
+
+### DocLayout
+
+Two-column layout with collapsible sidebar and main content area. Used by the **docs** template. Props: `sidebar: SidebarGroup[]`, `currentPath: string`
+
+### Sidebar
+
+Grouped navigation list with active-link highlighting. Props: `groups: SidebarGroup[]`, `currentPath?: string`
+
+### TableOfContents
+
+On-page heading navigation. Props: `headings?: { text, id, depth }[]`
+
+### ContentSection
+
+Anchor-linked content block that renders HTML via `set:html`. Props: `id: string`, `title: string`, `content: string`
+
+### SocialProof
+
+Stats bar with headline and value/label pairs. Props: `headline?: string`, `stats?: { value, label }[]`
+
+### PricingGrid
+
+Responsive pricing tier cards with highlighted "Popular" tier. Props: `tiers?: PricingTier[]`
+
+### TestimonialGrid
+
+Two-column quote cards with avatar fallback initials. Props: `testimonials?: { quote, author, role, avatarUrl? }[]`
+
+### CtaBanner
+
+Full-width gradient call-to-action banner. Props: `headline: string`, `description?: string`, `cta: { href, label }`
 
 ---
 

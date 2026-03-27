@@ -1,29 +1,28 @@
 ---
 title: Components
-description: All nine Astro components in @mcptoolshop/site-theme with props and usage examples.
+description: All 17 Astro components in @mcptoolshop/site-theme with props and usage examples.
 sidebar:
   order: 3
 ---
 
-The theme ships nine Astro components. Import them individually from the package.
+The theme ships 17 Astro components across five categories: layout shells, content sections, marketing blocks, portfolio, and documentation. Import them individually from the package.
+
+## Layout
+
+### BaseLayout
+
+Full page shell with a sticky header (logo badge, nav links, GitHub/npm buttons) and footer. Wrap all your page content inside this component.
 
 ```astro
 ---
 import BaseLayout from '@mcptoolshop/site-theme/components/BaseLayout.astro';
-import Hero from '@mcptoolshop/site-theme/components/Hero.astro';
-import Section from '@mcptoolshop/site-theme/components/Section.astro';
-import FeatureGrid from '@mcptoolshop/site-theme/components/FeatureGrid.astro';
-import DataTable from '@mcptoolshop/site-theme/components/DataTable.astro';
-import CodeCardGrid from '@mcptoolshop/site-theme/components/CodeCardGrid.astro';
-import ApiList from '@mcptoolshop/site-theme/components/ApiList.astro';
 ---
+<BaseLayout title="My Tool" description="..." logoBadge="MT" brandName="my-tool" repoUrl="..." footerText="MIT">
+  <!-- page content -->
+</BaseLayout>
 ```
 
-## BaseLayout
-
-Full page shell with a sticky header (logo badge, nav links, GitHub/npm buttons) and footer. Wrap all your page content inside this component.
-
-### Props
+#### Props
 
 | Prop         | Type               | Required | Description                        |
 |--------------|--------------------|----------|------------------------------------|
@@ -31,16 +30,38 @@ Full page shell with a sticky header (logo badge, nav links, GitHub/npm buttons)
 | `description`| `string`           | yes      | Meta description                   |
 | `logoBadge`  | `string`           | yes      | 1-2 character badge (e.g. `"RS"`)  |
 | `brandName`  | `string`           | yes      | Name displayed in header           |
-| `nav`        | `{ href, label }[]`| yes      | Anchor nav links                   |
+| `nav`        | `{ href, label }[]`| no       | Anchor nav links (defaults to `[]`) |
 | `repoUrl`    | `string`           | yes      | GitHub repo URL                    |
 | `npmUrl`     | `string`           | no       | npm package URL                    |
 | `footerText` | `string`           | yes      | Footer text (HTML allowed)         |
 
-## Hero
+### DocLayout
+
+Two-column layout with a collapsible sidebar on mobile and a sticky sidebar on desktop. Used by the **docs** template.
+
+```astro
+---
+import DocLayout from '@mcptoolshop/site-theme/components/DocLayout.astro';
+---
+<DocLayout sidebar={sidebarGroups} currentPath={Astro.url.pathname}>
+  <!-- main content -->
+</DocLayout>
+```
+
+#### Props
+
+| Prop          | Type               | Required | Description                        |
+|---------------|--------------------|----------|------------------------------------|
+| `sidebar`     | `SidebarGroup[]`   | yes      | Navigation groups for the sidebar  |
+| `currentPath` | `string`           | yes      | Current page path for active link highlighting |
+
+## Content Sections
+
+### Hero
 
 Gradient hero section with a status badge, large headline, call-to-action buttons, and optional code preview cards.
 
-### Props
+#### Props
 
 | Prop             | Type                    | Required | Description                  |
 |------------------|-------------------------|----------|------------------------------|
@@ -52,11 +73,11 @@ Gradient hero section with a status badge, large headline, call-to-action button
 | `secondaryCta`   | `{ href, label }`       | yes      | Secondary button             |
 | `previews`       | `{ label, code }[]`     | no       | Code preview cards           |
 
-## Section
+### Section
 
 Anchor section wrapper with a heading and optional subtitle. Content goes in the default slot.
 
-### Props
+#### Props
 
 | Prop       | Type     | Required | Description                |
 |------------|----------|----------|----------------------------|
@@ -64,52 +85,131 @@ Anchor section wrapper with a heading and optional subtitle. Content goes in the
 | `title`    | `string` | yes      | Section heading            |
 | `subtitle` | `string` | no       | Text below the heading     |
 
-## FeatureGrid
+### FeatureGrid
 
 Three-column responsive card grid. Each card displays a bold title and a short description.
 
-### Props
+#### Props
 
 | Prop       | Type                      | Required | Description       |
 |------------|---------------------------|----------|-------------------|
 | `features` | `{ title, desc }[]`       | yes      | Array of features |
 
-## DataTable
+### DataTable
 
 Grid-based bordered table. The first cell in each row is styled as a row header.
 
-### Props
+#### Props
 
 | Prop      | Type         | Required | Description        |
 |-----------|--------------|----------|--------------------|
 | `columns` | `string[]`   | yes      | Column headers     |
 | `rows`    | `string[][]` | yes      | Row data           |
 
-## CodeCardGrid
+### CodeCardGrid
 
 Two-column grid of dark code block cards. Each card has a title and a code snippet.
 
-### Props
+#### Props
 
 | Prop    | Type                    | Required | Description           |
 |---------|-------------------------|----------|-----------------------|
 | `cards` | `{ title, code }[]`     | yes      | Array of code cards   |
 
-## ApiList
+### ApiList
 
 Full-width stacked API reference cards. Each card displays a monospace signature with a description below.
 
-### Props
+#### Props
 
 | Prop   | Type                              | Required | Description             |
 |--------|-----------------------------------|----------|-------------------------|
 | `apis` | `{ signature, description }[]`    | yes      | Array of API entries    |
 
-## FilterBar
+### ContentSection
 
-Client-side search and tag filtering bar. Works with `PortfolioGrid` — filters elements matching `[data-portfolio-card]` by reading `data-tags` and `data-title`/`data-description` attributes.
+Anchor-linked content block that renders HTML content via Astro's `set:html` directive. Used by the **docs** template for rich content sections.
 
-### Props
+#### Props
+
+| Prop      | Type     | Required | Description                          |
+|-----------|----------|----------|--------------------------------------|
+| `id`      | `string` | yes      | Anchor ID for navigation             |
+| `title`   | `string` | yes      | Section heading (linkable)           |
+| `content` | `string` | yes      | HTML content (rendered via set:html) |
+
+## Marketing
+
+### SocialProof
+
+Stats bar with an optional headline and value/label pairs. Used by the **product** template for trust signals.
+
+#### Props
+
+| Prop       | Type                        | Required | Description                    |
+|------------|-----------------------------|----------|--------------------------------|
+| `headline` | `string`                    | no       | Text above the stats           |
+| `stats`    | `{ value, label }[]`        | no       | Array of stat entries          |
+
+### PricingGrid
+
+Responsive pricing tier cards. One tier can be marked as `highlighted` to show a "Popular" badge. Used by the **product** template.
+
+#### Props
+
+| Prop    | Type             | Required | Description                     |
+|---------|------------------|----------|---------------------------------|
+| `tiers` | `PricingTier[]`  | no       | Array of pricing tiers          |
+
+**PricingTier shape:**
+
+| Field         | Type              | Required | Description                          |
+|---------------|-------------------|----------|--------------------------------------|
+| `name`        | `string`          | yes      | Tier name (e.g. "Free", "Pro")       |
+| `price`       | `string`          | yes      | Price display (e.g. "$0", "$29/mo")  |
+| `description` | `string`          | yes      | Short description                    |
+| `features`    | `string[]`        | yes      | Feature list items                   |
+| `cta`         | `{ href, label }` | yes      | Call-to-action button                |
+| `highlighted` | `boolean`         | no       | Show "Popular" badge if true         |
+
+### TestimonialGrid
+
+Two-column grid of quote cards with author info. Falls back to initials when no avatar URL is provided.
+
+#### Props
+
+| Prop           | Type                | Required | Description                      |
+|----------------|---------------------|----------|----------------------------------|
+| `testimonials` | `TestimonialDef[]`  | no       | Array of testimonial entries     |
+
+**TestimonialDef shape:**
+
+| Field       | Type     | Required | Description                  |
+|-------------|----------|----------|------------------------------|
+| `quote`     | `string` | yes      | The testimonial text         |
+| `author`    | `string` | yes      | Author name                  |
+| `role`      | `string` | yes      | Author role or title         |
+| `avatarUrl` | `string` | no       | Avatar image URL             |
+
+### CtaBanner
+
+Full-width gradient call-to-action banner with headline, optional description, and a button.
+
+#### Props
+
+| Prop          | Type              | Required | Description                    |
+|---------------|-------------------|----------|--------------------------------|
+| `headline`    | `string`          | yes      | Banner headline                |
+| `description` | `string`          | no       | Text below the headline        |
+| `cta`         | `{ href, label }` | yes      | Call-to-action button          |
+
+## Portfolio
+
+### FilterBar
+
+Client-side search and tag filtering bar. Works with `PortfolioGrid` — filters elements matching `[data-portfolio-card]` by reading `data-tags` and `data-search-text` attributes.
+
+#### Props
 
 | Prop                | Type       | Required | Description                          |
 |---------------------|------------|----------|--------------------------------------|
@@ -117,11 +217,11 @@ Client-side search and tag filtering bar. Works with `PortfolioGrid` — filters
 | `searchable`        | `boolean`  | no       | Show text search input (default: true) |
 | `searchPlaceholder` | `string`   | no       | Search input placeholder text        |
 
-## PortfolioGrid
+### PortfolioGrid
 
 Configurable card grid for collections of any content type. Supports category grouping, status badges, images or badge fallbacks, tags, metadata, and secondary action links.
 
-### Props
+#### Props
 
 | Prop              | Type              | Required | Description                                  |
 |-------------------|-------------------|----------|----------------------------------------------|
@@ -129,7 +229,7 @@ Configurable card grid for collections of any content type. Supports category gr
 | `columns`         | `2 \| 3 \| 4`    | no       | Grid columns on large screens (default: 3)   |
 | `groupByCategory` | `boolean`         | no       | Group items under category headings (default: false) |
 
-### PortfolioItem shape
+**PortfolioItem shape:**
 
 | Field             | Type                | Required | Description                              |
 |-------------------|---------------------|----------|------------------------------------------|
@@ -143,3 +243,28 @@ Configurable card grid for collections of any content type. Supports category gr
 | `status`          | `string`            | no       | Status label (stable, beta, new, archived) |
 | `meta`            | `string`            | no       | Secondary metadata line                  |
 | `secondaryAction` | `{ href, label }`   | no       | Secondary action link                    |
+
+## Documentation
+
+### Sidebar
+
+Grouped navigation list with active-link highlighting. Used inside `DocLayout`.
+
+#### Props
+
+| Prop          | Type               | Required | Description                               |
+|---------------|--------------------|----------|-------------------------------------------|
+| `groups`      | `SidebarGroup[]`   | yes      | Navigation groups with title and items     |
+| `currentPath` | `string`           | no       | Current page path for active highlighting  |
+
+**SidebarGroup shape:** `{ title: string, items: { label: string, href: string }[] }`
+
+### TableOfContents
+
+On-page heading navigation. Renders a bordered list of heading links indented by depth.
+
+#### Props
+
+| Prop       | Type                               | Required | Description                     |
+|------------|-------------------------------------|----------|---------------------------------|
+| `headings` | `{ text, id, depth: 2 \| 3 }[]`   | no       | Array of page headings for TOC  |
