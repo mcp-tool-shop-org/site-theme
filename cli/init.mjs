@@ -69,12 +69,12 @@ function writeFile(path, content) {
 
 const ACCENT_MAP = {
   emerald: { low: '#022c22', mid: '#34d399', high: '#6ee7b7' },
-  amber:   { low: '#451a03', mid: '#d97706', high: '#fbbf24' },
-  blue:    { low: '#1e1b4b', mid: '#3b82f6', high: '#93c5fd' },
-  rose:    { low: '#4c0519', mid: '#f43f5e', high: '#fb7185' },
-  violet:  { low: '#2e1065', mid: '#8b5cf6', high: '#a78bfa' },
-  cyan:    { low: '#083344', mid: '#06b6d4', high: '#67e8f9' },
-  pink:    { low: '#500724', mid: '#ec4899', high: '#f9a8d4' },
+  amber: { low: '#451a03', mid: '#d97706', high: '#fbbf24' },
+  blue: { low: '#1e1b4b', mid: '#3b82f6', high: '#93c5fd' },
+  rose: { low: '#4c0519', mid: '#f43f5e', high: '#fb7185' },
+  violet: { low: '#2e1065', mid: '#8b5cf6', high: '#a78bfa' },
+  cyan: { low: '#083344', mid: '#06b6d4', high: '#67e8f9' },
+  pink: { low: '#500724', mid: '#ec4899', high: '#f9a8d4' },
 };
 
 const IGNORE_DIRS = new Set(['node_modules', 'dist', '.git', '.turbo', '.astro']);
@@ -393,7 +393,11 @@ function readRepoVars(outDir) {
   const pkgPath = join(outDir, 'package.json');
   let pkg = {};
   if (existsSync(pkgPath)) {
-    try { pkg = JSON.parse(readFileSync(pkgPath, 'utf-8')); } catch { /* ignore */ }
+    try {
+      pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+    } catch {
+      /* ignore */
+    }
   }
   const packageName = pkg.name || 'my-package';
   const brandName = unscopeName(packageName);
@@ -426,7 +430,13 @@ function runHandbook(flags) {
   }
 
   const { packageName, brandName, description, repoUrl, basePath } = readRepoVars(outDir);
-  const vars = { PACKAGE_NAME: packageName, BRAND_NAME: brandName, DESCRIPTION: description, REPO_URL: repoUrl, BASE_PATH: basePath };
+  const vars = {
+    PACKAGE_NAME: packageName,
+    BRAND_NAME: brandName,
+    DESCRIPTION: description,
+    REPO_URL: repoUrl,
+    BASE_PATH: basePath,
+  };
 
   // Build file plan
   const plan = [];
@@ -461,7 +471,8 @@ export const collections = {
   plan.push({
     dest: 'site/astro.config.mjs',
     target: join(siteDir, 'astro.config.mjs'),
-    content: applyVars(`// @ts-check
+    content: applyVars(
+      `// @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
@@ -491,14 +502,17 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
-`, vars),
+`,
+      vars,
+    ),
   });
 
   // 4. Handbook pages
   plan.push({
     dest: 'site/src/content/docs/handbook/index.md',
     target: join(handbookDir, 'index.md'),
-    content: applyVars(`---
+    content: applyVars(
+      `---
 title: {{BRAND_NAME}} Handbook
 description: Complete guide to {{BRAND_NAME}}.
 sidebar:
@@ -514,13 +528,16 @@ See the [Getting Started](./getting-started/) guide for installation and basic u
 ## Reference
 
 See the [Reference](./reference/) page for API details, configuration options, and advanced usage.
-`, vars),
+`,
+      vars,
+    ),
   });
 
   plan.push({
     dest: 'site/src/content/docs/handbook/getting-started.md',
     target: join(handbookDir, 'getting-started.md'),
-    content: applyVars(`---
+    content: applyVars(
+      `---
 title: Getting Started
 description: How to install and use {{BRAND_NAME}}.
 sidebar:
@@ -541,13 +558,16 @@ npm install {{PACKAGE_NAME}}
 // Example usage
 import { ... } from '{{PACKAGE_NAME}}';
 \`\`\`
-`, vars),
+`,
+      vars,
+    ),
   });
 
   plan.push({
     dest: 'site/src/content/docs/handbook/reference.md',
     target: join(handbookDir, 'reference.md'),
-    content: applyVars(`---
+    content: applyVars(
+      `---
 title: Reference
 description: API reference and configuration options for {{BRAND_NAME}}.
 sidebar:
@@ -561,7 +581,9 @@ sidebar:
 ## Configuration
 
 <!-- Document configuration options here -->
-`, vars),
+`,
+      vars,
+    ),
   });
 
   // --- Dry run ---
@@ -604,7 +626,7 @@ sidebar:
       if (!sitePkg.dependencies) sitePkg.dependencies = {};
       if (!sitePkg.dependencies['@astrojs/starlight']) {
         sitePkg.dependencies['@astrojs/starlight'] = '^0.37.6';
-        writeFileSync(sitePkgPath, JSON.stringify(sitePkg, null, 2) + '\n', 'utf-8');
+        writeFileSync(sitePkgPath, `${JSON.stringify(sitePkg, null, 2)}\n`, 'utf-8');
         info('Patched site/package.json (added @astrojs/starlight)');
       } else {
         info('Skipped site/package.json (@astrojs/starlight already present)');
@@ -620,7 +642,10 @@ sidebar:
     let configContent = readFileSync(siteConfigPath, 'utf-8');
     const ctaPattern = /secondaryCta:\s*\{[^}]+\}/;
     if (ctaPattern.test(configContent)) {
-      configContent = configContent.replace(ctaPattern, "secondaryCta: { href: 'handbook/', label: 'Read the Handbook' }");
+      configContent = configContent.replace(
+        ctaPattern,
+        "secondaryCta: { href: 'handbook/', label: 'Read the Handbook' }",
+      );
       writeFileSync(siteConfigPath, configContent, 'utf-8');
       info('Patched site/src/site-config.ts (secondaryCta → handbook)');
     }
