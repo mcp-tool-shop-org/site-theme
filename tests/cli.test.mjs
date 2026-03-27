@@ -118,6 +118,85 @@ describe('init --out', () => {
   });
 });
 
+describe('handbook', () => {
+  beforeEach(() => {
+    // handbook requires site/ to exist — run init first
+    run('init');
+  });
+
+  it('fails if site/ does not exist', () => {
+    rmSync(join(TMP, 'site'), { recursive: true, force: true });
+    expect(() => run('handbook')).toThrow(/site.*not found/i);
+  });
+
+  it('fails if handbook already exists', () => {
+    run('handbook');
+    expect(() => run('handbook')).toThrow(/already exists/i);
+  });
+
+  it('fails on unknown accent', () => {
+    expect(() => run('handbook --accent neon')).toThrow(/Unknown accent/i);
+  });
+
+  it('dry-run shows plan without creating files', () => {
+    const out = run('handbook --dry-run --accent amber');
+    expect(out).toContain('Dry run');
+    expect(out).toContain('amber');
+    expect(existsSync(join(TMP, 'site', 'src', 'content', 'docs', 'handbook'))).toBe(false);
+  });
+
+  it('creates content.config.ts with docsLoader', () => {
+    run('handbook');
+    const content = readFileSync(join(TMP, 'site', 'src', 'content.config.ts'), 'utf-8');
+    expect(content).toContain('docsLoader');
+    expect(content).toContain('docsSchema');
+  });
+
+  it('creates starlight-custom.css with accent colors', () => {
+    run('handbook --accent amber');
+    const css = readFileSync(join(TMP, 'site', 'src', 'styles', 'starlight-custom.css'), 'utf-8');
+    expect(css).toContain('#d97706');
+    expect(css).toContain('#fbbf24');
+    expect(css).toContain('#451a03');
+  });
+
+  it('creates 3 handbook pages', () => {
+    run('handbook');
+    const base = join(TMP, 'site', 'src', 'content', 'docs', 'handbook');
+    expect(existsSync(join(base, 'index.md'))).toBe(true);
+    expect(existsSync(join(base, 'getting-started.md'))).toBe(true);
+    expect(existsSync(join(base, 'reference.md'))).toBe(true);
+  });
+
+  it('updates astro.config.mjs with starlight integration', () => {
+    run('handbook');
+    const config = readFileSync(join(TMP, 'site', 'astro.config.mjs'), 'utf-8');
+    expect(config).toContain('starlight');
+    expect(config).toContain('disable404Route');
+    expect(config).toContain('autogenerate');
+  });
+
+  it('adds @astrojs/starlight to site/package.json', () => {
+    run('handbook');
+    const pkg = JSON.parse(readFileSync(join(TMP, 'site', 'package.json'), 'utf-8'));
+    expect(pkg.dependencies['@astrojs/starlight']).toBeDefined();
+  });
+
+  it('patches secondaryCta in site-config.ts', () => {
+    run('handbook');
+    const config = readFileSync(join(TMP, 'site', 'src', 'site-config.ts'), 'utf-8');
+    expect(config).toContain("href: 'handbook/'");
+    expect(config).toContain('Read the Handbook');
+  });
+
+  it('applies token replacement in handbook pages', () => {
+    run('handbook');
+    const index = readFileSync(join(TMP, 'site', 'src', 'content', 'docs', 'handbook', 'index.md'), 'utf-8');
+    expect(index).toContain('my-tool');
+    expect(index).not.toContain('{{BRAND_NAME}}');
+  });
+});
+
 describe('init with recursive templates', () => {
   for (const template of ['docs', 'product', 'app']) {
     it(`scaffolds ${template} template`, () => {

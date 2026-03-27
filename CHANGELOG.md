@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.6.0] - 2026-03-27
+
+### Added
+- **`handbook` command**: `npx @mcptoolshop/site-theme handbook` layers Starlight docs onto an existing site-theme site
+- Scaffolds content.config.ts with docsLoader() (prevents silent 404s)
+- Scaffolds starlight-custom.css with accent color from `--accent` flag
+- Rewrites astro.config.mjs with Starlight integration
+- Creates 3 starter handbook pages (index, getting-started, reference)
+- Patches site-config.ts secondaryCta to link to handbook
+- Adds @astrojs/starlight dependency to site/package.json
+- `--accent` flag with 7 color presets: emerald, amber, blue, rose, violet, cyan, pink
+- `--dry-run` support for handbook command
+- 10 new handbook tests (guards, dry-run, file creation, token replacement, accent colors)
+
 ## [1.5.1] - 2026-03-25
 
 ### Added

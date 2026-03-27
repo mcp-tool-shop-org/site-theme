@@ -65,6 +65,18 @@ function writeFile(path, content) {
   writeFileSync(path, content, 'utf-8');
 }
 
+// --- Accent color lookup for Starlight handbook ---
+
+const ACCENT_MAP = {
+  emerald: { low: '#022c22', mid: '#34d399', high: '#6ee7b7' },
+  amber:   { low: '#451a03', mid: '#d97706', high: '#fbbf24' },
+  blue:    { low: '#1e1b4b', mid: '#3b82f6', high: '#93c5fd' },
+  rose:    { low: '#4c0519', mid: '#f43f5e', high: '#fb7185' },
+  violet:  { low: '#2e1065', mid: '#8b5cf6', high: '#a78bfa' },
+  cyan:    { low: '#083344', mid: '#06b6d4', high: '#67e8f9' },
+  pink:    { low: '#500724', mid: '#ec4899', high: '#f9a8d4' },
+};
+
 const IGNORE_DIRS = new Set(['node_modules', 'dist', '.git', '.turbo', '.astro']);
 const IGNORE_FILES = new Set(['.DS_Store', 'Thumbs.db']);
 const TEXT_EXT = new Set(['.ts', '.mjs', '.js', '.json', '.astro', '.css', '.html', '.md', '.yml', '.yaml', '.toml']);
@@ -110,7 +122,7 @@ function parseArgs(argv) {
   const command = args[0] && !args[0].startsWith('-') ? args[0] : 'init';
   const rest = command === args[0] ? args.slice(1) : args;
 
-  const flags = { template: 'default', json: false, dryRun: false, out: '' };
+  const flags = { template: 'default', json: false, dryRun: false, out: '', accent: 'emerald' };
   for (let i = 0; i < rest.length; i++) {
     if (rest[i] === '--template' && rest[i + 1]) {
       flags.template = rest[++i];
@@ -120,6 +132,8 @@ function parseArgs(argv) {
       flags.dryRun = true;
     } else if (rest[i] === '--out' && rest[i + 1]) {
       flags.out = rest[++i];
+    } else if (rest[i] === '--accent' && rest[i + 1]) {
+      flags.accent = rest[++i];
     }
   }
 
@@ -132,10 +146,13 @@ Usage: site-theme <command> [options]
 
 Commands:
   init              Scaffold a new site from a template (default)
+  handbook          Add Starlight handbook to an existing site
   list-templates    Show available templates
 
 Options:
   --template <name> Template to use (default: "default")
+  --accent <color>  Starlight accent color (default: "emerald")
+                    Options: emerald, amber, blue, rose, violet, cyan, pink
   --dry-run         Preview files without creating them
   --out <dir>       Output directory (default: current directory)
   --json            Output as JSON (list-templates only)
@@ -370,6 +387,255 @@ function runInit(flags) {
   console.log('');
 }
 
+// --- Handbook command ---
+
+function readRepoVars(outDir) {
+  const pkgPath = join(outDir, 'package.json');
+  let pkg = {};
+  if (existsSync(pkgPath)) {
+    try { pkg = JSON.parse(readFileSync(pkgPath, 'utf-8')); } catch { /* ignore */ }
+  }
+  const packageName = pkg.name || 'my-package';
+  const brandName = unscopeName(packageName);
+  const description = pkg.description || 'A tool by mcp-tool-shop';
+  const repoUrl =
+    (typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url)
+      ?.replace(/\.git$/, '')
+      ?.replace(/^git\+/, '') || `https://github.com/mcp-tool-shop-org/${extractRepoNameFromGit() || brandName}`;
+  const basePath = `/${extractRepoName(repoUrl) || brandName}`;
+  return { packageName, brandName, description, repoUrl, basePath };
+}
+
+function runHandbook(flags) {
+  const dryRun = flags.dryRun;
+  const outDir = flags.out ? resolve(cwd, flags.out) : cwd;
+  const siteDir = join(outDir, 'site');
+  const accentName = flags.accent;
+
+  // Guards
+  if (!existsSync(siteDir)) {
+    die('site/ directory not found. Run "npx @mcptoolshop/site-theme init" first.');
+  }
+  const handbookDir = join(siteDir, 'src', 'content', 'docs', 'handbook');
+  if (!dryRun && existsSync(handbookDir)) {
+    die('site/src/content/docs/handbook/ already exists. Remove it first to regenerate.');
+  }
+  const accent = ACCENT_MAP[accentName];
+  if (!accent) {
+    die(`Unknown accent "${accentName}". Available: ${Object.keys(ACCENT_MAP).join(', ')}`);
+  }
+
+  const { packageName, brandName, description, repoUrl, basePath } = readRepoVars(outDir);
+  const vars = { PACKAGE_NAME: packageName, BRAND_NAME: brandName, DESCRIPTION: description, REPO_URL: repoUrl, BASE_PATH: basePath };
+
+  // Build file plan
+  const plan = [];
+
+  // 1. content.config.ts (the critical one with docsLoader)
+  plan.push({
+    dest: 'site/src/content.config.ts',
+    target: join(siteDir, 'src', 'content.config.ts'),
+    content: `import { defineCollection } from 'astro:content';
+import { docsLoader } from '@astrojs/starlight/loaders';
+import { docsSchema } from '@astrojs/starlight/schema';
+
+export const collections = {
+  docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
+};
+`,
+  });
+
+  // 2. starlight-custom.css
+  plan.push({
+    dest: 'site/src/styles/starlight-custom.css',
+    target: join(siteDir, 'src', 'styles', 'starlight-custom.css'),
+    content: `:root {
+  --sl-color-accent-low: ${accent.low};
+  --sl-color-accent: ${accent.mid};
+  --sl-color-accent-high: ${accent.high};
+}
+`,
+  });
+
+  // 3. astro.config.mjs with Starlight integration
+  plan.push({
+    dest: 'site/astro.config.mjs',
+    target: join(siteDir, 'astro.config.mjs'),
+    content: applyVars(`// @ts-check
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import tailwindcss from '@tailwindcss/vite';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://mcp-tool-shop-org.github.io',
+  base: '{{BASE_PATH}}',
+  integrations: [
+    starlight({
+      title: '{{BRAND_NAME}}',
+      description: '{{DESCRIPTION}}',
+      disable404Route: true,
+      social: [
+        { icon: 'github', label: 'GitHub', href: '{{REPO_URL}}' },
+      ],
+      sidebar: [
+        {
+          label: 'Handbook',
+          autogenerate: { directory: 'handbook' },
+        },
+      ],
+      customCss: ['./src/styles/starlight-custom.css'],
+    }),
+  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+`, vars),
+  });
+
+  // 4. Handbook pages
+  plan.push({
+    dest: 'site/src/content/docs/handbook/index.md',
+    target: join(handbookDir, 'index.md'),
+    content: applyVars(`---
+title: {{BRAND_NAME}} Handbook
+description: Complete guide to {{BRAND_NAME}}.
+sidebar:
+  order: 0
+---
+
+Welcome to the **{{BRAND_NAME}}** handbook.
+
+## Getting Started
+
+See the [Getting Started](./getting-started/) guide for installation and basic usage.
+
+## Reference
+
+See the [Reference](./reference/) page for API details, configuration options, and advanced usage.
+`, vars),
+  });
+
+  plan.push({
+    dest: 'site/src/content/docs/handbook/getting-started.md',
+    target: join(handbookDir, 'getting-started.md'),
+    content: applyVars(`---
+title: Getting Started
+description: How to install and use {{BRAND_NAME}}.
+sidebar:
+  order: 1
+---
+
+## Install
+
+\`\`\`bash
+npm install {{PACKAGE_NAME}}
+\`\`\`
+
+## Quick Start
+
+<!-- Replace with your actual quick start guide -->
+
+\`\`\`js
+// Example usage
+import { ... } from '{{PACKAGE_NAME}}';
+\`\`\`
+`, vars),
+  });
+
+  plan.push({
+    dest: 'site/src/content/docs/handbook/reference.md',
+    target: join(handbookDir, 'reference.md'),
+    content: applyVars(`---
+title: Reference
+description: API reference and configuration options for {{BRAND_NAME}}.
+sidebar:
+  order: 2
+---
+
+## API
+
+<!-- Document your public API, CLI commands, or configuration options here -->
+
+## Configuration
+
+<!-- Document configuration options here -->
+`, vars),
+  });
+
+  // --- Dry run ---
+  if (dryRun) {
+    console.log('');
+    console.log(`\x1b[33mDry run\x1b[0m — handbook (accent: ${accentName})`);
+    console.log('');
+    console.log('Files that would be created/overwritten:');
+    for (const f of plan) {
+      console.log(`  ${f.dest}`);
+    }
+    console.log('  site/package.json (patched: @astrojs/starlight added)');
+    console.log('  site/src/site-config.ts (patched: secondaryCta → handbook)');
+    console.log('');
+    console.log('Variables:');
+    for (const [k, v] of Object.entries(vars)) {
+      if (v) console.log(`  ${k}: ${v}`);
+    }
+    console.log('');
+    return;
+  }
+
+  // --- Execute ---
+  info(`Handbook: accent=${accentName}`);
+  info(`Package: ${packageName}`);
+  info(`Brand: ${brandName}`);
+  info('');
+
+  // Write planned files
+  for (const f of plan) {
+    writeFile(f.target, f.content);
+    info(`Created ${f.dest}`);
+  }
+
+  // Patch site/package.json — add @astrojs/starlight dep
+  const sitePkgPath = join(siteDir, 'package.json');
+  if (existsSync(sitePkgPath)) {
+    try {
+      const sitePkg = JSON.parse(readFileSync(sitePkgPath, 'utf-8'));
+      if (!sitePkg.dependencies) sitePkg.dependencies = {};
+      if (!sitePkg.dependencies['@astrojs/starlight']) {
+        sitePkg.dependencies['@astrojs/starlight'] = '^0.37.6';
+        writeFileSync(sitePkgPath, JSON.stringify(sitePkg, null, 2) + '\n', 'utf-8');
+        info('Patched site/package.json (added @astrojs/starlight)');
+      } else {
+        info('Skipped site/package.json (@astrojs/starlight already present)');
+      }
+    } catch {
+      info('Warning: could not patch site/package.json');
+    }
+  }
+
+  // Patch site-config.ts — update secondaryCta to handbook link
+  const siteConfigPath = join(siteDir, 'src', 'site-config.ts');
+  if (existsSync(siteConfigPath)) {
+    let configContent = readFileSync(siteConfigPath, 'utf-8');
+    const ctaPattern = /secondaryCta:\s*\{[^}]+\}/;
+    if (ctaPattern.test(configContent)) {
+      configContent = configContent.replace(ctaPattern, "secondaryCta: { href: 'handbook/', label: 'Read the Handbook' }");
+      writeFileSync(siteConfigPath, configContent, 'utf-8');
+      info('Patched site/src/site-config.ts (secondaryCta → handbook)');
+    }
+  }
+
+  console.log('');
+  console.log('\x1b[32mDone!\x1b[0m Handbook scaffold created.');
+  console.log('');
+  console.log('Next steps:');
+  console.log('  cd site && npm install');
+  console.log('  Edit the handbook pages in src/content/docs/handbook/');
+  console.log('  npm run build');
+  console.log('');
+}
+
 // --- Dispatch ---
 
 const { command, flags } = parseArgs(process.argv);
@@ -387,6 +653,9 @@ switch (command) {
   case 'version':
     runVersion();
     break;
+  case 'handbook':
+    runHandbook(flags);
+    break;
   default:
-    die(`Unknown command: "${command}". Use "init" or "list-templates".`);
+    die(`Unknown command: "${command}". Use "init", "handbook", or "list-templates".`);
 }
