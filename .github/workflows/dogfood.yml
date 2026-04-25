@@ -147,7 +147,7 @@ jobs:
           echo "Submission built:"
           jq '.run_id, .overall_verdict' /tmp/submission.json
 
-      - name: Dispatch to dogfood-labs
+      - name: Dispatch to testing-os
         env:
           GH_TOKEN: ${{ secrets.DOGFOOD_TOKEN }}
         run: |
@@ -161,7 +161,7 @@ jobs:
 
           jq -n --argjson sub "$SUBMISSION" \
             '{"event_type":"dogfood_submission","client_payload":{"submission":$sub}}' \
-            | gh api repos/mcp-tool-shop-org/dogfood-labs/dispatches \
+            | gh api repos/dogfood-lab/testing-os/dispatches \
               --input - --silent
 
-          echo "Dispatched $RUN_ID to dogfood-labs"
+          echo "Dispatched $RUN_ID to testing-os"
