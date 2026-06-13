@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.7.0] - 2026-06-13
+
+### Added
+- **Skip-to-content link** in `BaseLayout`: visually hidden until focused, first `<body>` child, targets `<main id="main" tabindex="-1">` (WCAG 2.4.1 bypass blocks).
+- **Mobile header navigation** in `BaseLayout`: a JS-free `<details>`/`<summary>` disclosure menu (shown below `md`) exposing the in-page nav links and npm shortcut that were previously `hidden md:flex` with no small-screen fallback.
+- **"Opens in a new tab" affordance** on every external (`target="_blank"`) header/footer link via a visually-hidden `<span class="sr-only">` (WCAG 3.2.5).
+
+### Changed
+- **Branded focus ring** on all interactive controls in `BaseLayout` (brand/nav/header buttons/footer links + mobile menu items) and `Hero` (both CTAs): `focus-visible:ring-2 ring-accent ring-offset-2 ring-offset-surface`, replacing the low-prominence UA default outline on the dark surface (WCAG 2.4.7).
+
 ## [1.6.1] - 2026-03-27
 
 ### Fixed
