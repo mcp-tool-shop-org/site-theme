@@ -81,5 +81,8 @@
     "@biomejs/biome": "^2.4.8",
     "typescript": "^5.8.3",
     "vitest": "^4.1.0"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   }
 }
