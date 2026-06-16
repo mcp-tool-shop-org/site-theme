@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-06-16
+
+### Added
+- **front-door MCP server** — an agent-callable surface for the verifier. `front-door mcp` starts a hand-rolled, zero-dependency MCP server (newline-delimited JSON-RPC over stdio) exposing `front_door_verify` (returns the structured scorecard) and `front_door_standard`. Also exported at `@mcptoolshop/site-theme/front-door/mcp`. The core package stays zero-dep — no MCP SDK / `zod`.
+- **Executable doctest channel** — `front-door verify --run-doctests` (programmatic `verify({ root, runDoctests: true })`) now compiles/runs fenced JS examples rustdoc-style: examples importing only Node builtins + this package are executed in a child process; third-party/relative-import or `no_run` examples are compile-checked (`node --check`, never resolving imports, so nothing is installed); a `+SKIP` / `ignore` example is reported **UNBACKED**, not passing. Opt-in and safe — default `verify` stays read-only, with a per-example timeout and no network/install.
+- **Executable ablation runner** — `front-door ablation` implements the three-arm docs-on/off protocol from `EVAL.md` (`--instances` / `--seed`) and emits a receipt.
+
+### Notes
+- Minor bump: new agent surface + opt-in execution channels; the verify gate and programmatic API are backward-compatible (default `verify` behavior is unchanged).
+
 ## [2.0.0] - 2026-06-16
 
 ### Added
