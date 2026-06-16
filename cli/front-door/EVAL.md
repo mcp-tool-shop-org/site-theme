@@ -17,10 +17,26 @@ site-theme front-door eval --out receipts/front-door-eval.json
 This proves the **verifier** behaves correctly. It does not, by itself, prove
 that a good front door helps an agent — that is the experiment below.
 
-## 2. Does the front door help an agent? (protocol — needs an agent harness)
+## 2. Does the front door help an agent? (harness — implemented)
 
 The honest test is a **docs-on / docs-off ablation** on an execution-graded
-agent benchmark, not a model's self-judgment.
+agent benchmark, not a model's self-judgment. The harness for it is now built
+and runnable — see [ABLATION.md](./ABLATION.md) for the module map, the
+real-run contract, and the standards-compliance + compensators sections.
+
+```bash
+# Synthetic self-validation (runs anywhere, zero deps): proves the harness
+# (arm construction, execution grading, cost accounting, paired stats) end to
+# end. NOT a measurement of the real front-door effect.
+site-theme front-door ablation run --out receipts/front-door-ablation.json
+```
+
+The latest self-validation receipt + writeup live in `receipts/`
+(`front-door-ablation.json`, `front-door-ablation.md`). The real-effect run on
+SWE-bench Verified needs an external agent + per-instance containers + a model;
+the CLI prints that contract and exits rather than faking it.
+
+The design below is what the harness implements.
 
 **Design (three arms; the agent, model, tool schema, and prompts are pinned —
 only the front door varies):**
