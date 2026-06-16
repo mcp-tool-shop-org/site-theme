@@ -33,7 +33,6 @@ export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig 
 
 export type { DocsSection, DocsSiteConfig, SidebarGroup, SidebarItem } from './docs-config';
 export type { PortfolioItem, PortfolioSiteConfig } from './portfolio-config';
-export type { ToolCommand, ToolCommandGroup, ToolProof, ToolSiteConfig } from './tool-config';
 export type {
   CtaBannerDef,
   PricingDef,
@@ -42,6 +41,7 @@ export type {
   SocialProofDef,
   TestimonialDef,
 } from './product-config';
+export type { ToolCommand, ToolCommandGroup, ToolProof, ToolSiteConfig } from './tool-config';
 
 export interface HeroDef {
   /** Status badge text */
