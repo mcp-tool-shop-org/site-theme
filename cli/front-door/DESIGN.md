@@ -47,7 +47,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **1** Extract + classify + risk-ordered 4-bucket scorecard + reporter
 - [x] **2** References channel — dead path/script/link + duplication + badge distrust
 - [x] **3** Minimality linter — length budget, FRE readability, directive breadth
-- [ ] **4** Doctest channel — Node/TS runnable examples (skipped == unbacked)
+- [x] **4** Doctest channel — example self-imports must resolve to real package exports (execution-based run is a later refinement)
 - [ ] **5** Attestation receipts — SLSA/in-toto/Sigstore; badge -> attestation upgrade
 - [ ] **6** Gherkin / behavioral-claim linkage
 - [ ] **7** Generator — minimal spine scaffold + llms.txt + candidate doctests, wired to the `tool` template
