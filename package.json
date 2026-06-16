@@ -24,6 +24,7 @@
   "homepage": "https://mcp-tool-shop-org.github.io/site-theme/",
   "exports": {
     ".": "./types/config.ts",
+    "./front-door": "./cli/front-door/index.mjs",
     "./types/docs-config": "./types/docs-config.ts",
     "./types/portfolio-config": "./types/portfolio-config.ts",
     "./types/product-config": "./types/product-config.ts",
