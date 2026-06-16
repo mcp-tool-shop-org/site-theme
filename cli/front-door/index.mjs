@@ -18,6 +18,7 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { checkAttestation } from './attestation.mjs';
 import { checkDoctest } from './doctest.mjs';
 import { checkMinimality } from './minimality.mjs';
 import { BUCKET, CHANNEL, finding, SEVERITY } from './model.mjs';
@@ -90,6 +91,7 @@ export function verify({ root }) {
   findings.push(...checkReferences({ files, repoRoot: root, pkg }));
   findings.push(...checkMinimality({ files }));
   findings.push(...checkDoctest({ files, pkg }));
+  findings.push(...checkAttestation({ files, repoRoot: root }));
   return buildScorecard(findings);
 }
 
