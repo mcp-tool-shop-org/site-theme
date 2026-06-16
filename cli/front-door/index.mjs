@@ -16,6 +16,7 @@
 
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { runAblationCli } from './ablation/index.mjs';
 import { runEval } from './eval.mjs';
 import { generate } from './generate.mjs';
 import { renderHuman, renderJson } from './report.mjs';
@@ -38,12 +39,15 @@ Actions:
   init              Scaffold a minimal front door (README / AGENTS.md / llms.txt)
   standard          Print the front-door spine (README + AGENTS.md)
   eval              Run the verifier's self-eval against a labeled corpus
+  ablation          Run the three-arm docs-on/off agent ablation (EVAL.md)
 
 Options:
-  --out <dir|file>  Repo root (verify/init) or receipt path (eval)
-  --json            Machine-readable output (verify, eval)
+  --out <dir|file>  Repo root (verify/init) or receipt path (eval/ablation)
+  --json            Machine-readable output (verify, eval, ablation)
   --force           Overwrite existing files (init)
   --dry-run         Preview without writing (init)
+  --instances <n>   Synthetic instance count (ablation; default 60)
+  --seed <n>        Bootstrap seed (ablation; default 12345)
   --help, -h        Show this help
 
 verify exits 1 when the gate fails (contradicted / unbacked / stale).
@@ -116,9 +120,11 @@ export function main(argv) {
     process.stdout.write(`${renderStandard()}\n`);
   } else if (action === 'eval') {
     runEvalCli(flags);
+  } else if (action === 'ablation') {
+    runAblationCli(argv.slice(1));
   } else if (action === '' || action === 'help') {
     printHelp();
   } else {
-    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval.`);
+    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval, ablation.`);
   }
 }

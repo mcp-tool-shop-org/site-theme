@@ -1,0 +1,2206 @@
+{
+  "tool": "front-door",
+  "kind": "harness-self-validation",
+  "measuresFrontDoorEffect": false,
+  "disclaimer": "Harness self-validation on a SYNTHETIC corpus with a deterministic toy agent. It proves the machinery (arm construction, execution grading, cost accounting, paired statistics), NOT that a real front door helps a real agent. The real-effect arms (SWE-bench Verified + an external agent + a model) were not run in this session — see cli/front-door/ABLATION.md.",
+  "generatedAt": "2026-06-16",
+  "grading": "execution — fail_to_pass + pass_to_pass (no model grade)",
+  "pin": {
+    "hash": "63a3092cccbe2a68",
+    "agent": {
+      "harness": "lookup-reference-agent",
+      "version": "deterministic",
+      "toolSchema": [
+        "read",
+        "str-replace"
+      ],
+      "maxSteps": 0
+    },
+    "generator": {
+      "model": "deterministic-lookup",
+      "family": "none",
+      "decoding": {},
+      "systemPromptHash": "n/a"
+    },
+    "judge": {
+      "model": "gpt-oss:120b-cloud",
+      "family": "openai",
+      "reasoningHidden": true,
+      "role": "tie-break-qualitative-only"
+    },
+    "grading": {
+      "method": "execution",
+      "oracle": "fail_to_pass + pass_to_pass"
+    }
+  },
+  "corpus": {
+    "name": "synthetic-frontdoor-microbench",
+    "version": 1,
+    "n": 60,
+    "byCategory": {
+      "doc-only": 15,
+      "doc-and-frontdoor": 14,
+      "doc-only-base": 11,
+      "code-evident": 13,
+      "unfixable": 7
+    }
+  },
+  "arms": [
+    {
+      "id": "A",
+      "label": "repo as-is",
+      "n": 60,
+      "resolved": 38,
+      "resolutionRate": {
+        "point": 0.6333333333333333,
+        "low": 0.5068300061986883,
+        "high": 0.7437908332057719,
+        "n": 60
+      },
+      "cost": {
+        "meanSteps": 2.216666666666667,
+        "meanTokensIn": 25.983333333333334,
+        "meanTokensOut": 4.433333333333334,
+        "meanTokensTotal": 30.416666666666668,
+        "medianTokensTotal": 30,
+        "totalTokens": 1825
+      }
+    },
+    {
+      "id": "B",
+      "label": "repo + front-door",
+      "n": 60,
+      "resolved": 53,
+      "resolutionRate": {
+        "point": 0.8833333333333333,
+        "low": 0.7782121196562515,
+        "high": 0.9423227936315717,
+        "n": 60
+      },
+      "cost": {
+        "meanSteps": 2.7333333333333334,
+        "meanTokensIn": 36.18333333333333,
+        "meanTokensOut": 6.183333333333334,
+        "meanTokensTotal": 42.36666666666667,
+        "medianTokensTotal": 44,
+        "totalTokens": 2542
+      }
+    },
+    {
+      "id": "C",
+      "label": "docs-stripped + front-door",
+      "n": 60,
+      "resolved": 42,
+      "resolutionRate": {
+        "point": 0.7,
+        "low": 0.5749129204259879,
+        "high": 0.8010183386807025,
+        "n": 60
+      },
+      "cost": {
+        "meanSteps": 2.216666666666667,
+        "meanTokensIn": 30.716666666666665,
+        "meanTokensOut": 4.9,
+        "meanTokensTotal": 35.61666666666667,
+        "medianTokensTotal": 35,
+        "totalTokens": 2137
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "from": "A",
+      "to": "B",
+      "resolutionDelta": {
+        "points": 0.25,
+        "percentagePoints": 25
+      },
+      "mcnemar": {
+        "b": 0,
+        "c": 15,
+        "discordant": 15,
+        "chiSquare": 13.066666666666666,
+        "pExact": 0.00006103515625000003,
+        "pChiSquare": 0.0003006698117584694
+      },
+      "cost": {
+        "tokensTotalDelta": {
+          "mean": 11.95,
+          "low": 10.65,
+          "high": 13.25,
+          "iterations": 2000,
+          "n": 60
+        },
+        "stepsDelta": {
+          "mean": 0.5166666666666667,
+          "low": 0.4,
+          "high": 0.6333333333333333,
+          "iterations": 2000,
+          "n": 60
+        },
+        "relativeTokenChange": 0.3928767123287671
+      }
+    },
+    {
+      "from": "B",
+      "to": "C",
+      "resolutionDelta": {
+        "points": -0.18333333333333335,
+        "percentagePoints": -18.3
+      },
+      "mcnemar": {
+        "b": 11,
+        "c": 0,
+        "discordant": 11,
+        "chiSquare": 9.090909090909092,
+        "pExact": 0.0009765624999999999,
+        "pChiSquare": 0.002568970081442856
+      },
+      "cost": {
+        "tokensTotalDelta": {
+          "mean": -6.75,
+          "low": -8.4,
+          "high": -5.15,
+          "iterations": 2000,
+          "n": 60
+        },
+        "stepsDelta": {
+          "mean": -0.5166666666666667,
+          "low": -0.65,
+          "high": -0.4,
+          "iterations": 2000,
+          "n": 60
+        },
+        "relativeTokenChange": -0.15932336742722267
+      }
+    },
+    {
+      "from": "A",
+      "to": "C",
+      "resolutionDelta": {
+        "points": 0.06666666666666665,
+        "percentagePoints": 6.7
+      },
+      "mcnemar": {
+        "b": 11,
+        "c": 15,
+        "discordant": 26,
+        "chiSquare": 0.34615384615384615,
+        "pExact": 0.5571970939636215,
+        "pChiSquare": 0.5562983739809217
+      },
+      "cost": {
+        "tokensTotalDelta": {
+          "mean": 5.2,
+          "low": 4.7,
+          "high": 5.7,
+          "iterations": 2000,
+          "n": 60
+        },
+        "stepsDelta": {
+          "mean": 0,
+          "low": 0,
+          "high": 0,
+          "iterations": 2000,
+          "n": 60
+        },
+        "relativeTokenChange": 0.17095890410958903
+      }
+    }
+  ],
+  "power": {
+    "note": "Sized from the A->B discordance rate; requires the discordance rate to exceed the target effect.",
+    "alpha": 0.05,
+    "targetPower": 0.8,
+    "discordanceRateObserved": 0.25,
+    "discordantPairsAB": 15,
+    "requiredNForTargetPower": {
+      "2pp": 4904,
+      "3pp": 2178,
+      "4pp": 1225
+    },
+    "achievedPowerFor3pp": 0.06707904379118529
+  },
+  "perInstance": [
+    {
+      "id": "synthetic-000-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-001-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-002-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-003-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-004-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-005-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-006-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-007-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-008-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-009-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-010-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-011-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-012-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-013-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-014-doc-only",
+      "category": "doc-only",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-015-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-016-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-017-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-018-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-019-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-020-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-021-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-022-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-023-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-024-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-025-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-026-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-027-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-028-doc-and-frontdoor",
+      "category": "doc-and-frontdoor",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 28,
+            "tokensOut": 7,
+            "tokensTotal": 35
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-029-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-030-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-031-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-032-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-033-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-034-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-035-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-036-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-037-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-038-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-039-doc-only-base",
+      "category": "doc-only-base",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 23,
+            "tokensOut": 7,
+            "tokensTotal": 30
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 40,
+            "tokensOut": 7,
+            "tokensTotal": 47
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-040-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-041-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-042-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-043-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-044-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-045-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-046-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-047-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-048-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-049-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-050-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-051-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-052-code-evident",
+      "category": "code-evident",
+      "arms": {
+        "A": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 30,
+            "tokensOut": 7,
+            "tokensTotal": 37
+          }
+        },
+        "B": {
+          "resolved": true,
+          "cost": {
+            "steps": 4,
+            "tokensIn": 47,
+            "tokensOut": 7,
+            "tokensTotal": 54
+          }
+        },
+        "C": {
+          "resolved": true,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 35,
+            "tokensOut": 7,
+            "tokensTotal": 42
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-053-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-054-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-055-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-056-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-057-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-058-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "synthetic-059-unfixable",
+      "category": "unfixable",
+      "arms": {
+        "A": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 27,
+            "tokensOut": 0,
+            "tokensTotal": 27
+          }
+        },
+        "B": {
+          "resolved": false,
+          "cost": {
+            "steps": 3,
+            "tokensIn": 44,
+            "tokensOut": 0,
+            "tokensTotal": 44
+          }
+        },
+        "C": {
+          "resolved": false,
+          "cost": {
+            "steps": 2,
+            "tokensIn": 32,
+            "tokensOut": 0,
+            "tokensTotal": 32
+          }
+        }
+      }
+    }
+  ]
+}
