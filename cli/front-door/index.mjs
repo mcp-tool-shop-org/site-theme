@@ -44,6 +44,7 @@ Actions:
 Options:
   --out <dir|file>  Repo root (verify/init) or receipt path (eval/ablation)
   --json            Machine-readable output (verify, eval, ablation)
+  --run-doctests    Compile/run fenced JS examples (verify); executes code, opt-in
   --force           Overwrite existing files (init)
   --dry-run         Preview without writing (init)
   --instances <n>   Synthetic instance count (ablation; default 60)
@@ -55,19 +56,20 @@ verify exits 1 when the gate fails (contradicted / unbacked / stale).
 }
 
 function parseFlags(argv) {
-  const flags = { out: '', json: false, force: false, dryRun: false };
+  const flags = { out: '', json: false, force: false, dryRun: false, runDoctests: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--out' && argv[i + 1]) flags.out = argv[++i];
     else if (argv[i] === '--json') flags.json = true;
     else if (argv[i] === '--force') flags.force = true;
     else if (argv[i] === '--dry-run') flags.dryRun = true;
+    else if (argv[i] === '--run-doctests') flags.runDoctests = true;
   }
   return flags;
 }
 
 function runVerify(flags) {
   const root = flags.out ? resolve(process.cwd(), flags.out) : process.cwd();
-  const scorecard = verify({ root });
+  const scorecard = verify({ root, runDoctests: flags.runDoctests });
   process.stdout.write(flags.json ? `${renderJson(scorecard)}\n` : renderHuman(scorecard));
   process.exit(scorecard.gate.pass ? 0 : 1);
 }
