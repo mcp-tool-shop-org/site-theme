@@ -1,6 +1,7 @@
 import type { DocsSiteConfig } from './docs-config';
 import type { PortfolioSiteConfig } from './portfolio-config';
 import type { ProductSiteConfig } from './product-config';
+import type { ToolSiteConfig } from './tool-config';
 
 export interface DefaultSiteConfig {
   /** Template discriminant (optional for backward compat) */
@@ -28,10 +29,11 @@ export interface DefaultSiteConfig {
 }
 
 /** Discriminated union — determines which template config is in use */
-export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig | PortfolioSiteConfig;
+export type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig | PortfolioSiteConfig | ToolSiteConfig;
 
 export type { DocsSection, DocsSiteConfig, SidebarGroup, SidebarItem } from './docs-config';
 export type { PortfolioItem, PortfolioSiteConfig } from './portfolio-config';
+export type { ToolCommand, ToolCommandGroup, ToolProof, ToolSiteConfig } from './tool-config';
 export type {
   CtaBannerDef,
   PricingDef,
