@@ -51,7 +51,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **5** Attestation channel — provenance/signing claims must map to real attestation evidence (SLSA/in-toto/Sigstore/--provenance)
 - [x] **6** Gherkin channel — flags skipped/@wip scenarios (opt-in; fires only when .feature files exist)
 - [x] **7** Generator — `front-door init`: minimal verify-clean spine + AGENTS.md + llms.txt (docs-site only), overwrite-guarded
-- [ ] **8** The front-door standard doc (handbook page)
+- [x] **8** Standard docs page (docs/front-door.md) wired into the docs index
 - [ ] **9** Proof eval — three-arm SWE-bench ablation + published receipt
 - [ ] **10** shipcheck integration + MCP surface + v2.0.0 release
 
