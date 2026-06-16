@@ -1,0 +1,100 @@
+# CI (docs gate) — companion to ci.yml that satisfies the "skipped but required"
+# status checks on docs-only / translations-only pull requests.
+#
+# WHY THIS FILE EXISTS
+# --------------------
+# `main` branch protection requires these status checks before merge:
+#     lint-and-test
+#     validate-templates (app | default | docs | portfolio | product)
+# Those contexts are produced by ci.yml, which is paths-gated to CODE paths
+# (package.json, package-lock.json, cli/**, components/**, types/**,
+# templates/**, styles/**, tests/**, tsconfig.json, .github/workflows/**). A PR
+# that changes ONLY README*.md (e.g. a translations refresh) never triggers
+# ci.yml, so the required checks never report — the PR sits MERGEABLE / BLOCKED
+# forever and has to be admin-merged. That happened on the v2.1.0 translations
+# PR (#17).
+#
+# This is GitHub's documented "handling skipped but required checks" scenario.
+# The fix is a companion workflow triggered on the INVERSE paths
+# (`paths-ignore` == ci.yml's `paths`) whose jobs have the SAME names as the
+# required contexts but only run a few-second `echo`. On a docs-only PR this
+# workflow reports the required contexts green; ci.yml stays correctly skipped.
+# Refs:
+#   https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/handling-skipped-but-required-checks
+#   https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks
+#
+# SAFETY ON MIXED (code + docs) PRs
+# ---------------------------------
+# A PR that touches both code and docs triggers BOTH ci.yml (real build) and
+# this workflow (no-op), so the `lint-and-test` / `validate-templates (*)`
+# contexts each get TWO check runs. GitHub requires ALL check runs sharing a
+# context name to pass ("both the check and the status are required") — the
+# evaluation is a conjunction that fails closed. So the real build in ci.yml
+# still gates any PR that changes code; this no-op can never shadow a failing
+# build. Protection on real code changes is NOT weakened.
+#
+# Keep the `paths-ignore` list below and the `validate-templates` matrix in
+# lockstep with ci.yml. If ci.yml's `paths` or matrix change, mirror them here.
+#
+# Standards compliance (.claude/rules/workflow-standards.md) — no-op gate:
+#   PIN_PER_STEP        (2) PRESENT — runner pinned (ubuntu-latest); no third-party
+#                           actions to SHA-pin (pure deterministic `echo`, no checkout).
+#   ANDON_AUTHORITY     skip: this workflow produces no artifact and feeds nothing
+#                           downstream; the real andon authority is ci.yml, which
+#                           halts code PRs on any failing gate. Nothing here to halt.
+#   NAMED_COMPENSATORS  n/a — performs NO irreversible action (no publish, no push,
+#                           no release, no external write). No compensators required.
+#   DECOMPOSE_BY_SECRETS(3) EXEMPLARY — the change-axis split is the whole point:
+#                           docs changes are decoupled from the code build along the
+#                           exact path boundary ci.yml uses; the two files move
+#                           together by design and are documented to stay in sync.
+#   UNCERTAINTY_GATED_HUMANS (2) PRESENT — this gate REMOVES the spurious human
+#                           checkpoint (the per-release `--admin` bypass) by letting
+#                           docs PRs pass the normal flow; humans still review the PR.
+#   EXTERNAL_VERIFIER   skip: no model output to verify; the verifier for code PRs
+#                           is ci.yml (typecheck/lint/test/template builds).
+
+name: CI (docs gate)
+
+on:
+  pull_request:
+    branches: [main]
+    # INVERSE of ci.yml's `paths`. Runs only when a PR changes NO code paths
+    # (i.e. docs / translations / other non-code files), so on a code-only PR
+    # this no-op stays out of the way and the real build in ci.yml is the only
+    # thing reporting the required contexts.
+    paths-ignore:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'cli/**'
+      - 'components/**'
+      - 'types/**'
+      - 'templates/**'
+      - 'styles/**'
+      - 'tests/**'
+      - 'tsconfig.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job id MUST equal the required status-check context name.
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Docs-only change — no build required. Satisfying required check 'lint-and-test'."
+
+  # Job id + matrix mirror ci.yml so the generated contexts match exactly:
+  # validate-templates (app|default|docs|portfolio|product|tool).
+  # app/default/docs/portfolio/product are the required ones; tool is mirrored
+  # for parity so the two files stay structurally identical.
+  validate-templates:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        template: [default, docs, product, portfolio, app, tool]
+    steps:
+      - run: echo "Docs-only change — no build required. Satisfying required check 'validate-templates (${{ matrix.template }})'."
