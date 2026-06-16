@@ -356,3 +356,5 @@ MIT
 ---
 
 Built by [MCP Tool Shop](https://mcp-tool-shop.github.io/)
+
+<!-- docs-gate live e2e check; will be closed -->
