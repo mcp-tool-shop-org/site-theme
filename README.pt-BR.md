@@ -9,14 +9,15 @@
 <h1 align="center">@mcptoolshop/site-theme</h1>
 
 <p align="center">
-  Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards.<br/>
+  Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards —<br/>
+  plus <strong>front-door</strong>, the verifier for a repo's AI-native README / AGENTS.md / llms.txt.<br/>
   Dark palette · Tailwind CSS v4 · GitHub Pages ready.
 </p>
 
 <p align="center">
   <a href="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/@mcptoolshop/site-theme"><img src="https://img.shields.io/npm/v/@mcptoolshop/site-theme" alt="npm version" /></a>
-  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_app-34d399" alt="Templates: default · docs · product · app" />
+  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_portfolio_·_app-34d399" alt="Templates: default · docs · product · portfolio · app" />
   <a href="https://mcp-tool-shop-org.github.io/site-theme/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="MIT License" /></a>
 </p>
@@ -24,6 +25,7 @@
 <p align="center">
   <a href="#templates">Templates</a> &middot;
   <a href="#quick-start">Quick Start</a> &middot;
+  <a href="#front-door">Front Door</a> &middot;
   <a href="#design-tokens">Design Tokens</a> &middot;
   <a href="#components">Components</a> &middot;
   <a href="#deploy">Deploy</a> &middot;
@@ -34,26 +36,29 @@
 
 ## Modelos
 
-Escolha um modelo, crie a estrutura básica e desenvolva. Cada modelo é testado com integração contínua e está pronto para ser publicado no GitHub Pages.
+Escolha um modelo, crie a estrutura básica e comece a construir. Cada modelo é testado com CI e está pronto para ser usado no GitHub Pages.
 
 | Modelo | Descrição | Páginas |
 |----------|-------------|-------|
-| **default** | Página de apresentação do projeto com destaque, recursos e exemplos de código. | 1 |
-| **docs** | Site de documentação com navegação lateral e seções de conteúdo. | 1 |
-| **product** | Página de marketing com preços, depoimentos e chamadas para ação. | 1 |
-| **app** | Painel de controle SaaS multi-tenant com controle de acesso baseado em função, flags de recursos e roteamento de workspaces. | 31 |
+| **default** | Página inicial de um projeto, com destaque principal, recursos e exemplos de código | 1 |
+| **docs** | Site de documentação com navegação na barra lateral e seções de conteúdo | 1 |
+| **product** | Página inicial de marketing com preços, depoimentos e chamadas para ação (CTAs) | 1 |
+| **portfolio** | Grade de catálogo filtrável para ferramentas, projetos ou qualquer coleção | 1 |
+| **app** | Painel SaaS multi-inquilino com RBAC, flags de recursos e roteamento de espaço de trabalho | 31 |
 
 ```bash
-npx @mcptoolshop/site-theme list-templates        # see all options
-npx @mcptoolshop/site-theme init --template app    # scaffold a template
-npx @mcptoolshop/site-theme init --template app --dry-run  # preview files
+npx @mcptoolshop/site-theme list-templates            # see all options
+npx @mcptoolshop/site-theme list-templates --json      # machine-readable output
+npx @mcptoolshop/site-theme init --template app        # scaffold a template
+npx @mcptoolshop/site-theme init --template app --dry-run   # preview files
+npx @mcptoolshop/site-theme init --out ../other-repo   # scaffold into another directory
 ```
 
 ---
 
-## Como começar
+## Primeiros passos
 
-### Crie a estrutura básica de um novo site
+### Crie um novo site
 
 ```bash
 npx @mcptoolshop/site-theme init
@@ -61,11 +66,11 @@ cd site && npm install
 npm run dev
 ```
 
-Isso cria um diretório `site/` com Astro + Tailwind + tema configurados, além de um fluxo de trabalho para o GitHub Pages. As importações de CSS, o caminho `@source` e o caminho base estão todos pré-configurados — nenhuma configuração manual é necessária.
+Isso cria um diretório `site/` com Astro + Tailwind + tema configurados, além de um fluxo de trabalho do GitHub Pages. A importação CSS, o caminho `@source` e o caminho base são todos pré-configurados — não é necessário configurar manualmente.
 
 ### Edite seu conteúdo
 
-Todo o conteúdo da página está localizado em `site/src/site-config.ts`. Edite o objeto de configuração para personalizar sua página de apresentação:
+Todo o conteúdo da página está localizado em `site/src/site-config.ts`. Edite o objeto de configuração para personalizar sua página inicial:
 
 ```typescript
 import type { SiteConfig } from '@mcptoolshop/site-theme';
@@ -86,31 +91,57 @@ export const config: SiteConfig = {
 
 ---
 
-## Tokens de Design
+## Fachada
 
-O tema fornece tokens de design semânticos através do arquivo `styles/theme.css`. Os componentes referenciam esses tokens em vez de cores codificadas, permitindo que você personalize completamente o tema alterando apenas alguns valores.
+`site-theme` renderiza a **fachada** "humana" de um repositório; `front-door` verifica sua fachada **agente/máquina** — o README, `AGENTS.md` e `llms.txt` que humanos, agentes e ferramentas leem primeiro. Ele prioriza a verificação: não escreve textos para você, mas comprova que seus textos são verdadeiros e concisos.
+
+```bash
+npx @mcptoolshop/site-theme front-door verify     # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door init       # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard   # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval       # the verifier's self-eval receipt
+```
+
+Ele direciona cada afirmação documentada para as evidências que podem comprová-la — caminhos/scripts/links inválidos, duplicação de AGENTS.md↔README, falta de confiança em badges de status, exemplos de importações versus `exports` reais, alegações de procedência versus atestado real e excesso (comprimento/legibilidade/orçamento de diretivas para `AGENTS.md`). Os resultados são classificados por risco em quatro categorias: Verificado / Contraditório / Ausente / Não verificável.
+
+Use-o programaticamente (shipcheck usa isso):
+
+```js
+import { verify } from '@mcptoolshop/site-theme/front-door';
+
+const scorecard = verify({ root: process.cwd() });
+if (!scorecard.gate.pass) process.exit(1);
+```
+
+Consulte a [referência da Fachada](docs/front-door.md) para obter a lista completa de canais e o padrão.
+
+---
+
+## Tokens de design
+
+O tema inclui tokens de design semânticos por meio de `styles/theme.css`. Os componentes referenciam esses tokens em vez de cores codificadas, para que você possa alterar a aparência de todo o tema substituindo alguns valores.
 
 ### Tokens padrão
 
 | Token | Padrão | Usado para |
 |-------|---------|----------|
 | `--color-surface` | `#09090b` | Fundo da página |
-| `--color-surface-raised` | `#18181b` | Elementos em destaque, blocos de código |
-| `--color-surface-strong` | `#27272a` | Selos, fundos destacados |
+| `--color-surface-raised` | `#18181b` | Elementos elevados, blocos de código |
+| `--color-surface-strong` | `#27272a` | Badges, fundos destacados |
 | `--color-edge` | `#27272a` | Bordas primárias |
-| `--color-edge-subtle` | `#18181b` | Bordas de cartões/tabelas |
+| `--color-edge-subtle` | `#18181b` | Bordas de cartão/tabela |
 | `--color-heading` | `#fafafa` | Títulos, texto principal |
 | `--color-body` | `#e4e4e7` | Texto do corpo/secundário |
-| `--color-muted` | `#d4d4d8` | Texto discreto |
+| `--color-muted` | `#d4d4d8` | Texto atenuado |
 | `--color-dim` | `#a1a1aa` | Rótulos, descrições |
 | `--color-accent` | `#34d399` | Indicadores de status |
-| `--color-action` | `#fafafa` | Cor de fundo do botão primário |
-| `--color-action-text` | `#09090b` | Cor do texto do botão primário |
-| `--color-action-hover` | `#e4e4e7` | Cor do botão primário ao passar o mouse |
+| `--color-action` | `#fafafa` | Fundo do botão primário |
+| `--color-action-text` | `#09090b` | Texto do botão primário |
+| `--color-action-hover` | `#e4e4e7` | Hover do botão primário |
 
 ### Personalização
 
-Substitua qualquer token no arquivo `global.css` do seu site adicionando um bloco `@theme` após as importações:
+Substitua qualquer token no `global.css` do seu site adicionando um bloco `@theme` após as importações:
 
 ```css
 @import "tailwindcss";
@@ -126,7 +157,7 @@ Substitua qualquer token no arquivo `global.css` do seu site adicionando um bloc
 }
 ```
 
-Os tokens geram utilitários padrão do Tailwind v4 (`bg-surface`, `text-heading`, `border-edge`, etc.), então você também pode usá-los em seus próprios componentes.
+Os tokens geram utilitários padrão do Tailwind v4 (`bg-surface`, `text-heading`, `border-edge`, etc.), para que você também possa usá-los em seus próprios componentes.
 
 ---
 
@@ -143,45 +174,57 @@ import FeatureGrid from '@mcptoolshop/site-theme/components/FeatureGrid.astro';
 import DataTable from '@mcptoolshop/site-theme/components/DataTable.astro';
 import CodeCardGrid from '@mcptoolshop/site-theme/components/CodeCardGrid.astro';
 import ApiList from '@mcptoolshop/site-theme/components/ApiList.astro';
+import DocLayout from '@mcptoolshop/site-theme/components/DocLayout.astro';
+import Sidebar from '@mcptoolshop/site-theme/components/Sidebar.astro';
+import TableOfContents from '@mcptoolshop/site-theme/components/TableOfContents.astro';
+import ContentSection from '@mcptoolshop/site-theme/components/ContentSection.astro';
+import SocialProof from '@mcptoolshop/site-theme/components/SocialProof.astro';
+import PricingGrid from '@mcptoolshop/site-theme/components/PricingGrid.astro';
+import TestimonialGrid from '@mcptoolshop/site-theme/components/TestimonialGrid.astro';
+import CtaBanner from '@mcptoolshop/site-theme/components/CtaBanner.astro';
+import PortfolioGrid from '@mcptoolshop/site-theme/components/PortfolioGrid.astro';
+import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 ---
 ```
 
+O tema inclui 17 componentes Astro em cinco categorias: layouts, seções de conteúdo, blocos de marketing, portfólio e documentação.
+
 ### BaseLayout
 
-Estrutura de página completa com cabeçalho fixo (selo de logotipo, links de navegação, botões do GitHub/npm) e rodapé.
+Layout de página completo com cabeçalho fixo (badge do logotipo, links de navegação, botões GitHub/npm) e rodapé.
 
 | Propriedade | Tipo | Descrição |
 |------|------|-------------|
 | `title` | `string` | Título da página `<title>` |
-| `description` | `string` | Descrição meta |
-| `logoBadge` | `string` | Selo de 1 a 2 caracteres (por exemplo, "RS") |
+| `description` | `string` | Meta descrição |
+| `logoBadge` | `string` | Badge de 1 a 2 caracteres (por exemplo, `"RS"`) |
 | `brandName` | `string` | Nome no cabeçalho |
-| `nav` | `{ href, label }[]` | Links de navegação |
-| `repoUrl` | `string` | URL do repositório do GitHub |
+| `nav` | `{ href, label }[]` | Links de navegação (opcional, o padrão é `[]`) |
+| `repoUrl` | `string` | URL do repositório GitHub |
 | `npmUrl?` | `string` | URL do pacote npm |
 | `footerText` | `string` | Texto do rodapé (HTML permitido) |
 
 ### Hero
 
-Destaque com gradiente, selo de status, título, chamadas para ação e cartões de visualização de código opcionais.
+Destaque com gradiente, badge de status, título, CTAs e cartões opcionais de visualização de código.
 
 | Propriedade | Tipo | Descrição |
 |------|------|-------------|
-| `badge` | `string` | Texto do selo de status |
+| `badge` | `string` | Texto do badge de status |
 | `headline` | `string` | Título principal |
-| `headlineAccent` | `string` | Sufixo discreto |
+| `headlineAccent` | `string` | Sufixo atenuado |
 | `description` | `string` | Descrição (HTML permitido) |
 | `primaryCta` | `{ href, label }` | Botão primário |
 | `secondaryCta` | `{ href, label }` | Botão secundário |
-| `previews` | `{ label, code }[]` | Cartões de visualização de código |
+| `previews` | `{ label, code }[]` | Cartões de visualização de código (opcional) |
 
-### Seção
+### Section
 
-Contêiner de seção com ID de âncora, título e subtítulo opcional.
+Wrapper de seção com âncora `id`, título e subtítulo opcional.
 
 ### FeatureGrid
 
-Grade responsiva de cartões com 3 colunas. Propriedades: `features: { title, desc }[]`
+Grade responsiva de 3 colunas. Propriedades: `features: { title, desc }[]`
 
 ### DataTable
 
@@ -189,19 +232,59 @@ Tabela com bordas baseada em grade. Propriedades: `columns: string[]`, `rows: st
 
 ### CodeCardGrid
 
-Grade de 2 colunas de cartões de código escuros. Propriedades: `cards: { title, code }[]`
+Grade de 2 colunas de cartões de blocos de código escuros. Propriedades: `cards: { title, code }[]`
 
 ### ApiList
 
-Cartões de referência de API empilhados em largura total. Propriedades: `apis: { signature, description }[]`
+Cartões de referência da API empilhados em tela cheia. Propriedades: `apis: { signature, description }[]`
+
+### FilterBar
+
+Barra de pesquisa e filtragem por tags para grades de portfólio. Propriedades: `tags: string[]`, `searchable?: boolean`, `searchPlaceholder?: string`
+
+### PortfolioGrid
+
+Grade de cartões configurável com badges de status, agrupamento por categoria e alternativas de imagem/badge. Propriedades: `items: PortfolioItem[]`, `columns?: 2 | 3 | 4`, `groupByCategory?: boolean`
+
+### DocLayout
+
+Layout de duas colunas com barra lateral recolhível e área de conteúdo principal. Usado pelo modelo **docs**. Propriedades: `sidebar: SidebarGroup[]`, `currentPath: string`
+
+### Sidebar
+
+Lista de navegação agrupada com destaque para o link ativo. Propriedades: `groups: SidebarGroup[]`, `currentPath?: string`
+
+### TableOfContents
+
+Navegação de títulos na página. Propriedades: `headings?: { text, id, depth }[]`
+
+### ContentSection
+
+Anchor-linked content block that renders HTML via `set:html`. Props: `id: string`, `title: string`, `content: string`
+
+### SocialProof
+
+Barra de estatísticas com título e pares de valor/rótulo. Props: `headline?: string`, `stats?: { value, label }[]`
+
+### PricingGrid
+
+Cartões responsivos de preços com a opção "Popular" destacada. Props: `tiers?: PricingTier[]`
+
+### TestimonialGrid
+
+Cartões de citação em duas colunas com as iniciais do avatar como fallback. Props: `testimonials?: { quote, author, role, avatarUrl? }[]`
+
+### CtaBanner
+
+Banner de chamada para ação (CTA) em tela cheia com gradiente. Props: `headline: string`, `description?: string`, `cta: { href, label }`
 
 ---
 
 ## Tipos de Seção
 
-O array `sections` na sua configuração suporta os seguintes valores para `kind`:
+O array `sections` na sua configuração suporta estes valores de `kind`:
 
-| Tipo | Componente | Propriedades |
+| Kind | Componente | Props |
 |------|-----------|-------|
 | `features` | FeatureGrid | `features: { title, desc }[]` |
 | `data-table` | DataTable | `columns: string[]`, `rows: string[][]` |
@@ -212,16 +295,16 @@ As seções são renderizadas na ordem em que aparecem no array.
 
 ---
 
-## Implementação
+## Publicar
 
-A interface de linha de comando (CLI) `init` cria automaticamente o arquivo `.github/workflows/pages.yml`. Para colocar o site no ar:
+O comando `init` da CLI cria automaticamente o arquivo `.github/workflows/pages.yml`. Para colocar o site online:
 
 1. Envie seu repositório para o GitHub.
 2. Vá para o seu repositório → **Configurações → Páginas**.
 3. Em **Construção e implantação**, defina **Origem** como **GitHub Actions**.
-4. Envie qualquer alteração para a pasta `site/` para iniciar a primeira construção.
+4. Faça qualquer alteração em `site/` para acionar a primeira construção.
 
-Seu site estará disponível em `https://<org>.github.io/<repo>/`.
+Seu site estará online em `https://<org>.github.io/<repo>/`.
 
 ---
 
@@ -229,22 +312,34 @@ Seu site estará disponível em `https://<org>.github.io/<repo>/`.
 
 | Aspecto | Detalhe |
 |--------|--------|
-| **Data touched** | Arquivos de componentes Astro, tokens CSS, configuração do site — apenas durante a construção. |
-| **Data NOT touched** | Nenhum dado do usuário, nenhum estado em tempo de execução, nenhum processamento no lado do servidor. |
-| **Permissions** | Leitura: arquivos de origem do projeto. Escrita: saída da construção para `site/dist/`. |
+| **Data touched** | Arquivos de componentes Astro, tokens CSS, configuração do site — apenas no momento da construção. |
+| **Data NOT touched** | Sem dados do usuário, sem estado em tempo de execução, sem processamento do lado do servidor. |
+| **Permissions** | Ler: arquivos de origem do projeto. Escrever: saída da construção para site/dist/. |
 | **Network** | Nenhum — gerador de sites estáticos sem acesso à rede em tempo de execução. |
-| **Telemetry** | Nenhum dado coletado ou enviado. |
+| **Telemetry** | Nenhum coletado ou enviado. |
 
-Consulte o arquivo [SECURITY.md](SECURITY.md) para relatar vulnerabilidades.
+### Props HTML (set:html)
 
-## Avaliação
+Vários props de componentes renderizam HTML bruto usando a diretiva `set:html` do Astro. Se sua fonte de dados não for confiável (conteúdo gerado pelo usuário, APIs externas), **sanitize o HTML antes de passá-lo** usando uma biblioteca como [DOMPurify](https://github.com/cure53/DOMPurify) ou [sanitize-html](https://github.com/apostrophecms/sanitize-html).
+
+| Componente | Props que usam set:html |
+|-----------|---------------------|
+| BaseLayout | `footerText` |
+| Hero | `badge`, `description` |
+| CodeCardGrid | `cards[].code` |
+| ApiList | `apis[].signature`, `apis[].description` |
+| ContentSection | `content` |
+
+Consulte [SECURITY.md](SECURITY.md) para relatórios de vulnerabilidades.
+
+## Scorecard (Tabela de Avaliação)
 
 | Categoria | Pontuação |
 |----------|-------|
 | A. Segurança | 10 |
 | B. Tratamento de Erros | 10 |
 | C. Documentação para Operadores | 10 |
-| D. Higiene na Distribuição | 10 |
+| D. Boas Práticas de Publicação | 10 |
 | E. Identidade (suave) | 10 |
 | **Overall** | **50/50** |
 

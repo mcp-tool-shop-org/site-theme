@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] - 2026-06-16
+
+### Added
+- **front-door** — a second pillar: the AI-native front-door verifier for a repo's README, `AGENTS.md`, and `llms.txt`.
+  - `front-door verify` routes documented claims to evidence channels (references, minimality, doctest, attestation, gherkin), reports a risk-ordered four-bucket scorecard, and exits non-zero when the gate fails.
+  - `front-door init` scaffolds a minimal, verify-clean front door; `front-door standard` prints the spine; `front-door eval` runs the verifier self-eval and emits a receipt.
+  - Programmatic `verify()` exported at `@mcptoolshop/site-theme/front-door` (consumed by shipcheck's AI-native gate).
+- **`tool` template** — a 6th template for CLI / MCP / npm package landing pages, with `ToolSiteConfig` (commands, workflow, proof, integration sections).
+- **AGENTS.md** for this repo, dogfooding the front-door standard.
+
+### Notes
+- Major bump signals the new front-of-house pillar; the theme + template API is backward-compatible.
+
 ## [1.7.0] - 2026-06-13
 
 ### Added

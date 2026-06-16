@@ -1,0 +1,5 @@
+{
+  "name": "tool",
+  "description": "Developer tool, CLI, MCP server, or npm package page with install, commands, workflow, and proof sections",
+  "tags": ["tool", "cli", "mcp", "npm"]
+}

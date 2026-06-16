@@ -5,3 +5,8 @@ site/.astro/
 .test-tmp/
 .env
 .env.*
+
+# generated tooling output (audit / node24 sweep runs, translation cache)
+.artifact/
+audit-output/
+.polyglot-cache.json

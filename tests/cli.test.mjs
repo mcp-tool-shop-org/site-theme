@@ -214,3 +214,19 @@ describe('init with recursive templates', () => {
     });
   }
 });
+
+describe('init --template tool', () => {
+  it('scaffolds the tool template with ToolSiteConfig', () => {
+    run('init --template tool');
+    const config = readFileSync(join(TMP, 'site', 'src', 'site-config.ts'), 'utf-8');
+    expect(config).toContain('ToolSiteConfig');
+    expect(config).toContain("template: 'tool'");
+    expect(config).toContain('my-tool');
+    expect(existsSync(join(TMP, 'site', 'src', 'pages', 'index.astro'))).toBe(true);
+  });
+
+  it('appears in list-templates output', () => {
+    const out = run('list-templates');
+    expect(out).toContain('tool');
+  });
+});
