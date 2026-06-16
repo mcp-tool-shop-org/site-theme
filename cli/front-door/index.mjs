@@ -18,13 +18,14 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { checkMinimality } from './minimality.mjs';
 import { BUCKET, CHANNEL, finding, SEVERITY } from './model.mjs';
 import { checkReferences } from './references.mjs';
 import { renderHuman, renderJson } from './report.mjs';
 import { buildScorecard } from './scorecard.mjs';
 import { renderStandard } from './standard.mjs';
 
-const FRONT_DOOR_FILES = ['README.md', 'AGENTS.md', 'llms.txt'];
+const FRONT_DOOR_FILES = ['README.md', 'AGENTS.md', 'llms.txt', 'CLAUDE.md'];
 
 function loadFile(root, name) {
   const path = join(root, name);
@@ -86,6 +87,7 @@ export function verify({ root }) {
   }
 
   findings.push(...checkReferences({ files, repoRoot: root, pkg }));
+  findings.push(...checkMinimality({ files }));
   return buildScorecard(findings);
 }
 

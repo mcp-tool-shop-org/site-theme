@@ -46,7 +46,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **0** Foundation — model, CLI dispatch wiring, programmatic export
 - [x] **1** Extract + classify + risk-ordered 4-bucket scorecard + reporter
 - [x] **2** References channel — dead path/script/link + duplication + badge distrust
-- [ ] **3** Minimality linter — length budget, FRE readability, directive breadth
+- [x] **3** Minimality linter — length budget, FRE readability, directive breadth
 - [ ] **4** Doctest channel — Node/TS runnable examples (skipped == unbacked)
 - [ ] **5** Attestation receipts — SLSA/in-toto/Sigstore; badge -> attestation upgrade
 - [ ] **6** Gherkin / behavioral-claim linkage
