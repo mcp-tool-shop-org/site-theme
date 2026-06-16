@@ -50,7 +50,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **4** Doctest channel — example self-imports must resolve to real package exports (execution-based run is a later refinement)
 - [x] **5** Attestation channel — provenance/signing claims must map to real attestation evidence (SLSA/in-toto/Sigstore/--provenance)
 - [x] **6** Gherkin channel — flags skipped/@wip scenarios (opt-in; fires only when .feature files exist)
-- [ ] **7** Generator — minimal spine scaffold + llms.txt + candidate doctests, wired to the `tool` template
+- [x] **7** Generator — `front-door init`: minimal verify-clean spine + AGENTS.md + llms.txt (docs-site only), overwrite-guarded
 - [ ] **8** The front-door standard doc (handbook page)
 - [ ] **9** Proof eval — three-arm SWE-bench ablation + published receipt
 - [ ] **10** shipcheck integration + MCP surface + v2.0.0 release

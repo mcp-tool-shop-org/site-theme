@@ -37,7 +37,7 @@ export const SPINE = `# {{name}}
 | --- | --- | --- |
 | CLI | \`<cmd>\` | operator control |
 | SDK | \`import { ... } from '<pkg>'\` | programmatic use |
-| MCP | \`docs/mcp.md\` | agent tools / resources / prompts |
+| MCP | \`<docs>/mcp\` | agent tools / resources / prompts |
 | Agent guide | \`AGENTS.md\` | coding-agent operating contract |
 
 ## Architecture map

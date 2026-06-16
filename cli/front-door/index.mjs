@@ -20,6 +20,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { checkAttestation } from './attestation.mjs';
 import { checkDoctest } from './doctest.mjs';
+import { generate } from './generate.mjs';
 import { checkGherkin } from './gherkin.mjs';
 import { checkMinimality } from './minimality.mjs';
 import { BUCKET, CHANNEL, finding, SEVERITY } from './model.mjs';
@@ -110,11 +111,14 @@ Usage: site-theme front-door <action> [options]
 
 Actions:
   verify            Audit the repo's front door (README / AGENTS.md / llms.txt)
+  init              Scaffold a minimal front door (README / AGENTS.md / llms.txt)
   standard          Print the front-door spine (README + AGENTS.md)
 
 Options:
-  --out <dir>       Repo root to check (default: current directory)
+  --out <dir>       Repo root (default: current directory)
   --json            Machine-readable output (verify only)
+  --force           Overwrite existing files (init)
+  --dry-run         Preview without writing (init)
   --help, -h        Show this help
 
 verify exits 1 when the gate fails (contradicted / unbacked / stale).
@@ -122,10 +126,12 @@ verify exits 1 when the gate fails (contradicted / unbacked / stale).
 }
 
 function parseFlags(argv) {
-  const flags = { out: '', json: false };
+  const flags = { out: '', json: false, force: false, dryRun: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--out' && argv[i + 1]) flags.out = argv[++i];
     else if (argv[i] === '--json') flags.json = true;
+    else if (argv[i] === '--force') flags.force = true;
+    else if (argv[i] === '--dry-run') flags.dryRun = true;
   }
   return flags;
 }
@@ -135,6 +141,18 @@ function runVerify(flags) {
   const scorecard = verify({ root });
   process.stdout.write(flags.json ? `${renderJson(scorecard)}\n` : renderHuman(scorecard));
   process.exit(scorecard.gate.pass ? 0 : 1);
+}
+
+function runInit(flags) {
+  const root = flags.out ? resolve(process.cwd(), flags.out) : process.cwd();
+  const result = generate({ root, force: flags.force, dryRun: flags.dryRun });
+  const tag = result.dryRun ? ' (dry run)' : '';
+  const out = ['', `\x1b[1mfront-door — scaffold${tag}\x1b[0m`, ''];
+  for (const f of result.created) out.push(`  \x1b[32m+\x1b[0m ${f}`);
+  for (const f of result.skipped) out.push(`  \x1b[90m• ${f} (exists — use --force to overwrite)\x1b[0m`);
+  if (!result.created.length && !result.skipped.length) out.push('  (nothing to scaffold)');
+  out.push('', '\x1b[36mNext:\x1b[0m fill the placeholders, then run `site-theme front-door verify`.', '');
+  process.stdout.write(`${out.join('\n')}\n`);
 }
 
 /** CLI entry — invoked from cli/init.mjs when the first arg is "front-door". */
@@ -147,11 +165,13 @@ export function main(argv) {
   const flags = parseFlags(action ? argv.slice(1) : argv);
   if (action === 'verify') {
     runVerify(flags);
+  } else if (action === 'init') {
+    runInit(flags);
   } else if (action === 'standard') {
     process.stdout.write(`${renderStandard()}\n`);
   } else if (action === '' || action === 'help') {
     printHelp();
   } else {
-    die(`Unknown front-door action "${action}". Use: verify, standard.`);
+    die(`Unknown front-door action "${action}". Use: verify, init, standard.`);
   }
 }
