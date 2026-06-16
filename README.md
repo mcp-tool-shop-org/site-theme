@@ -356,3 +356,5 @@ MIT
 ---
 
 Built by [MCP Tool Shop](https://mcp-tool-shop.github.io/)
+
+<!-- ci-docs-gate verification: README-only change; remove before merge -->
