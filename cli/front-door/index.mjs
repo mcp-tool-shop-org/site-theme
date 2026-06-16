@@ -1,104 +1,28 @@
 /**
- * front-door — the AI-native front-door verifier for site-theme.
+ * front-door — the AI-native front-door verifier for site-theme (CLI entry).
  *
- * Pipeline: load front-door files -> route claims to evidence channels ->
- * aggregate into a risk-ordered scorecard. v1 ships the references channel
- * (dead paths/scripts/links, AGENTS.md duplication, status-badge distrust) plus
- * presence checks. doctest / attestation / gherkin / minimality channels and
- * the generator land in later slices (see ./DESIGN.md).
+ * The verify pipeline lives in ./verify.mjs (orchestration) and is re-exported
+ * here as the programmatic API consumed by shipcheck. This module is the CLI:
+ * verify · init · standard · eval. Channels and the slice plan: ./DESIGN.md.
  *
  * --- Standards compliance (memory/workflow_standards.md) ---
  * PIN_PER_STEP              2 — deterministic, dependency-free checks; same input -> same report.
  * ANDON_AUTHORITY          2 — the gate halts (exit 1) on any contradicted/unbacked/stale finding.
- * NAMED_COMPENSATORS     n/a — `verify` is read-only; the generator slice carries the table (DESIGN.md).
- * DECOMPOSE_BY_SECRETS     3 — astro-free module; one file per evidence channel, isolated.
+ * NAMED_COMPENSATORS       2 — `init` is overwrite-guarded (--force); release table in DESIGN.md.
+ * DECOMPOSE_BY_SECRETS     3 — astro-free module; one file per evidence channel; verify split from CLI.
  * UNCERTAINTY_GATED_HUMANS 2 — claims it cannot check are reported UNVERIFIABLE, never asserted true.
- * EXTERNAL_VERIFIER        2 — evidence is external to the prose (fs/scripts); no model grades its own text.
+ * EXTERNAL_VERIFIER        2 — evidence is external to the prose; the self-eval (eval.mjs) proves precision.
  */
 
-import { existsSync, readFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { checkAttestation } from './attestation.mjs';
-import { checkDoctest } from './doctest.mjs';
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { runEval } from './eval.mjs';
 import { generate } from './generate.mjs';
-import { checkGherkin } from './gherkin.mjs';
-import { checkMinimality } from './minimality.mjs';
-import { BUCKET, CHANNEL, finding, SEVERITY } from './model.mjs';
-import { checkReferences } from './references.mjs';
 import { renderHuman, renderJson } from './report.mjs';
-import { buildScorecard } from './scorecard.mjs';
 import { renderStandard } from './standard.mjs';
+import { verify } from './verify.mjs';
 
-const FRONT_DOOR_FILES = ['README.md', 'AGENTS.md', 'llms.txt', 'CLAUDE.md'];
-
-function loadFile(root, name) {
-  const path = join(root, name);
-  if (!existsSync(path)) return null;
-  try {
-    return { name, content: readFileSync(path, 'utf-8') };
-  } catch {
-    return null;
-  }
-}
-
-function readPkg(root) {
-  const path = join(root, 'package.json');
-  if (!existsSync(path)) return {};
-  try {
-    return JSON.parse(readFileSync(path, 'utf-8'));
-  } catch {
-    return {};
-  }
-}
-
-/**
- * Verify the front door of the repo rooted at `root`. Pure: returns a scorecard.
- * This is the programmatic API consumed by shipcheck's AI-native gate.
- * @param {{root: string}} opts
- */
-export function verify({ root }) {
-  const loaded = FRONT_DOOR_FILES.map((name) => loadFile(root, name));
-  const files = loaded.filter(Boolean);
-  const pkg = readPkg(root);
-  const findings = [];
-
-  if (!loaded[0]) {
-    findings.push(
-      finding({
-        severity: SEVERITY.HYGIENE,
-        bucket: BUCKET.MISSING,
-        channel: CHANNEL.REFERENCE,
-        file: 'README.md',
-        title: 'No README.md',
-        detail: 'The repo has no README — humans and agents have no front door at all.',
-        hint: 'Add a README. Run `site-theme front-door standard` to see the spine.',
-      }),
-    );
-  }
-  if (!loaded[1]) {
-    findings.push(
-      finding({
-        severity: SEVERITY.HYGIENE,
-        bucket: BUCKET.MISSING,
-        channel: CHANNEL.REFERENCE,
-        file: 'AGENTS.md',
-        title: 'No AGENTS.md',
-        detail:
-          'No agent operating contract. AGENTS.md is an Agentic AI Foundation (Linux Foundation) standard read by 20+ coding agents.',
-        hint: 'Add a minimal AGENTS.md. Run `site-theme front-door standard`.',
-      }),
-    );
-  }
-
-  findings.push(...checkReferences({ files, repoRoot: root, pkg }));
-  findings.push(...checkMinimality({ files }));
-  findings.push(...checkDoctest({ files, pkg }));
-  findings.push(...checkAttestation({ files, repoRoot: root }));
-  findings.push(...checkGherkin({ repoRoot: root }));
-  return buildScorecard(findings);
-}
-
-// --- CLI ---
+export { verify } from './verify.mjs';
 
 function die(msg) {
   process.stderr.write(`\x1b[31mError:\x1b[0m ${msg}\n`);
@@ -113,10 +37,11 @@ Actions:
   verify            Audit the repo's front door (README / AGENTS.md / llms.txt)
   init              Scaffold a minimal front door (README / AGENTS.md / llms.txt)
   standard          Print the front-door spine (README + AGENTS.md)
+  eval              Run the verifier's self-eval against a labeled corpus
 
 Options:
-  --out <dir>       Repo root (default: current directory)
-  --json            Machine-readable output (verify only)
+  --out <dir|file>  Repo root (verify/init) or receipt path (eval)
+  --json            Machine-readable output (verify, eval)
   --force           Overwrite existing files (init)
   --dry-run         Preview without writing (init)
   --help, -h        Show this help
@@ -155,6 +80,26 @@ function runInit(flags) {
   process.stdout.write(`${out.join('\n')}\n`);
 }
 
+function runEvalCli(flags) {
+  const report = runEval();
+  if (flags.out) {
+    writeFileSync(resolve(process.cwd(), flags.out), `${JSON.stringify(report, null, 2)}\n`, 'utf-8');
+  }
+  if (flags.json) {
+    process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+  } else {
+    const out = ['', '\x1b[1mfront-door — self-eval\x1b[0m', ''];
+    for (const c of report.cases) {
+      out.push(`  ${c.ok ? '\x1b[32mPASS\x1b[0m' : '\x1b[31mFAIL\x1b[0m'}  ${c.name}`);
+    }
+    out.push('', `${report.passed}/${report.total} cases correct (accuracy ${(report.accuracy * 100).toFixed(0)}%)`);
+    if (flags.out) out.push(`receipt written to ${flags.out}`);
+    out.push('');
+    process.stdout.write(`${out.join('\n')}\n`);
+  }
+  process.exit(report.failed === 0 ? 0 : 1);
+}
+
 /** CLI entry — invoked from cli/init.mjs when the first arg is "front-door". */
 export function main(argv) {
   if (argv.includes('--help') || argv.includes('-h')) {
@@ -169,9 +114,11 @@ export function main(argv) {
     runInit(flags);
   } else if (action === 'standard') {
     process.stdout.write(`${renderStandard()}\n`);
+  } else if (action === 'eval') {
+    runEvalCli(flags);
   } else if (action === '' || action === 'help') {
     printHelp();
   } else {
-    die(`Unknown front-door action "${action}". Use: verify, init, standard.`);
+    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval.`);
   }
 }

@@ -52,7 +52,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **6** Gherkin channel — flags skipped/@wip scenarios (opt-in; fires only when .feature files exist)
 - [x] **7** Generator — `front-door init`: minimal verify-clean spine + AGENTS.md + llms.txt (docs-site only), overwrite-guarded
 - [x] **8** Standard docs page (docs/front-door.md) wired into the docs index
-- [ ] **9** Proof eval — three-arm SWE-bench ablation + published receipt
+- [x] **9** Proof eval — verifier self-eval (labeled corpus, 7/7, `front-door eval` receipt) + full SWE-bench ablation protocol (EVAL.md)
 - [ ] **10** shipcheck integration + MCP surface + v2.0.0 release
 
 ## Standards compliance (memory/workflow_standards.md)
