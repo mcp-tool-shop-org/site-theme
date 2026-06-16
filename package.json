@@ -30,6 +30,7 @@
   "exports": {
     ".": "./types/config.ts",
     "./front-door": "./cli/front-door/index.mjs",
+    "./front-door/mcp": "./cli/front-door/mcp.mjs",
     "./types/docs-config": "./types/docs-config.ts",
     "./types/portfolio-config": "./types/portfolio-config.ts",
     "./types/product-config": "./types/product-config.ts",

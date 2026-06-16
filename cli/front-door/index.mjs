@@ -19,6 +19,7 @@ import { resolve } from 'node:path';
 import { runAblationCli } from './ablation/index.mjs';
 import { runEval } from './eval.mjs';
 import { generate } from './generate.mjs';
+import { startServer } from './mcp.mjs';
 import { renderHuman, renderJson } from './report.mjs';
 import { renderStandard } from './standard.mjs';
 import { verify } from './verify.mjs';
@@ -40,6 +41,7 @@ Actions:
   standard          Print the front-door spine (README + AGENTS.md)
   eval              Run the verifier's self-eval against a labeled corpus
   ablation          Run the three-arm docs-on/off agent ablation (EVAL.md)
+  mcp               Start the MCP server (stdio) exposing verify to agents
 
 Options:
   --out <dir|file>  Repo root (verify/init) or receipt path (eval/ablation)
@@ -124,9 +126,11 @@ export function main(argv) {
     runEvalCli(flags);
   } else if (action === 'ablation') {
     runAblationCli(argv.slice(1));
+  } else if (action === 'mcp') {
+    startServer();
   } else if (action === '' || action === 'help') {
     printHelp();
   } else {
-    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval, ablation.`);
+    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval, ablation, mcp.`);
   }
 }
