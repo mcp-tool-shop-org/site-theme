@@ -39,11 +39,15 @@ function readPkg(root) {
 }
 
 /**
- * Verify the front door of the repo rooted at `root`. Pure: returns a scorecard.
+ * Verify the front door of the repo rooted at `root`. Returns a scorecard.
  * This is the programmatic API consumed by shipcheck's AI-native gate.
- * @param {{root: string}} opts
+ *
+ * Pure + read-only by default. When `runDoctests` is set, the doctest channel
+ * additionally compiles/runs fenced JS examples in child processes (opt-in; see
+ * doctest.mjs for the safety contract). It still writes nothing to `root`.
+ * @param {{root: string, runDoctests?: boolean}} opts
  */
-export function verify({ root }) {
+export function verify({ root, runDoctests = false }) {
   const loaded = FRONT_DOOR_FILES.map((name) => loadFile(root, name));
   const files = loaded.filter(Boolean);
   const pkg = readPkg(root);
@@ -79,7 +83,7 @@ export function verify({ root }) {
 
   findings.push(...checkReferences({ files, repoRoot: root, pkg }));
   findings.push(...checkMinimality({ files }));
-  findings.push(...checkDoctest({ files, pkg }));
+  findings.push(...checkDoctest({ files, pkg, repoRoot: root, exec: runDoctests }));
   findings.push(...checkAttestation({ files, repoRoot: root }));
   findings.push(...checkGherkin({ repoRoot: root }));
   return buildScorecard(findings);

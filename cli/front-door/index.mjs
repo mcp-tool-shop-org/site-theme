@@ -3,21 +3,24 @@
  *
  * The verify pipeline lives in ./verify.mjs (orchestration) and is re-exported
  * here as the programmatic API consumed by shipcheck. This module is the CLI:
- * verify · init · standard · eval. Channels and the slice plan: ./DESIGN.md.
+ * verify · init · standard · eval · ablation · mcp. Channels and the slice
+ * plan: ./DESIGN.md.
  *
  * --- Standards compliance (memory/workflow_standards.md) ---
  * PIN_PER_STEP              2 — deterministic, dependency-free checks; same input -> same report.
  * ANDON_AUTHORITY          2 — the gate halts (exit 1) on any contradicted/unbacked/stale finding.
- * NAMED_COMPENSATORS       2 — `init` is overwrite-guarded (--force); release table in DESIGN.md.
- * DECOMPOSE_BY_SECRETS     3 — astro-free module; one file per evidence channel; verify split from CLI.
+ * NAMED_COMPENSATORS       2 — `init` is overwrite-guarded (--force); doctest temp files unlinked; table in DESIGN.md.
+ * DECOMPOSE_BY_SECRETS     3 — astro-free module; one file per evidence channel; verify split from CLI; mcp is zero-dep.
  * UNCERTAINTY_GATED_HUMANS 2 — claims it cannot check are reported UNVERIFIABLE, never asserted true.
- * EXTERNAL_VERIFIER        2 — evidence is external to the prose; the self-eval (eval.mjs) proves precision.
+ * EXTERNAL_VERIFIER        3 — evidence is external; doctests execute out-of-process and the MCP surface is out-of-process.
  */
 
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { runAblationCli } from './ablation/index.mjs';
 import { runEval } from './eval.mjs';
 import { generate } from './generate.mjs';
+import { startServer } from './mcp.mjs';
 import { renderHuman, renderJson } from './report.mjs';
 import { renderStandard } from './standard.mjs';
 import { verify } from './verify.mjs';
@@ -38,12 +41,17 @@ Actions:
   init              Scaffold a minimal front door (README / AGENTS.md / llms.txt)
   standard          Print the front-door spine (README + AGENTS.md)
   eval              Run the verifier's self-eval against a labeled corpus
+  ablation          Run the three-arm docs-on/off agent ablation (EVAL.md)
+  mcp               Start the MCP server (stdio) exposing verify to agents
 
 Options:
-  --out <dir|file>  Repo root (verify/init) or receipt path (eval)
-  --json            Machine-readable output (verify, eval)
+  --out <dir|file>  Repo root (verify/init) or receipt path (eval/ablation)
+  --json            Machine-readable output (verify, eval, ablation)
+  --run-doctests    Compile/run fenced JS examples (verify); executes code, opt-in
   --force           Overwrite existing files (init)
   --dry-run         Preview without writing (init)
+  --instances <n>   Synthetic instance count (ablation; default 60)
+  --seed <n>        Bootstrap seed (ablation; default 12345)
   --help, -h        Show this help
 
 verify exits 1 when the gate fails (contradicted / unbacked / stale).
@@ -51,19 +59,20 @@ verify exits 1 when the gate fails (contradicted / unbacked / stale).
 }
 
 function parseFlags(argv) {
-  const flags = { out: '', json: false, force: false, dryRun: false };
+  const flags = { out: '', json: false, force: false, dryRun: false, runDoctests: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--out' && argv[i + 1]) flags.out = argv[++i];
     else if (argv[i] === '--json') flags.json = true;
     else if (argv[i] === '--force') flags.force = true;
     else if (argv[i] === '--dry-run') flags.dryRun = true;
+    else if (argv[i] === '--run-doctests') flags.runDoctests = true;
   }
   return flags;
 }
 
 function runVerify(flags) {
   const root = flags.out ? resolve(process.cwd(), flags.out) : process.cwd();
-  const scorecard = verify({ root });
+  const scorecard = verify({ root, runDoctests: flags.runDoctests });
   process.stdout.write(flags.json ? `${renderJson(scorecard)}\n` : renderHuman(scorecard));
   process.exit(scorecard.gate.pass ? 0 : 1);
 }
@@ -116,9 +125,13 @@ export function main(argv) {
     process.stdout.write(`${renderStandard()}\n`);
   } else if (action === 'eval') {
     runEvalCli(flags);
+  } else if (action === 'ablation') {
+    runAblationCli(argv.slice(1));
+  } else if (action === 'mcp') {
+    startServer();
   } else if (action === '' || action === 'help') {
     printHelp();
   } else {
-    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval.`);
+    die(`Unknown front-door action "${action}". Use: verify, init, standard, eval, ablation, mcp.`);
   }
 }

@@ -55,6 +55,12 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **9** Proof eval — verifier self-eval (labeled corpus, 7/7, `front-door eval` receipt) + full SWE-bench ablation protocol (EVAL.md)
 - [x] **10** v2.0.0 release **prep** — README pillar, keywords, CHANGELOG, dogfood AGENTS.md, self-verify script. Deferred (post-publish): the actual `npm publish` / `gh release` (await go), translations, shipcheck integration (downstream repo), MCP surface (v2.1).
 
+### v2.1 line (front-of-house, continued)
+
+- [x] **9-runner** Ablation runner — executable three-arm (A repo-as-is / B repo+front-door / C docs-stripped+front-door) docs-on/off harness for the EVAL.md protocol: `front-door ablation` (`--instances` / `--seed`), pinned arms, synthetic corpus, execution grader, bootstrap stats, receipt. See ABLATION.md.
+- [x] **11** Doctest execution — `front-door verify --run-doctests` (`verify({ root, runDoctests })`) compiles/runs fenced JS examples rustdoc-style: builtins+self examples are RUN; third-party/relative-import or `no_run` examples are COMPILE-checked (`node --check`, no install); `+SKIP` / `ignore` → UNBACKED. Opt-in, read-only-by-default, no network/install, per-example timeout.
+- [x] **12** MCP surface — `front-door mcp`: hand-rolled **zero-dependency** stdio JSON-RPC server exposing `front_door_verify` (structured scorecard) + `front_door_standard`; exported at `@mcptoolshop/site-theme/front-door/mcp`. No MCP SDK / `zod` — the core stays dependency-light.
+
 ## Standards compliance (memory/workflow_standards.md)
 
 Scored 0-3 (0 missing · 1 partial · 2 present · 3 exemplary).
@@ -64,19 +70,27 @@ Scored 0-3 (0 missing · 1 partial · 2 present · 3 exemplary).
 - **ANDON_AUTHORITY — 2.** The gate halts the pipeline (CLI exit 1) on any
   contradicted/unbacked/stale finding; bad front doors don't pass silently.
 - **NAMED_COMPENSATORS — n/a for `verify` (read-only).** Mandatory for the
-  generator (slice 7) and the release (slice 10). Table below.
+  generator (slice 7) and the release (slice 10). The opt-in doctest executor
+  (slice 11) writes only temp compile files under the OS temp dir, removed in a
+  `finally`; the MCP server (slice 12) is a read-only surface. Table below.
 - **DECOMPOSE_BY_SECRETS — 3.** One module per evidence channel; the verify core
   is astro-free so it changes for verification reasons, not theme reasons.
 - **UNCERTAINTY_GATED_HUMANS — 2.** Claims the tool cannot check are surfaced as
   UNVERIFIABLE rather than asserted; the human decides.
-- **EXTERNAL_VERIFIER — 2.** Evidence is external to the prose (filesystem,
-  package.json, executed tests in slice 4). No model grades its own output; the
-  proof eval (slice 9) uses execution tests + a cross-family judge.
+- **EXTERNAL_VERIFIER — 3.** Evidence is external to the prose (filesystem,
+  package.json). The doctest channel now EXECUTES examples out-of-process
+  (slice 11) and the ablation runner is execution-graded (slice 9-runner); the
+  MCP server (slice 12) is an out-of-process surface — an agent's claims about
+  its own front door are checked by a different process, never by the agent. No
+  model grades its own output; the proof eval uses execution + a cross-family
+  judge.
 
 ### Compensators (irreversible actions — NO skip allowed)
 
 | Action | Slice | Compensator | Post-rollback state | Owner |
 | --- | --- | --- | --- | --- |
 | `front-door init` writes files | 7 | guard: refuse if target exists (mirror `init`); `git checkout -- <paths>` | files unwritten | front-door |
+| `verify --run-doctests` temp compile files | 11 | `unlinkSync` in `finally` (OS temp dir only; never the repo) | no temp files left; repo untouched | front-door |
+| `front-door mcp` server process | 12 | read-only surface; exits on SIGINT/SIGTERM/stdin-end | no state to roll back | front-door |
 | `npm publish` (v2.0.0) | 10 | `npm deprecate` + ship patch; cannot unpublish after 72h | adopters warned | release |
 | `gh release create` | 10 | `gh release delete` + delete tag | release withdrawn | release |

@@ -96,13 +96,15 @@ export const config: SiteConfig = {
 site-theme renders a repo's **human** front door; **front-door** verifies its **agent/machine** front door — the README, `AGENTS.md`, and `llms.txt` that humans, agents, and tooling read first. It is verify-first: it doesn't write prose for you, it proves your prose is true and minimal.
 
 ```bash
-npx @mcptoolshop/site-theme front-door verify     # audit; exits 1 if the gate fails
-npx @mcptoolshop/site-theme front-door init       # scaffold a minimal, verify-clean front door
-npx @mcptoolshop/site-theme front-door standard   # print the front-door spine
-npx @mcptoolshop/site-theme front-door eval       # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door verify --run-doctests   # also compile/run fenced JS examples
+npx @mcptoolshop/site-theme front-door init                    # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard                # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval                    # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
 ```
 
-It routes each documented claim to the evidence that can back it — dead paths / scripts / links, AGENTS.md↔README duplication, status-badge distrust, example imports vs real `exports`, provenance claims vs real attestation, and bloat (length / readability / directive budget for `AGENTS.md`). Findings are risk-ordered into four buckets: Verified / Contradicted / Missing / Unverifiable.
+It routes each documented claim to the evidence that can back it — dead paths / scripts / links, AGENTS.md↔README duplication, status-badge distrust, example imports vs real `exports` (and, with `--run-doctests`, that the examples actually compile and run), provenance claims vs real attestation, and bloat (length / readability / directive budget for `AGENTS.md`). Findings are risk-ordered into four buckets: Verified / Contradicted / Missing / Unverifiable.
 
 Use it programmatically (shipcheck consumes this):
 
@@ -112,6 +114,8 @@ import { verify } from '@mcptoolshop/site-theme/front-door';
 const scorecard = verify({ root: process.cwd() });
 if (!scorecard.gate.pass) process.exit(1);
 ```
+
+Or let an agent call it: `front-door mcp` starts a zero-dependency MCP server (stdio) exposing `front_door_verify` — the agent receives the same structured scorecard.
 
 See the [Front Door reference](docs/front-door.md) for the full channel list and the standard.
 
