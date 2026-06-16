@@ -36,9 +36,15 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   </head>
 
   <body class="min-h-screen bg-surface text-heading antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-action focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-action-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+    >
+      Skip to content
+    </a>
     <div class="mx-auto max-w-6xl px-4">
       <header class="flex items-center justify-between py-6">
-        <a href={base} class="flex items-center gap-2 font-semibold tracking-tight">
+        <a href={base} class="flex items-center gap-2 rounded-md font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
           <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-surface-strong">
             {logoBadge}
           </span>
@@ -47,33 +53,70 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 
         <nav aria-label="Main navigation" class="hidden items-center gap-6 text-sm text-muted md:flex">
           {nav.map((item: { href: string; label: string }) => (
-            <a href={item.href} class="hover:text-heading">{item.label}</a>
+            <a href={item.href} class="rounded-sm hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface">{item.label}</a>
           ))}
         </nav>
 
         <div class="flex items-center gap-3">
+          {(nav.length > 0 || npmUrl) && (
+            <details class="relative md:hidden">
+              <summary
+                class="inline-flex cursor-pointer list-none items-center justify-center rounded-xl border border-edge p-2 text-body hover:bg-surface-raised [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                aria-label="Toggle navigation menu"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+              </summary>
+              <nav
+                aria-label="Mobile navigation"
+                class="absolute right-0 z-50 mt-2 flex w-48 flex-col gap-1 rounded-xl border border-edge bg-surface-raised p-2 shadow-lg"
+              >
+                {nav.map((item: { href: string; label: string }) => (
+                  <a
+                    href={item.href}
+                    class="rounded-lg px-3 py-2 text-sm text-muted hover:bg-surface hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                {npmUrl && (
+                  <a
+                    href={npmUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="rounded-lg px-3 py-2 text-sm text-muted hover:bg-surface hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                  >
+                    npm<span class="sr-only"> (opens in a new tab)</span>
+                  </a>
+                )}
+              </nav>
+            </details>
+          )}
           {npmUrl && (
             <a
-              class="hidden rounded-xl border border-edge px-4 py-2 text-sm text-body hover:bg-surface-raised md:inline-flex"
+              class="hidden rounded-xl border border-edge px-4 py-2 text-sm text-body hover:bg-surface-raised md:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               href={npmUrl}
               target="_blank"
               rel="noreferrer"
             >
-              npm
+              npm<span class="sr-only"> (opens in a new tab)</span>
             </a>
           )}
           <a
-            class="inline-flex rounded-xl bg-action px-4 py-2 text-sm font-medium text-action-text hover:bg-action-hover"
+            class="inline-flex rounded-xl bg-action px-4 py-2 text-sm font-medium text-action-text hover:bg-action-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             href={repoUrl}
             target="_blank"
             rel="noreferrer"
           >
-            GitHub
+            GitHub<span class="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </header>
 
-      <main class="pb-24">
+      <main id="main" tabindex="-1" class="pb-24">
         <slot />
       </main>
 
@@ -82,10 +125,10 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
           <p set:html={footerText} />
           <nav aria-label="Footer links" class="flex gap-4">
             {npmUrl && (
-              <a class="hover:text-body" href={npmUrl} target="_blank" rel="noreferrer">npm</a>
+              <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href={npmUrl} target="_blank" rel="noreferrer">npm<span class="sr-only"> (opens in a new tab)</span></a>
             )}
-            <a class="hover:text-body" href={repoUrl} target="_blank" rel="noreferrer">GitHub</a>
-            <a class="hover:text-body" href="https://opensource.org/license/mit/" target="_blank" rel="noreferrer">License</a>
+            <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href={repoUrl} target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href="https://opensource.org/license/mit/" target="_blank" rel="noreferrer">License<span class="sr-only"> (opens in a new tab)</span></a>
           </nav>
         </div>
       </footer>

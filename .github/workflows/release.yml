@@ -1,0 +1,92 @@
+# Release — publish @mcptoolshop/site-theme to npm via OIDC Trusted Publishing.
+#
+# This file is named `release.yml` to match the npm Trusted Publisher binding
+# configured for this package (npmjs.com -> @mcptoolshop/site-theme -> Settings
+# -> Trusted Publishers -> mcp-tool-shop-org/site-theme, workflow `release.yml`).
+# It supersedes the old token-based `.github/workflows/publish.yml` and the
+# stale draft PR #8 (which kept the `publish.yml` filename and the now-removed
+# NPM_TOKEN secret). Auth is OIDC — there is intentionally NO NODE_AUTH_TOKEN.
+#
+# Workflow standards compliance (see .claude/rules/workflow-standards.md):
+#   PIN_PER_STEP (2)        — actions SHA-pinned; node + npm versions fixed.
+#   ANDON_AUTHORITY (2)     — typecheck/test/pack gates run BEFORE publish; any
+#                             failure halts the job (no continue-on-error).
+#   NAMED_COMPENSATORS (3)  — see table below; npm publish has a named undo.
+#   EXTERNAL_VERIFIER (1)   — n/a to a publish step; CI lint/test in ci.yml.
+#
+# Compensators (irreversible actions — NO skip allowed):
+#   | Action                | Undo                                            | Post-rollback state            | Owner |
+#   |-----------------------|-------------------------------------------------|--------------------------------|-------|
+#   | npm publish <version> | `npm deprecate @mcptoolshop/site-theme@<v>      | version still on registry but  | Mike  |
+#   |                       |  "broken — use <prev>"` (npm forbids unpublish  | marked deprecated; consumers   |       |
+#   |                       |  after 72h / for depended-on pkgs); then publish| pin to <prev>; ship a fixed    |       |
+#   |                       |  a fixed patch <v+1>.                           | <v+1>.                         |       |
+#   | GitHub Release create | `gh release delete <tag> --cleanup-tag`         | release + tag removed          | Mike  |
+
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    name: Publish to npm (OIDC trusted publisher)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read       # npm publish only; the GitHub Release is created separately
+      id-token: write      # OIDC: npm trusted publishing + Sigstore provenance
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Install npm >= 11.5 in sandbox for OIDC trusted-publishing auth
+        run: |
+          # Node 22 bundles npm 10.x, which cannot do OIDC trusted publishing,
+          # and an in-place `npm i -g npm@latest` races its own arborist rebuild.
+          # Install npm@latest into an isolated sandbox and shadow it via PATH.
+          SANDBOX="$HOME/.npm-cli-sandbox"
+          mkdir -p "$SANDBOX"
+          pushd "$SANDBOX" >/dev/null
+          echo '{"name":"npm-cli-sandbox","version":"0.0.0","private":true}' > package.json
+          npm install --no-save --no-audit --no-fund --silent npm@latest
+          popd >/dev/null
+          echo "$SANDBOX/node_modules/.bin" >> "$GITHUB_PATH"
+          "$SANDBOX/node_modules/.bin/npm" --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify release tag matches package.json version
+        if: github.event_name == 'release'
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          echo "Tag: ${GITHUB_REF_NAME} -> ${TAG_VERSION} | Package: ${PKG_VERSION}"
+          if [ "${PKG_VERSION}" != "${TAG_VERSION}" ]; then
+            echo "::error::Release tag ${TAG_VERSION} does not match package.json version ${PKG_VERSION}"
+            exit 1
+          fi
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: npm pack dry-run (verify tarball shape)
+        run: npm pack --dry-run
+
+      - name: Publish to npm with provenance (OIDC trusted publisher)
+        # Auth via npm Trusted Publishing (OIDC) — intentionally NO NODE_AUTH_TOKEN.
+        run: npm publish --provenance --access public

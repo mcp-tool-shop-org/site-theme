@@ -9,7 +9,8 @@
 <h1 align="center">@mcptoolshop/site-theme</h1>
 
 <p align="center">
-  Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards.<br/>
+  Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards —<br/>
+  plus <strong>front-door</strong>, the verifier for a repo's AI-native README / AGENTS.md / llms.txt.<br/>
   Dark palette · Tailwind CSS v4 · GitHub Pages ready.
 </p>
 
@@ -24,6 +25,7 @@
 <p align="center">
   <a href="#templates">Templates</a> &middot;
   <a href="#quick-start">Quick Start</a> &middot;
+  <a href="#front-door">Front Door</a> &middot;
   <a href="#design-tokens">Design Tokens</a> &middot;
   <a href="#components">Components</a> &middot;
   <a href="#deploy">Deploy</a> &middot;
@@ -86,6 +88,36 @@ export const config: SiteConfig = {
   sections: [ /* ... */ ],
 };
 ```
+
+---
+
+## Front Door
+
+site-theme renders a repo's **human** front door; **front-door** verifies its **agent/machine** front door — the README, `AGENTS.md`, and `llms.txt` that humans, agents, and tooling read first. It is verify-first: it doesn't write prose for you, it proves your prose is true and minimal.
+
+```bash
+npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door verify --run-doctests   # also compile/run fenced JS examples
+npx @mcptoolshop/site-theme front-door init                    # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard                # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval                    # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
+```
+
+It routes each documented claim to the evidence that can back it — dead paths / scripts / links, AGENTS.md↔README duplication, status-badge distrust, example imports vs real `exports` (and, with `--run-doctests`, that the examples actually compile and run), provenance claims vs real attestation, and bloat (length / readability / directive budget for `AGENTS.md`). Findings are risk-ordered into four buckets: Verified / Contradicted / Missing / Unverifiable.
+
+Use it programmatically (shipcheck consumes this):
+
+```js
+import { verify } from '@mcptoolshop/site-theme/front-door';
+
+const scorecard = verify({ root: process.cwd() });
+if (!scorecard.gate.pass) process.exit(1);
+```
+
+Or let an agent call it: `front-door mcp` starts a zero-dependency MCP server (stdio) exposing `front_door_verify` — the agent receives the same structured scorecard.
+
+See the [Front Door reference](docs/front-door.md) for the full channel list and the standard.
 
 ---
 

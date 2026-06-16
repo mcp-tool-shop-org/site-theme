@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-06-16
+
+### Added
+- **front-door MCP server** — an agent-callable surface for the verifier. `front-door mcp` starts a hand-rolled, zero-dependency MCP server (newline-delimited JSON-RPC over stdio) exposing `front_door_verify` (returns the structured scorecard) and `front_door_standard`. Also exported at `@mcptoolshop/site-theme/front-door/mcp`. The core package stays zero-dep — no MCP SDK / `zod`.
+- **Executable doctest channel** — `front-door verify --run-doctests` (programmatic `verify({ root, runDoctests: true })`) now compiles/runs fenced JS examples rustdoc-style: examples importing only Node builtins + this package are executed in a child process; third-party/relative-import or `no_run` examples are compile-checked (`node --check`, never resolving imports, so nothing is installed); a `+SKIP` / `ignore` example is reported **UNBACKED**, not passing. Opt-in and safe — default `verify` stays read-only, with a per-example timeout and no network/install.
+- **Executable ablation runner** — `front-door ablation` implements the three-arm docs-on/off protocol from `EVAL.md` (`--instances` / `--seed`) and emits a receipt.
+
+### Notes
+- Minor bump: new agent surface + opt-in execution channels; the verify gate and programmatic API are backward-compatible (default `verify` behavior is unchanged).
+
+## [2.0.0] - 2026-06-16
+
+### Added
+- **front-door** — a second pillar: the AI-native front-door verifier for a repo's README, `AGENTS.md`, and `llms.txt`.
+  - `front-door verify` routes documented claims to evidence channels (references, minimality, doctest, attestation, gherkin), reports a risk-ordered four-bucket scorecard, and exits non-zero when the gate fails.
+  - `front-door init` scaffolds a minimal, verify-clean front door; `front-door standard` prints the spine; `front-door eval` runs the verifier self-eval and emits a receipt.
+  - Programmatic `verify()` exported at `@mcptoolshop/site-theme/front-door` (consumed by shipcheck's AI-native gate).
+- **`tool` template** — a 6th template for CLI / MCP / npm package landing pages, with `ToolSiteConfig` (commands, workflow, proof, integration sections).
+- **AGENTS.md** for this repo, dogfooding the front-door standard.
+
+### Notes
+- Major bump signals the new front-of-house pillar; the theme + template API is backward-compatible.
+
+## [1.7.0] - 2026-06-13
+
+### Added
+- **Skip-to-content link** in `BaseLayout`: visually hidden until focused, first `<body>` child, targets `<main id="main" tabindex="-1">` (WCAG 2.4.1 bypass blocks).
+- **Mobile header navigation** in `BaseLayout`: a JS-free `<details>`/`<summary>` disclosure menu (shown below `md`) exposing the in-page nav links and npm shortcut that were previously `hidden md:flex` with no small-screen fallback.
+- **"Opens in a new tab" affordance** on every external (`target="_blank"`) header/footer link via a visually-hidden `<span class="sr-only">` (WCAG 3.2.5).
+
+### Changed
+- **Branded focus ring** on all interactive controls in `BaseLayout` (brand/nav/header buttons/footer links + mobile menu items) and `Hero` (both CTAs): `focus-visible:ring-2 ring-accent ring-offset-2 ring-offset-surface`, replacing the low-prominence UA default outline on the dark surface (WCAG 2.4.7).
+
 ## [1.6.1] - 2026-03-27
 
 ### Fixed

@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/site-theme",
-  "version": "1.6.1",
+  "version": "2.1.0",
   "type": "module",
   "description": "Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards",
   "keywords": [
@@ -13,7 +13,12 @@
     "catalog",
     "scaffold",
     "multi-tenant",
-    "rbac"
+    "rbac",
+    "front-door",
+    "readme",
+    "agents-md",
+    "llms-txt",
+    "verifier"
   ],
   "author": "mcp-tool-shop <64996768+mcp-tool-shop@users.noreply.github.com>",
   "license": "MIT",
@@ -24,6 +29,8 @@
   "homepage": "https://mcp-tool-shop-org.github.io/site-theme/",
   "exports": {
     ".": "./types/config.ts",
+    "./front-door": "./cli/front-door/index.mjs",
+    "./front-door/mcp": "./cli/front-door/mcp.mjs",
     "./types/docs-config": "./types/docs-config.ts",
     "./types/portfolio-config": "./types/portfolio-config.ts",
     "./types/product-config": "./types/product-config.ts",
@@ -72,7 +79,8 @@
     "lint:fix": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "front-door": "node cli/init.mjs front-door verify"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -81,5 +89,8 @@
     "@biomejs/biome": "^2.4.8",
     "typescript": "^5.8.3",
     "vitest": "^4.1.0"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   }
 }

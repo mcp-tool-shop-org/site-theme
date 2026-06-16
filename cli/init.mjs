@@ -147,6 +147,7 @@ Usage: site-theme <command> [options]
 Commands:
   init              Scaffold a new site from a template (default)
   handbook          Add Starlight handbook to an existing site
+  front-door        Verify the repo's AI-native front door (README/AGENTS.md)
   list-templates    Show available templates
 
 Options:
@@ -663,24 +664,30 @@ sidebar:
 
 // --- Dispatch ---
 
-const { command, flags } = parseArgs(process.argv);
+if (process.argv[2] === 'front-door') {
+  // Delegate the front-door verifier (its own arg surface; astro-free module).
+  const { main } = await import('./front-door/index.mjs');
+  main(process.argv.slice(3));
+} else {
+  const { command, flags } = parseArgs(process.argv);
 
-switch (command) {
-  case 'init':
-    runInit(flags);
-    break;
-  case 'list-templates':
-    runListTemplates(flags);
-    break;
-  case 'help':
-    runHelp();
-    break;
-  case 'version':
-    runVersion();
-    break;
-  case 'handbook':
-    runHandbook(flags);
-    break;
-  default:
-    die(`Unknown command: "${command}". Use "init", "handbook", or "list-templates".`);
+  switch (command) {
+    case 'init':
+      runInit(flags);
+      break;
+    case 'list-templates':
+      runListTemplates(flags);
+      break;
+    case 'help':
+      runHelp();
+      break;
+    case 'version':
+      runVersion();
+      break;
+    case 'handbook':
+      runHandbook(flags);
+      break;
+    default:
+      die(`Unknown command: "${command}". Use "init", "handbook", "front-door", or "list-templates".`);
+  }
 }
