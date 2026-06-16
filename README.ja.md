@@ -42,9 +42,9 @@
 |----------|-------------|-------|
 | **default** | ヒーロー、機能、コード例を備えたプロジェクトのランディングページ | 1 |
 | **docs** | サイドバーナビゲーションとコンテンツセクションを備えたドキュメントサイト | 1 |
-| **product** | 価格設定、お客様の声、CTA（行動喚起）を備えたマーケティングランディングページ | 1 |
+| **product** | 価格設定、お客様の声、CTAを備えたマーケティングランディングページ | 1 |
 | **portfolio** | ツール、プロジェクト、またはその他のコレクションのフィルタリング可能なカタロググリッド | 1 |
-| **app** | RBAC（役割ベースのアクセス制御）、機能フラグ、ワークスペースルーティングを備えたマルチテナントSaaSダッシュボード | 31 |
+| **app** | RBAC、機能フラグ、ワークスペースルーティングを備えたマルチテナントSaaSダッシュボード | 31 |
 
 ```bash
 npx @mcptoolshop/site-theme list-templates            # see all options
@@ -58,7 +58,7 @@ npx @mcptoolshop/site-theme init --out ../other-repo   # scaffold into another d
 
 ## クイックスタート
 
-### 新しいサイトのスキャフォールディングを行います
+### 新しいサイトをスキャフォールディングします
 
 ```bash
 npx @mcptoolshop/site-theme init
@@ -66,11 +66,11 @@ cd site && npm install
 npm run dev
 ```
 
-これにより、Astro + Tailwind + テーマが連携した`site/`ディレクトリが作成され、さらにGitHub Pagesワークフローも追加されます。CSSのインポート、`@source`パス、およびベースパスはすべて事前に設定されているため、手動での設定は必要ありません。
+これにより、Astro + Tailwind + テーマが設定された`site/`ディレクトリと、GitHub Pagesワークフローが作成されます。CSSインポート、`@source`パス、およびベースパスはすべて事前に構成されているため、手動でのセットアップは必要ありません。
 
 ### コンテンツを編集します
 
-すべてのページコンテンツは`site/src/site-config.ts`に保存されています。ランディングページをカスタマイズするには、この構成オブジェクトを編集してください。
+すべてのページコンテンツは`site/src/site-config.ts`にあります。ランディングページをカスタマイズするには、configオブジェクトを編集してください。
 
 ```typescript
 import type { SiteConfig } from '@mcptoolshop/site-theme';
@@ -93,18 +93,20 @@ export const config: SiteConfig = {
 
 ## フロントドア
 
-`site-theme`はリポジトリの**人間が閲覧する**ためのフロントドアをレンダリングします。`front-door`は、**エージェント/マシン**が閲覧するフロントドア（README、`AGENTS.md`、および`llms.txt`）を検証します。これはまず検証を行う設計であり、文章を作成するのではなく、記述された内容が真実で簡潔であることを証明します。
+`site-theme`はリポジトリの**人間が閲覧する**ためのフロントドアをレンダリングします。`front-door`は、その**エージェント/マシン**用のフロントドア（README、`AGENTS.md`、および`llms.txt`）を検証します。これは、まず検証を行うように設計されています。文章を作成するのではなく、文章が真実であり、最小限であることを証明します。
 
 ```bash
-npx @mcptoolshop/site-theme front-door verify     # audit; exits 1 if the gate fails
-npx @mcptoolshop/site-theme front-door init       # scaffold a minimal, verify-clean front door
-npx @mcptoolshop/site-theme front-door standard   # print the front-door spine
-npx @mcptoolshop/site-theme front-door eval       # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door verify --run-doctests   # also compile/run fenced JS examples
+npx @mcptoolshop/site-theme front-door init                    # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard                # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval                    # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
 ```
 
-各ドキュメント化された主張は、それを裏付ける証拠にルーティングされます。これには、存在しないパス/スクリプト/リンク、`AGENTS.md`とREADMEの重複、ステータスバッジに対する不信感、サンプルインポートと実際の`exports`との比較、プロベナンスに関する記述と実際の認証との比較、および冗長性（`AGENTS.md`の長さ/可読性/ディレクティブ予算）が含まれます。結果はリスクに基づいて4つのカテゴリに分類されます：検証済み / 矛盾あり / 不足 / 検証不能。
+各ドキュメント化された主張は、それを裏付ける証拠にルーティングされます。これには、存在しないパス/スクリプト/リンク、`AGENTS.md`とREADMEの重複、ステータスバッジに対する不信感、例のインポートと実際の`exports`との比較（および、`--run-doctests`を使用すると、例が実際にコンパイルされ実行されること）、プロベナンスの主張と実際の認証との比較、および冗長性（`AGENTS.md`の長さ/可読性/ディレクティブ予算）が含まれます。結果はリスクに基づいて4つのバケットに分類されます：検証済み/矛盾/未検出/検証不能。
 
-プログラムで利用します（shipcheckがこれを使用します）。
+プログラムで利用できます（shipcheckがこれを使用します）。
 
 ```js
 import { verify } from '@mcptoolshop/site-theme/front-door';
@@ -113,13 +115,15 @@ const scorecard = verify({ root: process.cwd() });
 if (!scorecard.gate.pass) process.exit(1);
 ```
 
-完全なチャンネルリストと標準については、[フロントドアのリファレンス](docs/front-door.md)を参照してください。
+または、エージェントに実行させることができます。`front-door mcp`は、ゼロ依存のMCPサーバー（stdio）を起動し、`front_door_verify`を公開します。エージェントは同じ構造化されたスコアカードを受信します。
+
+完全なチャンネルリストと標準については、[フロントドアリファレンス](docs/front-door.md)を参照してください。
 
 ---
 
-## デザイン トークン
+## デザイントークン
 
-このテーマには、`styles/theme.css`を介してセマンティックなデザイントークンが含まれています。コンポーネントは、ハードコードされた色ではなく、これらのトークンを参照するため、いくつかの値をオーバーライドすることで、テーマ全体の外観を変更できます。
+このテーマには、`styles/theme.css`を介してセマンティックなデザイントークンが含まれています。コンポーネントはハードコードされた色ではなく、これらのトークンを参照するため、いくつかの値をオーバーライドすることで、テーマ全体の外観を変更できます。
 
 ### デフォルトのトークン
 
@@ -128,20 +132,20 @@ if (!scorecard.gate.pass) process.exit(1);
 | `--color-surface` | `#09090b` | ページ背景 |
 | `--color-surface-raised` | `#18181b` | 強調された要素、コードブロック |
 | `--color-surface-strong` | `#27272a` | バッジ、強調表示された背景 |
-| `--color-edge` | `#27272a` | プライマリ境界線 |
-| `--color-edge-subtle` | `#18181b` | カード/テーブルの境界線 |
+| `--color-edge` | `#27272a` | プライマリボーダー |
+| `--color-edge-subtle` | `#18181b` | カード/テーブルのボーダー |
 | `--color-heading` | `#fafafa` | 見出し、主要なテキスト |
-| `--color-body` | `#e4e4e7` | 本文/補助的なテキスト |
-| `--color-muted` | `#d4d4d8` | 控えめなテキスト |
+| `--color-body` | `#e4e4e7` | 本文/二次的なテキスト |
+| `--color-muted` | `#d4d4d8` | 薄暗いテキスト |
 | `--color-dim` | `#a1a1aa` | ラベル、説明 |
 | `--color-accent` | `#34d399` | ステータスインジケーター |
-| `--color-action` | `#fafafa` | プライマリボタンの背景色 |
+| `--color-action` | `#fafafa` | プライマリボタンの背景 |
 | `--color-action-text` | `#09090b` | プライマリボタンのテキスト |
 | `--color-action-hover` | `#e4e4e7` | プライマリボタンのホバー時 |
 
 ### カスタマイズ
 
-サイトの`global.css`で、インポート後に`@theme`ブロックを追加することで、任意のトークンをオーバーライドします。
+サイトの`global.css`で、インポート後に`@theme`ブロックを追加することで、任意のトークンをオーバーライドできます。
 
 ```css
 @import "tailwindcss";
@@ -157,7 +161,7 @@ if (!scorecard.gate.pass) process.exit(1);
 }
 ```
 
-トークンは、標準のTailwind v4ユーティリティ（`bg-surface`、`text-heading`、`border-edge`など）を生成するため、独自のコンポーネントでも使用できます。
+トークンは標準のTailwind v4ユーティリティ（`bg-surface`、`text-heading`、`border-edge`など）を生成するため、独自のコンポーネントでも使用できます。
 
 ---
 
@@ -191,28 +195,28 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 
 ### BaseLayout
 
-固定ヘッダー（ロゴバッジ、ナビゲーションリンク、GitHub/npmボタン）、およびフッターを備えたフルページのシェル。
+ステッカーヘッダー（ロゴバッジ、ナビゲーションリンク、GitHub/npmボタン）、およびフッターを備えたフルページシェル。
 
 | プロパティ | 型 | 説明 |
 |------|------|-------------|
 | `title` | `string` | ページの`<title>` |
-| `description` | `string` | メタディスクリプション |
+| `description` | `string` | メタ記述 |
 | `logoBadge` | `string` | 1〜2文字のバッジ（例：`"RS"`） |
-| `brandName` | `string` | ヘッダーに表示する名前 |
-| `nav` | `{ href, label }[]` | アンカーナビゲーションリンク（オプション、デフォルトは`[]`） |
+| `brandName` | `string` | ヘッダーの名前 |
+| `nav` | `{ href, label }[]` | アンカーナビゲーションリンク（オプション、デフォルトは[]） |
 | `repoUrl` | `string` | GitHubリポジトリURL |
 | `npmUrl?` | `string` | npmパッケージURL |
 | `footerText` | `string` | フッターテキスト（HTMLを許可） |
 
 ### Hero
 
-グラデーションのヒーロー、ステータスバッジ、見出し、CTA、およびオプションのコードプレビューカード。
+グラデーションヒーロー、ステータスバッジ、見出し、CTA、およびオプションのコードプレビューカード。
 
 | プロパティ | 型 | 説明 |
 |------|------|-------------|
 | `badge` | `string` | ステータスバッジのテキスト |
 | `headline` | `string` | メインの見出し |
-| `headlineAccent` | `string` | 控えめなサフィックス |
+| `headlineAccent` | `string` | 薄暗いサフィックス |
 | `description` | `string` | 説明（HTMLを許可） |
 | `primaryCta` | `{ href, label }` | プライマリボタン |
 | `secondaryCta` | `{ href, label }` | セカンダリボタン |
@@ -228,7 +232,7 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 
 ### DataTable
 
-グリッドベースの境界線付きテーブル。プロパティ：`columns: string[]`, `rows: string[][]`
+グリッドベースのボーダー付きテーブル。プロパティ：`columns: string[]`, `rows: string[][]`
 
 ### CodeCardGrid
 
@@ -248,43 +252,43 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 
 ### DocLayout
 
-折りたたみ可能なサイドバーとメインコンテンツエリアを備えた2列レイアウト。**docs**テンプレートで使用されます。プロパティ：`sidebar: SidebarGroup[]`, `currentPath: string`
+折りたたみ式のサイドバーとメインコンテンツエリアを備えた2列レイアウト。**docs**テンプレートで使用されます。プロパティ：`sidebar: SidebarGroup[]`, `currentPath: string`
 
 ### Sidebar
 
-グループ化されたナビゲーションリストで、アクティブなリンクを強調表示します。プロパティ：`groups: SidebarGroup[]`, `currentPath?: string`
+アクティブなリンクを強調表示するグループ化されたナビゲーションリスト。プロパティ：`groups: SidebarGroup[]`, `currentPath?: string`
 
-### TableOfContents
+### 目次
 
-ページ上の見出しのナビゲーション。プロパティ：`headings?: { text, id, depth }[]`
+ページ内の見出しによるナビゲーション。プロパティ：`headings?: { text, id, depth }[]`
 
-### ContentSection
+### コンテンツセクション
 
-アンカーにリンクされたコンテンツブロックで、`set:html` を使用して HTML をレンダリングします。プロパティ：`id: string`, `title: string`, `content: string`
+アンカーリンクされたコンテンツブロックで、`set:html` を使用して HTML をレンダリングします。プロパティ：`id: string`, `title: string`, `content: string`
 
 ### ソーシャルプルーフ
 
 見出しと値/ラベルのペアを持つ統計バー。プロパティ：`headline?: string`, `stats?: { value, label }[]`
 
-### 価格グリッド
+### 価格表
 
-強調表示された「人気」ティアを備えた、レスポンシブな価格帯カード。プロパティ：`tiers?: PricingTier[]`
+「人気」ティアを強調表示した、レスポンシブな価格帯カード。プロパティ：`tiers?: PricingTier[]`
 
 ### お客様の声グリッド
 
-アバターの代替としてイニシャルを表示する2列の引用カード。プロパティ：`testimonials?: { quote, author, role, avatarUrl? }[]`
+アバターの代替画像（初期文字）付きの2列の引用カード。プロパティ：`testimonials?: { quote, author, role, avatarUrl? }[]`
 
 ### CTAバナー
 
-画面全体に表示されるグラデーションを使用した、行動を促すバナー。プロパティ：`headline: string`, `description?: string`, `cta: { href, label }`
+画面全体に広がるグラデーションを使用した、行動を促すバナー。プロパティ：`headline: string`, `description?: string`, `cta: { href, label }`
 
 ---
 
-## セクションタイプ
+## セクションの種類
 
-構成ファイルの `sections` 配列は、これらの `kind` 値をサポートします。
+構成ファイルの `sections` 配列は、これらの `kind` 値をサポートしています。
 
-| 種類（Kind） | コンポーネント | プロパティ（Props） |
+| 種類 | コンポーネント | プロパティ |
 |------|-----------|-------|
 | `features` | FeatureGrid | `features: { title, desc }[]` |
 | `data-table` | DataTable | `columns: string[]`, `rows: string[][]` |
@@ -299,10 +303,10 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 
 `init` CLI は、`.github/workflows/pages.yml` を自動的に作成します。公開するには：
 
-1. リポジトリを GitHub にプッシュする
-2. リポジトリに移動 → **設定 → Pages**
-3. **ビルドとデプロイ** の下で、**ソース** を **GitHub Actions** に設定する
-4. `site/` に変更をプッシュして、最初のビルドを開始する
+1. リポジトリを GitHub にプッシュします。
+2. リポジトリに移動し、**[設定] → [Pages]** を選択します。
+3. **[ビルドとデプロイ]** の下で、**[ソース]** を **[GitHub Actions]** に設定します。
+4. `site/` に変更をプッシュして、最初のビルドを開始します。
 
 サイトは `https://<org>.github.io/<repo>/` で公開されます。
 
@@ -310,17 +314,17 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 
 ## セキュリティとデータ範囲
 
-| 側面（Aspect） | 詳細（Detail） |
+| 側面 | 詳細 |
 |--------|--------|
 | **Data touched** | Astro コンポーネントファイル、CSS トークン、サイト構成 — ビルド時にのみ使用 |
 | **Data NOT touched** | ユーザーデータなし、実行時の状態なし、サーバー側の処理なし |
-| **Permissions** | 読み取り：プロジェクトのソースファイル。書き込み：`site/dist/` にビルド出力を出力 |
-| **Network** | なし — 実行時にネットワークにアクセスしない静的サイトジェネレーター |
+| **Permissions** | 読み取り：プロジェクトのソースファイル。書き込み：ビルド出力を `site/dist/` に出力 |
+| **Network** | なし — 実行時のネットワークアクセスがない静的サイトジェネレーター |
 | **Telemetry** | 収集または送信されるデータはなし |
 
-### HTML プロパティ（set:html）
+### HTML プロパティ (set:html)
 
-いくつかのコンポーネントプロパティは、Astro の `set:html` ディレクティブを使用して生の HTML をレンダリングします。データのソースが信頼できない場合（ユーザー生成コンテンツ、外部 API）、[DOMPurify](https://github.com/cure53/DOMPurify) や [sanitize-html](https://github.com/apostrophecms/sanitize-html) などのライブラリを使用して、**HTML を渡す前にサニタイズしてください**。
+いくつかのコンポーネントのプロパティは、Astro の `set:html` ディレクティブを使用して生の HTML をレンダリングします。データのソースが信頼できない場合（ユーザー生成コンテンツ、外部 API）、[DOMPurify](https://github.com/cure53/DOMPurify) や [sanitize-html](https://github.com/apostrophecms/sanitize-html) などのライブラリを使用して、**HTML を渡す前にサニタイズしてください**。
 
 | コンポーネント | `set:html` を使用するプロパティ |
 |-----------|---------------------|
@@ -328,24 +332,24 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 | Hero | `badge`, `description` |
 | CodeCardGrid | `cards[].code` |
 | ApiList | `apis[].signature`, `apis[].description` |
-| ContentSection | `content` |
+| コンテンツセクション | `content` |
 
-脆弱性に関する報告については、[SECURITY.md](SECURITY.md) を参照してください。
+脆弱性の報告については、[SECURITY.md](SECURITY.md) を参照してください。
 
-## スコアカード（Scorecard）
+## スコアカード
 
-| カテゴリ（Category） | スコア（Score） |
+| カテゴリ | スコア |
 |----------|-------|
-| A. セキュリティ（Security） | 10 |
-| B. エラー処理（Error Handling） | 10 |
-| C. 運用ドキュメント（Operator Docs） | 10 |
-| D. リリース衛生（Shipping Hygiene） | 10 |
-| E. ID (ソフト)（Identity (soft)） | 10 |
+| A. セキュリティ | 10 |
+| B. エラー処理 | 10 |
+| C. 運用ドキュメント | 10 |
+| D. リリース衛生管理 | 10 |
+| E. ID (ソフト) | 10 |
 | **Overall** | **50/50** |
 
 > 完全な監査：[SHIP_GATE.md](SHIP_GATE.md) · [SCORECARD.md](SCORECARD.md)
 
-## ライセンス（License）
+## ライセンス
 
 MIT
 

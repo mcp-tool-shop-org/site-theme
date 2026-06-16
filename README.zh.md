@@ -96,13 +96,15 @@ export const config: SiteConfig = {
 site-theme 呈现一个仓库的**人类可读**的前门；**front-door** 验证其**代理/机器**前门——即 README、`AGENTS.md` 和 `llms.txt`，这些是人类、代理和工具首先读取的内容。它采用“先验证”的方法：它不会为您编写散文，而是证明您的散文是真实且简洁的。
 
 ```bash
-npx @mcptoolshop/site-theme front-door verify     # audit; exits 1 if the gate fails
-npx @mcptoolshop/site-theme front-door init       # scaffold a minimal, verify-clean front door
-npx @mcptoolshop/site-theme front-door standard   # print the front-door spine
-npx @mcptoolshop/site-theme front-door eval       # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door verify --run-doctests   # also compile/run fenced JS examples
+npx @mcptoolshop/site-theme front-door init                    # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard                # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval                    # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
 ```
 
-它将每个记录的主张路由到可以支持该主张的证据——无效路径/脚本/链接、AGENTS.md↔README 重复、状态徽章不可信、示例导入与实际 `exports` 的对比、来源声明与实际证明的对比，以及冗余（`AGENTS.md` 的长度/可读性/指令预算）。结果按风险级别排序到四个类别：已验证/矛盾/缺失/无法验证。
+它会将每个已记录的声明路由到可以支持该声明的证据——无效路径/脚本/链接、`AGENTS.md` 与 `README` 的重复内容、状态徽章的不信任问题、示例导入与实际“导出”之间的差异（并且，通过使用 `--run-doctests` 选项，确保示例能够真正编译和运行）、来源声明与实际证明之间的差异，以及冗余（`AGENTS.md` 的长度/可读性/指令预算）。调查结果会根据风险等级分为四个类别：已验证/存在矛盾/缺失/无法验证。
 
 以编程方式使用它（shipcheck 使用此功能）：
 
@@ -112,6 +114,8 @@ import { verify } from '@mcptoolshop/site-theme/front-door';
 const scorecard = verify({ root: process.cwd() });
 if (!scorecard.gate.pass) process.exit(1);
 ```
+
+或者让一个代理程序调用它：`front-door mcp` 启动一个零依赖的 MCP 服务器（通过标准输入/输出），并公开 `front_door_verify`——该代理程序接收到相同的结构化评分卡。
 
 请参阅 [前门参考](docs/front-door.md)，了解完整的通道列表和标准。
 

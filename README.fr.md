@@ -96,13 +96,15 @@ export const config: SiteConfig = {
 `site-theme` affiche la « page d’entrée » **humaine** d’un dépôt ; `front-door` vérifie sa page d’entrée **agent/machine** (le fichier README, `AGENTS.md` et `llms.txt`) – les fichiers que les humains, les agents et les outils lisent en premier. Il effectue une vérification en priorité : il n’écrit pas de texte pour vous, mais prouve que votre texte est vrai et minimal.
 
 ```bash
-npx @mcptoolshop/site-theme front-door verify     # audit; exits 1 if the gate fails
-npx @mcptoolshop/site-theme front-door init       # scaffold a minimal, verify-clean front door
-npx @mcptoolshop/site-theme front-door standard   # print the front-door spine
-npx @mcptoolshop/site-theme front-door eval       # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door verify --run-doctests   # also compile/run fenced JS examples
+npx @mcptoolshop/site-theme front-door init                    # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard                # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval                    # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
 ```
 
-Il dirige chaque affirmation documentée vers la preuve qui peut l’étayer : chemins/scripts/liens non valides, duplication AGENTS.md↔README, manque de confiance dans les badges d’état, exemples d’importations par rapport aux `exports` réels, affirmations de provenance par rapport à l’attestation réelle et surcharge (longueur/lisibilité/budget des directives pour `AGENTS.md`). Les résultats sont classés par ordre de risque en quatre catégories : vérifié / contredit / manquant / non vérifiable.
+Il dirige chaque affirmation documentée vers les preuves qui peuvent la corroborer : chemins/scripts/liens invalides, duplication entre AGENTS.md et README, manque de fiabilité du badge d’état, exemples d’importations par rapport aux véritables « exports » (et, avec l’option `--run-doctests`, vérification que les exemples se compilent et s’exécutent réellement), affirmations sur la provenance par rapport à une attestation réelle, et surcharge (longueur/lisibilité/limite de directives pour AGENTS.md). Les résultats sont classés par ordre de risque dans quatre catégories : Vérifié / Contredit / Manquant / Non vérifiable.
 
 Utilisez-le de manière programmatique (shipcheck l’utilise) :
 
@@ -112,6 +114,8 @@ import { verify } from '@mcptoolshop/site-theme/front-door';
 const scorecard = verify({ root: process.cwd() });
 if (!scorecard.gate.pass) process.exit(1);
 ```
+
+Ou laissez un agent l’appeler : `front-door mcp` lance un serveur MCP sans dépendances (stdio) qui expose `front_door_verify` — l’agent reçoit le même tableau de bord structuré.
 
 Consultez la [référence Front Door](docs/front-door.md) pour obtenir la liste complète des canaux et le standard.
 
