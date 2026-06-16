@@ -96,13 +96,15 @@ export const config: SiteConfig = {
 `site-theme` renderiza a **fachada** "humana" de um repositório; `front-door` verifica sua fachada **agente/máquina** — o README, `AGENTS.md` e `llms.txt` que humanos, agentes e ferramentas leem primeiro. Ele prioriza a verificação: não escreve textos para você, mas comprova que seus textos são verdadeiros e concisos.
 
 ```bash
-npx @mcptoolshop/site-theme front-door verify     # audit; exits 1 if the gate fails
-npx @mcptoolshop/site-theme front-door init       # scaffold a minimal, verify-clean front door
-npx @mcptoolshop/site-theme front-door standard   # print the front-door spine
-npx @mcptoolshop/site-theme front-door eval       # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
+npx @mcptoolshop/site-theme front-door verify --run-doctests   # also compile/run fenced JS examples
+npx @mcptoolshop/site-theme front-door init                    # scaffold a minimal, verify-clean front door
+npx @mcptoolshop/site-theme front-door standard                # print the front-door spine
+npx @mcptoolshop/site-theme front-door eval                    # the verifier's self-eval receipt
+npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
 ```
 
-Ele direciona cada afirmação documentada para as evidências que podem comprová-la — caminhos/scripts/links inválidos, duplicação de AGENTS.md↔README, falta de confiança em badges de status, exemplos de importações versus `exports` reais, alegações de procedência versus atestado real e excesso (comprimento/legibilidade/orçamento de diretivas para `AGENTS.md`). Os resultados são classificados por risco em quatro categorias: Verificado / Contraditório / Ausente / Não verificável.
+Ele direciona cada afirmação documentada para a evidência que pode comprová-la — caminhos/scripts/links inválidos, duplicação de AGENTS.md↔README, falta de confiança no badge de status, exemplos de importações versus `exports` reais (e, com `--run-doctests`, verifica se os exemplos realmente são compilados e executados), afirmações de origem versus atestado real e excesso de informações (tamanho/legibilidade/limite de diretivas para `AGENTS.md`). As descobertas são classificadas por ordem de risco em quatro categorias: Verificado / Contraditório / Ausente / Não verificável.
 
 Use-o programaticamente (shipcheck usa isso):
 
@@ -112,6 +114,8 @@ import { verify } from '@mcptoolshop/site-theme/front-door';
 const scorecard = verify({ root: process.cwd() });
 if (!scorecard.gate.pass) process.exit(1);
 ```
+
+Ou deixe que um agente o execute: `front-door mcp` inicia um servidor MCP sem dependências (stdio), expondo `front_door_verify` — o agente recebe a mesma estrutura de avaliação.
 
 Consulte a [referência da Fachada](docs/front-door.md) para obter a lista completa de canais e o padrão.
 
@@ -260,7 +264,7 @@ Navegação de títulos na página. Propriedades: `headings?: { text, id, depth 
 
 ### ContentSection
 
-Anchor-linked content block that renders HTML via `set:html`. Props: `id: string`, `title: string`, `content: string`
+Bloco de conteúdo com links âncora que renderiza HTML por meio de `set:html`. Propriedades: `id: string`, `title: string`, `content: string`.
 
 ### SocialProof
 
