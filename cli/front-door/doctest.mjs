@@ -26,6 +26,14 @@
  *  - each example runs in its own child process with a hard timeout.
  *  - compile-checks use a temp file under the OS temp dir, deleted immediately
  *    (NAMED_COMPENSATOR: unlinkSync in finally); nothing is written to the repo.
+ *
+ * --- Standards compliance (memory/workflow_standards.md) ---
+ * PIN_PER_STEP              2 — deterministic per example; same example -> same verdict (pinned to process.execPath).
+ * ANDON_AUTHORITY          2 — a failing/uncompilable/skipped example becomes a gate-failing finding; bad examples halt.
+ * NAMED_COMPENSATORS       2 — temp compile files are unlinked in `finally`; the repo is never written.
+ * DECOMPOSE_BY_SECRETS     3 — execution is isolated in this channel; default verify (other channels) is unaffected.
+ * UNCERTAINTY_GATED_HUMANS 2 — a +SKIP example is surfaced UNBACKED rather than silently passed; the human decides.
+ * EXTERNAL_VERIFIER        3 — examples are executed/compiled out-of-process; the runtime, not a model, is the judge.
  */
 
 import { spawnSync } from 'node:child_process';

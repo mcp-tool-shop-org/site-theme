@@ -3,15 +3,16 @@
  *
  * The verify pipeline lives in ./verify.mjs (orchestration) and is re-exported
  * here as the programmatic API consumed by shipcheck. This module is the CLI:
- * verify · init · standard · eval. Channels and the slice plan: ./DESIGN.md.
+ * verify · init · standard · eval · ablation · mcp. Channels and the slice
+ * plan: ./DESIGN.md.
  *
  * --- Standards compliance (memory/workflow_standards.md) ---
  * PIN_PER_STEP              2 — deterministic, dependency-free checks; same input -> same report.
  * ANDON_AUTHORITY          2 — the gate halts (exit 1) on any contradicted/unbacked/stale finding.
- * NAMED_COMPENSATORS       2 — `init` is overwrite-guarded (--force); release table in DESIGN.md.
- * DECOMPOSE_BY_SECRETS     3 — astro-free module; one file per evidence channel; verify split from CLI.
+ * NAMED_COMPENSATORS       2 — `init` is overwrite-guarded (--force); doctest temp files unlinked; table in DESIGN.md.
+ * DECOMPOSE_BY_SECRETS     3 — astro-free module; one file per evidence channel; verify split from CLI; mcp is zero-dep.
  * UNCERTAINTY_GATED_HUMANS 2 — claims it cannot check are reported UNVERIFIABLE, never asserted true.
- * EXTERNAL_VERIFIER        2 — evidence is external to the prose; the self-eval (eval.mjs) proves precision.
+ * EXTERNAL_VERIFIER        3 — evidence is external; doctests execute out-of-process and the MCP surface is out-of-process.
  */
 
 import { writeFileSync } from 'node:fs';
