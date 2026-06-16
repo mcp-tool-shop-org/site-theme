@@ -27,13 +27,15 @@ describe('extractCodeBlocks', () => {
 });
 
 describe('looksLikePath', () => {
-  it('accepts repo dir prefixes and code extensions', () => {
+  it('accepts repo dir prefixes and slashed code paths', () => {
     expect(looksLikePath('src/index.ts')).toBe(true);
     expect(looksLikePath('./cli/init.mjs')).toBe(true);
-    expect(looksLikePath('package.json')).toBe(true);
   });
 
-  it('rejects npm package specifiers, urls, and prose', () => {
+  it('rejects bare filenames, npm specifiers, urls, and prose', () => {
+    expect(looksLikePath('package.json')).toBe(false);
+    expect(looksLikePath('llms.txt')).toBe(false);
+    expect(looksLikePath('global.css')).toBe(false);
     expect(looksLikePath('@astrojs/starlight')).toBe(false);
     expect(looksLikePath('https://example.com/x')).toBe(false);
     expect(looksLikePath('some thing')).toBe(false);

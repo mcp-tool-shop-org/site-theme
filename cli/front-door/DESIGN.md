@@ -53,7 +53,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **7** Generator — `front-door init`: minimal verify-clean spine + AGENTS.md + llms.txt (docs-site only), overwrite-guarded
 - [x] **8** Standard docs page (docs/front-door.md) wired into the docs index
 - [x] **9** Proof eval — verifier self-eval (labeled corpus, 7/7, `front-door eval` receipt) + full SWE-bench ablation protocol (EVAL.md)
-- [ ] **10** shipcheck integration + MCP surface + v2.0.0 release
+- [x] **10** v2.0.0 release **prep** — README pillar, keywords, CHANGELOG, dogfood AGENTS.md, self-verify script. Deferred (post-publish): the actual `npm publish` / `gh release` (await go), translations, shipcheck integration (downstream repo), MCP surface (v2.1).
 
 ## Standards compliance (memory/workflow_standards.md)
 

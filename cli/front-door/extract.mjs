@@ -99,21 +99,6 @@ export function extractInlineCode(md) {
 const CODE_EXT = /\.(ts|tsx|js|jsx|mjs|cjs|mts|cts|json|md|mdx|astro|css|scss|html|yml|yaml|toml|py|rs|go|rb|sh|sql)$/i;
 const DIR_PREFIX =
   /^(\.{1,2}\/|src\/|cli\/|tests?\/|docs\/|lib\/|app\/|packages\/|scripts\/|bin\/|types\/|components\/|styles\/|templates\/|public\/|examples?\/)/;
-// Bare (slash-free) filenames only count as path claims if they are canonical
-// root files — otherwise a token like `global.css` is descriptive prose.
-const ROOT_FILES = new Set([
-  'package.json',
-  'tsconfig.json',
-  'readme.md',
-  'license',
-  'license.md',
-  'changelog.md',
-  '.gitignore',
-  'agents.md',
-  'llms.txt',
-  'dockerfile',
-  'makefile',
-]);
 
 /**
  * Conservative heuristic: does this inline-code token denote a repo path?
@@ -130,10 +115,11 @@ export function looksLikePath(token) {
   if (/[<>{}*?|"'`]/.test(t)) return false; // placeholders / globs / quotes
   if (DIR_PREFIX.test(t)) return true;
   const bare = t.replace(/^\.\//, '');
-  // A code-extension token only counts as a path claim if it carries a directory
-  // separator; a bare filename like `global.css` is usually descriptive prose.
+  // A token only counts as a path claim if it carries a directory separator. A
+  // bare filename (`global.css`, `llms.txt`, `package.json`) is almost always
+  // descriptive prose — front-door docs mention these names constantly — not a
+  // claim that the file exists at the repo root.
   if (bare.includes('/') && CODE_EXT.test(bare) && /^[\w./-]+$/.test(bare)) return true;
-  if (ROOT_FILES.has(bare.toLowerCase())) return true;
   return false;
 }
 
