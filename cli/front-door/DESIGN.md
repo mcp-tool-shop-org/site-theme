@@ -49,7 +49,7 @@ check don't pull in Astro (DECOMPOSE_BY_SECRETS: one repo, separated modules).
 - [x] **3** Minimality linter — length budget, FRE readability, directive breadth
 - [x] **4** Doctest channel — example self-imports must resolve to real package exports (execution-based run is a later refinement)
 - [x] **5** Attestation channel — provenance/signing claims must map to real attestation evidence (SLSA/in-toto/Sigstore/--provenance)
-- [ ] **6** Gherkin / behavioral-claim linkage
+- [x] **6** Gherkin channel — flags skipped/@wip scenarios (opt-in; fires only when .feature files exist)
 - [ ] **7** Generator — minimal spine scaffold + llms.txt + candidate doctests, wired to the `tool` template
 - [ ] **8** The front-door standard doc (handbook page)
 - [ ] **9** Proof eval — three-arm SWE-bench ablation + published receipt
