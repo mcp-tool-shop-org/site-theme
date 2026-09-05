@@ -1,4 +1,4 @@
-import type { CtaDef, HeroDef } from './config';
+import type { CtaDef, HeroDef, PackageLinkFields } from './config';
 
 export interface SocialProofDef {
   headline?: string;
@@ -33,7 +33,7 @@ export interface CtaBannerDef {
   cta: CtaDef;
 }
 
-export interface ProductSiteConfig {
+export interface ProductSiteConfig extends PackageLinkFields {
   template: 'product';
   /** Page <title> */
   title: string;
@@ -45,8 +45,6 @@ export interface ProductSiteConfig {
   brandName: string;
   /** GitHub repo URL */
   repoUrl: string;
-  /** npm package URL (omit to hide npm header button) */
-  npmUrl?: string;
   /** Footer left-side text */
   footerText: string;
 

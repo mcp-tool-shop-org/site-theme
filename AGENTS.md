@@ -11,6 +11,7 @@ npm ci
 ## Verify
 
 ```bash
+npm run verify                        # typecheck + test + lint + front-door verify
 npm test                              # vitest (unit + CLI integration)
 npm run typecheck                     # tsc --noEmit (types/ only)
 npm run lint                          # biome

@@ -1,3 +1,5 @@
+import type { PackageLinkFields } from './config';
+
 export interface SidebarGroup {
   title: string;
   items: SidebarItem[];
@@ -17,7 +19,7 @@ export interface DocsSection {
   headings?: { text: string; id: string; depth: 2 | 3 }[];
 }
 
-export interface DocsSiteConfig {
+export interface DocsSiteConfig extends PackageLinkFields {
   template: 'docs';
   /** Page <title> */
   title: string;
@@ -29,8 +31,6 @@ export interface DocsSiteConfig {
   brandName: string;
   /** GitHub repo URL */
   repoUrl: string;
-  /** npm package URL (omit to hide npm header button) */
-  npmUrl?: string;
   /** Footer left-side text */
   footerText: string;
 

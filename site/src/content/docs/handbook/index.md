@@ -13,7 +13,7 @@ Welcome to the Site Theme handbook.
 - **[Templates](/site-theme/handbook/templates/)** — Available page templates
 - **[Components](/site-theme/handbook/components/)** — All 17 Astro components
 - **[Design Tokens](/site-theme/handbook/design-tokens/)** — Token reference and customization
-- **[Configuration](/site-theme/handbook/configuration/)** — All four config types (default, docs, product, portfolio)
+- **[Configuration](/site-theme/handbook/configuration/)** — SiteConfig variants (default, docs, product, portfolio, tool)
 - **[Deployment](/site-theme/handbook/deployment/)** — GitHub Pages setup
 - **[Beginners Guide](/site-theme/handbook/beginners/)** — New to Astro? Start here
 

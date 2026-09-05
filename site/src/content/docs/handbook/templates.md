@@ -16,6 +16,7 @@ Every template is CI-tested and builds clean out of the box. Pick the one that f
 | **product** | Marketing landing page with pricing, testimonials, and CTAs              | 1     |
 | **portfolio** | Filterable catalog grid for tools, projects, or any collection         | 1     |
 | **app**     | Multi-tenant SaaS dashboard with RBAC, feature flags, workspace routing  | 31    |
+| **tool**    | CLI / MCP / npm package landing page with commands, workflow, and proof  | 1     |
 
 ## Choosing a template
 
@@ -83,6 +84,14 @@ export const config: PortfolioSiteConfig = {
     },
   ],
 };
+```
+
+### tool
+
+Landing page for a CLI, MCP server, or npm package. Ships a hero, three-step quickstart, command list (flat or grouped), an end-to-end workflow, proof (tests / CI / version), and integration snippets.
+
+```bash
+npx @mcptoolshop/site-theme init --template tool
 ```
 
 ### app

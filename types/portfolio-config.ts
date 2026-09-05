@@ -1,4 +1,4 @@
-import type { CtaDef, HeroDef } from './config';
+import type { CtaDef, HeroDef, PackageLinkFields } from './config';
 
 export interface PortfolioItem {
   /** Display title */
@@ -23,7 +23,7 @@ export interface PortfolioItem {
   secondaryAction?: CtaDef;
 }
 
-export interface PortfolioSiteConfig {
+export interface PortfolioSiteConfig extends PackageLinkFields {
   template: 'portfolio';
   /** Page <title> */
   title: string;
@@ -35,8 +35,6 @@ export interface PortfolioSiteConfig {
   brandName: string;
   /** GitHub repo URL */
   repoUrl: string;
-  /** npm package URL (omit to hide npm header button) */
-  npmUrl?: string;
   /** Footer left-side text */
   footerText: string;
 

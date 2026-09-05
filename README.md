@@ -17,7 +17,7 @@
 <p align="center">
   <a href="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/@mcptoolshop/site-theme"><img src="https://img.shields.io/npm/v/@mcptoolshop/site-theme" alt="npm version" /></a>
-  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_portfolio_·_app-34d399" alt="Templates: default · docs · product · portfolio · app" />
+  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_portfolio_·_app_·_tool-34d399" alt="Templates: default · docs · product · portfolio · app · tool" />
   <a href="https://mcp-tool-shop-org.github.io/site-theme/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="MIT License" /></a>
 </p>
@@ -45,6 +45,7 @@ Pick a template, scaffold, build. Every template ships CI-tested and GitHub Page
 | **product** | Marketing landing page with pricing, testimonials, and CTAs | 1 |
 | **portfolio** | Filterable catalog grid for tools, projects, or any collection | 1 |
 | **app** | Multi-tenant SaaS dashboard with RBAC, feature flags, and workspace routing | 31 |
+| **tool** | CLI / MCP / npm package landing page with commands, workflow, and proof | 1 |
 
 ```bash
 npx @mcptoolshop/site-theme list-templates            # see all options
@@ -81,7 +82,7 @@ export const config: SiteConfig = {
   logoBadge: 'MT',
   brandName: 'my-tool',
   repoUrl: 'https://github.com/mcp-tool-shop-org/my-tool',
-  npmUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
+  packageUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
   footerText: 'MIT Licensed',
 
   hero: { /* ... */ },
@@ -195,7 +196,7 @@ The theme ships 17 Astro components across five categories: layout shells, conte
 
 ### BaseLayout
 
-Full page shell with sticky header (logo badge, nav links, GitHub/npm buttons) and footer.
+Full page shell with sticky header (logo badge, nav links, GitHub / package buttons) and footer. Named slot `head` is the extension point for extra `<head>` tags (OG image, JSON-LD, preconnect).
 
 | Prop | Type | Description |
 |------|------|-------------|
@@ -205,8 +206,21 @@ Full page shell with sticky header (logo badge, nav links, GitHub/npm buttons) a
 | `brandName` | `string` | Name in header |
 | `nav` | `{ href, label }[]` | Anchor nav links (optional, defaults to `[]`) |
 | `repoUrl` | `string` | GitHub repo URL |
-| `npmUrl?` | `string` | npm package URL |
+| `packageUrl?` | `string` | Primary registry listing (npm, PyPI, crates.io, …). Label is derived from the host. |
+| `packageLabel?` | `string` | Optional display label override for `packageUrl` |
+| `npmUrl?` | `string` | Deprecated alias for `packageUrl` |
 | `footerText` | `string` | Footer text (HTML allowed) |
+
+```astro
+<BaseLayout {title} {description} {logoBadge} {brandName} {repoUrl} packageUrl={config.packageUrl} {footerText}>
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+  </Fragment>
+  <!-- page body -->
+</BaseLayout>
+```
 
 ### Hero
 
@@ -316,10 +330,10 @@ Your site will be live at `https://<org>.github.io/<repo>/`.
 
 | Aspect | Detail |
 |--------|--------|
-| **Data touched** | Astro component files, CSS tokens, site configuration — build time only |
-| **Data NOT touched** | No user data, no runtime state, no server-side processing |
-| **Permissions** | Read: project source files. Write: build output to site/dist/ |
-| **Network** | None — static site generator with no runtime network access |
+| **Data touched** | Theme: Astro components, CSS tokens, site config at build time. Front-door: README / AGENTS.md / llms.txt / CLAUDE.md on disk. |
+| **Data NOT touched** | No user accounts, no runtime site state, no analytics, no third-party APIs |
+| **Permissions** | Read: project source. Write: `init` writes `site/` in cwd (or `--out`). Verify is read-only unless `--run-doctests`. |
+| **Network** | Off by default. MCP is stdio. `--run-doctests` is opt-in child-process execution; it does not install packages or open a network. |
 | **Telemetry** | None collected or sent |
 
 ### HTML Props (set:html)

@@ -47,7 +47,9 @@ describe('list-templates', () => {
     expect(out).toContain('default');
     expect(out).toContain('docs');
     expect(out).toContain('product');
+    expect(out).toContain('portfolio');
     expect(out).toContain('app');
+    expect(out).toContain('tool');
   });
 
   it('lists templates as JSON with --json', () => {
@@ -64,6 +66,7 @@ describe('init --dry-run', () => {
     const out = run('init --dry-run');
     expect(out).toContain('Dry run');
     expect(out).toContain('PACKAGE_NAME: @test/my-tool');
+    expect(out).toContain('site/public/favicon.svg');
     expect(existsSync(join(TMP, 'site'))).toBe(false);
   });
 
@@ -90,6 +93,10 @@ describe('init (default template)', () => {
     const siteConfig = readFileSync(join(TMP, 'site', 'src', 'site-config.ts'), 'utf-8');
     expect(siteConfig).toContain('@test/my-tool');
     expect(siteConfig).toContain('my-tool');
+    expect(existsSync(join(TMP, 'site', 'public', 'favicon.svg'))).toBe(true);
+    const sitePkg = JSON.parse(readFileSync(join(TMP, 'site', 'package.json'), 'utf-8'));
+    const themeVersion = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'package.json'), 'utf-8')).version;
+    expect(sitePkg.dependencies['@mcptoolshop/site-theme']).toBe(`^${themeVersion}`);
   });
 
   it('creates .gitignore entry for site/.astro/', () => {

@@ -9,7 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@mcptoolshop/site-theme": "^1.4.0",
+    "@mcptoolshop/site-theme": "^{{THEME_VERSION}}",
     "@tailwindcss/vite": "^4.2.0",
     "astro": "^5.17.0",
     "tailwindcss": "^4.2.0"

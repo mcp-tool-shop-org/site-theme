@@ -15,18 +15,18 @@
 
 ### Default safety posture
 
-- [x] `[cli|mcp|desktop]` Dangerous actions (kill, delete, restart) require explicit `--allow-*` flag — SKIP: init CLI only creates files; no destructive actions
-- [x] `[cli|mcp|desktop]` File operations constrained to known directories — init writes to cwd/site/ only
-- [ ] `[mcp]` SKIP: not an MCP server
-- [ ] `[mcp]` SKIP: not an MCP server
+- [x] `[cli|mcp|desktop]` Dangerous actions (kill, delete, restart) require explicit `--allow-*` flag — code execution is opt-in (`--run-doctests` / MCP `runDoctests`); default verify is read-only
+- [x] `[cli|mcp|desktop]` File operations constrained to known directories — init writes to cwd/site/ only; verify reads the given root
+- [x] `[mcp]` Network egress off by default — stdio MCP, local verify; doctest run is opt-in and does not install or fetch
+- [x] `[mcp]` Stack traces never exposed — MCP tool errors return `isError` + message, not a stack
 
 ## B. Error Handling
 
 - [x] `[all]` Errors follow the Structured Error Shape: `code`, `message`, `hint`, `cause?`, `retryable?` — build errors surfaced by Astro framework
 - [x] `[cli]` Exit codes: 0 ok · 1 user error · 2 runtime error · 3 partial success — init CLI exits cleanly
 - [x] `[cli]` No raw stack traces without `--debug`
-- [ ] `[mcp]` SKIP: not an MCP server
-- [ ] `[mcp]` SKIP: not an MCP server
+- [x] `[mcp]` Tool errors return structured results — `isError` + text content; the scorecard is `structuredContent` (server never crashes on bad input)
+- [ ] `[mcp]` SKIP: stateless stdio server, no persisted config to corrupt
 - [ ] `[desktop]` SKIP: not a desktop app
 - [ ] `[vscode]` SKIP: not a VS Code extension
 
@@ -37,7 +37,7 @@
 - [x] `[all]` LICENSE file present and repo states support status
 - [x] `[cli]` `--help` output accurate for all commands and flags — init CLI documented in README
 - [ ] `[cli|mcp|desktop]` SKIP: no configurable logging levels (build-time theme, no runtime)
-- [ ] `[mcp]` SKIP: not an MCP server
+- [x] `[mcp]` All tools documented with description + parameters — `front_door_verify` and `front_door_standard` in README + MCP `tools/list`
 - [ ] `[complex]` SKIP: not complex enough to warrant HANDBOOK
 
 ## D. Shipping Hygiene
@@ -46,7 +46,7 @@
 - [x] `[all]` Version in manifest matches git tag
 - [x] `[all]` Dependency scanning runs in CI (ecosystem-appropriate)
 - [x] `[all]` Automated dependency update mechanism exists
-- [x] `[npm]` `npm pack --dry-run` includes: components/, styles/, types/, templates/, cli/, README.md, LICENSE
+- [x] `[npm]` `npm pack --dry-run` includes: components/, styles/, types/, templates/, cli/, lib/, README.md, CHANGELOG.md, LICENSE
 - [x] `[npm]` `engines.node` set (>=18.0.0)
 - [x] `[npm]` Lockfile committed
 - [ ] `[pypi]` SKIP: not a Python project

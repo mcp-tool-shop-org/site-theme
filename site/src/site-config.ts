@@ -2,18 +2,18 @@ import type { SiteConfig } from '@mcptoolshop/site-theme';
 
 export const config: SiteConfig = {
   title: '@mcptoolshop/site-theme',
-  description: 'Multi-template Astro toolkit for landing pages, docs, product sites, and SaaS dashboards. Dark palette, Tailwind CSS v4, GitHub Pages ready.',
+  description: 'Multi-template Astro toolkit for landing pages, docs, product sites, portfolios, and SaaS dashboards — plus front-door, the AI-native README / AGENTS.md verifier. Dark palette, Tailwind CSS v4, GitHub Pages ready.',
   logoBadge: 'ST',
   brandName: 'site-theme',
   repoUrl: 'https://github.com/mcp-tool-shop-org/site-theme',
-  npmUrl: 'https://www.npmjs.com/package/@mcptoolshop/site-theme',
+  packageUrl: 'https://www.npmjs.com/package/@mcptoolshop/site-theme',
   footerText: 'MIT Licensed',
 
   hero: {
     badge: 'Open source',
     headline: 'Landing pages,',
     headlineAccent: 'zero fuss.',
-    description: 'Four templates — landing page, docs, product, and SaaS app — each scaffolded by one CLI command. Dark theme, Tailwind CSS v4, and GitHub Pages workflow included.',
+    description: 'Six templates — landing page, docs, product, portfolio, SaaS app, and tool — each scaffolded by one CLI command. Dark theme, Tailwind CSS v4, and GitHub Pages workflow included.',
     primaryCta: { href: '#quick-start', label: 'Get started' },
     secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
@@ -31,8 +31,8 @@ export const config: SiteConfig = {
       subtitle: 'Everything a project landing page needs, pre-wired.',
       features: [
         {
-          title: 'Four templates',
-          desc: 'Landing page, docs, product marketing, and multi-tenant SaaS app. Pick one, scaffold, build — done.',
+          title: 'Six templates',
+          desc: 'Landing page, docs, product, portfolio, multi-tenant SaaS app, and tool. Pick one, scaffold, build — done.',
         },
         {
           title: 'Dark by default',
@@ -123,8 +123,8 @@ git push
       subtitle: 'Import individually from the package.',
       apis: [
         {
-          signature: 'BaseLayout(title, description, logoBadge, brandName, nav, repoUrl, npmUrl?, footerText)',
-          description: 'Full page shell with sticky header (logo badge, nav links, GitHub/npm buttons) and footer. Wrap all your sections in this.',
+          signature: 'BaseLayout(title, description, logoBadge, brandName, nav, repoUrl, packageUrl?, footerText, slot:head)',
+          description: 'Full page shell with sticky header (logo badge, nav links, GitHub / package buttons) and footer. Named slot `head` takes extra meta tags.',
         },
         {
           signature: 'Hero(badge, headline, headlineAccent, description, primaryCta, secondaryCta, previews?)',

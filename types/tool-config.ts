@@ -1,4 +1,4 @@
-import type { HeroDef } from './config';
+import type { HeroDef, PackageLinkFields } from './config';
 
 export interface ToolCommand {
   name: string;
@@ -20,7 +20,7 @@ export interface ToolProof {
   version?: string;
 }
 
-export interface ToolSiteConfig {
+export interface ToolSiteConfig extends PackageLinkFields {
   template: 'tool';
   /** Page <title> */
   title: string;
@@ -32,8 +32,6 @@ export interface ToolSiteConfig {
   brandName: string;
   /** GitHub repo URL */
   repoUrl: string;
-  /** npm package URL (omit to hide npm header button) */
-  npmUrl?: string;
   /** Footer left-side text */
   footerText: string;
 

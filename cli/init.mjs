@@ -262,6 +262,7 @@ function runInit(flags) {
     NPM_URL: npmUrl,
     LOGO_BADGE: logoBadge,
     BASE_PATH: basePath,
+    THEME_VERSION: pkgVersion,
   };
 
   // Build the manifest of files to create
@@ -302,6 +303,15 @@ function runInit(flags) {
     if (!existsSync(workflowDest)) {
       plan.push({ dest: '.github/workflows/pages.yml', tpl: 'pages.yml.tpl', target: workflowDest });
     }
+  }
+
+  const faviconSrc = join(__dirname, '..', 'assets', 'favicon.svg');
+  if (existsSync(faviconSrc)) {
+    plan.push({
+      dest: 'site/public/favicon.svg',
+      source: faviconSrc,
+      target: join(siteDir, 'public', 'favicon.svg'),
+    });
   }
 
   // --- Dry run: print what would be created and exit ---

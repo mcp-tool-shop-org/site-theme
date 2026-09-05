@@ -4,7 +4,9 @@
 
 | Version | Supported |
 |---------|-----------|
-| 1.0.x   | Yes       |
+| 2.x     | Yes       |
+| 1.x     | Security fixes only |
+| < 1.0   | No        |
 
 ## Reporting a Vulnerability
 
@@ -26,10 +28,10 @@ Include:
 
 ## Scope
 
-This is an **Astro theme package** — static site components with no runtime server.
+This package is an **Astro theme** plus a **front-door verifier** (CLI + optional stdio MCP server).
 
-- **Data touched:** Astro component files, CSS tokens, site configuration at build time only
-- **Data NOT touched:** No user data, no runtime state, no server-side processing
-- **No network egress** — static build output only
-- **No secrets handling** — does not read, store, or transmit credentials
-- **No telemetry** is collected or sent
+- **Data touched:** project source files at build time (theme) and on disk at verify time (README, AGENTS.md, llms.txt, CLAUDE.md, package manifests). The MCP server speaks JSON-RPC over stdio only.
+- **Data NOT touched:** no user accounts, no runtime site state, no analytics, no third-party APIs.
+- **Network egress:** off by default. `front-door verify` is local filesystem. `--run-doctests` / MCP `runDoctests: true` execute fenced JS examples in child processes and are opt-in; they do not install packages or open a network by default.
+- **No secrets handling** — does not read, store, or transmit credentials.
+- **No telemetry** is collected or sent.
