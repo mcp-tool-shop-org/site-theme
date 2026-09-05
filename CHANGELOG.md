@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.2.0] - 2026-09-05
+
+### Added
+- **`<slot name="head"/>` on BaseLayout** — consumers inject OG images, Twitter cards, JSON-LD, or preconnect hints without forking the layout ([#5](https://github.com/mcp-tool-shop-org/site-theme/issues/5)).
+- **`packageUrl` / `packageLabel`** on every SiteConfig variant and on BaseLayout — registry-agnostic package link (PyPI, crates.io, npm, RubyGems, Maven Central, …). `npmUrl` is a deprecated alias ([#4](https://github.com/mcp-tool-shop-org/site-theme/issues/4)).
+- Default Open Graph tags (`og:title`, `og:description`, `og:type`) and `color-scheme: dark` on BaseLayout.
+- Default `favicon.svg` copied into `site/public/` by `init`.
+- `npm run verify` — typecheck + test + lint + front-door verify in one command.
+
+### Changed
+- Header/footer package button label is derived from the registry host instead of being hardcoded as "npm".
+- Landing page and handbook copy list all six templates (adds `tool`, and `portfolio` where it was missing).
+- Scaffolded `site/package.json` now pins `@mcptoolshop/site-theme` to the CLI's own version instead of a stale 1.x range.
+- SECURITY.md and the README threat model cover the front-door MCP server and opt-in doctest execution.
+- Supported versions in SECURITY.md: 2.x.
+
+### Fixed
+- High-severity transitives in the engine tree (`nanoid`, `postcss`, `js-yaml`, `sharp`, `svgo`) pinned via `overrides`. The published package still has zero runtime dependencies. CI `npm audit` now uses `--omit=peer` so consumer-side Astro XSS advisories do not fail this package's own gate.
+
 ## [2.1.0] - 2026-06-16
 
 ### Added

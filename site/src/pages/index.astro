@@ -8,6 +8,9 @@ import DataTable from '@mcptoolshop/site-theme/components/DataTable.astro';
 import CodeCardGrid from '@mcptoolshop/site-theme/components/CodeCardGrid.astro';
 import ApiList from '@mcptoolshop/site-theme/components/ApiList.astro';
 import { config } from '../site-config';
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const ogImage = new URL(`${base}og.png`, Astro.site ?? Astro.url).href;
 ---
 
 <BaseLayout
@@ -16,10 +19,17 @@ import { config } from '../site-config';
   logoBadge={config.logoBadge}
   brandName={config.brandName}
   repoUrl={config.repoUrl}
+  packageUrl={config.packageUrl}
+  packageLabel={config.packageLabel}
   npmUrl={config.npmUrl}
   footerText={config.footerText}
   nav={config.sections.map(s => ({ href: `#${s.id}`, label: s.title }))}
 >
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+  </Fragment>
   <Hero {...config.hero} />
 
   {config.sections.map((s) => (

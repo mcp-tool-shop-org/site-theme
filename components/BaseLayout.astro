@@ -1,4 +1,6 @@
 ---
+import { resolvePackageLink } from '../lib/package-link.mjs';
+
 interface Props {
   title: string;
   description: string;
@@ -6,6 +8,11 @@ interface Props {
   brandName: string;
   nav?: { href: string; label: string }[];
   repoUrl: string;
+  /** Primary registry listing URL (npm, PyPI, crates.io, ...). */
+  packageUrl?: string;
+  /** Optional display label; derived from the URL host when omitted. */
+  packageLabel?: string;
+  /** @deprecated since 2.2.0 — use packageUrl. Kept as a back-compat alias. */
   npmUrl?: string;
   /** Footer text — accepts raw HTML. Sanitize if sourced from user input. */
   footerText: string;
@@ -18,10 +25,13 @@ const {
   brandName,
   nav = [],
   repoUrl,
+  packageUrl,
+  packageLabel,
   npmUrl,
   footerText,
 } = Astro.props;
 
+const packageLink = resolvePackageLink({ packageUrl, npmUrl, packageLabel });
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
 ---
 
@@ -31,8 +41,13 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <title>{title}</title>
+    <slot name="head" />
   </head>
 
   <body class="min-h-screen bg-surface text-heading antialiased">
@@ -58,7 +73,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
         </nav>
 
         <div class="flex items-center gap-3">
-          {(nav.length > 0 || npmUrl) && (
+          {(nav.length > 0 || packageLink) && (
             <details class="relative md:hidden">
               <summary
                 class="inline-flex cursor-pointer list-none items-center justify-center rounded-xl border border-edge p-2 text-body hover:bg-surface-raised [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
@@ -82,27 +97,27 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
                     {item.label}
                   </a>
                 ))}
-                {npmUrl && (
+                {packageLink && (
                   <a
-                    href={npmUrl}
+                    href={packageLink.url}
                     target="_blank"
                     rel="noreferrer"
                     class="rounded-lg px-3 py-2 text-sm text-muted hover:bg-surface hover:text-heading focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
                   >
-                    npm<span class="sr-only"> (opens in a new tab)</span>
+                    {packageLink.label}<span class="sr-only"> (opens in a new tab)</span>
                   </a>
                 )}
               </nav>
             </details>
           )}
-          {npmUrl && (
+          {packageLink && (
             <a
               class="hidden rounded-xl border border-edge px-4 py-2 text-sm text-body hover:bg-surface-raised md:inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-              href={npmUrl}
+              href={packageLink.url}
               target="_blank"
               rel="noreferrer"
             >
-              npm<span class="sr-only"> (opens in a new tab)</span>
+              {packageLink.label}<span class="sr-only"> (opens in a new tab)</span>
             </a>
           )}
           <a
@@ -124,8 +139,8 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
         <div class="flex flex-col justify-between gap-4 md:flex-row">
           <p set:html={footerText} />
           <nav aria-label="Footer links" class="flex gap-4">
-            {npmUrl && (
-              <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href={npmUrl} target="_blank" rel="noreferrer">npm<span class="sr-only"> (opens in a new tab)</span></a>
+            {packageLink && (
+              <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href={packageLink.url} target="_blank" rel="noreferrer">{packageLink.label}<span class="sr-only"> (opens in a new tab)</span></a>
             )}
             <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href={repoUrl} target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
             <a class="rounded-sm hover:text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface" href="https://opensource.org/license/mit/" target="_blank" rel="noreferrer">License<span class="sr-only"> (opens in a new tab)</span></a>

@@ -21,4 +21,10 @@ describe('version alignment', () => {
   it('package name uses @mcptoolshop scope', () => {
     expect(pkg.name).toMatch(/^@mcptoolshop\//);
   });
+
+  it('pack files include lib, CHANGELOG, and the default favicon', () => {
+    expect(pkg.files).toContain('lib');
+    expect(pkg.files).toContain('CHANGELOG.md');
+    expect(pkg.files).toContain('assets/favicon.svg');
+  });
 });

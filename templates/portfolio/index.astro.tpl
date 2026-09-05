@@ -18,6 +18,8 @@ const allTags = [...new Set(config.items.flatMap((item) => item.tags ?? []))].so
   logoBadge={config.logoBadge}
   brandName={config.brandName}
   repoUrl={config.repoUrl}
+  packageUrl={config.packageUrl}
+  packageLabel={config.packageLabel}
   npmUrl={config.npmUrl}
   footerText={config.footerText}
 >

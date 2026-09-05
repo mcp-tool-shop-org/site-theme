@@ -12,6 +12,8 @@ import { config } from '../site-config';
   logoBadge={config.logoBadge}
   brandName={config.brandName}
   repoUrl={config.repoUrl}
+  packageUrl={config.packageUrl}
+  packageLabel={config.packageLabel}
   npmUrl={config.npmUrl}
   footerText={config.footerText}
 >

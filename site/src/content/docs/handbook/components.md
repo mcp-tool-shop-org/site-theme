@@ -11,13 +11,16 @@ The theme ships 17 Astro components across five categories: layout shells, conte
 
 ### BaseLayout
 
-Full page shell with a sticky header (logo badge, nav links, GitHub/npm buttons) and footer. Wrap all your page content inside this component.
+Full page shell with a sticky header (logo badge, nav links, GitHub / package buttons) and footer. Wrap all your page content inside this component. Extra `<head>` tags go in the named `head` slot.
 
 ```astro
 ---
 import BaseLayout from '@mcptoolshop/site-theme/components/BaseLayout.astro';
 ---
-<BaseLayout title="My Tool" description="..." logoBadge="MT" brandName="my-tool" repoUrl="..." footerText="MIT">
+<BaseLayout title="My Tool" description="..." logoBadge="MT" brandName="my-tool" repoUrl="..." packageUrl="https://pypi.org/project/my-tool/" footerText="MIT">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+  </Fragment>
   <!-- page content -->
 </BaseLayout>
 ```
@@ -32,7 +35,9 @@ import BaseLayout from '@mcptoolshop/site-theme/components/BaseLayout.astro';
 | `brandName`  | `string`           | yes      | Name displayed in header           |
 | `nav`        | `{ href, label }[]`| no       | Anchor nav links (defaults to `[]`) |
 | `repoUrl`    | `string`           | yes      | GitHub repo URL                    |
-| `npmUrl`     | `string`           | no       | npm package URL                    |
+| `packageUrl` | `string`           | no       | Primary registry listing (npm, PyPI, crates.io, …) |
+| `packageLabel` | `string`         | no       | Optional label override            |
+| `npmUrl`     | `string`           | no       | Deprecated alias for `packageUrl`  |
 | `footerText` | `string`           | yes      | Footer text (HTML allowed)         |
 
 ### DocLayout

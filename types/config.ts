@@ -3,7 +3,25 @@ import type { PortfolioSiteConfig } from './portfolio-config';
 import type { ProductSiteConfig } from './product-config';
 import type { ToolSiteConfig } from './tool-config';
 
-export interface DefaultSiteConfig {
+/** Registry listing link — shared by every SiteConfig variant. */
+export interface PackageLinkFields {
+  /**
+   * URL of the package's primary registry listing (npm, PyPI, crates.io, ...).
+   * Preferred over `npmUrl`.
+   */
+  packageUrl?: string;
+  /**
+   * Optional display label for the package link. When omitted, BaseLayout
+   * derives a label from the URL host (npm, PyPI, crates.io, ...).
+   */
+  packageLabel?: string;
+  /**
+   * @deprecated since 2.2.0 — use `packageUrl`. Kept as a back-compat alias.
+   */
+  npmUrl?: string;
+}
+
+export interface DefaultSiteConfig extends PackageLinkFields {
   /** Template discriminant (optional for backward compat) */
   template?: 'default';
   /** Page <title>, e.g. "@mcptoolshop/registry-stats" */
@@ -16,8 +34,6 @@ export interface DefaultSiteConfig {
   brandName: string;
   /** GitHub repo URL */
   repoUrl: string;
-  /** npm package URL (omit to hide npm header button) */
-  npmUrl?: string;
   /** Footer left-side text, e.g. "MIT Licensed" */
   footerText: string;
 

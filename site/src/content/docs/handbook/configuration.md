@@ -20,7 +20,7 @@ export const config: SiteConfig = {
   logoBadge: 'MT',
   brandName: 'my-tool',
   repoUrl: 'https://github.com/mcp-tool-shop-org/my-tool',
-  npmUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
+  packageUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
   footerText: 'MIT Licensed',
 
   hero: { /* ... */ },
@@ -38,7 +38,9 @@ export const config: SiteConfig = {
 | `logoBadge`   | `string` | yes      | 1-2 character header badge         |
 | `brandName`   | `string` | yes      | Name in header                     |
 | `repoUrl`     | `string` | yes      | GitHub repo URL                    |
-| `npmUrl`      | `string` | no       | npm package URL                    |
+| `packageUrl`  | `string` | no       | Primary registry listing (npm, PyPI, crates.io, …) |
+| `packageLabel`| `string` | no       | Optional package-button label      |
+| `npmUrl`      | `string` | no       | Deprecated alias for `packageUrl`  |
 | `footerText`  | `string` | yes      | Footer text (HTML allowed)         |
 
 ### Hero fields
@@ -242,10 +244,10 @@ See the [Components](/site-theme/handbook/components/#portfoliogrid) page for th
 
 ## SiteConfig union
 
-The exported `SiteConfig` type is a discriminated union of all four config types:
+The exported `SiteConfig` type is a discriminated union of the landing-page config types (the **app** template uses its own dashboard config, not this union):
 
 ```typescript
-type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig | PortfolioSiteConfig;
+type SiteConfig = DefaultSiteConfig | DocsSiteConfig | ProductSiteConfig | PortfolioSiteConfig | ToolSiteConfig;
 ```
 
 The `template` field acts as the discriminant. For the default template, `template` can be omitted entirely for backward compatibility.
