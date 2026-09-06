@@ -9,7 +9,7 @@ Get from zero to a running local site in under two minutes.
 
 ## Prerequisites
 
-- **Node.js** 18 or later
+- **Node.js** 20.16+ or 22 (Astro 7)
 - **npm** 9 or later
 - A GitHub repository (for deployment)
 

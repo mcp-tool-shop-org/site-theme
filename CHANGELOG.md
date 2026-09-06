@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Header/footer package button label is derived from the registry host instead of being hardcoded as "npm".
 - Landing page and handbook copy list all six templates (adds `tool`, and `portfolio` where it was missing).
 - Scaffolded `site/package.json` now pins `@mcptoolshop/site-theme` to the CLI's own version instead of a stale 1.x range.
+- New scaffolds and this repo's dogfood `site/` run **Astro 7.3** (patched XSS surface) with Starlight **0.42**. The handbook CLI wraps Starlight's sidebar `autogenerate` in `items: [...]` (required since 0.39). Existing consumers stay on `peerDependencies.astro >= 5`.
 - SECURITY.md and the README threat model cover the front-door MCP server and opt-in doctest execution.
 - Supported versions in SECURITY.md: 2.x.
 

@@ -503,7 +503,7 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Handbook',
-          autogenerate: { directory: 'handbook' },
+          items: [{ autogenerate: { directory: 'handbook' } }],
         },
       ],
       customCss: ['./src/styles/starlight-custom.css'],
@@ -636,7 +636,7 @@ sidebar:
       const sitePkg = JSON.parse(readFileSync(sitePkgPath, 'utf-8'));
       if (!sitePkg.dependencies) sitePkg.dependencies = {};
       if (!sitePkg.dependencies['@astrojs/starlight']) {
-        sitePkg.dependencies['@astrojs/starlight'] = '^0.37.6';
+        sitePkg.dependencies['@astrojs/starlight'] = '^0.42.0';
         writeFileSync(sitePkgPath, `${JSON.stringify(sitePkg, null, 2)}\n`, 'utf-8');
         info('Patched site/package.json (added @astrojs/starlight)');
       } else {
