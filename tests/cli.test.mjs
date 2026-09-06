@@ -181,7 +181,7 @@ describe('handbook', () => {
     expect(config).toContain('starlight');
     expect(config).toContain('disable404Route');
     expect(config).toContain('autogenerate');
-    expect(config).toContain('items: [{ autogenerate: { directory: \'handbook\' } }]');
+    expect(config).toContain("items: [{ autogenerate: { directory: 'handbook' } }]");
   });
 
   it('adds @astrojs/starlight to site/package.json', () => {
