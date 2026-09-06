@@ -17,7 +17,7 @@
 <p align="center">
   <a href="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/site-theme/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/@mcptoolshop/site-theme"><img src="https://img.shields.io/npm/v/@mcptoolshop/site-theme" alt="npm version" /></a>
-  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_portfolio_·_app-34d399" alt="Templates: default · docs · product · portfolio · app" />
+  <img src="https://img.shields.io/badge/templates-default_·_docs_·_product_·_portfolio_·_app_·_tool-34d399" alt="Templates: default · docs · product · portfolio · app · tool" />
   <a href="https://mcp-tool-shop-org.github.io/site-theme/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="MIT License" /></a>
 </p>
@@ -36,15 +36,16 @@
 
 ## Modèles
 
-Choisissez un modèle, créez une structure de base, construisez. Chaque modèle est livré avec des tests CI et prêt pour GitHub Pages.
+Choisissez un modèle, créez une structure, construisez. Chaque modèle est livré avec des tests CI et est prêt pour GitHub Pages.
 
 | Modèle | Description | Pages |
 |----------|-------------|-------|
-| **default** | Page d’accueil du projet avec une section principale, des fonctionnalités et des exemples de code | 1 |
+| **default** | Page d’accueil de projet avec une section d’introduction, des fonctionnalités et des exemples de code | 1 |
 | **docs** | Site de documentation avec une navigation dans la barre latérale et des sections de contenu | 1 |
-| **product** | Page d’accueil marketing avec les prix, les témoignages et les appels à l’action | 1 |
+| **product** | Page d’accueil marketing avec des tarifs, des témoignages et des appels à l’action | 1 |
 | **portfolio** | Grille de catalogue filtrable pour les outils, les projets ou toute collection | 1 |
-| **app** | Tableau de bord SaaS multi-tenant avec RBAC, indicateurs de fonctionnalités et routage des espaces de travail | 31 |
+| **app** | Tableau de bord SaaS multi-tenant avec RBAC, indicateurs de fonctionnalités et routage d’espace de travail | 31 |
+| **tool** | Page d’accueil de CLI / MCP / package npm avec des commandes, un flux de travail et une preuve | 1 |
 
 ```bash
 npx @mcptoolshop/site-theme list-templates            # see all options
@@ -58,7 +59,7 @@ npx @mcptoolshop/site-theme init --out ../other-repo   # scaffold into another d
 
 ## Démarrage rapide
 
-### Créez une nouvelle structure de site
+### Créez un nouveau site
 
 ```bash
 npx @mcptoolshop/site-theme init
@@ -66,7 +67,7 @@ cd site && npm install
 npm run dev
 ```
 
-Cela crée un répertoire `site/` avec Astro + Tailwind + thème configuré, ainsi qu’un flux de travail GitHub Pages. L’importation CSS, le chemin `@source` et le chemin de base sont tous préconfigurés – aucune configuration manuelle n’est nécessaire.
+Cela crée un répertoire `site/` avec Astro 7 + Tailwind + thème configuré, ainsi qu’un flux de travail GitHub Pages. L’importation CSS, le chemin `@source` et le chemin de base sont tous préconfigurés, aucun paramétrage manuel n’est nécessaire. Les utilisateurs existants d’Astro 5 ou 6 peuvent continuer à utiliser le site (`peerDependencies.astro` est `>=5`).
 
 ### Modifiez votre contenu
 
@@ -81,7 +82,7 @@ export const config: SiteConfig = {
   logoBadge: 'MT',
   brandName: 'my-tool',
   repoUrl: 'https://github.com/mcp-tool-shop-org/my-tool',
-  npmUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
+  packageUrl: 'https://www.npmjs.com/package/@mcptoolshop/my-tool',
   footerText: 'MIT Licensed',
 
   hero: { /* ... */ },
@@ -91,9 +92,9 @@ export const config: SiteConfig = {
 
 ---
 
-## Page d’entrée
+## Porte d’entrée
 
-`site-theme` affiche la « page d’entrée » **humaine** d’un dépôt ; `front-door` vérifie sa page d’entrée **agent/machine** (le fichier README, `AGENTS.md` et `llms.txt`) – les fichiers que les humains, les agents et les outils lisent en premier. Il effectue une vérification en priorité : il n’écrit pas de texte pour vous, mais prouve que votre texte est vrai et minimal.
+site-theme affiche la « porte d’entrée » **humaine** d’un dépôt ; **front-door** vérifie sa « porte d’entrée » **agent/machine** (le fichier README, `AGENTS.md` et `llms.txt`) que les humains, les agents et les outils lisent en premier. Il effectue une vérification en premier : il n’écrit pas de texte pour vous, il prouve que votre texte est vrai et minimal.
 
 ```bash
 npx @mcptoolshop/site-theme front-door verify                  # audit; exits 1 if the gate fails
@@ -104,7 +105,7 @@ npx @mcptoolshop/site-theme front-door eval                    # the verifier's 
 npx @mcptoolshop/site-theme front-door mcp                     # start the MCP server (agents call verify)
 ```
 
-Il dirige chaque affirmation documentée vers les preuves qui peuvent la corroborer : chemins/scripts/liens invalides, duplication entre AGENTS.md et README, manque de fiabilité du badge d’état, exemples d’importations par rapport aux véritables « exports » (et, avec l’option `--run-doctests`, vérification que les exemples se compilent et s’exécutent réellement), affirmations sur la provenance par rapport à une attestation réelle, et surcharge (longueur/lisibilité/limite de directives pour AGENTS.md). Les résultats sont classés par ordre de risque dans quatre catégories : Vérifié / Contredit / Manquant / Non vérifiable.
+Il dirige chaque affirmation documentée vers les preuves qui peuvent la corroborer : chemins/scripts/liens inexistants, duplication AGENTS.md↔README, manque de confiance dans les badges d’état, exemples d’importations par rapport au `exports` réel (et, avec `--run-doctests`, que les exemples se compilent et s’exécutent réellement), affirmations de provenance par rapport à une attestation réelle et surcharge (longueur/lisibilité/budget de directives pour `AGENTS.md`). Les résultats sont classés par ordre de risque dans quatre catégories : vérifié/contredit/manquant/non vérifiable.
 
 Utilisez-le de manière programmatique (shipcheck l’utilise) :
 
@@ -115,15 +116,15 @@ const scorecard = verify({ root: process.cwd() });
 if (!scorecard.gate.pass) process.exit(1);
 ```
 
-Ou laissez un agent l’appeler : `front-door mcp` lance un serveur MCP sans dépendances (stdio) qui expose `front_door_verify` — l’agent reçoit le même tableau de bord structuré.
+Ou laissez un agent l’appeler : `front-door mcp` démarre un serveur MCP sans dépendances (stdio) qui expose `front_door_verify` ; l’agent reçoit le même tableau de bord structuré.
 
-Consultez la [référence Front Door](docs/front-door.md) pour obtenir la liste complète des canaux et le standard.
+Consultez la [référence de la porte d’entrée](docs/front-door.md) pour obtenir la liste complète des canaux et la norme.
 
 ---
 
 ## Jetons de conception
 
-Le thème est livré avec des jetons de conception sémantiques via `styles/theme.css`. Les composants font référence à ces jetons au lieu d’utiliser des couleurs codées en dur, ce qui vous permet de redéfinir l’ensemble du thème en remplaçant quelques valeurs.
+Le thème fournit des jetons de conception sémantiques via `styles/theme.css`. Les composants font référence à ces jetons au lieu d’utiliser des couleurs codées en dur, de sorte que vous pouvez modifier l’apparence de l’ensemble du thème en remplaçant quelques valeurs.
 
 ### Jetons par défaut
 
@@ -135,7 +136,7 @@ Le thème est livré avec des jetons de conception sémantiques via `styles/them
 | `--color-edge` | `#27272a` | Bordures principales |
 | `--color-edge-subtle` | `#18181b` | Bordures des cartes/tableaux |
 | `--color-heading` | `#fafafa` | Titres, texte principal |
-| `--color-body` | `#e4e4e7` | Texte du corps/secondaire |
+| `--color-body` | `#e4e4e7` | Texte du corps/texte secondaire |
 | `--color-muted` | `#d4d4d8` | Texte atténué |
 | `--color-dim` | `#a1a1aa` | Étiquettes, descriptions |
 | `--color-accent` | `#34d399` | Indicateurs d’état |
@@ -167,7 +168,7 @@ Les jetons génèrent des utilitaires standard Tailwind v4 (`bg-surface`, `text-
 
 ## Composants
 
-Importez les composants individuellement depuis le package :
+Importez les composants individuellement à partir du package :
 
 ```astro
 ---
@@ -191,26 +192,39 @@ import FilterBar from '@mcptoolshop/site-theme/components/FilterBar.astro';
 ---
 ```
 
-Le thème est livré avec 17 composants Astro répartis en cinq catégories : modèles de mise en page, sections de contenu, blocs marketing, portfolio et documentation.
+Le thème fournit 17 composants Astro répartis dans cinq catégories : modèles de mise en page, sections de contenu, blocs marketing, portfolio et documentation.
 
 ### BaseLayout
 
-Modèle de page complète avec un en-tête fixe (badge du logo, liens de navigation, boutons GitHub/npm) et un pied de page.
+Modèle de page complète avec un en-tête fixe (badge de logo, liens de navigation, boutons GitHub/package) et un pied de page. L’emplacement nommé `head` est le point d’extension pour les balises `<head>` supplémentaires (image OG, JSON-LD, préconnexion).
 
 | Propriété | Type | Description |
 |------|------|-------------|
-| `title` | `string` | `<title>` de la page |
+| `title` | `string` | Titre de la page `<title>` |
 | `description` | `string` | Méta-description |
-| `logoBadge` | `string` | Badge de 1 à 2 caractères (par exemple, « RS ») |
+| `logoBadge` | `string` | Badge de 1 à 2 caractères (par exemple, `"RS"`) |
 | `brandName` | `string` | Nom dans l’en-tête |
-| `nav` | `{ href, label }[]` | Liens d’ancrage pour la navigation (facultatif, par défaut `[]`) |
+| `nav` | `{ href, label }[]` | Liens de navigation d’ancrage (facultatif, par défaut `[]`) |
 | `repoUrl` | `string` | URL du dépôt GitHub |
-| `npmUrl?` | `string` | URL du package npm |
+| `packageUrl?` | `string` | Référentiel principal (npm, PyPI, crates.io, …). L’étiquette est dérivée de l’hôte. |
+| `packageLabel?` | `string` | Remplacement facultatif de l’étiquette d’affichage pour `packageUrl` |
+| `npmUrl?` | `string` | Alias obsolète pour `packageUrl` |
 | `footerText` | `string` | Texte du pied de page (HTML autorisé) |
 
-### Hero
+```astro
+<BaseLayout {title} {description} {logoBadge} {brandName} {repoUrl} packageUrl={config.packageUrl} {footerText}>
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+  </Fragment>
+  <!-- page body -->
+</BaseLayout>
+```
 
-Section principale dégradée avec un badge d’état, un titre, des appels à l’action et des cartes de prévisualisation de code facultatives.
+### Héros
+
+Héros dégradé avec un badge d’état, un titre, des appels à l’action et des cartes de prévisualisation de code facultatives.
 
 | Propriété | Type | Description |
 |------|------|-------------|
@@ -220,11 +234,11 @@ Section principale dégradée avec un badge d’état, un titre, des appels à l
 | `description` | `string` | Description (HTML autorisé) |
 | `primaryCta` | `{ href, label }` | Bouton principal |
 | `secondaryCta` | `{ href, label }` | Bouton secondaire |
-| `previews` | `{ label, code }[]` | Cartes de prévisualisation du code (facultatif) |
+| `previews` | `{ label, code }[]` | Cartes de prévisualisation de code (facultatif) |
 
 ### Section
 
-Enveloppe de section avec un `id` d’ancrage, un titre et un sous-titre facultatif.
+Enveloppe de section avec un ancrage `id`, un titre et un sous-titre facultatif.
 
 ### FeatureGrid
 
@@ -236,7 +250,7 @@ Tableau bordé basé sur une grille. Propriétés : `columns: string[]`, `rows:
 
 ### CodeCardGrid
 
-Grille à 2 colonnes de cartes de blocs de code sombres. Propriétés : `cards: { title, code }[]`
+Grille de 2 colonnes de cartes de blocs de code sombres. Propriétés : `cards: { title, code }[]`
 
 ### ApiList
 
@@ -244,7 +258,7 @@ Cartes de référence d’API empilées sur toute la largeur. Propriétés : `a
 
 ### FilterBar
 
-Barre de recherche et de filtrage par étiquette côté client pour les grilles de portfolio. Propriétés : `tags: string[]`, `searchable?: boolean`, `searchPlaceholder?: string`
+Barre de recherche et de filtrage par balises côté client pour les grilles de portfolio. Propriétés : `tags: string[]`, `searchable?: boolean`, `searchPlaceholder?: string`
 
 ### PortfolioGrid
 
@@ -252,43 +266,43 @@ Grille de cartes configurable avec des badges d’état, un regroupement par cat
 
 ### DocLayout
 
-Mise en page à deux colonnes avec une barre latérale repliable et une zone de contenu principale. Utilisé par le modèle **docs**. Propriétés : `sidebar: SidebarGroup[]`, `currentPath: string`
+Mise en page à deux colonnes avec une barre latérale rétractable et une zone de contenu principale. Utilisé par le modèle **docs**. Propriétés : `sidebar: SidebarGroup[]`, `currentPath: string`
 
 ### Sidebar
 
-Liste de navigation groupée avec mise en évidence du lien actif. Propriétés : `groups: SidebarGroup[]`, `currentPath?: string`
+Liste de navigation groupée avec mise en évidence des liens actifs. Propriétés : `groups: SidebarGroup[]`, `currentPath?: string`
 
 ### TableOfContents
 
-Navigation des titres sur la page. Propriétés : `headings?: { text, id, depth }[]`
+Navigation dans la page via les titres. Propriétés : `headings?: { text, id, depth }[]`
 
-### ContentSection
+### Section de contenu
 
-Bloc de contenu lié à une ancre qui affiche du HTML via `set:html`. Propriétés : `id : string`, `title : string`, `content : string`
+Bloc de contenu lié à une ancre qui affiche du HTML via `set:html`. Propriétés : `id: string`, `title: string`, `content: string`
 
-### SocialProof
+### Preuve sociale
 
-Barre de statistiques avec un titre et des paires valeur/libellé. Propriétés : `headline ?: string`, `stats ?: { value, label }[]`
+Barre de statistiques avec un titre et des paires valeur/libellé. Propriétés : `headline?: string`, `stats?: { value, label }[]`
 
-### PricingGrid
+### Grille de prix
 
-Cartes tarifaires réactives avec une mise en évidence de la catégorie « Populaire ». Propriétés : `tiers ?: PricingTier[]`
+Cartes de niveaux de prix réactives avec la section « Populaire » mise en évidence. Propriétés : `tiers?: PricingTier[]`
 
-### TestimonialGrid
+### Grille de témoignages
 
-Cartes de citation à deux colonnes avec des initiales d’avatar par défaut. Propriétés : `testimonials ?: { quote, author, role, avatarUrl ?}[]`
+Cartes de citations à deux colonnes avec des initiales par défaut pour les avatars. Propriétés : `testimonials?: { quote, author, role, avatarUrl? }[]`
 
-### CtaBanner
+### Bannière d’appel à l’action
 
-Bannière d’appel à l’action en dégradé sur toute la largeur. Propriétés : `headline : string`, `description ?: string`, `cta : { href, label }`
+Bannière d’appel à l’action en dégradé sur toute la largeur. Propriétés : `headline: string`, `description?: string`, `cta: { href, label }`
 
 ---
 
 ## Types de sections
 
-Le tableau `sections` dans votre configuration prend en charge ces valeurs `kind` :
+Le tableau `sections` dans votre configuration prend en charge ces `kind` valeurs :
 
-| Kind | Composant | Propriétés |
+| Type | Composant | Propriétés |
 |------|-----------|-------|
 | `features` | FeatureGrid | `features: { title, desc }[]` |
 | `data-table` | DataTable | `columns: string[]`, `rows: string[][]` |
@@ -301,12 +315,12 @@ Les sections sont affichées dans l’ordre dans lequel elles apparaissent dans 
 
 ## Déploiement
 
-La CLI `init` crée automatiquement `.github/workflows/pages.yml`. Pour mettre en ligne :
+L’interface de ligne de commande `init` crée `.github/workflows/pages.yml` automatiquement. Pour mettre en ligne :
 
 1. Envoyez votre dépôt sur GitHub
 2. Accédez à votre dépôt → **Paramètres → Pages**
 3. Dans la section **Création et déploiement**, définissez **Source** sur **GitHub Actions**
-4. Effectuez une modification dans `site/` pour déclencher la première création
+4. Effectuez une modification quelconque dans `site/` pour déclencher la première création
 
 Votre site sera accessible à l’adresse `https://<org>.github.io/<repo>/`.
 
@@ -316,34 +330,34 @@ Votre site sera accessible à l’adresse `https://<org>.github.io/<repo>/`.
 
 | Aspect | Détail |
 |--------|--------|
-| **Data touched** | Fichiers de composants Astro, jetons CSS, configuration du site : uniquement au moment de la création |
-| **Data NOT touched** | Aucune donnée utilisateur, aucun état d’exécution, aucun traitement côté serveur |
-| **Permissions** | Lecture : fichiers source du projet. Écriture : sortie de la création vers site/dist/ |
-| **Network** | Aucun — générateur de site statique sans accès réseau en temps réel |
+| **Data touched** | Thème : composants Astro, jetons CSS, configuration du site au moment de la création. Front-door : README / AGENTS.md / llms.txt / CLAUDE.md sur le disque. |
+| **Data NOT touched** | Aucun compte utilisateur, aucun état de site en cours d’exécution, aucune analyse, aucune API tierce |
+| **Permissions** | Lecture : source du projet. Écriture : `init` écrit `site/` dans le répertoire de travail (ou `--out`). La vérification est en lecture seule, sauf si `--run-doctests`. |
+| **Network** | Désactivé par défaut. MCP utilise stdio. `--run-doctests` est l’exécution optionnelle d’un processus enfant ; il n’installe pas de packages et n’ouvre pas de réseau. |
 | **Telemetry** | Aucune donnée collectée ou envoyée |
 
-### Propriétés HTML (set:html)
+### Propriétés HTML (définir : html)
 
 Plusieurs propriétés de composants affichent du HTML brut via la directive `set:html` d’Astro. Si votre source de données n’est pas fiable (contenu généré par l’utilisateur, API externes), **nettoyez le HTML avant de le transmettre** à l’aide d’une bibliothèque telle que [DOMPurify](https://github.com/cure53/DOMPurify) ou [sanitize-html](https://github.com/apostrophecms/sanitize-html).
 
-| Composant | Propriétés utilisant set:html |
+| Composant | Propriétés utilisant définir : html |
 |-----------|---------------------|
 | BaseLayout | `footerText` |
-| Hero | `badge`, `description` |
+| Héros | `badge`, `description` |
 | CodeCardGrid | `cards[].code` |
 | ApiList | `apis[].signature`, `apis[].description` |
-| ContentSection | `content` |
+| Section de contenu | `content` |
 
 Consultez [SECURITY.md](SECURITY.md) pour signaler les vulnérabilités.
 
-## Scorecard
+## Tableau de bord
 
 | Catégorie | Score |
 |----------|-------|
 | A. Sécurité | 10 |
 | B. Gestion des erreurs | 10 |
 | C. Documentation pour les opérateurs | 10 |
-| D. Bonnes pratiques de déploiement | 10 |
+| D. Bonnes pratiques de publication | 10 |
 | E. Identité (souple) | 10 |
 | **Overall** | **50/50** |
 

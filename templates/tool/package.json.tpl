@@ -11,7 +11,7 @@
   "dependencies": {
     "@mcptoolshop/site-theme": "^{{THEME_VERSION}}",
     "@tailwindcss/vite": "^4.2.0",
-    "astro": "^5.17.0",
+    "astro": "^7.3.1",
     "tailwindcss": "^4.2.0"
   }
 }

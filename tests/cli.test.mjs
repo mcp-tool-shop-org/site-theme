@@ -181,12 +181,13 @@ describe('handbook', () => {
     expect(config).toContain('starlight');
     expect(config).toContain('disable404Route');
     expect(config).toContain('autogenerate');
+    expect(config).toContain("items: [{ autogenerate: { directory: 'handbook' } }]");
   });
 
   it('adds @astrojs/starlight to site/package.json', () => {
     run('handbook');
     const pkg = JSON.parse(readFileSync(join(TMP, 'site', 'package.json'), 'utf-8'));
-    expect(pkg.dependencies['@astrojs/starlight']).toBeDefined();
+    expect(pkg.dependencies['@astrojs/starlight']).toBe('^0.42.0');
   });
 
   it('patches secondaryCta in site-config.ts', () => {

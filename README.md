@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+  <a href="README.md">English</a> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
 <p align="center">
@@ -67,7 +67,7 @@ cd site && npm install
 npm run dev
 ```
 
-This creates a `site/` directory with Astro + Tailwind + theme wired up, plus a GitHub Pages workflow. The CSS import, `@source` path, and base path are all pre-configured — no manual setup needed.
+This creates a `site/` directory with Astro 7 + Tailwind + theme wired up, plus a GitHub Pages workflow. The CSS import, `@source` path, and base path are all pre-configured — no manual setup needed. Existing consumers on Astro 5 or 6 keep working (`peerDependencies.astro` is `>=5`).
 
 ### Edit your content
 
