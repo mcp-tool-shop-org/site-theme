@@ -159,9 +159,25 @@ jobs:
             exit 0
           fi
 
-          jq -n --argjson sub "$SUBMISSION" \
-            '{"event_type":"dogfood_submission","client_payload":{"submission":$sub}}' \
-            | gh api repos/dogfood-lab/testing-os/dispatches \
-              --input - --silent
+          set +e
+          ERR=$(
+            jq -n --argjson sub "$SUBMISSION" \
+              '{"event_type":"dogfood_submission","client_payload":{"submission":$sub}}' \
+              | gh api repos/dogfood-lab/testing-os/dispatches \
+                --input - --silent 2>&1
+          )
+          RC=$?
+          set -e
 
-          echo "Dispatched $RUN_ID to testing-os"
+          if [ "$RC" -eq 0 ]; then
+            echo "Dispatched $RUN_ID to testing-os"
+            exit 0
+          fi
+
+          echo "$ERR"
+          if echo "$ERR" | grep -qiE '401|Bad credentials|403'; then
+            echo "::warning::DOGFOOD_TOKEN was rejected (expired or revoked PAT). CLI scenario already passed; not failing the job. Rotate a fine-grained PAT with contents:write on dogfood-lab/testing-os and update the DOGFOOD_TOKEN secret."
+            exit 0
+          fi
+          echo "::error::Dispatch to testing-os failed (exit $RC)"
+          exit "$RC"
