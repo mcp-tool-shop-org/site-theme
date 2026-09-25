@@ -1,0 +1,940 @@
+{
+  "authorship": {
+    "parts": [],
+    "places": []
+  },
+  "boundaries": [
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": ".claude",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": ".github",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "assets",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": [
+          "tests"
+        ]
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "cli",
+      "qualifyingSourceCommits": 14,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": [
+          "site"
+        ]
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "components",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "docs",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": [
+          "components",
+          "tests"
+        ]
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "lib",
+      "qualifyingSourceCommits": 1,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "receipts",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "root",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "site",
+      "qualifyingSourceCommits": 2,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "styles",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "templates",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "tests",
+      "qualifyingSourceCommits": 14,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": [
+          "site"
+        ]
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "types",
+      "qualifyingSourceCommits": 3,
+      "rebaseline": null
+    }
+  ],
+  "churn": {
+    "definition": "commits is how many commits in the window touch the file, including merges and commits dropped from coupling. lines is added plus deleted in those commits.",
+    "files": [
+      {
+        "commits": 2,
+        "lines": 184,
+        "path": ".claude/design/site-theme-visual-os.md"
+      },
+      {
+        "commits": 2,
+        "lines": 204,
+        "path": ".claude/design/site-theme-visual-os.prompt.md"
+      },
+      {
+        "commits": 1,
+        "lines": 199,
+        "path": ".claude/design/site-theme-visual-os.standalone.html"
+      },
+      {
+        "commits": 1,
+        "lines": 100,
+        "path": ".github/workflows/ci-docs.yml"
+      },
+      {
+        "commits": 8,
+        "lines": 28,
+        "path": ".github/workflows/ci.yml"
+      },
+      {
+        "commits": 3,
+        "lines": 36,
+        "path": ".github/workflows/dogfood.yml"
+      },
+      {
+        "commits": 3,
+        "lines": 8,
+        "path": ".github/workflows/pages.yml"
+      },
+      {
+        "commits": 2,
+        "lines": 52,
+        "path": ".github/workflows/publish.yml"
+      },
+      {
+        "commits": 1,
+        "lines": 92,
+        "path": ".github/workflows/release.yml"
+      },
+      {
+        "commits": 2,
+        "lines": 10,
+        "path": ".gitignore"
+      },
+      {
+        "commits": 3,
+        "lines": 61,
+        "path": "AGENTS.md"
+      },
+      {
+        "commits": 8,
+        "lines": 86,
+        "path": "CHANGELOG.md"
+      },
+      {
+        "commits": 5,
+        "lines": 698,
+        "path": "README.es.md"
+      },
+      {
+        "commits": 5,
+        "lines": 590,
+        "path": "README.fr.md"
+      },
+      {
+        "commits": 5,
+        "lines": 862,
+        "path": "README.hi.md"
+      },
+      {
+        "commits": 5,
+        "lines": 552,
+        "path": "README.it.md"
+      },
+      {
+        "commits": 5,
+        "lines": 866,
+        "path": "README.ja.md"
+      },
+      {
+        "commits": 7,
+        "lines": 136,
+        "path": "README.md"
+      },
+      {
+        "commits": 5,
+        "lines": 560,
+        "path": "README.pt-BR.md"
+      },
+      {
+        "commits": 5,
+        "lines": 586,
+        "path": "README.zh.md"
+      },
+      {
+        "commits": 1,
+        "lines": 37,
+        "path": "SCORECARD.md"
+      },
+      {
+        "commits": 1,
+        "lines": 16,
+        "path": "SECURITY.md"
+      },
+      {
+        "commits": 1,
+        "lines": 16,
+        "path": "SHIP_GATE.md"
+      },
+      {
+        "commits": 1,
+        "lines": 5,
+        "path": "assets/favicon.svg"
+      },
+      {
+        "commits": 1,
+        "lines": 99,
+        "path": "atlas/README.md"
+      },
+      {
+        "commits": 1,
+        "lines": 58,
+        "path": "atlas/boundaries.yaml"
+      },
+      {
+        "commits": 1,
+        "lines": 436,
+        "path": "atlas/page.json"
+      },
+      {
+        "commits": 1,
+        "lines": 1319,
+        "path": "atlas/statistics.json"
+      },
+      {
+        "commits": 1,
+        "lines": 3533,
+        "path": "atlas/structure.json"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "biome.json"
+      },
+      {
+        "commits": 3,
+        "lines": 510,
+        "path": "cli/front-door/ABLATION.md"
+      },
+      {
+        "commits": 13,
+        "lines": 246,
+        "path": "cli/front-door/DESIGN.md"
+      },
+      {
+        "commits": 5,
+        "lines": 160,
+        "path": "cli/front-door/EVAL.md"
+      },
+      {
+        "commits": 3,
+        "lines": 435,
+        "path": "cli/front-door/ablation/agent.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 267,
+        "path": "cli/front-door/ablation/arms.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 570,
+        "path": "cli/front-door/ablation/corpus.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 372,
+        "path": "cli/front-door/ablation/execute.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 114,
+        "path": "cli/front-door/ablation/grade.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 483,
+        "path": "cli/front-door/ablation/index.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 354,
+        "path": "cli/front-door/ablation/pin.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 621,
+        "path": "cli/front-door/ablation/runner.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 630,
+        "path": "cli/front-door/ablation/stats.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 178,
+        "path": "cli/front-door/attestation.mjs"
+      },
+      {
+        "commits": 6,
+        "lines": 1024,
+        "path": "cli/front-door/doctest.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 222,
+        "path": "cli/front-door/eval.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 454,
+        "path": "cli/front-door/extract.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 166,
+        "path": "cli/front-door/generate.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 212,
+        "path": "cli/front-door/gherkin.mjs"
+      },
+      {
+        "commits": 14,
+        "lines": 533,
+        "path": "cli/front-door/index.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 585,
+        "path": "cli/front-door/mcp.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 228,
+        "path": "cli/front-door/minimality.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 186,
+        "path": "cli/front-door/model.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 328,
+        "path": "cli/front-door/references.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 128,
+        "path": "cli/front-door/report.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 84,
+        "path": "cli/front-door/scorecard.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 188,
+        "path": "cli/front-door/standard.mjs"
+      },
+      {
+        "commits": 5,
+        "lines": 208,
+        "path": "cli/front-door/verify.mjs"
+      },
+      {
+        "commits": 4,
+        "lines": 108,
+        "path": "cli/init.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 96,
+        "path": "components/BaseLayout.astro"
+      },
+      {
+        "commits": 1,
+        "lines": 4,
+        "path": "components/Hero.astro"
+      },
+      {
+        "commits": 1,
+        "lines": 44,
+        "path": "docs/design/site-theme-visual-os/README.md"
+      },
+      {
+        "commits": 1,
+        "lines": 199,
+        "path": "docs/design/site-theme-visual-os/site-theme.standalone.html"
+      },
+      {
+        "commits": 5,
+        "lines": 243,
+        "path": "docs/front-door.md"
+      },
+      {
+        "commits": 2,
+        "lines": 30,
+        "path": "docs/index.md"
+      },
+      {
+        "commits": 1,
+        "lines": 51,
+        "path": "lib/package-link.mjs"
+      },
+      {
+        "commits": 5,
+        "lines": 1223,
+        "path": "package-lock.json"
+      },
+      {
+        "commits": 10,
+        "lines": 55,
+        "path": "package.json"
+      },
+      {
+        "commits": 3,
+        "lines": 6618,
+        "path": "receipts/front-door-ablation.json"
+      },
+      {
+        "commits": 3,
+        "lines": 189,
+        "path": "receipts/front-door-ablation.md"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "site/astro.config.mjs"
+      },
+      {
+        "commits": 1,
+        "lines": 6076,
+        "path": "site/package-lock.json"
+      },
+      {
+        "commits": 1,
+        "lines": 4,
+        "path": "site/package.json"
+      },
+      {
+        "commits": 1,
+        "lines": 5,
+        "path": "site/public/favicon.svg"
+      },
+      {
+        "commits": 1,
+        "lines": 0,
+        "path": "site/public/og.png"
+      },
+      {
+        "commits": 1,
+        "lines": 11,
+        "path": "site/src/content/docs/handbook/components.md"
+      },
+      {
+        "commits": 1,
+        "lines": 10,
+        "path": "site/src/content/docs/handbook/configuration.md"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "site/src/content/docs/handbook/getting-started.md"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "site/src/content/docs/handbook/index.md"
+      },
+      {
+        "commits": 1,
+        "lines": 9,
+        "path": "site/src/content/docs/handbook/templates.md"
+      },
+      {
+        "commits": 1,
+        "lines": 10,
+        "path": "site/src/pages/index.astro"
+      },
+      {
+        "commits": 1,
+        "lines": 14,
+        "path": "site/src/site-config.ts"
+      },
+      {
+        "commits": 2,
+        "lines": 4,
+        "path": "templates/app/site/package.json"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "templates/default/index.astro.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 4,
+        "path": "templates/default/package.json.tpl"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "templates/docs/index.astro.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 4,
+        "path": "templates/docs/package.json.tpl"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "templates/portfolio/index.astro.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 4,
+        "path": "templates/portfolio/package.json.tpl"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
+        "path": "templates/product/index.astro.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 4,
+        "path": "templates/product/package.json.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 26,
+        "path": "templates/tool/astro.config.mjs.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 6,
+        "path": "templates/tool/global.css.tpl"
+      },
+      {
+        "commits": 3,
+        "lines": 162,
+        "path": "templates/tool/index.astro.tpl"
+      },
+      {
+        "commits": 4,
+        "lines": 38,
+        "path": "templates/tool/package.json.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 100,
+        "path": "templates/tool/pages.yml.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 200,
+        "path": "templates/tool/site-config.ts.tpl"
+      },
+      {
+        "commits": 2,
+        "lines": 10,
+        "path": "templates/tool/template.json"
+      },
+      {
+        "commits": 2,
+        "lines": 10,
+        "path": "templates/tool/tsconfig.json.tpl"
+      },
+      {
+        "commits": 1,
+        "lines": 36,
+        "path": "tests/base-layout.test.mjs"
+      },
+      {
+        "commits": 4,
+        "lines": 42,
+        "path": "tests/cli.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 180,
+        "path": "tests/front-door/ablation/agent.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 180,
+        "path": "tests/front-door/ablation/arms.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 150,
+        "path": "tests/front-door/ablation/cli.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 288,
+        "path": "tests/front-door/ablation/corpus.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 186,
+        "path": "tests/front-door/ablation/execute.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 96,
+        "path": "tests/front-door/ablation/grade.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 144,
+        "path": "tests/front-door/ablation/pin.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 231,
+        "path": "tests/front-door/ablation/runner.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 315,
+        "path": "tests/front-door/ablation/stats.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 86,
+        "path": "tests/front-door/attestation.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 106,
+        "path": "tests/front-door/cli.test.mjs"
+      },
+      {
+        "commits": 5,
+        "lines": 299,
+        "path": "tests/front-door/doctest.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 36,
+        "path": "tests/front-door/eval.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 188,
+        "path": "tests/front-door/extract.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 120,
+        "path": "tests/front-door/generate.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 88,
+        "path": "tests/front-door/gherkin.test.mjs"
+      },
+      {
+        "commits": 3,
+        "lines": 318,
+        "path": "tests/front-door/mcp.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 100,
+        "path": "tests/front-door/minimality.test.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 174,
+        "path": "tests/front-door/references.test.mjs"
+      },
+      {
+        "commits": 1,
+        "lines": 59,
+        "path": "tests/package-link.test.mjs"
+      },
+      {
+        "commits": 1,
+        "lines": 6,
+        "path": "tests/version-alignment.test.ts"
+      },
+      {
+        "commits": 4,
+        "lines": 32,
+        "path": "types/config.ts"
+      },
+      {
+        "commits": 1,
+        "lines": 6,
+        "path": "types/docs-config.ts"
+      },
+      {
+        "commits": 1,
+        "lines": 6,
+        "path": "types/portfolio-config.ts"
+      },
+      {
+        "commits": 1,
+        "lines": 6,
+        "path": "types/product-config.ts"
+      },
+      {
+        "commits": 3,
+        "lines": 142,
+        "path": "types/tool-config.ts"
+      }
+    ]
+  },
+  "confidence": {
+    "level": "low",
+    "reason": "fewer than 25 source files reach 10 revisions in the window"
+  },
+  "generatedAt": "2026-09-25T16:16:57.402Z",
+  "generatedFrom": {
+    "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0"
+  },
+  "pairs": [
+    {
+      "a": "CHANGELOG.md",
+      "b": "package.json",
+      "either": 8,
+      "shared": 4,
+      "strength": 0.5
+    },
+    {
+      "a": "cli/front-door/DESIGN.md",
+      "b": "cli/front-door/index.mjs",
+      "either": 13,
+      "shared": 8,
+      "strength": 0.615385
+    }
+  ],
+  "parameters": {
+    "appliedChangesetLimit": 50,
+    "changeset": 50,
+    "changesetFraction": 0.25,
+    "cohesionDrop": 0.2,
+    "couplingPopulation": "source",
+    "fallenShared": 3,
+    "floor": "fallen",
+    "floorHeld": false,
+    "floorTrigger": "revision-depth",
+    "headDate": "2026-09-25T05:17:53-04:00",
+    "inScopeFiles": 274,
+    "pinnedStart": null,
+    "priorFloor": "fallen",
+    "qualifyingCommits": 34,
+    "qualifyingMinimum": 30,
+    "revisions": 5,
+    "shared": 10,
+    "sharedFloorUsed": 3,
+    "since": "2026-03-29T09:17:53.000Z",
+    "sourceExtensions": [
+      ".js",
+      ".mjs",
+      ".cjs",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".mts",
+      ".cts",
+      ".py",
+      ".rs",
+      ".gd"
+    ],
+    "sourceFileReach": 20,
+    "sourceFileRise": 25,
+    "sourceFilesReachingStrongFloor": 1,
+    "strength": 0.5,
+    "windowDays": 180
+  },
+  "strengthDefinition": "strength is the shared qualifying commits divided by either. either is the number of qualifying commits that touch either file."
+}

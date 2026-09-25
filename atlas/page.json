@@ -1,0 +1,672 @@
+{
+  "authored": [
+    ".claude/",
+    ".github/",
+    "assets/",
+    "docs/",
+    "receipts/",
+    "root",
+    "site/",
+    "templates/"
+  ],
+  "breaks": [
+    {
+      "doors": 4,
+      "importedBy": [
+        "components"
+      ],
+      "importedByTests": [
+        "tests"
+      ],
+      "kind": "part",
+      "name": "lib",
+      "partLabel": "lib"
+    },
+    {
+      "doors": 4,
+      "importedBy": [
+        "site"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "types",
+      "partLabel": "types"
+    },
+    {
+      "doors": 2,
+      "importedBy": [
+        "site"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "components",
+      "partLabel": "components"
+    },
+    {
+      "doors": 5,
+      "importedBy": [],
+      "importedByTests": [
+        "tests"
+      ],
+      "kind": "part",
+      "name": "cli",
+      "partLabel": "cli"
+    },
+    {
+      "doors": 2,
+      "importedBy": [],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "tests",
+      "partLabel": "tests"
+    }
+  ],
+  "changes": {
+    "fileCounts": {
+      "added": 0,
+      "changed": 1,
+      "moved": 0,
+      "parts": 1,
+      "removed": 0
+    },
+    "items": [
+      {
+        "kind": "import-added",
+        "sentence": "components now imports lib.",
+        "subjects": [
+          "components",
+          "lib"
+        ]
+      },
+      {
+        "kind": "import-added",
+        "sentence": "the site now imports components.",
+        "subjects": [
+          "site",
+          "components"
+        ]
+      },
+      {
+        "kind": "import-added",
+        "sentence": "the site now imports types.",
+        "subjects": [
+          "site",
+          "types"
+        ]
+      },
+      {
+        "kind": "door",
+        "sentence": "CI (docs gate)'s pull request trigger now also names `.github/workflows/**`, `cli/**`, `components/**`, `package-lock.json`, `package.json`, `styles/**`, `templates/**`, `tests/**`, `tsconfig.json` and `types/**`.",
+        "subjects": [
+          ".github/workflows/ci-docs.yml"
+        ]
+      },
+      {
+        "kind": "door",
+        "sentence": "CI now also runs cli/init.mjs.",
+        "subjects": [
+          ".github/workflows/ci.yml",
+          "cli/init.mjs"
+        ]
+      },
+      {
+        "kind": "counts",
+        "sentence": "1 file changed content, across 1 part.",
+        "subjects": []
+      }
+    ],
+    "since": {
+      "commit": "dbaeea5281510146a198468862a0e76a9287e071",
+      "generatedAt": "2026-09-25T09:17:52.906Z"
+    },
+    "unchanged": false
+  },
+  "changesTogether": [],
+  "changesTogetherNote": [
+    "Window: 180 days; a pair counts from 3 shared commits, since 1 source file reaches 10 revisions; the floor rises to 10 when 25 do."
+  ],
+  "changesTogetherWithTests": 0,
+  "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0",
+  "defaultBranch": "main",
+  "derived": "14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 7 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.",
+  "doors": [
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "package.json",
+      "id": "package.json#@mcptoolshop/site-theme",
+      "kind": "package",
+      "landings": [],
+      "name": "@mcptoolshop/site-theme",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 24
+        },
+        {
+          "boundary": "components",
+          "depth": 0,
+          "files": 17
+        },
+        {
+          "boundary": "styles",
+          "depth": 0,
+          "files": 1
+        },
+        {
+          "boundary": "types",
+          "depth": 0,
+          "files": 5
+        },
+        {
+          "boundary": "lib",
+          "depth": 1,
+          "files": 1
+        }
+      ],
+      "runs": [
+        "types/config.ts",
+        "cli/front-door/index.mjs",
+        "cli/front-door/mcp.mjs",
+        "types/docs-config.ts",
+        "types/portfolio-config.ts",
+        "types/product-config.ts",
+        "components/ApiList.astro",
+        "components/BaseLayout.astro",
+        "components/CodeCardGrid.astro",
+        "components/ContentSection.astro",
+        "components/CtaBanner.astro",
+        "components/DataTable.astro",
+        "components/DocLayout.astro",
+        "components/FeatureGrid.astro",
+        "components/FilterBar.astro",
+        "components/Hero.astro",
+        "components/PortfolioGrid.astro",
+        "components/PricingGrid.astro",
+        "components/Section.astro",
+        "components/Sidebar.astro",
+        "components/SocialProof.astro",
+        "components/TableOfContents.astro",
+        "components/TestimonialGrid.astro",
+        "styles/theme.css"
+      ],
+      "runsCount": 24,
+      "runsMore": 21,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [
+        "types/"
+      ],
+      "checksCount": 1,
+      "checksMore": 0,
+      "file": ".github/workflows/ci.yml",
+      "id": ".github/workflows/ci.yml",
+      "landings": [],
+      "name": "CI",
+      "programs": [
+        "git"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 25
+        },
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 27
+        },
+        {
+          "boundary": "types",
+          "depth": 0,
+          "files": 5
+        },
+        {
+          "boundary": "lib",
+          "depth": 1,
+          "files": 1
+        }
+      ],
+      "runs": [
+        "cli/init.mjs",
+        "tests/"
+      ],
+      "runsCount": 2,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": [
+        "on a pull request to main touching 11 paths",
+        "on a push to main touching 11 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": ".github/workflows/pages.yml",
+      "id": ".github/workflows/pages.yml",
+      "landings": [],
+      "name": "Deploy site to GitHub Pages",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "site",
+          "depth": 0,
+          "files": 5
+        },
+        {
+          "boundary": "components",
+          "depth": 1,
+          "files": 7
+        },
+        {
+          "boundary": "types",
+          "depth": 1,
+          "files": 5
+        },
+        {
+          "boundary": "lib",
+          "depth": 2,
+          "files": 1
+        }
+      ],
+      "runs": [
+        "site/astro.config.mjs",
+        "site/src/"
+      ],
+      "runsCount": 2,
+      "runsMore": 0,
+      "sends": [
+        "deploys the site"
+      ],
+      "stages": [],
+      "triggers": [
+        "on a push to main touching 2 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [
+        "types/"
+      ],
+      "checksCount": 1,
+      "checksMore": 0,
+      "file": ".github/workflows/release.yml",
+      "id": ".github/workflows/release.yml",
+      "landings": [],
+      "name": "Release",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 27
+        },
+        {
+          "boundary": "types",
+          "depth": 0,
+          "files": 5
+        },
+        {
+          "boundary": "cli",
+          "depth": 1,
+          "files": 24
+        },
+        {
+          "boundary": "lib",
+          "depth": 1,
+          "files": 1
+        }
+      ],
+      "runs": [
+        "tests/"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [
+        "publishes to npm"
+      ],
+      "stages": [],
+      "triggers": [
+        "when a release is published",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": ".github/workflows/dogfood.yml",
+      "held": [
+        {
+          "checks": [],
+          "checksMore": 0,
+          "lead": "on main",
+          "runs": [
+            "cli/init.mjs"
+          ],
+          "runsMore": 0,
+          "when": "on main"
+        }
+      ],
+      "id": ".github/workflows/dogfood.yml",
+      "landings": [],
+      "name": "Dogfood",
+      "programs": [
+        "git"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 25
+        }
+      ],
+      "runs": [],
+      "runsCount": 0,
+      "runsMore": 0,
+      "sends": [
+        "sends a dispatch to dogfood-lab/testing-os on main"
+      ],
+      "stages": [],
+      "triggers": [
+        "on a push to main touching 4 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "echoOnly": true,
+      "file": ".github/workflows/ci-docs.yml",
+      "id": ".github/workflows/ci-docs.yml",
+      "landings": [],
+      "name": "CI (docs gate)",
+      "pushes": false,
+      "reach": [],
+      "runs": [],
+      "runsCount": 0,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": [
+        "on a pull request to main except when only the 10 paths it ignores change",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "package.json",
+      "id": "package.json#site-theme",
+      "kind": "command",
+      "landings": [],
+      "name": "site-theme",
+      "programs": [
+        "git"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 25
+        }
+      ],
+      "runs": [
+        "cli/init.mjs"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    }
+  ],
+  "duplicates": [],
+  "duplicatesLead": null,
+  "duplicatesNote": [],
+  "edges": [
+    {
+      "from": "components",
+      "fromTests": false,
+      "to": "lib"
+    },
+    {
+      "from": "tests",
+      "fromTests": true,
+      "to": "cli"
+    },
+    {
+      "from": "tests",
+      "fromTests": true,
+      "to": "lib"
+    }
+  ],
+  "generated": [],
+  "generatedAt": "2026-09-25T16:16:57.402Z",
+  "limits": [
+    "5 writes and 2 reads use paths built at run time and are not named here.",
+    "12 writes and 44 reads go to the directory the command is run in, not to this repository.",
+    "7 writes and 2 reads go to a temporary directory, not to this repository.",
+    "6 reads go to the directory the command is run in, a temporary directory or a path their caller passes, not to this repository.",
+    "5 reads go to the directory the command is run in or a temporary directory, not to this repository.",
+    "2 writes and 2 reads go to a path their caller passes, not to this repository.",
+    "7 commands are built at run time and not followed, 2 of them in tests.",
+    "Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window."
+  ],
+  "mainDoor": "package.json#@mcptoolshop/site-theme",
+  "partLabels": {
+    ".claude": ".claude",
+    ".github": ".github",
+    "assets": "assets",
+    "cli": "cli",
+    "components": "components",
+    "docs": "docs",
+    "lib": "lib",
+    "receipts": "receipts",
+    "root": "the repository root",
+    "site": "the site",
+    "styles": "styles",
+    "templates": "templates",
+    "tests": "tests",
+    "types": "types"
+  },
+  "parts": 14,
+  "readers": [],
+  "repo": "mcp-tool-shop-org/site-theme",
+  "sequences": [
+    {
+      "entry": "main",
+      "file": "cli/front-door/index.mjs",
+      "inner": [
+        {
+          "file": "cli/front-door/verify.mjs",
+          "name": "verify",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`verify`",
+          "steps": [
+            {
+              "name": "finding",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`finding`"
+            },
+            {
+              "name": "checkReferences",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`checkReferences`"
+            },
+            {
+              "name": "checkMinimality",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`checkMinimality`"
+            },
+            {
+              "name": "checkDoctest",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`checkDoctest`"
+            },
+            {
+              "name": "checkAttestation",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`checkAttestation`"
+            },
+            {
+              "name": "checkGherkin",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`checkGherkin`"
+            },
+            {
+              "name": "buildScorecard",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`buildScorecard`"
+            }
+          ]
+        },
+        {
+          "file": "cli/front-door/ablation/index.mjs",
+          "name": "runAblationCli",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`runAblationCli`",
+          "steps": [
+            {
+              "name": "syntheticCorpus",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`syntheticCorpus`"
+            },
+            {
+              "name": "definePin",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`definePin`"
+            },
+            {
+              "name": "makeNodeExecutor",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`makeNodeExecutor`"
+            },
+            {
+              "name": "runAblation",
+              "part": "cli",
+              "partLabel": "cli",
+              "phrase": "`runAblation`"
+            }
+          ]
+        }
+      ],
+      "part": "cli",
+      "partLabel": "cli",
+      "phrase": "`main`",
+      "steps": [
+        {
+          "name": "verify",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`verify`"
+        },
+        {
+          "name": "renderJson",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`renderJson`"
+        },
+        {
+          "name": "renderHuman",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`renderHuman`"
+        },
+        {
+          "name": "generate",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`generate`"
+        },
+        {
+          "name": "renderStandard",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`renderStandard`"
+        },
+        {
+          "name": "runEval",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`runEval`"
+        },
+        {
+          "name": "runAblationCli",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`runAblationCli`"
+        },
+        {
+          "name": "startServer",
+          "part": "cli",
+          "partLabel": "cli",
+          "phrase": "`startServer`"
+        }
+      ]
+    }
+  ],
+  "startDoor": ".github/workflows/ci.yml",
+  "startHere": [
+    ".github/workflows/ci.yml",
+    "cli/init.mjs",
+    "cli/front-door/index.mjs",
+    "cli/front-door/verify.mjs",
+    "cli/front-door/references.mjs",
+    "cli/front-door/extract.mjs"
+  ],
+  "summary": null,
+  "summaryFrom": null,
+  "testFiles": 27,
+  "testedBy": {
+    "cli": 20,
+    "lib": 1,
+    "types": 0
+  },
+  "unnamedWrites": 5,
+  "unread": [],
+  "unreadCode": [
+    "styles"
+  ],
+  "unreadCodeUses": "styles holds only CSS files, which this map does not read, so what uses it cannot be seen.",
+  "unreadFiles": 0,
+  "unreadNote": [],
+  "untested": [
+    {
+      "part": "types",
+      "partLabel": "types",
+      "testedBy": 0
+    }
+  ],
+  "untestedNote": [
+    "styles holds only CSS files, which this map does not read, so whether a test touches it cannot be seen."
+  ],
+  "written": 0
+}
