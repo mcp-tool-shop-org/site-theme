@@ -1,0 +1,3533 @@
+{
+  "boundaries": [
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "158a6deefff6a3a4089cca4f97ea47273b15f8482efe18850a1e4c2b84fb56dc",
+          "path": ".claude/README.md"
+        },
+        {
+          "hash": "05e1f0a90a17d12f4729e50b2ace433c64945ec18ef20507464974411cbd5974",
+          "path": ".claude/agents/core/critic-reviewer.md"
+        },
+        {
+          "hash": "b5d7b60df2ca77ef7a7908c542899468ac1614f4db3938f19a6ea52c3f24b9ff",
+          "path": ".claude/agents/core/orchestrator.md"
+        },
+        {
+          "hash": "6b58823b4ae517cf6e4018ab30cc82c20628c840ebe26df98a059f6ad5c18466",
+          "path": ".claude/agents/core/product-strategist.md"
+        },
+        {
+          "hash": "ef938c623398d1fbd0bfb9d7e8c80f99915a6122d7e041881a07f36229d41336",
+          "path": ".claude/agents/design/brand-guardian.md"
+        },
+        {
+          "hash": "8a8682c7ba069c9eecc988dfb533f68d37a47e0df4ad35ceb276de6855b25af5",
+          "path": ".claude/agents/design/ui-designer.md"
+        },
+        {
+          "hash": "adfa35c595d1e24451932c8aa461f24e99ae0f99864b8925f9c599c7d0236a2c",
+          "path": ".claude/agents/engineering/backend-engineer.md"
+        },
+        {
+          "hash": "6a7dee87f0f23c2bdc365190044659828f72a11c759389e23d0f130918ca5d82",
+          "path": ".claude/agents/engineering/dependency-auditor.md"
+        },
+        {
+          "hash": "e5a448d0f63a7f4b4687e76522effb140a509d008e23b8343fc6fde802460076",
+          "path": ".claude/agents/engineering/frontend-developer.md"
+        },
+        {
+          "hash": "756a5ce28d3876bc7f3f2d5a4cb018efc00b9e00cf31f1387cfabd159488565c",
+          "path": ".claude/agents/engineering/performance-engineer.md"
+        },
+        {
+          "hash": "4934e5b788900047d041afe4a7df2efb297303991c4ad20191a2985d6bd7cf49",
+          "path": ".claude/agents/engineering/refactor-engineer.md"
+        },
+        {
+          "hash": "b39c7f41260e17585d70b2030588af7592d71f6e856b52d8db26e766121c5fef",
+          "path": ".claude/agents/engineering/security-reviewer.md"
+        },
+        {
+          "hash": "5654a22c5e4830bf0509f1c9fbe2ef5988369dc79263894df506e464209cd82b",
+          "path": ".claude/agents/engineering/test-engineer.md"
+        },
+        {
+          "hash": "4ceadb3eeef43c85465b4fa8cebdbcbf9020d340dd14e27a78800f0a4c43c514",
+          "path": ".claude/agents/growth/community-manager.md"
+        },
+        {
+          "hash": "9b8e8a756b088be95c3120b9c4b6af132ee2987e77e21cd42da7396a0f5e7509",
+          "path": ".claude/agents/growth/content-strategist.md"
+        },
+        {
+          "hash": "c0888c37c4656c7f0ea888f45380462a9454c783718e36d37c6a7526fa1a031f",
+          "path": ".claude/agents/growth/launch-strategist.md"
+        },
+        {
+          "hash": "79dd9e3a6924141a8a36d61271194934dbfe96d091d9d640ff7d3d8737f7e805",
+          "path": ".claude/agents/growth/support-triage-lead.md"
+        },
+        {
+          "hash": "f222d010a977088716b08f26953a0f3146781a8d1e89e4c05ddf83867730554c",
+          "path": ".claude/agents/marketing/launch-copywriter.md"
+        },
+        {
+          "hash": "daf51f6c64ee2d71eb0b1d139533a5a9ef5fc161c372dc0ab01cb67da527a872",
+          "path": ".claude/agents/product/feedback-synthesizer.md"
+        },
+        {
+          "hash": "e14f75ef3ea0e04af8a2efd1fc1071740f42528b52345a61eb07c0f375738a3f",
+          "path": ".claude/agents/product/information-architect.md"
+        },
+        {
+          "hash": "5400c554716df37778f4c34a9a7fe9f369960382bd35daa9390ba0bc49cb9f6d",
+          "path": ".claude/agents/product/roadmap-prioritizer.md"
+        },
+        {
+          "hash": "f2c59b2402e5599d32a5a887e535c7c47dc243b585d31096ddcaaffcbb376859",
+          "path": ".claude/agents/product/spec-writer.md"
+        },
+        {
+          "hash": "9b55d050caf98d078888c0c0630fcf14b10c2fbf8ed22328256948807e626763",
+          "path": ".claude/agents/research/competitive-analyst.md"
+        },
+        {
+          "hash": "1c1ae32dbfdcf09c94c36fce488875d7df268ea6dbe132fda2d2b9b81ae4c25c",
+          "path": ".claude/agents/research/trend-researcher.md"
+        },
+        {
+          "hash": "a125d21ad9fb1551850ba00119e6497d514e15ecfb98235dc07ed98cd8c036e8",
+          "path": ".claude/agents/research/user-interview-synthesizer.md"
+        },
+        {
+          "hash": "865d237b66de59ec57c19605701cd9c7d4f3ac4df3e6ec731424ed62ef0d0ad4",
+          "path": ".claude/agents/research/ux-researcher.md"
+        },
+        {
+          "hash": "c7fa7f242310095eaa31288587f6077b40641254c8d463bc3a3f0a99d4cbeaa9",
+          "path": ".claude/agents/treatment/coverage-auditor.md"
+        },
+        {
+          "hash": "ef14326ed0d7dd1cec25e19ec1f2f2e245e1db59907768ffaaedba78ff5a31a1",
+          "path": ".claude/agents/treatment/deployment-verifier.md"
+        },
+        {
+          "hash": "366904341a80d44d761dcfc30e79157f6754f1f2fd70ca4c16518369773888b1",
+          "path": ".claude/agents/treatment/docs-architect.md"
+        },
+        {
+          "hash": "5b9c83dbcb24b984a372b3edd3aac6d65b6d14a7910bd149721bf6aaefaa56a0",
+          "path": ".claude/agents/treatment/metadata-curator.md"
+        },
+        {
+          "hash": "e1756416f5d0932f265c139e9cfb3621a18bb714d697dfee9347bb53e0bdab53",
+          "path": ".claude/agents/treatment/release-engineer.md"
+        },
+        {
+          "hash": "26ed181415209aa3e404334290683bb75d682d853512b5b07f0199463fc3b05a",
+          "path": ".claude/agents/treatment/repo-researcher.md"
+        },
+        {
+          "hash": "00428fc7e4c776815099c1160932383c39acc33b8a55f3cf09aaf0d636de7929",
+          "path": ".claude/agents/treatment/repo-translator.md"
+        },
+        {
+          "hash": "4444cbfc3e38534fa5dd17c56d2e7f1ff7a80d0bdc61e553e293ab7bbbcd2925",
+          "path": ".claude/context/brand-rules.md"
+        },
+        {
+          "hash": "594a12a9fb7c96f3d9d782121ee00308a591557911c78808e18d3b5b5cd68f38",
+          "path": ".claude/context/current-priorities.md"
+        },
+        {
+          "hash": "34d68ff21b6919b530f57f6a242bcb50c9d1d892671bdfd353c3c2c2953bf459",
+          "path": ".claude/context/product-brief.md"
+        },
+        {
+          "hash": "a910bffa07a0eade97909b53e7ae7a452a47f9b1d13e2011d100c928a27184ea",
+          "path": ".claude/context/repo-map.md"
+        },
+        {
+          "hash": "01550fda5ca62326cd34ddb5c6afa8942837b74de6d083aceef8d8848c2dee84",
+          "path": ".claude/design/site-theme-visual-os.md"
+        },
+        {
+          "hash": "064cdc8180fb26db355b5ae7318c98411342665c55cf1c85d0e01b7076501f30",
+          "path": ".claude/design/site-theme-visual-os.prompt.md"
+        },
+        {
+          "hash": "4f9c80999ff68916dec817c3e04fee379f0ba0c81c0290c7986f7a3a1a542248",
+          "path": ".claude/design/site-theme-visual-os.standalone.html"
+        },
+        {
+          "hash": "4b11b65a09d8ac2915f85c8eab1630931ff01fe68eb751fa01e9971ca14b38ca",
+          "path": ".claude/examples/feature-packet.md"
+        },
+        {
+          "hash": "0350e2bf29256b79863fab5ca28851edaf125c487d64059a26c8a1a6f2336ca4",
+          "path": ".claude/examples/identity-packet.md"
+        },
+        {
+          "hash": "4b51704a87c3c0db31294ccdc992c256e9102c907a572340aac452e275561c29",
+          "path": ".claude/examples/integration-packet.md"
+        },
+        {
+          "hash": "e82dc44673009b0ccb58721bd5c3e83d5fba5f4d7a05071dff5a8f30e8019625",
+          "path": ".claude/handbook.md"
+        },
+        {
+          "hash": "1fd5df3c7ac78a9e816b4c6c89615882542ee0fd223b729303a3ab75604bcd81",
+          "path": ".claude/policy/done-definition.md"
+        },
+        {
+          "hash": "3f55fc37123f26446b7346f84e1c999fc7d9cc37c849ff7475f884867e6f9d58",
+          "path": ".claude/policy/escalation-rules.md"
+        },
+        {
+          "hash": "2404f9505ed427f41a04df566f872af5b05232274c8b2d487a430e6e686fae1b",
+          "path": ".claude/policy/routing-rules.md"
+        },
+        {
+          "hash": "d3beccab15e5f6edb7e08a4a23223a7ae7b67a5fc42051bf56b683312fcbd34b",
+          "path": ".claude/policy/tool-permissions.md"
+        },
+        {
+          "hash": "035499e31539c656b063078a84025b8c32d01d29177d0447e98a937350388d1f",
+          "path": ".claude/schemas/handoff.md"
+        },
+        {
+          "hash": "4d2320f4714f012170a85eb1d713cd45ee81d0cd820e44566b2e5bbfab236b3a",
+          "path": ".claude/schemas/review-verdict.md"
+        },
+        {
+          "hash": "4e005a5c28cf2afaf71644a8bb72e479af1078c4694dc8a1b17ff2bf95c7d854",
+          "path": ".claude/schemas/task-packet.md"
+        },
+        {
+          "hash": "1eaec4e9122993393576658d12cd7c5ce23d14d8723c176344dbd35327a3ac59",
+          "path": ".claude/workflows/fix-bug.md"
+        },
+        {
+          "hash": "18d187df95b192da63b71b6e25d6a04609a772b51c79a19ce22769b018fbc754",
+          "path": ".claude/workflows/full-treatment.md"
+        },
+        {
+          "hash": "24d942d7920f4afacdbf12a4d9c38bf5d0020ae78dd1abde4b3fc93ce6b26444",
+          "path": ".claude/workflows/launch-update.md"
+        },
+        {
+          "hash": "6724713d8efebe2f7a82e11c140e96afcf26af5907111efd4c8850210a0e9a08",
+          "path": ".claude/workflows/protect-scaffold-contract.md"
+        },
+        {
+          "hash": "3077eb58698cbb81d3a998140a5b5b08d1eda2780f784841ce7d605c8d9de319",
+          "path": ".claude/workflows/ship-feature.md"
+        }
+      ],
+      "globs": [
+        ".claude/**"
+      ],
+      "importConfidence": "full",
+      "name": ".claude",
+      "origin": "authored",
+      "role": "docs",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "a8c44cafc121b0b6986a01d0d4a3afaba4764dd7a3dd27310727d43e4d4d200f",
+          "path": ".github/workflows/ci-docs.yml"
+        },
+        {
+          "hash": "37beeaaaa158d3f39ce385aa76d5ae89d6720ec6895fe9192850c8b55c069fab",
+          "path": ".github/workflows/ci.yml"
+        },
+        {
+          "hash": "f10ea24f6952a0f707d9f1f14cd44a8d6c3d1fec13f237d9cbd7c264377fd169",
+          "path": ".github/workflows/dogfood.yml"
+        },
+        {
+          "hash": "93dc62c74dfddae3a1dc3291b236a3e266cc0f9963100f2967357b3f3833b310",
+          "path": ".github/workflows/pages.yml"
+        },
+        {
+          "hash": "3726794018888b9422547e4fa437fec92facfd7ea7fee59240f7f5e21545be1b",
+          "path": ".github/workflows/release.yml"
+        }
+      ],
+      "globs": [
+        ".github/**"
+      ],
+      "importConfidence": "full",
+      "name": ".github",
+      "origin": "authored",
+      "role": "config",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "db3c76ae1d22efa9f6c9a1cf3d8b1f45a5e94210d34e4b518006018e7d3d097d",
+          "path": "assets/favicon.svg"
+        },
+        {
+          "hash": "7cb0c846a53f56eb808aa241eb36948c472dbc38a42824d5e68b1167e8cbefad",
+          "path": "assets/preview.png"
+        }
+      ],
+      "globs": [
+        "assets/**"
+      ],
+      "importConfidence": "full",
+      "name": "assets",
+      "origin": "authored",
+      "role": "data",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 2,
+      "dynamicSpawns": 5,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 5,
+      "entryPoints": [
+        "cli/init.mjs"
+      ],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "1b9eba63a9d97c6e153ab56b22814ad5f539888a733563664b721715c56ae2c5",
+          "path": "cli/front-door/ABLATION.md"
+        },
+        {
+          "hash": "9515124d0b674dec14cc3a876eb587aaab8519d310383436805e99f2f28a6ac7",
+          "path": "cli/front-door/DESIGN.md"
+        },
+        {
+          "hash": "18e9773ec99456ad5ad7d496cb91b1d0a656d7b5d021133364b545265c903a18",
+          "path": "cli/front-door/EVAL.md"
+        },
+        {
+          "exports": [
+            "lookupAgent",
+            "makeCommandAgent"
+          ],
+          "hash": "6e72f59ecc1a3c5f8200df6a5fabc61ca57d2fdfcdf384c642c1ddee2f30c961",
+          "importsFiles": [
+            "cli/front-door/ablation/execute.mjs"
+          ],
+          "path": "cli/front-door/ablation/agent.mjs"
+        },
+        {
+          "exports": [
+            "buildArmWorkspace",
+            "matchesAny",
+            "stripDocs"
+          ],
+          "hash": "9bb0838c87d8bcf893d02ff5e7fcc9cc3fbfa61a070ea19b541844b8039e8c8f",
+          "path": "cli/front-door/ablation/arms.mjs"
+        },
+        {
+          "exports": [
+            "parseSweBenchVerified",
+            "syntheticCorpus"
+          ],
+          "hash": "fe35a9294353eaa0df6d4dd53ffed00cc772886e14b8aaf6e4b7a4f42dd37383",
+          "path": "cli/front-door/ablation/corpus.mjs"
+        },
+        {
+          "exports": [
+            "makeCommandExecutor",
+            "makeNodeExecutor",
+            "materialize",
+            "parseMarkers",
+            "readWorkspace"
+          ],
+          "hash": "ca2ecf176d8e7c2579dec4925b60059ca77b3efbd1a5e52708f7ae367b118126",
+          "path": "cli/front-door/ablation/execute.mjs"
+        },
+        {
+          "exports": [
+            "gradeOutcome"
+          ],
+          "hash": "34245388e0599a3b85d3c4b6f02127911a505f095dd00d9a3922957f26a0d0d9",
+          "path": "cli/front-door/ablation/grade.mjs"
+        },
+        {
+          "entry": "runAblationCli",
+          "entryRule": 4,
+          "exports": [
+            "runAblationCli"
+          ],
+          "hash": "552f5ab40c28ba48ead7244ce6ab889a60f77c2e552bad556663d892b5469295",
+          "importsFiles": [
+            "cli/front-door/ablation/agent.mjs",
+            "cli/front-door/ablation/corpus.mjs",
+            "cli/front-door/ablation/execute.mjs",
+            "cli/front-door/ablation/pin.mjs",
+            "cli/front-door/ablation/runner.mjs"
+          ],
+          "path": "cli/front-door/ablation/index.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 125,
+                  "name": "syntheticCorpus",
+                  "target": {
+                    "file": "cli/front-door/ablation/corpus.mjs"
+                  }
+                },
+                {
+                  "line": 130,
+                  "name": "definePin",
+                  "target": {
+                    "file": "cli/front-door/ablation/pin.mjs"
+                  }
+                },
+                {
+                  "line": 139,
+                  "name": "makeNodeExecutor",
+                  "target": {
+                    "file": "cli/front-door/ablation/execute.mjs"
+                  }
+                },
+                {
+                  "line": 140,
+                  "name": "runAblation",
+                  "target": {
+                    "file": "cli/front-door/ablation/runner.mjs"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "runAblationCli"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "assertArmsSharePin",
+            "definePin",
+            "pinHash"
+          ],
+          "hash": "77eb00853baeac3e557b1d7a12c6507af2f4e47cc418de7e2ddb2b01d87fc593",
+          "path": "cli/front-door/ablation/pin.mjs"
+        },
+        {
+          "exports": [
+            "runAblation"
+          ],
+          "hash": "40f5ac1cda7f59d8cf9efe0287c4bedf3529ad812a975d2747dfab317a31c9d4",
+          "importsFiles": [
+            "cli/front-door/ablation/arms.mjs",
+            "cli/front-door/ablation/grade.mjs",
+            "cli/front-door/ablation/pin.mjs",
+            "cli/front-door/ablation/stats.mjs"
+          ],
+          "path": "cli/front-door/ablation/runner.mjs"
+        },
+        {
+          "exports": [
+            "bootstrapMeanCI",
+            "lgamma",
+            "mcnemar",
+            "mcnemarPower",
+            "mcnemarSampleSize",
+            "mulberry32",
+            "normalCdf",
+            "probit",
+            "wilsonInterval"
+          ],
+          "hash": "25969f935c32a69969c1242adc7717b21727646da19eb68c3ef129cf812dee83",
+          "path": "cli/front-door/ablation/stats.mjs"
+        },
+        {
+          "exports": [
+            "checkAttestation"
+          ],
+          "hash": "ef2859686cdc5ad45469183aab6917c6f8ede1bf53be79b44836915b38ed7b1c",
+          "importsFiles": [
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/attestation.mjs"
+        },
+        {
+          "exports": [
+            "checkDoctest"
+          ],
+          "hash": "006bc94693a2890c288f929191a9289f4df34f6db191d33028b385a6bd79a46e",
+          "importsFiles": [
+            "cli/front-door/extract.mjs",
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/doctest.mjs"
+        },
+        {
+          "exports": [
+            "runEval"
+          ],
+          "hash": "6c580e76f5ebc3237ac7657e2248f0747052d97a6c6916b39971cc268b5eac26",
+          "importsFiles": [
+            "cli/front-door/verify.mjs"
+          ],
+          "path": "cli/front-door/eval.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 81,
+                  "name": "verify",
+                  "target": {
+                    "file": "cli/front-door/verify.mjs"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "runCase"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "classifyBadge",
+            "extractBadges",
+            "extractCodeBlocks",
+            "extractCommands",
+            "extractInlineCode",
+            "extractLinks",
+            "extractPathRefs",
+            "findDuplication",
+            "isBadge",
+            "looksLikePath"
+          ],
+          "hash": "969dafdd865367a12caae14f389ecca5662f1141cadf69be712eac802a288ec3",
+          "path": "cli/front-door/extract.mjs"
+        },
+        {
+          "entry": "generate",
+          "entryRule": 3,
+          "exports": [
+            "generate",
+            "planScaffold"
+          ],
+          "hash": "7208fa15340d49baf59cfba9268f9687ec02a4cf7749e0d028a816792021a316",
+          "importsFiles": [
+            "cli/front-door/standard.mjs"
+          ],
+          "path": "cli/front-door/generate.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 57,
+                  "name": "replace",
+                  "target": {
+                    "file": "cli/front-door/standard.mjs"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "planScaffold"
+            },
+            {
+              "calls": [
+                {
+                  "line": 57,
+                  "name": "replace",
+                  "target": {
+                    "file": "cli/front-door/standard.mjs"
+                  },
+                  "via": "planScaffold"
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "generate"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "analyzeFeature",
+            "checkGherkin"
+          ],
+          "hash": "c260d498bee06a59f5923a7dc38f4daa4ba0017a538933c868f9878e49cd6532",
+          "importsFiles": [
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/gherkin.mjs"
+        },
+        {
+          "entry": "main",
+          "entryRule": 3,
+          "exports": [
+            "main"
+          ],
+          "hash": "2221b243d2ea4761d9b209c076f9fbb1cc29b3ad476698e50b3b0285e062f0c0",
+          "importsFiles": [
+            "cli/front-door/ablation/index.mjs",
+            "cli/front-door/eval.mjs",
+            "cli/front-door/generate.mjs",
+            "cli/front-door/mcp.mjs",
+            "cli/front-door/report.mjs",
+            "cli/front-door/standard.mjs",
+            "cli/front-door/verify.mjs"
+          ],
+          "path": "cli/front-door/index.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 75,
+                  "name": "verify",
+                  "target": {
+                    "file": "cli/front-door/verify.mjs"
+                  }
+                },
+                {
+                  "line": 76,
+                  "name": "renderJson",
+                  "target": {
+                    "file": "cli/front-door/report.mjs"
+                  }
+                },
+                {
+                  "line": 76,
+                  "name": "renderHuman",
+                  "target": {
+                    "file": "cli/front-door/report.mjs"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "runVerify"
+            },
+            {
+              "calls": [
+                {
+                  "line": 82,
+                  "name": "generate",
+                  "target": {
+                    "file": "cli/front-door/generate.mjs"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "runInit"
+            },
+            {
+              "calls": [
+                {
+                  "line": 93,
+                  "name": "runEval",
+                  "target": {
+                    "file": "cli/front-door/eval.mjs"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "runEvalCli"
+            },
+            {
+              "calls": [
+                {
+                  "inner": [
+                    {
+                      "line": 58,
+                      "name": "finding",
+                      "target": {
+                        "file": "cli/front-door/model.mjs"
+                      }
+                    },
+                    {
+                      "line": 84,
+                      "name": "checkReferences",
+                      "target": {
+                        "file": "cli/front-door/references.mjs"
+                      }
+                    },
+                    {
+                      "line": 85,
+                      "name": "checkMinimality",
+                      "target": {
+                        "file": "cli/front-door/minimality.mjs"
+                      }
+                    },
+                    {
+                      "line": 86,
+                      "name": "checkDoctest",
+                      "target": {
+                        "file": "cli/front-door/doctest.mjs"
+                      }
+                    },
+                    {
+                      "line": 87,
+                      "name": "checkAttestation",
+                      "target": {
+                        "file": "cli/front-door/attestation.mjs"
+                      }
+                    },
+                    {
+                      "line": 88,
+                      "name": "checkGherkin",
+                      "target": {
+                        "file": "cli/front-door/gherkin.mjs"
+                      }
+                    },
+                    {
+                      "line": 89,
+                      "name": "buildScorecard",
+                      "target": {
+                        "file": "cli/front-door/scorecard.mjs"
+                      }
+                    }
+                  ],
+                  "line": 75,
+                  "name": "verify",
+                  "target": {
+                    "file": "cli/front-door/verify.mjs"
+                  },
+                  "via": "runVerify"
+                },
+                {
+                  "line": 76,
+                  "name": "renderJson",
+                  "target": {
+                    "file": "cli/front-door/report.mjs"
+                  },
+                  "via": "runVerify"
+                },
+                {
+                  "inner": [
+                    {
+                      "line": 57,
+                      "name": "filter",
+                      "target": {
+                        "file": "cli/front-door/model.mjs"
+                      }
+                    }
+                  ],
+                  "line": 76,
+                  "name": "renderHuman",
+                  "target": {
+                    "file": "cli/front-door/report.mjs"
+                  },
+                  "via": "runVerify"
+                },
+                {
+                  "inner": [
+                    {
+                      "line": 57,
+                      "name": "replace",
+                      "target": {
+                        "file": "cli/front-door/standard.mjs"
+                      },
+                      "via": "planScaffold"
+                    }
+                  ],
+                  "line": 82,
+                  "name": "generate",
+                  "target": {
+                    "file": "cli/front-door/generate.mjs"
+                  },
+                  "via": "runInit"
+                },
+                {
+                  "line": 125,
+                  "name": "renderStandard",
+                  "target": {
+                    "file": "cli/front-door/standard.mjs"
+                  }
+                },
+                {
+                  "line": 93,
+                  "name": "runEval",
+                  "target": {
+                    "file": "cli/front-door/eval.mjs"
+                  },
+                  "via": "runEvalCli"
+                },
+                {
+                  "inner": [
+                    {
+                      "line": 125,
+                      "name": "syntheticCorpus",
+                      "target": {
+                        "file": "cli/front-door/ablation/corpus.mjs"
+                      }
+                    },
+                    {
+                      "line": 130,
+                      "name": "definePin",
+                      "target": {
+                        "file": "cli/front-door/ablation/pin.mjs"
+                      }
+                    },
+                    {
+                      "line": 139,
+                      "name": "makeNodeExecutor",
+                      "target": {
+                        "file": "cli/front-door/ablation/execute.mjs"
+                      }
+                    },
+                    {
+                      "line": 140,
+                      "name": "runAblation",
+                      "target": {
+                        "file": "cli/front-door/ablation/runner.mjs"
+                      }
+                    }
+                  ],
+                  "line": 129,
+                  "name": "runAblationCli",
+                  "target": {
+                    "file": "cli/front-door/ablation/index.mjs"
+                  }
+                },
+                {
+                  "line": 131,
+                  "name": "startServer",
+                  "target": {
+                    "file": "cli/front-door/mcp.mjs"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "main"
+            }
+          ]
+        },
+        {
+          "entry": "startServer",
+          "entryRule": 1,
+          "exports": [
+            "handleRequest",
+            "startServer"
+          ],
+          "hash": "2cf1b8c5f75480a5cbac023818d6884fb80296dedefef7b5cbfb4cb7b6e33512",
+          "importsFiles": [
+            "cli/front-door/standard.mjs",
+            "cli/front-door/verify.mjs"
+          ],
+          "path": "cli/front-door/mcp.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "branch": "name === 'front_door_verify'",
+                  "line": 95,
+                  "name": "verify",
+                  "target": {
+                    "file": "cli/front-door/verify.mjs"
+                  }
+                },
+                {
+                  "branch": "name === 'front_door_standard'",
+                  "line": 110,
+                  "name": "renderStandard",
+                  "target": {
+                    "file": "cli/front-door/standard.mjs"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "handleToolCall"
+            },
+            {
+              "calls": [
+                {
+                  "branch": "name === 'front_door_verify'",
+                  "line": 95,
+                  "name": "verify",
+                  "target": {
+                    "file": "cli/front-door/verify.mjs"
+                  },
+                  "via": "handleToolCall"
+                },
+                {
+                  "branch": "name === 'front_door_standard'",
+                  "line": 110,
+                  "name": "renderStandard",
+                  "target": {
+                    "file": "cli/front-door/standard.mjs"
+                  },
+                  "via": "handleToolCall"
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "handleRequest"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "checkMinimality",
+            "fleschReadingEase"
+          ],
+          "hash": "d46b81bfbbf4fa3fffb01b47b89b0534e856de282117c7d62b5fe937a31801ce",
+          "importsFiles": [
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/minimality.mjs"
+        },
+        {
+          "exports": [
+            "finding",
+            "severityRank"
+          ],
+          "hash": "d64585e71a7a77da21c1978d5265c6c489622dced149197efce5fc099de4c883",
+          "path": "cli/front-door/model.mjs"
+        },
+        {
+          "exports": [
+            "checkReferences"
+          ],
+          "hash": "529f2d8094a68a65efe5e12ce4801df4d806e9848106f48ecc888368ccd52857",
+          "importsFiles": [
+            "cli/front-door/extract.mjs",
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/references.mjs"
+        },
+        {
+          "entry": "renderHuman",
+          "entryRule": 4,
+          "exports": [
+            "renderHuman",
+            "renderJson"
+          ],
+          "hash": "ac07f92f7bdd66208470b59541c4bdd05e1d3e0874866e72272415216efd7f4b",
+          "importsFiles": [
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/report.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 57,
+                  "name": "filter",
+                  "target": {
+                    "file": "cli/front-door/model.mjs"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "renderHuman"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "buildScorecard"
+          ],
+          "hash": "d80a2be7e991e57a62050dd7cf5981ed41184c39cd380bbc273a91e05b64b298",
+          "importsFiles": [
+            "cli/front-door/model.mjs"
+          ],
+          "path": "cli/front-door/scorecard.mjs"
+        },
+        {
+          "exports": [
+            "renderStandard"
+          ],
+          "hash": "931244cd5d0785287fd81eff835fca87c8abcac7088b583d180a3947b19e28ac",
+          "path": "cli/front-door/standard.mjs"
+        },
+        {
+          "entry": "verify",
+          "entryRule": 3,
+          "exports": [
+            "verify"
+          ],
+          "hash": "aada9b90d9dd3c06836785b04f94fd27237e591a900cedb4158e6c094adcd1bc",
+          "importsFiles": [
+            "cli/front-door/attestation.mjs",
+            "cli/front-door/doctest.mjs",
+            "cli/front-door/gherkin.mjs",
+            "cli/front-door/minimality.mjs",
+            "cli/front-door/model.mjs",
+            "cli/front-door/references.mjs",
+            "cli/front-door/scorecard.mjs"
+          ],
+          "path": "cli/front-door/verify.mjs",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 58,
+                  "name": "finding",
+                  "target": {
+                    "file": "cli/front-door/model.mjs"
+                  }
+                },
+                {
+                  "line": 84,
+                  "name": "checkReferences",
+                  "target": {
+                    "file": "cli/front-door/references.mjs"
+                  }
+                },
+                {
+                  "line": 85,
+                  "name": "checkMinimality",
+                  "target": {
+                    "file": "cli/front-door/minimality.mjs"
+                  }
+                },
+                {
+                  "line": 86,
+                  "name": "checkDoctest",
+                  "target": {
+                    "file": "cli/front-door/doctest.mjs"
+                  }
+                },
+                {
+                  "line": 87,
+                  "name": "checkAttestation",
+                  "target": {
+                    "file": "cli/front-door/attestation.mjs"
+                  }
+                },
+                {
+                  "line": 88,
+                  "name": "checkGherkin",
+                  "target": {
+                    "file": "cli/front-door/gherkin.mjs"
+                  }
+                },
+                {
+                  "line": 89,
+                  "name": "buildScorecard",
+                  "target": {
+                    "file": "cli/front-door/scorecard.mjs"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "verify"
+            }
+          ]
+        },
+        {
+          "entry": "die",
+          "entryRule": 1,
+          "hash": "435d126da28a5d345546e53825e2b9dba6325474818cd653f42a9f8af28ff0e0",
+          "importsFiles": [
+            "cli/front-door/index.mjs"
+          ],
+          "path": "cli/init.mjs",
+          "sequences": []
+        }
+      ],
+      "globs": [
+        "cli/**"
+      ],
+      "importConfidence": "full",
+      "name": "cli",
+      "origin": "authored",
+      "outsidePlaces": [
+        {
+          "reads": 2,
+          "where": [
+            "caller"
+          ],
+          "writes": 2
+        },
+        {
+          "reads": 1,
+          "where": [
+            "caller",
+            "cwd",
+            "cwd:acceptance",
+            "cwd:e2e",
+            "cwd:features",
+            "cwd:spec",
+            "cwd:test",
+            "cwd:tests",
+            "temp"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 2,
+          "where": [
+            "caller",
+            "cwd",
+            "cwd:package.json",
+            "temp"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 3,
+          "where": [
+            "caller",
+            "cwd",
+            "temp"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 1,
+          "where": [
+            "cwd"
+          ],
+          "writes": 8
+        },
+        {
+          "reads": 1,
+          "where": [
+            "cwd",
+            "cwd:.github/"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 3,
+          "where": [
+            "cwd",
+            "cwd:.github/",
+            "temp"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 4,
+          "where": [
+            "cwd",
+            "cwd:.gitignore"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 1,
+          "where": [
+            "cwd",
+            "cwd:docs"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 6,
+          "where": [
+            "cwd",
+            "cwd:package.json"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 2,
+          "where": [
+            "cwd",
+            "cwd:package.json",
+            "temp"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 3,
+          "where": [
+            "cwd",
+            "cwd:site"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 5,
+          "where": [
+            "cwd",
+            "cwd:site/"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 1,
+          "where": [
+            "cwd:.github/"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 0,
+          "where": [
+            "cwd:.gitignore"
+          ],
+          "writes": 2
+        },
+        {
+          "reads": 7,
+          "where": [
+            "cwd:AGENTS.md"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 6,
+          "where": [
+            "cwd:README.md"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 1,
+          "where": [
+            "cwd:package.json"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 7,
+          "where": [
+            "cwd:site/"
+          ],
+          "writes": 2
+        },
+        {
+          "reads": 1,
+          "where": [
+            "cwd:tsconfig.json"
+          ],
+          "writes": 0
+        },
+        {
+          "reads": 2,
+          "where": [
+            "temp"
+          ],
+          "writes": 7
+        }
+      ],
+      "outsideReads": 59,
+      "outsideWrites": 21,
+      "role": "code",
+      "testedBy": 20,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "1af60f0ac1a2f75abfa502956983a2f485a8991b1c3e5d755c02a74769eb112c",
+          "path": "components/ApiList.astro"
+        },
+        {
+          "hash": "138db4d20a7c19fb49fd2d71a197ac53f1d3837b99a05bb9dbd58f0891e23d13",
+          "path": "components/BaseLayout.astro"
+        },
+        {
+          "hash": "0e440e7dda81bcb6ae5182405368b2fe7317bb1a6f5e8939bee38d0470780da4",
+          "path": "components/CodeCardGrid.astro"
+        },
+        {
+          "hash": "07eef8e66a2aca6bea8d553047d3ee389d0b746524f14c4ac5b7e27eef380547",
+          "path": "components/ContentSection.astro"
+        },
+        {
+          "hash": "6861c3bf2860014d1e90485a4c03e73ee2907d12397079766b210cc777dc9db3",
+          "path": "components/CtaBanner.astro"
+        },
+        {
+          "hash": "72856d7dd008ced752e1361bf606fc9c9bb61555ed3cfbc6459db8f30f2dbef2",
+          "path": "components/DataTable.astro"
+        },
+        {
+          "hash": "8c978fb628eaa9a8ad6c748692865e018c940cb27dca8ccf66878b8916121d11",
+          "path": "components/DocLayout.astro"
+        },
+        {
+          "hash": "bb2cf54f44127f26683aedcad1a06075c82c4231aee9d914f20edafb97ba657b",
+          "path": "components/FeatureGrid.astro"
+        },
+        {
+          "hash": "d1bc506a26991558cabaee7554ca1fbae341dc8b161a6fd8dfe260b860e7304a",
+          "path": "components/FilterBar.astro"
+        },
+        {
+          "hash": "b749ab1043d478cd135fbf7b177bb2aadf4dbac38c5cedbb6d6878f77d1ae400",
+          "path": "components/Hero.astro"
+        },
+        {
+          "hash": "a0832ed8c7c0203d3df112e823f5184455ca1a2d44132622a075770f7e4b06ce",
+          "path": "components/PortfolioGrid.astro"
+        },
+        {
+          "hash": "1cebb50bc4ba8ea2d695e16dc4389503500b2da289986bd58c9614ab2ff4ac92",
+          "path": "components/PricingGrid.astro"
+        },
+        {
+          "hash": "d9a9d6afebd632a116b315c83f135d2552bf6e8677e4b081cef88b86c091633f",
+          "path": "components/Section.astro"
+        },
+        {
+          "hash": "8becae8c44580a2227e7ec392a50e1fa3d0da5c95e8630ccfe9ae03f3af1c38c",
+          "path": "components/Sidebar.astro"
+        },
+        {
+          "hash": "465805ab50685fbd6e6e460724febd33d32aa258709c8303b1a3b8c05761b43d",
+          "path": "components/SocialProof.astro"
+        },
+        {
+          "hash": "23d8046d9d478e01bab312509a222328a8360e2daa6e06b42453e276ed673aad",
+          "path": "components/TableOfContents.astro"
+        },
+        {
+          "hash": "99c719e6478f812ed2ef0046dec3d1e7c500f5f902d443acb7a7fffff2b29c59",
+          "path": "components/TestimonialGrid.astro"
+        }
+      ],
+      "globs": [
+        "components/**"
+      ],
+      "importConfidence": "full",
+      "name": "components",
+      "origin": "authored",
+      "role": "code",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [
+        "docs/index.md"
+      ],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "a4817401d69f8ffef08d2fa608104a65c08661bbf01b0b45dfd9faa2c3906b56",
+          "path": "docs/_config.yml"
+        },
+        {
+          "hash": "449dc10937a2cc1e7200a1a99c83e8f51d32a038ce56e985f5b68ae848ec7233",
+          "path": "docs/design/site-theme-visual-os/README.md"
+        },
+        {
+          "hash": "4f9c80999ff68916dec817c3e04fee379f0ba0c81c0290c7986f7a3a1a542248",
+          "path": "docs/design/site-theme-visual-os/site-theme.standalone.html"
+        },
+        {
+          "hash": "145a9cb10c0baafb550add67ebb3d823fd3c85abfe5dd81fa4c868dbbebce251",
+          "path": "docs/front-door.md"
+        },
+        {
+          "hash": "c63995ceb8e91c19cc9c206522b89b4364d629b5bf59763fa50049567374d69a",
+          "path": "docs/index.md"
+        }
+      ],
+      "globs": [
+        "docs/**"
+      ],
+      "importConfidence": "full",
+      "name": "docs",
+      "origin": "authored",
+      "role": "docs",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "exports": [
+            "labelForPackageHost",
+            "resolvePackageLink"
+          ],
+          "hash": "7f8eddc7899a725b5c9dfaaa6ef4103918e7229fd57e29c526dc4dbdf532074d",
+          "path": "lib/package-link.mjs"
+        }
+      ],
+      "globs": [
+        "lib/**"
+      ],
+      "importConfidence": "full",
+      "name": "lib",
+      "origin": "authored",
+      "role": "code",
+      "testedBy": 1,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "d9cb91d9e298f8c42c8143b2342be5ecee4a683f29ed595b23522c27e68bc39e",
+          "path": "receipts/front-door-ablation.json"
+        },
+        {
+          "hash": "52007c6736b5b4d297b973243b35f3d1155e8dd6bff4a368caf696068eb9f216",
+          "path": "receipts/front-door-ablation.md"
+        }
+      ],
+      "globs": [
+        "receipts/**"
+      ],
+      "importConfidence": "full",
+      "name": "receipts",
+      "origin": "authored",
+      "role": "docs",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "6306492db0867c04bae406aae4de7aaede3b787d0c9259a1923d193e74c2b157",
+          "path": ".gitignore"
+        },
+        {
+          "hash": "04195970ebd7a0800f5cccf4dfb60a2b24d2e8832643d7609a0519636fc24bc2",
+          "path": "AGENTS.md"
+        },
+        {
+          "hash": "a5ca803a6d383a03808e1048688353f03fd16cd7ed44cfbb8d7816e4425e41c5",
+          "path": "CHANGELOG.md"
+        },
+        {
+          "hash": "367e5141e4f5884e5791c4021f33a9faa958840a5decf44e1b273a87aad1c459",
+          "path": "LICENSE"
+        },
+        {
+          "hash": "d518214cbfec8899897fa20d655f69f7434f533f9858db28c2b2cf990781dbd2",
+          "path": "README.es.md"
+        },
+        {
+          "hash": "4a13d28b9a38ba9ef3c64844be35a1906d79307f2164bb8f5fd2e5d04472043c",
+          "path": "README.fr.md"
+        },
+        {
+          "hash": "d39146e3b27252210b47215ab7d507c3911d18005bae021c21531f54d3d63193",
+          "path": "README.hi.md"
+        },
+        {
+          "hash": "bc430c3a96cf36a49c61329ea1f2e4dac2ae6fa9d3a6029deb7215daabaa713a",
+          "path": "README.it.md"
+        },
+        {
+          "hash": "c2447bc4745c5673c0f8460cca6573032e5c83e714f9f103f5c3b34782b09245",
+          "path": "README.ja.md"
+        },
+        {
+          "hash": "338de72f49bb807ae3a7adf162e49717871772603052d219e530d14a4cb8e2d0",
+          "path": "README.md"
+        },
+        {
+          "hash": "595192d84535910a6b533ddd5a35756e0fc741b51d2e3645ecbc6dbc1ac9bbd7",
+          "path": "README.pt-BR.md"
+        },
+        {
+          "hash": "4755e513758b7af7e9308ad2ad20e9a88c7a0a20268174595714e4c0fb97e882",
+          "path": "README.zh.md"
+        },
+        {
+          "hash": "59e2c8e86c73f073ed988eec7c040215321caa9311502da0a8a565da47f98418",
+          "path": "SCORECARD.md"
+        },
+        {
+          "hash": "05c7d84664b9ca989884ed458595bbaf754ec50e01508f1e185cc173d0e1208f",
+          "path": "SECURITY.md"
+        },
+        {
+          "hash": "ca55cffee26e0aa8ba8692102f0d9109f6734d5498489748dfeca62bb4764434",
+          "path": "SHIP_GATE.md"
+        },
+        {
+          "hash": "c177d0424387decd239b8c2da58f187ee4d6226269407ccb3f175a279043f638",
+          "path": "biome.json"
+        },
+        {
+          "hash": "66d042ae1d7ac35c0646880aeed773053edf4a9a05016cc4f7df469742d3945f",
+          "path": "package-lock.json"
+        },
+        {
+          "hash": "0dc2d5fdab6db9337f0b0e3ba30015a45a82b85ff877ba907c696bbbc206cb97",
+          "path": "package.json"
+        },
+        {
+          "hash": "aecde6a1b10eaaf727ace736e61ec5e6696ce0a86b97b5af61e3bda0bd5ee1ac",
+          "path": "tsconfig.json"
+        }
+      ],
+      "globs": [
+        "*"
+      ],
+      "importConfidence": "full",
+      "name": "root",
+      "origin": "authored",
+      "role": "config",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "1f2c655ff40799f397afb241d21ef2ac5f02d58bcf4e348bf770a59d5ecd17a8",
+          "path": "site/astro.config.mjs"
+        },
+        {
+          "hash": "558ad15a87431bc4df1a81d629a94c3cc83f290f1e6c0631f69d9ef6ea24c8f2",
+          "path": "site/package-lock.json"
+        },
+        {
+          "hash": "445f698a0d261e6d9288f1a8a0b6f7a7659a3a0f432490c8e8de4b4cc039a3c1",
+          "path": "site/package.json"
+        },
+        {
+          "hash": "db3c76ae1d22efa9f6c9a1cf3d8b1f45a5e94210d34e4b518006018e7d3d097d",
+          "path": "site/public/favicon.svg"
+        },
+        {
+          "hash": "7cb0c846a53f56eb808aa241eb36948c472dbc38a42824d5e68b1167e8cbefad",
+          "path": "site/public/og.png"
+        },
+        {
+          "constantOnly": true,
+          "hash": "ee756dfba4122d2acc94a39b2555d9f200fff56a87a8c0b10f9cd01df26a8b62",
+          "path": "site/src/content.config.ts"
+        },
+        {
+          "hash": "3ec657c2b939ebf2a727b0e1c38166ecf98be7f6a6d326f1157221c821de4238",
+          "path": "site/src/content/docs/handbook/beginners.md"
+        },
+        {
+          "hash": "0cdd7be249510e83782e65d612495f87f53ecb1d8e2c3d04c6db1808de0443a5",
+          "path": "site/src/content/docs/handbook/components.md"
+        },
+        {
+          "hash": "4cbd68ba2188c375d614d4434e90cd0f715db1d34437b27bca0bbc6e536c505b",
+          "path": "site/src/content/docs/handbook/configuration.md"
+        },
+        {
+          "hash": "cb7124a06b24850a51402748470ac69028255214c9209448f0d2bfea0956f856",
+          "path": "site/src/content/docs/handbook/deployment.md"
+        },
+        {
+          "hash": "26568cc58d956e02ee826560c7b2d8c56679161a0c782900d2e7b6a9c7bafee2",
+          "path": "site/src/content/docs/handbook/design-tokens.md"
+        },
+        {
+          "hash": "b577f0c34207b9a46216d0a6b8ad0047ecc30f5d775939f1f28117a8adc9169d",
+          "path": "site/src/content/docs/handbook/getting-started.md"
+        },
+        {
+          "hash": "d496fe77d9c74d20840e0003a4ff9145d372bc63214fb65afdbdb05ee880c541",
+          "path": "site/src/content/docs/handbook/index.md"
+        },
+        {
+          "hash": "db53c563692f93f7aec3f03cd6baa3ffa2246d71ae3844e88ddae6d747063d6a",
+          "path": "site/src/content/docs/handbook/templates.md"
+        },
+        {
+          "hash": "db37c6d2c368300059a6cf3c470e2bde1b64b072c2770572d71410abeff30a32",
+          "path": "site/src/pages/index.astro"
+        },
+        {
+          "constantOnly": true,
+          "hash": "8d781ee9e768d4058e74e1416142775a11463bcfeb8d91fbe345d347ed259550",
+          "path": "site/src/site-config.ts"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "site/src/styles/global.css"
+        },
+        {
+          "hash": "0d11beabe574a2269bdaa467f06d03254f61512b287b43d6205d8d46d28f9270",
+          "path": "site/src/styles/starlight-custom.css"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "site/tsconfig.json"
+        }
+      ],
+      "globs": [
+        "site/**"
+      ],
+      "importConfidence": "full",
+      "name": "site",
+      "origin": "authored",
+      "role": "site",
+      "testedBy": 0,
+      "unresolvedNamed": [
+        {
+          "path": "site/src/site-config.ts",
+          "specifier": "@mcptoolshop/site-theme",
+          "why": "member"
+        }
+      ],
+      "unresolvedSites": 1
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "6fe7cc0054b9744ee6294d44b7cce3243884d7bb6772b0572188677f6b69402e",
+          "path": "styles/theme.css"
+        }
+      ],
+      "globs": [
+        "styles/**"
+      ],
+      "importConfidence": "full",
+      "name": "styles",
+      "origin": "authored",
+      "role": "code",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "fe1db5f18ca42c6e2363f0860db9c117b03a6bff39b375189f7c9d2f1882b4a1",
+          "path": "templates/app/pages.yml.tpl"
+        },
+        {
+          "hash": "e8db722304aa57fba73432924ec37da523f56879d4e162e8fccf5c1c26a11187",
+          "path": "templates/app/site/astro.config.mjs"
+        },
+        {
+          "hash": "e5bf44cc9fea61a0e1c12dadf46a1eff23417e99874e6dbfd0e9d1c0f9296ed6",
+          "path": "templates/app/site/package.json"
+        },
+        {
+          "hash": "fcc102ad93431e3edafa1519de5c753d36d586d025ab1ac5a5687ca578e613df",
+          "path": "templates/app/site/src/components/app/AccessDenied.astro"
+        },
+        {
+          "hash": "6be4a96bb1a95c98a4d5a12d2e116df8a5184eaba16d9d67485a357af9ab0265",
+          "path": "templates/app/site/src/components/app/Breadcrumbs.astro"
+        },
+        {
+          "hash": "857d1e2f146d679067970f361cc8c76d834b2ef8a0a04ab0672a82b9be02311f",
+          "path": "templates/app/site/src/components/app/DataTable.astro"
+        },
+        {
+          "hash": "3e855bbda56714da4f3168dad1922d4781920098faa2052eac7c4900ca44d2d7",
+          "path": "templates/app/site/src/components/app/EmptyState.astro"
+        },
+        {
+          "hash": "130e8454c7432f202950cac788a229cff18559641552fc580b9e79ce9787eecc",
+          "path": "templates/app/site/src/components/app/FormField.astro"
+        },
+        {
+          "hash": "920045e2e3cb4714751e836b938654ca8c66d7553b5d99355bf3c1ca97d0933e",
+          "path": "templates/app/site/src/components/app/PlanCards.astro"
+        },
+        {
+          "hash": "1d0cd7b33f6026bab2aac5d8bf195ae161ed227f9e1bbb1e9ec0388ed2660ab3",
+          "path": "templates/app/site/src/components/app/SettingsNav.astro"
+        },
+        {
+          "hash": "20a729bcc082be1d03759904d5371aa16eda41460bbf5b406eb3dbdd33c2d6ff",
+          "path": "templates/app/site/src/components/app/Sidebar.astro"
+        },
+        {
+          "hash": "260cffc00b96c484da29976646a024b4787154be82379566cf53dd4b8e796133",
+          "path": "templates/app/site/src/components/app/StatCards.astro"
+        },
+        {
+          "hash": "e96dfb4f841ddaedf8d1115de89f660d374cea359274073e7c0f8acdb3c6d1e9",
+          "path": "templates/app/site/src/components/app/Topbar.astro"
+        },
+        {
+          "hash": "5e2775979f7561066011f828b510e2d50bcff8b45446b37fe91807fd5c05062a",
+          "path": "templates/app/site/src/components/app/UserMenu.astro"
+        },
+        {
+          "hash": "f2ead2aceef2b9fe7fb64250602d0186bbc29012da34c478f0112b97cd96f706",
+          "path": "templates/app/site/src/components/app/WorkspaceSwitcher.astro"
+        },
+        {
+          "exports": [
+            "getNav",
+            "getSettingsNav"
+          ],
+          "hash": "175273eefa63540a51a504385d42da711e50e19588e0df2a5c6e5f401767ef5e",
+          "importsFiles": [
+            "templates/app/site/src/lib/policy.ts"
+          ],
+          "path": "templates/app/site/src/config/site.config.ts"
+        },
+        {
+          "exports": [
+            "getActivity"
+          ],
+          "hash": "413da810dee6a727a82bd60f14a6d70256c1fdd5bcdb7400178a4ad0f40648a3",
+          "path": "templates/app/site/src/data/activity.ts"
+        },
+        {
+          "hash": "1cf0b7a484b20fc9f9cc64765b066d5e0a96fdd36b45a3b3d4335e7530024f75",
+          "importOrder": [
+            "templates/app/site/src/data/projects.ts",
+            "templates/app/site/src/data/metrics.ts",
+            "templates/app/site/src/data/activity.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/data/activity.ts",
+            "templates/app/site/src/data/metrics.ts",
+            "templates/app/site/src/data/projects.ts"
+          ],
+          "path": "templates/app/site/src/data/index.ts",
+          "reexportsOnly": true
+        },
+        {
+          "exports": [
+            "getMetrics"
+          ],
+          "hash": "a2ea48905aa67749da1fb68b577df8dda8be38abc1fc75e624b529acfe27def4",
+          "path": "templates/app/site/src/data/metrics.ts"
+        },
+        {
+          "exports": [
+            "getAllProjectParams",
+            "getProject",
+            "listProjects"
+          ],
+          "hash": "91f9ea3783aa10b071580285a04bf837f64c45123681bb396fe150ef9c14ee89",
+          "path": "templates/app/site/src/data/projects.ts"
+        },
+        {
+          "hash": "c766e16a4ab29c4ff30ad41a89155380d63ab87208554bec9be2953573469c42",
+          "path": "templates/app/site/src/layouts/AppShell.astro"
+        },
+        {
+          "hash": "e718e2cf28a616f023d174a30c1d4263dcc98a295db40a6f55d6abe4bec0be7f",
+          "path": "templates/app/site/src/layouts/AuthLayout.astro"
+        },
+        {
+          "hash": "1b321f2314fec83edc7c0fa10e9bf687e21756ab3e541d3523b8cf70081f85e7",
+          "path": "templates/app/site/src/layouts/SettingsLayout.astro"
+        },
+        {
+          "exports": [
+            "getCurrentUser",
+            "guardPage",
+            "isAuthenticated",
+            "signIn",
+            "signOut"
+          ],
+          "hash": "30b768f422619de6b27828d8f4427076386bdb93cf7f79be3a5f0c0bd62c59f5",
+          "path": "templates/app/site/src/lib/auth.ts"
+        },
+        {
+          "exports": [
+            "isEnabled"
+          ],
+          "hash": "1edf25b4f1e3e3d6cb6acb454ab1c6d0bc46c28d5a9a2f85dc7f05eaebef3e4b",
+          "path": "templates/app/site/src/lib/features.ts"
+        },
+        {
+          "exports": [
+            "canManageTeam",
+            "canManageWorkspace",
+            "canViewBilling"
+          ],
+          "hash": "1a9b699c5743178b20b5f8dc8bf1f2f24fedd95a9d6d094d0a10a51dc802e9b3",
+          "path": "templates/app/site/src/lib/policy.ts"
+        },
+        {
+          "exports": [
+            "getDefaultWorkspace",
+            "getWorkspaceBySlug",
+            "getWorkspaceSlugs"
+          ],
+          "hash": "8bebe0321b144989a5080e195e8cb85937d6c8750395aa5231086d550e46993d",
+          "path": "templates/app/site/src/lib/workspaces.ts"
+        },
+        {
+          "hash": "30ba6a2b5fb160fe8d9c4ed02286ebe36e6698205fe67a168ded1af5ebd8ebec",
+          "path": "templates/app/site/src/pages/app/[workspace]/[...rest].astro"
+        },
+        {
+          "hash": "26cc6c05b03b2e3b0f58fe40cfccf73e9dd6713aec34b798509c6bf1dd880f01",
+          "path": "templates/app/site/src/pages/app/[workspace]/index.astro"
+        },
+        {
+          "hash": "f0164f70ba5301131a9c85f6bcec29cde66b7ac789459dcc94f423e4f4f7f433",
+          "path": "templates/app/site/src/pages/app/[workspace]/projects/[id].astro"
+        },
+        {
+          "hash": "d1b21b67ae0859f05b69a08217e148f571fb973260b5aa2853081074785d74b4",
+          "path": "templates/app/site/src/pages/app/[workspace]/projects/index.astro"
+        },
+        {
+          "hash": "a221374fbb705f853dc264b9ca77fbf533e873977a216d250b06dda1c12f1072",
+          "path": "templates/app/site/src/pages/app/[workspace]/settings/billing.astro"
+        },
+        {
+          "hash": "8f6530b7bc921d17db8756368f6b6a49f9088ffd9e5b0814ac1a60edb368f189",
+          "path": "templates/app/site/src/pages/app/[workspace]/settings/profile.astro"
+        },
+        {
+          "hash": "7887ef91cc594ea8502039ed7c92ea318bb19c5b2551203c3e33d950add37034",
+          "path": "templates/app/site/src/pages/app/[workspace]/settings/security.astro"
+        },
+        {
+          "hash": "8ae22eddd99518372e05fcca8062dacdfa02687c2c6fd4bbab21ac9ce54466ed",
+          "path": "templates/app/site/src/pages/app/[workspace]/settings/team.astro"
+        },
+        {
+          "hash": "05a69c6bf980d5b6ce4a764d81f0d7f291666d47255e9d3aad123893aaf90a8d",
+          "path": "templates/app/site/src/pages/auth/forgot-password.astro"
+        },
+        {
+          "hash": "b858fae2f4ab930354ab2229b1376005de67ee6dc5aa26dc4c9b8bdf512a0b51",
+          "path": "templates/app/site/src/pages/auth/sign-in.astro"
+        },
+        {
+          "hash": "a1da4f130032a68ce3ae4f3dd778100d07c9212bda6651991c71a4cfb2561128",
+          "path": "templates/app/site/src/pages/auth/sign-up.astro"
+        },
+        {
+          "hash": "fd4ef0930790e5818c743fb4895e4aadc15b37d8f672349149dc0d3e7ec94c1f",
+          "path": "templates/app/site/src/pages/index.astro"
+        },
+        {
+          "hash": "863b446fc4c05f5830e6b587718c0ec2731713941d3393872a4ebdeda35a17f1",
+          "path": "templates/app/site/src/styles/global.css"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "templates/app/site/tsconfig.json"
+        },
+        {
+          "hash": "df7e2cd3bba39e69f894b582e71eb6c117761bd4b83d3ab216189998d7925043",
+          "path": "templates/app/template.json"
+        },
+        {
+          "hash": "54f34f27ee0374860621de02a36515d35086d8e5d8ba75dddb923b27178caba7",
+          "path": "templates/default/astro.config.mjs.tpl"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "templates/default/global.css.tpl"
+        },
+        {
+          "hash": "4fb84a646c4d833c33f4058e1ed1775849e855c65e5adb7e45d2a633674bd603",
+          "path": "templates/default/index.astro.tpl"
+        },
+        {
+          "hash": "e5bf44cc9fea61a0e1c12dadf46a1eff23417e99874e6dbfd0e9d1c0f9296ed6",
+          "path": "templates/default/package.json.tpl"
+        },
+        {
+          "hash": "fe1db5f18ca42c6e2363f0860db9c117b03a6bff39b375189f7c9d2f1882b4a1",
+          "path": "templates/default/pages.yml.tpl"
+        },
+        {
+          "hash": "81bc3cb5c8271d62f95c9957f2b597ab3e307542fb3d395a6e506e76cf9e77ee",
+          "path": "templates/default/site-config.ts.tpl"
+        },
+        {
+          "hash": "bc5a38b638218505bd30d22b98c1c099cbb1da4bce52f8f30bd3ddb645b7572a",
+          "path": "templates/default/template.json"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "templates/default/tsconfig.json.tpl"
+        },
+        {
+          "hash": "54f34f27ee0374860621de02a36515d35086d8e5d8ba75dddb923b27178caba7",
+          "path": "templates/docs/astro.config.mjs.tpl"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "templates/docs/global.css.tpl"
+        },
+        {
+          "hash": "18e2a016e3762eeac655079e2df76a14799f8190ab22842d2094b967da0166dd",
+          "path": "templates/docs/index.astro.tpl"
+        },
+        {
+          "hash": "e5bf44cc9fea61a0e1c12dadf46a1eff23417e99874e6dbfd0e9d1c0f9296ed6",
+          "path": "templates/docs/package.json.tpl"
+        },
+        {
+          "hash": "fe1db5f18ca42c6e2363f0860db9c117b03a6bff39b375189f7c9d2f1882b4a1",
+          "path": "templates/docs/pages.yml.tpl"
+        },
+        {
+          "hash": "3f47d7f8d00d6706f99b53250bf5b253e0f9d9b5497aa924585ae2fec1c90382",
+          "path": "templates/docs/site-config.ts.tpl"
+        },
+        {
+          "hash": "b8ada06d3b155dd5f8e9e065e525f55266d8fb1a438d05ec8bd5df07149978e4",
+          "path": "templates/docs/template.json"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "templates/docs/tsconfig.json.tpl"
+        },
+        {
+          "hash": "54f34f27ee0374860621de02a36515d35086d8e5d8ba75dddb923b27178caba7",
+          "path": "templates/portfolio/astro.config.mjs.tpl"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "templates/portfolio/global.css.tpl"
+        },
+        {
+          "hash": "6da1cc83c805a7699ca9828dffd3924710394c86f6ca2846374accb3be4f4f45",
+          "path": "templates/portfolio/index.astro.tpl"
+        },
+        {
+          "hash": "e5bf44cc9fea61a0e1c12dadf46a1eff23417e99874e6dbfd0e9d1c0f9296ed6",
+          "path": "templates/portfolio/package.json.tpl"
+        },
+        {
+          "hash": "fe1db5f18ca42c6e2363f0860db9c117b03a6bff39b375189f7c9d2f1882b4a1",
+          "path": "templates/portfolio/pages.yml.tpl"
+        },
+        {
+          "hash": "b50b3e56df894d05eada187b7ed7dc9bf187981c85c8206c49c0c30fb5bb0896",
+          "path": "templates/portfolio/site-config.ts.tpl"
+        },
+        {
+          "hash": "e4e61e7cff0af278d66017a549a6f643dd0b372b9500143d7d928201e62b529e",
+          "path": "templates/portfolio/template.json"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "templates/portfolio/tsconfig.json.tpl"
+        },
+        {
+          "hash": "54f34f27ee0374860621de02a36515d35086d8e5d8ba75dddb923b27178caba7",
+          "path": "templates/product/astro.config.mjs.tpl"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "templates/product/global.css.tpl"
+        },
+        {
+          "hash": "370f92fd265f45d036aa1ffdb9a01f5215b99acc35483b59eb832d2cd94beef8",
+          "path": "templates/product/index.astro.tpl"
+        },
+        {
+          "hash": "e5bf44cc9fea61a0e1c12dadf46a1eff23417e99874e6dbfd0e9d1c0f9296ed6",
+          "path": "templates/product/package.json.tpl"
+        },
+        {
+          "hash": "fe1db5f18ca42c6e2363f0860db9c117b03a6bff39b375189f7c9d2f1882b4a1",
+          "path": "templates/product/pages.yml.tpl"
+        },
+        {
+          "hash": "720466ac5ca70927cdd7503edca237ae24d688a70556090c1a78ad8e06b3dc4f",
+          "path": "templates/product/site-config.ts.tpl"
+        },
+        {
+          "hash": "013f9e600ffe53dea55c85710ffe3f5606d606f5a510edb1320aaaf8bac388b1",
+          "path": "templates/product/template.json"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "templates/product/tsconfig.json.tpl"
+        },
+        {
+          "hash": "54f34f27ee0374860621de02a36515d35086d8e5d8ba75dddb923b27178caba7",
+          "path": "templates/tool/astro.config.mjs.tpl"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "templates/tool/global.css.tpl"
+        },
+        {
+          "hash": "704c45fda78eadb3f033a1f256b9eef44eb260f380ddb685acb5337ca8e7bd85",
+          "path": "templates/tool/index.astro.tpl"
+        },
+        {
+          "hash": "e5bf44cc9fea61a0e1c12dadf46a1eff23417e99874e6dbfd0e9d1c0f9296ed6",
+          "path": "templates/tool/package.json.tpl"
+        },
+        {
+          "hash": "fe1db5f18ca42c6e2363f0860db9c117b03a6bff39b375189f7c9d2f1882b4a1",
+          "path": "templates/tool/pages.yml.tpl"
+        },
+        {
+          "hash": "586a3df781a979cc24a236627b62c71ef6c31b24a55c3c83f86771e2eefa4957",
+          "path": "templates/tool/site-config.ts.tpl"
+        },
+        {
+          "hash": "6f256147b5faff3f54e5ea70868637113321fdf23524bc4dd4252cf293960fef",
+          "path": "templates/tool/template.json"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "templates/tool/tsconfig.json.tpl"
+        }
+      ],
+      "globs": [
+        "templates/**"
+      ],
+      "importConfidence": "full",
+      "name": "templates",
+      "origin": "authored",
+      "role": "data",
+      "testedBy": 3,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 2,
+      "dynamicSpawnsInTests": 2,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "0cfdeb394e1778112b6b0da3eb6eb4e2928ffeeafa410b654ab450085e5810c8",
+          "path": "tests/base-layout.test.mjs"
+        },
+        {
+          "hash": "1609bd297041a58ab571ad00a99ae5f7bbfed4b6799b1ecedb1eb9a05ea0dde0",
+          "path": "tests/cli.test.mjs"
+        },
+        {
+          "hash": "21b49b374903c240e3bfaacaa53bf45b1d28e6ab6decfd35639935d2da447334",
+          "path": "tests/features.test.ts"
+        },
+        {
+          "hash": "51becc02aff08b2d7d2e5a92e62f743a3f02ff8590b44a2d79c56f1e514585ff",
+          "importsFiles": [
+            "cli/front-door/ablation/agent.mjs",
+            "cli/front-door/ablation/arms.mjs",
+            "cli/front-door/ablation/corpus.mjs"
+          ],
+          "path": "tests/front-door/ablation/agent.test.mjs"
+        },
+        {
+          "hash": "59a0add9fe3862dd25c1c62cfbb19a0b99ba93bc70b03a11877e71971b4dfef0",
+          "importsFiles": [
+            "cli/front-door/ablation/arms.mjs"
+          ],
+          "path": "tests/front-door/ablation/arms.test.mjs"
+        },
+        {
+          "hash": "996c6d153fc725ea773678a54de48bce60aca796519b02a550a9255c11353cef",
+          "path": "tests/front-door/ablation/cli.test.mjs"
+        },
+        {
+          "hash": "bc8879207ec79f87a94c35fdf9903f770e5522914a7eec96e2dc1d64b8934499",
+          "importsFiles": [
+            "cli/front-door/ablation/arms.mjs",
+            "cli/front-door/ablation/corpus.mjs"
+          ],
+          "path": "tests/front-door/ablation/corpus.test.mjs"
+        },
+        {
+          "hash": "aba2f2eb53299eb3ec9bf9fa28d1008102c5c039556fb83e629826af9f333698",
+          "importsFiles": [
+            "cli/front-door/ablation/execute.mjs"
+          ],
+          "path": "tests/front-door/ablation/execute.test.mjs"
+        },
+        {
+          "hash": "a35b90f59c2c2180c72cdc57947dc73f45cf29f48e3d28791ce7fd83337a7358",
+          "importsFiles": [
+            "cli/front-door/ablation/grade.mjs"
+          ],
+          "path": "tests/front-door/ablation/grade.test.mjs"
+        },
+        {
+          "hash": "cd59f47fa8a39d9cf2bfc00ba3d0df4eb5db648588d8a01bd2c01648d5197021",
+          "importsFiles": [
+            "cli/front-door/ablation/pin.mjs"
+          ],
+          "path": "tests/front-door/ablation/pin.test.mjs"
+        },
+        {
+          "hash": "ded90be7289850e97cff9702fb346ff55f28990b72bbf52394870880b1b74f9b",
+          "importsFiles": [
+            "cli/front-door/ablation/agent.mjs",
+            "cli/front-door/ablation/corpus.mjs",
+            "cli/front-door/ablation/pin.mjs",
+            "cli/front-door/ablation/runner.mjs"
+          ],
+          "path": "tests/front-door/ablation/runner.test.mjs"
+        },
+        {
+          "hash": "e7976cb48efe76ec916bc026ca201882333aa3798e50f18269ff091f9066c70c",
+          "importsFiles": [
+            "cli/front-door/ablation/stats.mjs"
+          ],
+          "path": "tests/front-door/ablation/stats.test.mjs"
+        },
+        {
+          "hash": "c90a98d6dbb346b47ad645fd76691fbc5ec8f8e4c3223d74d67e56d787b317ba",
+          "importsFiles": [
+            "cli/front-door/attestation.mjs"
+          ],
+          "path": "tests/front-door/attestation.test.mjs"
+        },
+        {
+          "hash": "a30871685293a2f62d41b31d1e140e778817f02df1d191f9b1c2e4c48f982a8c",
+          "path": "tests/front-door/cli.test.mjs"
+        },
+        {
+          "hash": "f834eecb6c2e97b955b016c5aef2ba086b9704a2bfc63228b4b0de9565068202",
+          "importsFiles": [
+            "cli/front-door/doctest.mjs"
+          ],
+          "path": "tests/front-door/doctest.test.mjs"
+        },
+        {
+          "hash": "394a3f542aac3e21b111b27d60538c6b2af315c212130701707da1e82c654188",
+          "importsFiles": [
+            "cli/front-door/eval.mjs"
+          ],
+          "path": "tests/front-door/eval.test.mjs"
+        },
+        {
+          "hash": "da35d55f503fbdca4cac170e3232ced18cbe969682b39e66c7c1ded9ca6895c3",
+          "importsFiles": [
+            "cli/front-door/extract.mjs"
+          ],
+          "path": "tests/front-door/extract.test.mjs"
+        },
+        {
+          "hash": "3322d7a20a9696404580e1ce2bf34d69228cc44511945f10b98071cf3743d6bd",
+          "importsFiles": [
+            "cli/front-door/generate.mjs",
+            "cli/front-door/index.mjs"
+          ],
+          "path": "tests/front-door/generate.test.mjs"
+        },
+        {
+          "hash": "322403745d904576355d5bb0f0ad29e3a89cead406be374230369d36cb985c10",
+          "importsFiles": [
+            "cli/front-door/gherkin.mjs"
+          ],
+          "path": "tests/front-door/gherkin.test.mjs"
+        },
+        {
+          "hash": "ed5f41b98abd3a86b7820a2df6195d8054d87db3b6fc6b6d40c8663a5a88d867",
+          "importsFiles": [
+            "cli/front-door/mcp.mjs"
+          ],
+          "path": "tests/front-door/mcp.test.mjs"
+        },
+        {
+          "hash": "a86bf4e0455cef2a42ed35de72522210950103312680d81f41a4dec8a0e6e0ca",
+          "importsFiles": [
+            "cli/front-door/minimality.mjs"
+          ],
+          "path": "tests/front-door/minimality.test.mjs"
+        },
+        {
+          "hash": "8ad6a4fc77cca084897709dfc78fdab43215d7ba7a667edb474f0a99a6805bf7",
+          "importsFiles": [
+            "cli/front-door/references.mjs"
+          ],
+          "path": "tests/front-door/references.test.mjs"
+        },
+        {
+          "hash": "77cea1c1d84ddbe070cb51633487808f4e39f2a340163707d14129f5c2f304ce",
+          "path": "tests/helpers.test.mjs"
+        },
+        {
+          "hash": "4dae9ac48ec8621d6e5a97d48916724c1ab6abfcda7489bfbeb3a8a699cccd50",
+          "importsFiles": [
+            "lib/package-link.mjs"
+          ],
+          "path": "tests/package-link.test.mjs"
+        },
+        {
+          "hash": "29eee2dc99c0c2e4d59586764f378af1bcc192e1a65ee53baa77a0728adbb78e",
+          "path": "tests/policy.test.ts"
+        },
+        {
+          "hash": "cfe6f91c3a4df3725f6dd53ec9e97079ee61deb8f876b77a0df1314a967e42b4",
+          "path": "tests/version-alignment.test.ts"
+        },
+        {
+          "hash": "895d0c13010824a29c2149be5436745fa22f05cea69ef9c67ccc145b116cabdc",
+          "path": "tests/workspaces.test.ts"
+        }
+      ],
+      "globs": [
+        "tests/**"
+      ],
+      "importConfidence": "full",
+      "name": "tests",
+      "origin": "authored",
+      "role": "test",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [
+        "types/config.ts"
+      ],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "95a9e2a2e7f7b855d0a83ab09bc6ded246b9a1d0fd54e207ba1ed32811fda84e",
+          "importsFiles": [
+            "types/docs-config.ts",
+            "types/portfolio-config.ts",
+            "types/product-config.ts",
+            "types/tool-config.ts"
+          ],
+          "path": "types/config.ts"
+        },
+        {
+          "hash": "6d3600577d9a95aabb3b4cbc4a78cdfb355a431cb2ec4e3483ba5db979048e08",
+          "importsFiles": [
+            "types/config.ts"
+          ],
+          "path": "types/docs-config.ts"
+        },
+        {
+          "hash": "427c6c1865af8b266b1f33f5a41aa0d44495eddaa8b236a3cb80299e49dc6cf3",
+          "importsFiles": [
+            "types/config.ts"
+          ],
+          "path": "types/portfolio-config.ts"
+        },
+        {
+          "hash": "e0a849ff23afd6d0c2e8217ae3a1c3b592f70c19cbf6d8913deffbf75d5fdcf1",
+          "importsFiles": [
+            "types/config.ts"
+          ],
+          "path": "types/product-config.ts"
+        },
+        {
+          "hash": "9f1c01a29f05d87d9046eceda196025f45c4dc65f598f3e43775155627ee4ca0",
+          "importsFiles": [
+            "types/config.ts"
+          ],
+          "path": "types/tool-config.ts"
+        }
+      ],
+      "globs": [
+        "types/**"
+      ],
+      "importConfidence": "full",
+      "name": "types",
+      "origin": "authored",
+      "role": "code",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    }
+  ],
+  "doors": [
+    {
+      "checksCount": 0,
+      "commands": [
+        {
+          "job": "lint-and-test",
+          "step": "0",
+          "text": "echo \"Docs-only change — no build required. Satisfying required check 'lint-and-test'.\""
+        },
+        {
+          "job": "validate-templates",
+          "step": "0",
+          "text": "echo \"Docs-only change — no build required. Satisfying required check 'validate-templates (${{ matrix.template }})'.\""
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/ci-docs.yml",
+      "landings": [],
+      "mentions": [],
+      "name": "CI (docs gate)",
+      "permissions": [],
+      "pushes": false,
+      "reach": [],
+      "readers": [],
+      "runs": [],
+      "runsCount": 0,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "pull_request"
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 1,
+      "commands": [
+        {
+          "job": "lint-and-test",
+          "step": "Atlas check",
+          "text": "npx --yes @dogfood-lab/atlas@1.21.0 check"
+        },
+        {
+          "job": "lint-and-test",
+          "step": "Install dependencies",
+          "text": "npm ci"
+        },
+        {
+          "job": "lint-and-test",
+          "step": "Dependency audit",
+          "text": "npm audit --audit-level=high --omit=peer"
+        },
+        {
+          "job": "lint-and-test",
+          "step": "Secret scan",
+          "text": "echo \"Scanning for hardcoded secrets...\"\ncat > /tmp/secret-patterns.txt <<PATTERNS\nPRIVATE.KEY\nsk_live_\nsk_test_\naws_secret\nPATTERNS\nFOUND=0\nwhile IFS= read -r pattern; do\n  pattern=$(echo \"$pattern\" | xargs)\n  [ -z \"$pattern\" ] && continue\n  if git grep -lI \"$pattern\" -- ':!*.md' ':!.github/workflows/*' ':!node_modules' 2>/dev/null; then\n    echo \"FAIL: potential secret pattern '$pattern' found\"\n    FOUND=1\n  fi\ndone < /tmp/secret-patterns.txt\nif [ \"$FOUND\" -eq 1 ]; then exit 1; fi\necho \"No hardcoded secrets detected\"\n"
+        },
+        {
+          "job": "lint-and-test",
+          "step": "Typecheck",
+          "text": "npm run typecheck"
+        },
+        {
+          "job": "lint-and-test",
+          "step": "Lint",
+          "text": "npm run lint"
+        },
+        {
+          "job": "lint-and-test",
+          "step": "Test",
+          "text": "npm test"
+        },
+        {
+          "job": "validate-templates",
+          "step": "Create temp project",
+          "text": "mkdir -p /tmp/test-${{ matrix.template }}\necho '{\"name\":\"test-${{ matrix.template }}\",\"version\":\"1.0.0\",\"description\":\"template validation\"}' > /tmp/test-${{ matrix.template }}/package.json\n"
+        },
+        {
+          "job": "validate-templates",
+          "step": "Scaffold with template",
+          "text": "cd /tmp/test-${{ matrix.template }}\nnode $GITHUB_WORKSPACE/cli/init.mjs init --template ${{ matrix.template }}\n"
+        },
+        {
+          "job": "validate-templates",
+          "step": "Pack theme for local install",
+          "text": "npm pack --pack-destination /tmp/"
+        },
+        {
+          "job": "validate-templates",
+          "step": "Install site deps",
+          "text": "npm install /tmp/mcptoolshop-site-theme-*.tgz"
+        },
+        {
+          "job": "validate-templates",
+          "step": "Build site",
+          "text": "npm run build"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/ci.yml",
+      "landings": [],
+      "mentions": [],
+      "name": "CI",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 27
+        },
+        {
+          "boundary": "types",
+          "depth": 0,
+          "files": 5
+        },
+        {
+          "boundary": "cli",
+          "depth": 1,
+          "enters": {
+            "file": "cli/front-door/ablation/agent.mjs",
+            "from": "tests/front-door/ablation/agent.test.mjs"
+          },
+          "files": 24
+        },
+        {
+          "boundary": "lib",
+          "depth": 1,
+          "enters": {
+            "file": "lib/package-link.mjs",
+            "from": "tests/package-link.test.mjs"
+          },
+          "files": 1
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "directory": true,
+          "job": "lint-and-test",
+          "matched": true,
+          "path": "tests/",
+          "runKind": "executes",
+          "via": "vitest"
+        },
+        {
+          "directory": true,
+          "job": "lint-and-test",
+          "matched": true,
+          "path": "types/",
+          "runKind": "checks",
+          "via": "tsc tsconfig.json"
+        }
+      ],
+      "runsCount": 2,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "pull_request",
+          "paths": [
+            ".github/workflows/**",
+            "atlas/**",
+            "cli/**",
+            "components/**",
+            "package-lock.json",
+            "package.json",
+            "styles/**",
+            "templates/**",
+            "tests/**",
+            "tsconfig.json",
+            "types/**"
+          ]
+        },
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "push",
+          "paths": [
+            ".github/workflows/**",
+            "atlas/**",
+            "cli/**",
+            "components/**",
+            "package-lock.json",
+            "package.json",
+            "styles/**",
+            "templates/**",
+            "tests/**",
+            "tsconfig.json",
+            "types/**"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/setup-node"
+      ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [
+        {
+          "job": "dogfood",
+          "step": "2",
+          "text": "npm ci"
+        },
+        {
+          "job": "dogfood",
+          "step": "Step: scaffold-template",
+          "text": "node cli/init.mjs --template default --out /tmp/site-test --dry-run\nif [ $? -eq 0 ]; then\n  echo \"status=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"status=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+        },
+        {
+          "job": "dogfood",
+          "step": "Step: list-templates",
+          "text": "node cli/init.mjs list-templates --json | tee /tmp/templates.log\nif [ $? -eq 0 ]; then\n  echo \"status=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"status=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+        },
+        {
+          "job": "dogfood",
+          "step": "Step: verify-output",
+          "text": "# Confirm /tmp/templates.log contains non-empty JSON output\nif [ -s /tmp/templates.log ]; then\n  echo \"status=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"status=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+        },
+        {
+          "job": "dogfood",
+          "step": "Determine overall verdict",
+          "text": "S=\"${{ steps.scaffold_template.outputs.status }}\"\nL=\"${{ steps.list_templates.outputs.status }}\"\nV=\"${{ steps.verify_output.outputs.status }}\"\nif [ \"$S\" = \"pass\" ] && [ \"$L\" = \"pass\" ] && [ \"$V\" = \"pass\" ]; then\n  echo \"verdict=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"verdict=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+        },
+        {
+          "job": "dogfood",
+          "step": "Build submission",
+          "text": "FINISHED_AT=$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")\ncat > /tmp/submission.json << 'INNER_EOF'\n{\n  \"schema_version\": \"1.0.0\",\n  \"run_id\": \"site-theme-RUN_ID-ATTEMPT\",\n  \"repo\": \"REPO_SLUG\",\n  \"ref\": {\n    \"branch\": \"REF_NAME\",\n    \"commit_sha\": \"COMMIT_SHA\"\n  },\n  \"source\": {\n    \"provider\": \"github\",\n    \"workflow\": \"dogfood.yml\",\n    \"provider_run_id\": \"PROVIDER_RUN_ID\",\n    \"attempt\": ATTEMPT_NUM,\n    \"run_url\": \"RUN_URL_PLACEHOLDER\",\n    \"actor\": \"ACTOR_NAME\"\n  },\n  \"timing\": {\n    \"started_at\": \"STARTED_PLACEHOLDER\",\n    \"finished_at\": \"FINISHED_PLACEHOLDER\",\n    \"duration_ms\": 0\n  },\n  \"ci_checks\": [],\n  \"scenario_results\": [\n    {\n      \"scenario_id\": \"scaffold-and-verify\",\n      \"scenario_name\": \"Scaffold template and verify CLI outputs\",\n      \"scenario_version\": \"1.0.0\",\n      \"product_surface\": \"npm-package\",\n      \"execution_mode\": \"bot\",\n      \"verdict\": \"VERDICT_PLACEHOLDER\",\n      \"step_results\": [\n        { \"step_id\": \"scaffold-template\", \"status\": \"SCAFFOLD_STATUS\" },\n        { \"step_id\": \"list-templates\", \"status\": \"LIST_STATUS\" },\n        { \"step_id\": \"verify-output\", \"status\": \"VERIFY_STATUS\" }\n      ],\n      \"evidence\": [\n        {\n          \"kind\": \"log\",\n          \"url\": \"RUN_URL_PLACEHOLDER\",\n          \"description\": \"CI run log with scaffold and template list output\"\n        }\n      ],\n      \"notes\": \"Bot-driven scaffold dry-run and template listing\"\n    }\n  ],\n  \"overall_verdict\": \"VERDICT_PLACEHOLDER\",\n  \"notes\": \"site-theme CLI dogfood: scaffold-and-verify scenario.\"\n}\nINNER_EOF\n\nsed -i \"s|REPO_SLUG|${GITHUB_REPOSITORY}|g\" /tmp/submission.json\nsed -i \"s|REF_NAME|${GITHUB_REF_NAME}|g\" /tmp/submission.json\nsed -i \"s|COMMIT_SHA|${GITHUB_SHA}|g\" /tmp/submission.json\nsed -i \"s|PROVIDER_RUN_ID|${GITHUB_RUN_ID}|g\" /tmp/submission.json\nsed -i \"s|ATTEMPT_NUM|${GITHUB_RUN_ATTEMPT}|g\" /tmp/submission.json\nsed -i \"s|RUN_URL_PLACEHOLDER|https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|g\" /tmp/submission.json\nsed -i \"s|ACTOR_NAME|${GITHUB_ACTOR}|g\" /tmp/submission.json\nsed -i \"s|STARTED_PLACEHOLDER|${{ github.event.head_commit.timestamp || github.event.repository.pushed_at }}|g\" /tmp/submission.json\nsed -i \"s|FINISHED_PLACEHOLDER|${FINISHED_AT}|g\" /tmp/submission.json\nsed -i \"s|site-theme-RUN_ID-ATTEMPT|site-theme-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}|g\" /tmp/submission.json\nsed -i \"s|VERDICT_PLACEHOLDER|${{ steps.verdict.outputs.verdict }}|g\" /tmp/submission.json\nsed -i \"s|SCAFFOLD_STATUS|${{ steps.scaffold_template.outputs.status }}|g\" /tmp/submission.json\nsed -i \"s|LIST_STATUS|${{ steps.list_templates.outputs.status }}|g\" /tmp/submission.json\nsed -i \"s|VERIFY_STATUS|${{ steps.verify_output.outputs.status }}|g\" /tmp/submission.json\n\njq empty /tmp/submission.json\necho \"Submission built:\"\njq '.run_id, .overall_verdict' /tmp/submission.json\n"
+        },
+        {
+          "job": "dogfood",
+          "step": "Dispatch to testing-os",
+          "text": "SUBMISSION=$(cat /tmp/submission.json)\nRUN_ID=$(echo \"$SUBMISSION\" | jq -r '.run_id')\n\nif [ -z \"$GH_TOKEN\" ]; then\n  echo \"::warning::DOGFOOD_TOKEN not set — skipping dispatch\"\n  exit 0\nfi\n\nset +e\nERR=$(\n  jq -n --argjson sub \"$SUBMISSION\" \\\n    '{\"event_type\":\"dogfood_submission\",\"client_payload\":{\"submission\":$sub}}' \\\n    | gh api repos/dogfood-lab/testing-os/dispatches \\\n      --input - --silent 2>&1\n)\nRC=$?\nset -e\n\nif [ \"$RC\" -eq 0 ]; then\n  echo \"Dispatched $RUN_ID to testing-os\"\n  exit 0\nfi\n\necho \"$ERR\"\nif echo \"$ERR\" | grep -qiE '401|Bad credentials|403'; then\n  echo \"::warning::DOGFOOD_TOKEN was rejected (expired or revoked PAT). CLI scenario already passed; not failing the job. Rotate a fine-grained PAT with contents:write on dogfood-lab/testing-os and update the DOGFOOD_TOKEN secret.\"\n  exit 0\nfi\necho \"::error::Dispatch to testing-os failed (exit $RC)\"\nexit \"$RC\"\n"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/dogfood.yml",
+      "gated": [
+        {
+          "jobs": [
+            "dogfood"
+          ],
+          "pushes": false,
+          "sends": [
+            "dispatchesTo:dogfood-lab/testing-os"
+          ],
+          "stages": [],
+          "when": {
+            "branches": [
+              "main"
+            ]
+          }
+        }
+      ],
+      "landings": [],
+      "mentions": [],
+      "name": "Dogfood",
+      "permissions": [],
+      "programs": [
+        "git"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 25
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "job": "dogfood",
+          "path": "cli/init.mjs",
+          "runKind": "executes",
+          "when": {
+            "branches": [
+              "main"
+            ]
+          }
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [
+        "DOGFOOD_TOKEN"
+      ],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "push",
+          "paths": [
+            ".github/workflows/dogfood.yml",
+            "cli/**",
+            "package.json",
+            "templates/**"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/setup-node"
+      ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [
+        {
+          "job": "build",
+          "step": "Install site dependencies",
+          "text": "npm ci"
+        },
+        {
+          "job": "build",
+          "step": "Build site",
+          "text": "npm run build"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/pages.yml",
+      "landings": [],
+      "mentions": [],
+      "name": "Deploy site to GitHub Pages",
+      "permissions": [
+        "contents:read",
+        "id-token:write",
+        "pages:write"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "site",
+          "depth": 0,
+          "files": 3
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "job": "build",
+          "matched": true,
+          "path": "site/astro.config.mjs",
+          "runKind": "executes",
+          "via": "astro build"
+        },
+        {
+          "directory": true,
+          "job": "build",
+          "matched": true,
+          "path": "site/src/",
+          "runKind": "executes",
+          "via": "astro build"
+        }
+      ],
+      "runsCount": 2,
+      "secrets": [],
+      "sends": {
+        "deploysPages": true,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "push",
+          "paths": [
+            ".github/workflows/pages.yml",
+            "site/**"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/deploy-pages",
+        "actions/setup-node",
+        "actions/upload-pages-artifact"
+      ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 1,
+      "commands": [
+        {
+          "job": "publish",
+          "step": "Install npm >= 11.5 in sandbox for OIDC trusted-publishing auth",
+          "text": "# Node 22 bundles npm 10.x, which cannot do OIDC trusted publishing,\n# and an in-place `npm i -g npm@latest` races its own arborist rebuild.\n# Install npm@latest into an isolated sandbox and shadow it via PATH.\nSANDBOX=\"$HOME/.npm-cli-sandbox\"\nmkdir -p \"$SANDBOX\"\npushd \"$SANDBOX\" >/dev/null\necho '{\"name\":\"npm-cli-sandbox\",\"version\":\"0.0.0\",\"private\":true}' > package.json\nnpm install --no-save --no-audit --no-fund --silent npm@latest\npopd >/dev/null\necho \"$SANDBOX/node_modules/.bin\" >> \"$GITHUB_PATH\"\n\"$SANDBOX/node_modules/.bin/npm\" --version\n"
+        },
+        {
+          "job": "publish",
+          "step": "Install dependencies",
+          "text": "npm ci"
+        },
+        {
+          "job": "publish",
+          "step": "Verify release tag matches package.json version",
+          "text": "PKG_VERSION=$(node -p \"require('./package.json').version\")\nTAG_VERSION=\"${GITHUB_REF_NAME#v}\"\necho \"Tag: ${GITHUB_REF_NAME} -> ${TAG_VERSION} | Package: ${PKG_VERSION}\"\nif [ \"${PKG_VERSION}\" != \"${TAG_VERSION}\" ]; then\n  echo \"::error::Release tag ${TAG_VERSION} does not match package.json version ${PKG_VERSION}\"\n  exit 1\nfi\n"
+        },
+        {
+          "job": "publish",
+          "step": "Typecheck",
+          "text": "npm run typecheck"
+        },
+        {
+          "job": "publish",
+          "step": "Test",
+          "text": "npm test"
+        },
+        {
+          "job": "publish",
+          "step": "npm pack dry-run (verify tarball shape)",
+          "text": "npm pack --dry-run"
+        },
+        {
+          "job": "publish",
+          "step": "Publish to npm with provenance (OIDC trusted publisher)",
+          "text": "npm publish --provenance --access public"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/release.yml",
+      "landings": [],
+      "mentions": [
+        {
+          "job": "publish",
+          "path": "package.json"
+        }
+      ],
+      "name": "Release",
+      "permissions": [
+        "contents:read",
+        "id-token:write"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 27
+        },
+        {
+          "boundary": "types",
+          "depth": 0,
+          "files": 5
+        },
+        {
+          "boundary": "cli",
+          "depth": 1,
+          "enters": {
+            "file": "cli/front-door/ablation/agent.mjs",
+            "from": "tests/front-door/ablation/agent.test.mjs"
+          },
+          "files": 24
+        },
+        {
+          "boundary": "lib",
+          "depth": 1,
+          "enters": {
+            "file": "lib/package-link.mjs",
+            "from": "tests/package-link.test.mjs"
+          },
+          "files": 1
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "tests/",
+          "runKind": "executes",
+          "via": "vitest"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "types/",
+          "runKind": "checks",
+          "via": "tsc tsconfig.json"
+        }
+      ],
+      "runsCount": 2,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "packages": [
+          {
+            "dir": "",
+            "name": "@mcptoolshop/site-theme",
+            "registry": "npm"
+          }
+        ],
+        "publishes": true,
+        "publishesTo": [
+          "npm"
+        ],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "event": "release",
+          "types": [
+            "published"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/setup-node"
+      ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "types/config.ts",
+      "file": "package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@mcptoolshop/site-theme",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 24
+        },
+        {
+          "boundary": "components",
+          "depth": 0,
+          "files": 17
+        },
+        {
+          "boundary": "styles",
+          "depth": 0,
+          "files": 1
+        },
+        {
+          "boundary": "types",
+          "depth": 0,
+          "files": 5
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "cli/front-door/index.mjs",
+          "runKind": "executes"
+        },
+        {
+          "path": "cli/front-door/mcp.mjs",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/ApiList.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/BaseLayout.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/CodeCardGrid.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/ContentSection.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/CtaBanner.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/DataTable.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/DocLayout.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/FeatureGrid.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/FilterBar.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/Hero.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/PortfolioGrid.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/PricingGrid.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/Section.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/Sidebar.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/SocialProof.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/TableOfContents.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "components/TestimonialGrid.astro",
+          "runKind": "executes"
+        },
+        {
+          "path": "styles/theme.css",
+          "runKind": "executes"
+        },
+        {
+          "path": "types/config.ts",
+          "runKind": "executes"
+        },
+        {
+          "path": "types/docs-config.ts",
+          "runKind": "executes"
+        },
+        {
+          "path": "types/portfolio-config.ts",
+          "runKind": "executes"
+        },
+        {
+          "path": "types/product-config.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 24,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "file": "package.json",
+      "kind": "command",
+      "landings": [],
+      "mentions": [],
+      "name": "site-theme",
+      "permissions": [],
+      "programs": [
+        "git"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 25
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "cli/init.mjs",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "tests",
+      "fromTests": true,
+      "kind": "file",
+      "to": "cli"
+    },
+    {
+      "from": "tests",
+      "fromTests": true,
+      "kind": "file",
+      "to": "lib"
+    }
+  ],
+  "generatedFrom": {
+    "commit": "dbaeea5281510146a198468862a0e76a9287e071",
+    "tracked": 269
+  },
+  "landings": [
+    {
+      "readers": [
+        {
+          "by": "cli/front-door/attestation.mjs",
+          "call": "existsSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "cli/front-door/attestation.mjs",
+          "call": "readFileSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "cli/front-door/attestation.mjs",
+          "call": "readdirSync",
+          "confidence": "ast"
+        }
+      ],
+      "target": ".github/workflows",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/front-door/ablation/arms.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/cli.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/generate.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/mcp.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/minimality.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/references.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "AGENTS.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/version-alignment.test.ts",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/version-alignment.test.ts",
+          "call": "readFileSync",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "CHANGELOG.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/front-door/ablation/arms.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/attestation.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/doctest.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/generate.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/mcp.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/minimality.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/references.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "README.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "cli/init.mjs",
+          "call": "existsSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "tests/version-alignment.test.ts",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "assets/favicon.svg",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "package-lock.json",
+          "call": "literal",
+          "confidence": "text"
+        },
+        {
+          "by": "site/package-lock.json",
+          "call": "literal",
+          "confidence": "text"
+        },
+        {
+          "by": "tests/cli.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/ablation/cli.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/cli.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/extract.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/mcp.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "cli/init.mjs",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/base-layout.test.mjs",
+          "call": "readFileSync",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "components/BaseLayout.astro",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "site/src/content/docs/handbook/getting-started.md",
+          "call": "--template",
+          "confidence": "text"
+        },
+        {
+          "by": "site/src/content/docs/handbook/templates.md",
+          "call": "--template",
+          "confidence": "text"
+        }
+      ],
+      "target": "docs",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/front-door/extract.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "docs/index.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": ".github/workflows/release.yml"
+        },
+        {
+          "by": "cli/front-door/attestation.mjs",
+          "call": "existsSync",
+          "confidence": "weak"
+        },
+        {
+          "by": "cli/front-door/attestation.mjs",
+          "call": "readFileSync",
+          "confidence": "weak"
+        },
+        {
+          "by": "cli/front-door/mcp.mjs",
+          "call": "readFileSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "cli/init.mjs",
+          "call": "readFileSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "tests/cli.test.mjs",
+          "call": "readFileSync",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/extract.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/mcp.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/version-alignment.test.ts",
+          "call": "readFileSync",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "package.json",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "cli/front-door/ABLATION.md",
+          "call": "--",
+          "confidence": "text"
+        },
+        {
+          "by": "cli/front-door/ABLATION.md",
+          "call": "--out",
+          "confidence": "text"
+        },
+        {
+          "by": "cli/front-door/EVAL.md",
+          "call": "--out",
+          "confidence": "text"
+        },
+        {
+          "by": "receipts/front-door-ablation.md",
+          "call": "--out",
+          "confidence": "text"
+        }
+      ],
+      "target": "receipts/front-door-ablation.json",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/cli.test.mjs",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "site/public/favicon.svg",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "site/astro.config.mjs",
+          "call": "content-collection",
+          "confidence": "ast"
+        }
+      ],
+      "target": "site/src/content/docs",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "site/astro.config.mjs",
+          "call": "autogenerate",
+          "confidence": "ast"
+        }
+      ],
+      "target": "site/src/content/docs/handbook",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "cli/init.mjs",
+          "call": "existsSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "cli/init.mjs",
+          "call": "readFileSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "cli/init.mjs",
+          "call": "readdirSync",
+          "confidence": "ast"
+        }
+      ],
+      "target": "templates",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "cli/init.mjs",
+          "call": "existsSync",
+          "confidence": "ast"
+        },
+        {
+          "by": "cli/init.mjs",
+          "call": "readdirSync",
+          "confidence": "ast"
+        }
+      ],
+      "target": "templates/*",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "cli/front-door/gherkin.mjs",
+          "call": "existsSync",
+          "confidence": "ast"
+        }
+      ],
+      "target": "tests",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/front-door/generate.test.mjs",
+          "call": "existsSync",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "tests/.test-tmp-fd-gen/AGENTS.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/front-door/generate.test.mjs",
+          "call": "existsSync",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/front-door/generate.test.mjs",
+          "call": "readFileSync",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "tests/.test-tmp-fd-gen/README.md",
+      "writers": []
+    }
+  ],
+  "overlaps": [],
+  "submodules": [],
+  "symlinks": [],
+  "testFiles": 27,
+  "unassigned": []
+}
