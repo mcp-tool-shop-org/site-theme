@@ -256,7 +256,7 @@
           "path": ".github/workflows/ci-docs.yml"
         },
         {
-          "hash": "37beeaaaa158d3f39ce385aa76d5ae89d6720ec6895fe9192850c8b55c069fab",
+          "hash": "d09f48960518826e0e1b8b7033ee2b320148e1af9c65d46a5e43e4d076f0125f",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -1266,6 +1266,9 @@
         },
         {
           "hash": "138db4d20a7c19fb49fd2d71a197ac53f1d3837b99a05bb9dbd58f0891e23d13",
+          "importsFiles": [
+            "lib/package-link.mjs"
+          ],
           "path": "components/BaseLayout.astro"
         },
         {
@@ -1286,6 +1289,9 @@
         },
         {
           "hash": "8c978fb628eaa9a8ad6c748692865e018c940cb27dca8ccf66878b8916121d11",
+          "importsFiles": [
+            "components/Sidebar.astro"
+          ],
           "path": "components/DocLayout.astro"
         },
         {
@@ -1526,7 +1532,8 @@
       "name": "root",
       "origin": "authored",
       "role": "config",
-      "testedBy": 0,
+      "testedBy": 1,
+      "testedByScript": true,
       "unresolvedSites": 0
     },
     {
@@ -1596,11 +1603,36 @@
         },
         {
           "hash": "db37c6d2c368300059a6cf3c470e2bde1b64b072c2770572d71410abeff30a32",
+          "importOrder": [
+            "site/src/styles/global.css",
+            "components/BaseLayout.astro",
+            "components/Hero.astro",
+            "components/Section.astro",
+            "components/FeatureGrid.astro",
+            "components/DataTable.astro",
+            "components/CodeCardGrid.astro",
+            "components/ApiList.astro",
+            "site/src/site-config.ts"
+          ],
+          "importsFiles": [
+            "components/ApiList.astro",
+            "components/BaseLayout.astro",
+            "components/CodeCardGrid.astro",
+            "components/DataTable.astro",
+            "components/FeatureGrid.astro",
+            "components/Hero.astro",
+            "components/Section.astro",
+            "site/src/site-config.ts",
+            "site/src/styles/global.css"
+          ],
           "path": "site/src/pages/index.astro"
         },
         {
           "constantOnly": true,
           "hash": "8d781ee9e768d4058e74e1416142775a11463bcfeb8d91fbe345d347ed259550",
+          "importsFiles": [
+            "types/config.ts"
+          ],
           "path": "site/src/site-config.ts"
         },
         {
@@ -1624,14 +1656,7 @@
       "origin": "authored",
       "role": "site",
       "testedBy": 0,
-      "unresolvedNamed": [
-        {
-          "path": "site/src/site-config.ts",
-          "specifier": "@mcptoolshop/site-theme",
-          "why": "member"
-        }
-      ],
-      "unresolvedSites": 1
+      "unresolvedSites": 0
     },
     {
       "dynamicReads": 0,
@@ -1702,10 +1727,19 @@
         },
         {
           "hash": "1d0cd7b33f6026bab2aac5d8bf195ae161ed227f9e1bbb1e9ec0388ed2660ab3",
+          "importsFiles": [
+            "templates/app/site/src/config/site.config.ts",
+            "templates/app/site/src/lib/auth.ts",
+            "templates/app/site/src/lib/features.ts"
+          ],
           "path": "templates/app/site/src/components/app/SettingsNav.astro"
         },
         {
           "hash": "20a729bcc082be1d03759904d5371aa16eda41460bbf5b406eb3dbdd33c2d6ff",
+          "importsFiles": [
+            "templates/app/site/src/config/site.config.ts",
+            "templates/app/site/src/lib/features.ts"
+          ],
           "path": "templates/app/site/src/components/app/Sidebar.astro"
         },
         {
@@ -1714,6 +1748,14 @@
         },
         {
           "hash": "e96dfb4f841ddaedf8d1115de89f660d374cea359274073e7c0f8acdb3c6d1e9",
+          "importOrder": [
+            "templates/app/site/src/components/app/WorkspaceSwitcher.astro",
+            "templates/app/site/src/components/app/UserMenu.astro"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/UserMenu.astro",
+            "templates/app/site/src/components/app/WorkspaceSwitcher.astro"
+          ],
           "path": "templates/app/site/src/components/app/Topbar.astro"
         },
         {
@@ -1722,6 +1764,9 @@
         },
         {
           "hash": "f2ead2aceef2b9fe7fb64250602d0186bbc29012da34c478f0112b97cd96f706",
+          "importsFiles": [
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/components/app/WorkspaceSwitcher.astro"
         },
         {
@@ -1775,14 +1820,42 @@
         },
         {
           "hash": "c766e16a4ab29c4ff30ad41a89155380d63ab87208554bec9be2953573469c42",
+          "importOrder": [
+            "templates/app/site/src/styles/global.css",
+            "templates/app/site/src/components/app/Sidebar.astro",
+            "templates/app/site/src/components/app/Topbar.astro",
+            "templates/app/site/src/config/site.config.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/Sidebar.astro",
+            "templates/app/site/src/components/app/Topbar.astro",
+            "templates/app/site/src/config/site.config.ts",
+            "templates/app/site/src/styles/global.css"
+          ],
           "path": "templates/app/site/src/layouts/AppShell.astro"
         },
         {
           "hash": "e718e2cf28a616f023d174a30c1d4263dcc98a295db40a6f55d6abe4bec0be7f",
+          "importOrder": [
+            "templates/app/site/src/styles/global.css",
+            "templates/app/site/src/config/site.config.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/config/site.config.ts",
+            "templates/app/site/src/styles/global.css"
+          ],
           "path": "templates/app/site/src/layouts/AuthLayout.astro"
         },
         {
           "hash": "1b321f2314fec83edc7c0fa10e9bf687e21756ab3e541d3523b8cf70081f85e7",
+          "importOrder": [
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/components/app/SettingsNav.astro"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/SettingsNav.astro",
+            "templates/app/site/src/layouts/AppShell.astro"
+          ],
           "path": "templates/app/site/src/layouts/SettingsLayout.astro"
         },
         {
@@ -1822,51 +1895,186 @@
           "path": "templates/app/site/src/lib/workspaces.ts"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "30ba6a2b5fb160fe8d9c4ed02286ebe36e6698205fe67a168ded1af5ebd8ebec",
+          "importsFiles": [
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/[...rest].astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "26cc6c05b03b2e3b0f58fe40cfccf73e9dd6713aec34b798509c6bf1dd880f01",
+          "importOrder": [
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/components/app/StatCards.astro",
+            "templates/app/site/src/components/app/DataTable.astro",
+            "templates/app/site/src/lib/workspaces.ts",
+            "templates/app/site/src/data/index.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/DataTable.astro",
+            "templates/app/site/src/components/app/StatCards.astro",
+            "templates/app/site/src/data/index.ts",
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/index.astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "f0164f70ba5301131a9c85f6bcec29cde66b7ac789459dcc94f423e4f4f7f433",
+          "importOrder": [
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/components/app/Breadcrumbs.astro",
+            "templates/app/site/src/data/index.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/Breadcrumbs.astro",
+            "templates/app/site/src/data/index.ts",
+            "templates/app/site/src/layouts/AppShell.astro"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/projects/[id].astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "d1b21b67ae0859f05b69a08217e148f571fb973260b5aa2853081074785d74b4",
+          "importOrder": [
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/components/app/DataTable.astro",
+            "templates/app/site/src/lib/workspaces.ts",
+            "templates/app/site/src/data/index.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/DataTable.astro",
+            "templates/app/site/src/data/index.ts",
+            "templates/app/site/src/layouts/AppShell.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/projects/index.astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "a221374fbb705f853dc264b9ca77fbf533e873977a216d250b06dda1c12f1072",
+          "importOrder": [
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/components/app/AccessDenied.astro",
+            "templates/app/site/src/lib/workspaces.ts",
+            "templates/app/site/src/lib/auth.ts",
+            "templates/app/site/src/lib/policy.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/AccessDenied.astro",
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/lib/auth.ts",
+            "templates/app/site/src/lib/policy.ts",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/settings/billing.astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "8f6530b7bc921d17db8756368f6b6a49f9088ffd9e5b0814ac1a60edb368f189",
+          "importOrder": [
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/lib/workspaces.ts",
+            "templates/app/site/src/lib/auth.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/lib/auth.ts",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/settings/profile.astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "7887ef91cc594ea8502039ed7c92ea318bb19c5b2551203c3e33d950add37034",
+          "importOrder": [
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/settings/security.astro"
         },
         {
+          "exports": [
+            "getStaticPaths"
+          ],
           "hash": "8ae22eddd99518372e05fcca8062dacdfa02687c2c6fd4bbab21ac9ce54466ed",
+          "importOrder": [
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/components/app/DataTable.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/DataTable.astro",
+            "templates/app/site/src/layouts/SettingsLayout.astro",
+            "templates/app/site/src/lib/workspaces.ts"
+          ],
           "path": "templates/app/site/src/pages/app/[workspace]/settings/team.astro"
         },
         {
           "hash": "05a69c6bf980d5b6ce4a764d81f0d7f291666d47255e9d3aad123893aaf90a8d",
+          "importOrder": [
+            "templates/app/site/src/layouts/AuthLayout.astro",
+            "templates/app/site/src/components/app/FormField.astro"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/layouts/AuthLayout.astro"
+          ],
           "path": "templates/app/site/src/pages/auth/forgot-password.astro"
         },
         {
           "hash": "b858fae2f4ab930354ab2229b1376005de67ee6dc5aa26dc4c9b8bdf512a0b51",
+          "importOrder": [
+            "templates/app/site/src/layouts/AuthLayout.astro",
+            "templates/app/site/src/components/app/FormField.astro"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/layouts/AuthLayout.astro"
+          ],
           "path": "templates/app/site/src/pages/auth/sign-in.astro"
         },
         {
           "hash": "a1da4f130032a68ce3ae4f3dd778100d07c9212bda6651991c71a4cfb2561128",
+          "importOrder": [
+            "templates/app/site/src/layouts/AuthLayout.astro",
+            "templates/app/site/src/components/app/FormField.astro"
+          ],
+          "importsFiles": [
+            "templates/app/site/src/components/app/FormField.astro",
+            "templates/app/site/src/layouts/AuthLayout.astro"
+          ],
           "path": "templates/app/site/src/pages/auth/sign-up.astro"
         },
         {
           "hash": "fd4ef0930790e5818c743fb4895e4aadc15b37d8f672349149dc0d3e7ec94c1f",
+          "noStatements": true,
           "path": "templates/app/site/src/pages/index.astro"
         },
         {
@@ -2306,13 +2514,17 @@
       "commands": [
         {
           "job": "lint-and-test",
-          "step": "0",
-          "text": "echo \"Docs-only change — no build required. Satisfying required check 'lint-and-test'.\""
+          "programs": [
+            "echo"
+          ],
+          "step": "0"
         },
         {
           "job": "validate-templates",
-          "step": "0",
-          "text": "echo \"Docs-only change — no build required. Satisfying required check 'validate-templates (${{ matrix.template }})'.\""
+          "programs": [
+            "echo"
+          ],
+          "step": "0"
         }
       ],
       "elsewhere": [],
@@ -2343,7 +2555,19 @@
           "branches": [
             "main"
           ],
-          "event": "pull_request"
+          "event": "pull_request",
+          "paths-ignore": [
+            ".github/workflows/**",
+            "cli/**",
+            "components/**",
+            "package-lock.json",
+            "package.json",
+            "styles/**",
+            "templates/**",
+            "tests/**",
+            "tsconfig.json",
+            "types/**"
+          ]
         },
         {
           "event": "workflow_dispatch"
@@ -2357,63 +2581,93 @@
       "commands": [
         {
           "job": "lint-and-test",
-          "step": "Atlas check",
-          "text": "npx --yes @dogfood-lab/atlas@1.21.0 check"
+          "programs": [
+            "npx"
+          ],
+          "step": "Atlas check"
         },
         {
           "job": "lint-and-test",
-          "step": "Install dependencies",
-          "text": "npm ci"
+          "programs": [
+            "npm"
+          ],
+          "step": "Install dependencies"
         },
         {
           "job": "lint-and-test",
-          "step": "Dependency audit",
-          "text": "npm audit --audit-level=high --omit=peer"
+          "programs": [
+            "npm"
+          ],
+          "step": "Dependency audit"
         },
         {
           "job": "lint-and-test",
-          "step": "Secret scan",
-          "text": "echo \"Scanning for hardcoded secrets...\"\ncat > /tmp/secret-patterns.txt <<PATTERNS\nPRIVATE.KEY\nsk_live_\nsk_test_\naws_secret\nPATTERNS\nFOUND=0\nwhile IFS= read -r pattern; do\n  pattern=$(echo \"$pattern\" | xargs)\n  [ -z \"$pattern\" ] && continue\n  if git grep -lI \"$pattern\" -- ':!*.md' ':!.github/workflows/*' ':!node_modules' 2>/dev/null; then\n    echo \"FAIL: potential secret pattern '$pattern' found\"\n    FOUND=1\n  fi\ndone < /tmp/secret-patterns.txt\nif [ \"$FOUND\" -eq 1 ]; then exit 1; fi\necho \"No hardcoded secrets detected\"\n"
+          "programs": [
+            "cat",
+            "echo",
+            "git",
+            "read",
+            "xargs"
+          ],
+          "step": "Secret scan"
         },
         {
           "job": "lint-and-test",
-          "step": "Typecheck",
-          "text": "npm run typecheck"
+          "programs": [
+            "npm"
+          ],
+          "step": "Typecheck"
         },
         {
           "job": "lint-and-test",
-          "step": "Lint",
-          "text": "npm run lint"
+          "programs": [
+            "npm"
+          ],
+          "step": "Lint"
         },
         {
           "job": "lint-and-test",
-          "step": "Test",
-          "text": "npm test"
+          "programs": [
+            "npm"
+          ],
+          "step": "Test"
         },
         {
           "job": "validate-templates",
-          "step": "Create temp project",
-          "text": "mkdir -p /tmp/test-${{ matrix.template }}\necho '{\"name\":\"test-${{ matrix.template }}\",\"version\":\"1.0.0\",\"description\":\"template validation\"}' > /tmp/test-${{ matrix.template }}/package.json\n"
+          "programs": [
+            "echo",
+            "mkdir"
+          ],
+          "step": "Create temp project"
         },
         {
           "job": "validate-templates",
-          "step": "Scaffold with template",
-          "text": "cd /tmp/test-${{ matrix.template }}\nnode $GITHUB_WORKSPACE/cli/init.mjs init --template ${{ matrix.template }}\n"
+          "programs": [
+            "cd",
+            "node"
+          ],
+          "step": "Scaffold with template"
         },
         {
           "job": "validate-templates",
-          "step": "Pack theme for local install",
-          "text": "npm pack --pack-destination /tmp/"
+          "programs": [
+            "npm"
+          ],
+          "step": "Pack theme for local install"
         },
         {
           "job": "validate-templates",
-          "step": "Install site deps",
-          "text": "npm install /tmp/mcptoolshop-site-theme-*.tgz"
+          "programs": [
+            "npm"
+          ],
+          "step": "Install site deps"
         },
         {
           "job": "validate-templates",
-          "step": "Build site",
-          "text": "npm run build"
+          "programs": [
+            "npm"
+          ],
+          "step": "Build site"
         }
       ],
       "elsewhere": [],
@@ -2422,8 +2676,16 @@
       "mentions": [],
       "name": "CI",
       "permissions": [],
+      "programs": [
+        "git"
+      ],
       "pushes": false,
       "reach": [
+        {
+          "boundary": "cli",
+          "depth": 0,
+          "files": 25
+        },
         {
           "boundary": "tests",
           "depth": 0,
@@ -2433,15 +2695,6 @@
           "boundary": "types",
           "depth": 0,
           "files": 5
-        },
-        {
-          "boundary": "cli",
-          "depth": 1,
-          "enters": {
-            "file": "cli/front-door/ablation/agent.mjs",
-            "from": "tests/front-door/ablation/agent.test.mjs"
-          },
-          "files": 24
         },
         {
           "boundary": "lib",
@@ -2455,6 +2708,11 @@
       ],
       "readers": [],
       "runs": [
+        {
+          "job": "validate-templates",
+          "path": "cli/init.mjs",
+          "runKind": "executes"
+        },
         {
           "directory": true,
           "job": "lint-and-test",
@@ -2472,7 +2730,7 @@
           "via": "tsc tsconfig.json"
         }
       ],
-      "runsCount": 2,
+      "runsCount": 3,
       "secrets": [],
       "sends": {
         "deploysPages": false,
@@ -2539,38 +2797,64 @@
       "commands": [
         {
           "job": "dogfood",
-          "step": "2",
-          "text": "npm ci"
+          "programs": [
+            "npm"
+          ],
+          "step": "2"
         },
         {
           "job": "dogfood",
-          "step": "Step: scaffold-template",
-          "text": "node cli/init.mjs --template default --out /tmp/site-test --dry-run\nif [ $? -eq 0 ]; then\n  echo \"status=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"status=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+          "programs": [
+            "echo",
+            "node"
+          ],
+          "step": "Step: scaffold-template"
         },
         {
           "job": "dogfood",
-          "step": "Step: list-templates",
-          "text": "node cli/init.mjs list-templates --json | tee /tmp/templates.log\nif [ $? -eq 0 ]; then\n  echo \"status=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"status=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+          "programs": [
+            "echo",
+            "node",
+            "tee"
+          ],
+          "step": "Step: list-templates"
         },
         {
           "job": "dogfood",
-          "step": "Step: verify-output",
-          "text": "# Confirm /tmp/templates.log contains non-empty JSON output\nif [ -s /tmp/templates.log ]; then\n  echo \"status=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"status=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+          "programs": [
+            "echo"
+          ],
+          "step": "Step: verify-output"
         },
         {
           "job": "dogfood",
-          "step": "Determine overall verdict",
-          "text": "S=\"${{ steps.scaffold_template.outputs.status }}\"\nL=\"${{ steps.list_templates.outputs.status }}\"\nV=\"${{ steps.verify_output.outputs.status }}\"\nif [ \"$S\" = \"pass\" ] && [ \"$L\" = \"pass\" ] && [ \"$V\" = \"pass\" ]; then\n  echo \"verdict=pass\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"verdict=fail\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+          "programs": [
+            "echo"
+          ],
+          "step": "Determine overall verdict"
         },
         {
           "job": "dogfood",
-          "step": "Build submission",
-          "text": "FINISHED_AT=$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")\ncat > /tmp/submission.json << 'INNER_EOF'\n{\n  \"schema_version\": \"1.0.0\",\n  \"run_id\": \"site-theme-RUN_ID-ATTEMPT\",\n  \"repo\": \"REPO_SLUG\",\n  \"ref\": {\n    \"branch\": \"REF_NAME\",\n    \"commit_sha\": \"COMMIT_SHA\"\n  },\n  \"source\": {\n    \"provider\": \"github\",\n    \"workflow\": \"dogfood.yml\",\n    \"provider_run_id\": \"PROVIDER_RUN_ID\",\n    \"attempt\": ATTEMPT_NUM,\n    \"run_url\": \"RUN_URL_PLACEHOLDER\",\n    \"actor\": \"ACTOR_NAME\"\n  },\n  \"timing\": {\n    \"started_at\": \"STARTED_PLACEHOLDER\",\n    \"finished_at\": \"FINISHED_PLACEHOLDER\",\n    \"duration_ms\": 0\n  },\n  \"ci_checks\": [],\n  \"scenario_results\": [\n    {\n      \"scenario_id\": \"scaffold-and-verify\",\n      \"scenario_name\": \"Scaffold template and verify CLI outputs\",\n      \"scenario_version\": \"1.0.0\",\n      \"product_surface\": \"npm-package\",\n      \"execution_mode\": \"bot\",\n      \"verdict\": \"VERDICT_PLACEHOLDER\",\n      \"step_results\": [\n        { \"step_id\": \"scaffold-template\", \"status\": \"SCAFFOLD_STATUS\" },\n        { \"step_id\": \"list-templates\", \"status\": \"LIST_STATUS\" },\n        { \"step_id\": \"verify-output\", \"status\": \"VERIFY_STATUS\" }\n      ],\n      \"evidence\": [\n        {\n          \"kind\": \"log\",\n          \"url\": \"RUN_URL_PLACEHOLDER\",\n          \"description\": \"CI run log with scaffold and template list output\"\n        }\n      ],\n      \"notes\": \"Bot-driven scaffold dry-run and template listing\"\n    }\n  ],\n  \"overall_verdict\": \"VERDICT_PLACEHOLDER\",\n  \"notes\": \"site-theme CLI dogfood: scaffold-and-verify scenario.\"\n}\nINNER_EOF\n\nsed -i \"s|REPO_SLUG|${GITHUB_REPOSITORY}|g\" /tmp/submission.json\nsed -i \"s|REF_NAME|${GITHUB_REF_NAME}|g\" /tmp/submission.json\nsed -i \"s|COMMIT_SHA|${GITHUB_SHA}|g\" /tmp/submission.json\nsed -i \"s|PROVIDER_RUN_ID|${GITHUB_RUN_ID}|g\" /tmp/submission.json\nsed -i \"s|ATTEMPT_NUM|${GITHUB_RUN_ATTEMPT}|g\" /tmp/submission.json\nsed -i \"s|RUN_URL_PLACEHOLDER|https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}|g\" /tmp/submission.json\nsed -i \"s|ACTOR_NAME|${GITHUB_ACTOR}|g\" /tmp/submission.json\nsed -i \"s|STARTED_PLACEHOLDER|${{ github.event.head_commit.timestamp || github.event.repository.pushed_at }}|g\" /tmp/submission.json\nsed -i \"s|FINISHED_PLACEHOLDER|${FINISHED_AT}|g\" /tmp/submission.json\nsed -i \"s|site-theme-RUN_ID-ATTEMPT|site-theme-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}|g\" /tmp/submission.json\nsed -i \"s|VERDICT_PLACEHOLDER|${{ steps.verdict.outputs.verdict }}|g\" /tmp/submission.json\nsed -i \"s|SCAFFOLD_STATUS|${{ steps.scaffold_template.outputs.status }}|g\" /tmp/submission.json\nsed -i \"s|LIST_STATUS|${{ steps.list_templates.outputs.status }}|g\" /tmp/submission.json\nsed -i \"s|VERIFY_STATUS|${{ steps.verify_output.outputs.status }}|g\" /tmp/submission.json\n\njq empty /tmp/submission.json\necho \"Submission built:\"\njq '.run_id, .overall_verdict' /tmp/submission.json\n"
+          "programs": [
+            "cat",
+            "date",
+            "echo",
+            "jq",
+            "sed"
+          ],
+          "step": "Build submission"
         },
         {
           "job": "dogfood",
-          "step": "Dispatch to testing-os",
-          "text": "SUBMISSION=$(cat /tmp/submission.json)\nRUN_ID=$(echo \"$SUBMISSION\" | jq -r '.run_id')\n\nif [ -z \"$GH_TOKEN\" ]; then\n  echo \"::warning::DOGFOOD_TOKEN not set — skipping dispatch\"\n  exit 0\nfi\n\nset +e\nERR=$(\n  jq -n --argjson sub \"$SUBMISSION\" \\\n    '{\"event_type\":\"dogfood_submission\",\"client_payload\":{\"submission\":$sub}}' \\\n    | gh api repos/dogfood-lab/testing-os/dispatches \\\n      --input - --silent 2>&1\n)\nRC=$?\nset -e\n\nif [ \"$RC\" -eq 0 ]; then\n  echo \"Dispatched $RUN_ID to testing-os\"\n  exit 0\nfi\n\necho \"$ERR\"\nif echo \"$ERR\" | grep -qiE '401|Bad credentials|403'; then\n  echo \"::warning::DOGFOOD_TOKEN was rejected (expired or revoked PAT). CLI scenario already passed; not failing the job. Rotate a fine-grained PAT with contents:write on dogfood-lab/testing-os and update the DOGFOOD_TOKEN secret.\"\n  exit 0\nfi\necho \"::error::Dispatch to testing-os failed (exit $RC)\"\nexit \"$RC\"\n"
+          "programs": [
+            "1",
+            "cat",
+            "echo",
+            "gh",
+            "grep",
+            "jq"
+          ],
+          "step": "Dispatch to testing-os"
         }
       ],
       "elsewhere": [],
@@ -2663,13 +2947,17 @@
       "commands": [
         {
           "job": "build",
-          "step": "Install site dependencies",
-          "text": "npm ci"
+          "programs": [
+            "npm"
+          ],
+          "step": "Install site dependencies"
         },
         {
           "job": "build",
-          "step": "Build site",
-          "text": "npm run build"
+          "programs": [
+            "npm"
+          ],
+          "step": "Build site"
         }
       ],
       "elsewhere": [],
@@ -2687,7 +2975,34 @@
         {
           "boundary": "site",
           "depth": 0,
-          "files": 3
+          "files": 5
+        },
+        {
+          "boundary": "components",
+          "depth": 1,
+          "enters": {
+            "file": "components/BaseLayout.astro",
+            "from": "site/src/pages/index.astro"
+          },
+          "files": 7
+        },
+        {
+          "boundary": "types",
+          "depth": 1,
+          "enters": {
+            "file": "types/config.ts",
+            "from": "site/src/site-config.ts"
+          },
+          "files": 5
+        },
+        {
+          "boundary": "lib",
+          "depth": 2,
+          "enters": {
+            "file": "lib/package-link.mjs",
+            "from": "components/BaseLayout.astro"
+          },
+          "files": 1
         }
       ],
       "readers": [],
@@ -2749,38 +3064,57 @@
       "commands": [
         {
           "job": "publish",
-          "step": "Install npm >= 11.5 in sandbox for OIDC trusted-publishing auth",
-          "text": "# Node 22 bundles npm 10.x, which cannot do OIDC trusted publishing,\n# and an in-place `npm i -g npm@latest` races its own arborist rebuild.\n# Install npm@latest into an isolated sandbox and shadow it via PATH.\nSANDBOX=\"$HOME/.npm-cli-sandbox\"\nmkdir -p \"$SANDBOX\"\npushd \"$SANDBOX\" >/dev/null\necho '{\"name\":\"npm-cli-sandbox\",\"version\":\"0.0.0\",\"private\":true}' > package.json\nnpm install --no-save --no-audit --no-fund --silent npm@latest\npopd >/dev/null\necho \"$SANDBOX/node_modules/.bin\" >> \"$GITHUB_PATH\"\n\"$SANDBOX/node_modules/.bin/npm\" --version\n"
+          "programs": [
+            "echo",
+            "mkdir",
+            "npm",
+            "popd",
+            "pushd"
+          ],
+          "step": "Install npm >= 11.5 in sandbox for OIDC trusted-publishing auth"
         },
         {
           "job": "publish",
-          "step": "Install dependencies",
-          "text": "npm ci"
+          "programs": [
+            "npm"
+          ],
+          "step": "Install dependencies"
         },
         {
           "job": "publish",
-          "step": "Verify release tag matches package.json version",
-          "text": "PKG_VERSION=$(node -p \"require('./package.json').version\")\nTAG_VERSION=\"${GITHUB_REF_NAME#v}\"\necho \"Tag: ${GITHUB_REF_NAME} -> ${TAG_VERSION} | Package: ${PKG_VERSION}\"\nif [ \"${PKG_VERSION}\" != \"${TAG_VERSION}\" ]; then\n  echo \"::error::Release tag ${TAG_VERSION} does not match package.json version ${PKG_VERSION}\"\n  exit 1\nfi\n"
+          "programs": [
+            "echo",
+            "node"
+          ],
+          "step": "Verify release tag matches package.json version"
         },
         {
           "job": "publish",
-          "step": "Typecheck",
-          "text": "npm run typecheck"
+          "programs": [
+            "npm"
+          ],
+          "step": "Typecheck"
         },
         {
           "job": "publish",
-          "step": "Test",
-          "text": "npm test"
+          "programs": [
+            "npm"
+          ],
+          "step": "Test"
         },
         {
           "job": "publish",
-          "step": "npm pack dry-run (verify tarball shape)",
-          "text": "npm pack --dry-run"
+          "programs": [
+            "npm"
+          ],
+          "step": "npm pack dry-run (verify tarball shape)"
         },
         {
           "job": "publish",
-          "step": "Publish to npm with provenance (OIDC trusted publisher)",
-          "text": "npm publish --provenance --access public"
+          "programs": [
+            "npm"
+          ],
+          "step": "Publish to npm with provenance (OIDC trusted publisher)"
         }
       ],
       "elsewhere": [],
@@ -2918,6 +3252,15 @@
           "boundary": "types",
           "depth": 0,
           "files": 5
+        },
+        {
+          "boundary": "lib",
+          "depth": 1,
+          "enters": {
+            "file": "lib/package-link.mjs",
+            "from": "components/BaseLayout.astro"
+          },
+          "files": 1
         }
       ],
       "readers": [],
@@ -3084,6 +3427,21 @@
   ],
   "edges": [
     {
+      "from": "components",
+      "kind": "file",
+      "to": "lib"
+    },
+    {
+      "from": "site",
+      "kind": "file",
+      "to": "components"
+    },
+    {
+      "from": "site",
+      "kind": "file",
+      "to": "types"
+    },
+    {
       "from": "tests",
       "fromTests": true,
       "kind": "file",
@@ -3097,7 +3455,7 @@
     }
   ],
   "generatedFrom": {
-    "commit": "dbaeea5281510146a198468862a0e76a9287e071",
+    "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0",
     "tracked": 269
   },
   "landings": [

@@ -57,17 +57,17 @@
         "coChangesOnly": [],
         "collapsed": false,
         "confidence": "low",
-        "importsAndCoChanges": [
+        "importsAndCoChanges": [],
+        "importsOnly": [
           "tests"
-        ],
-        "importsOnly": []
+        ]
       },
-      "cohesion": 0,
+      "cohesion": null,
       "cohesionDropped": false,
       "confidence": "low",
       "highWater": null,
       "name": "cli",
-      "qualifyingSourceCommits": 18,
+      "qualifyingSourceCommits": 14,
       "rebaseline": null
     },
     {
@@ -76,7 +76,9 @@
         "collapsed": false,
         "confidence": "low",
         "importsAndCoChanges": [],
-        "importsOnly": []
+        "importsOnly": [
+          "site"
+        ]
       },
       "cohesion": null,
       "cohesionDropped": false,
@@ -109,6 +111,7 @@
         "confidence": "low",
         "importsAndCoChanges": [],
         "importsOnly": [
+          "components",
           "tests"
         ]
       },
@@ -202,24 +205,6 @@
     },
     {
       "breakage": {
-        "coChangesOnly": [
-          "cli"
-        ],
-        "collapsed": false,
-        "confidence": "low",
-        "importsAndCoChanges": [],
-        "importsOnly": []
-      },
-      "cohesion": 0,
-      "cohesionDropped": false,
-      "confidence": "low",
-      "highWater": null,
-      "name": "tests",
-      "qualifyingSourceCommits": 19,
-      "rebaseline": null
-    },
-    {
-      "breakage": {
         "coChangesOnly": [],
         "collapsed": false,
         "confidence": "low",
@@ -230,199 +215,32 @@
       "cohesionDropped": false,
       "confidence": "low",
       "highWater": null,
+      "name": "tests",
+      "qualifyingSourceCommits": 14,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": [
+          "site"
+        ]
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
       "name": "types",
-      "qualifyingSourceCommits": 5,
+      "qualifyingSourceCommits": 3,
       "rebaseline": null
     }
   ],
   "churn": {
     "definition": "commits is how many commits in the window touch the file, including merges and commits dropped from coupling. lines is added plus deleted in those commits.",
     "files": [
-      {
-        "commits": 1,
-        "lines": 74,
-        "path": ".claude/README.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/agents/core/critic-reviewer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/core/orchestrator.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/core/product-strategist.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/design/brand-guardian.md"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": ".claude/agents/design/ui-designer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/agents/engineering/backend-engineer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/engineering/dependency-auditor.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/engineering/frontend-developer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": ".claude/agents/engineering/performance-engineer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/engineering/refactor-engineer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": ".claude/agents/engineering/security-reviewer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 38,
-        "path": ".claude/agents/engineering/test-engineer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/growth/community-manager.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/growth/content-strategist.md"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": ".claude/agents/growth/launch-strategist.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/growth/support-triage-lead.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/agents/marketing/launch-copywriter.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/agents/product/feedback-synthesizer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/product/information-architect.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/product/roadmap-prioritizer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": ".claude/agents/product/spec-writer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/research/competitive-analyst.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/research/trend-researcher.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/research/user-interview-synthesizer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/research/ux-researcher.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/treatment/coverage-auditor.md"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": ".claude/agents/treatment/deployment-verifier.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/treatment/docs-architect.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/treatment/metadata-curator.md"
-      },
-      {
-        "commits": 1,
-        "lines": 43,
-        "path": ".claude/agents/treatment/release-engineer.md"
-      },
-      {
-        "commits": 1,
-        "lines": 40,
-        "path": ".claude/agents/treatment/repo-researcher.md"
-      },
-      {
-        "commits": 1,
-        "lines": 38,
-        "path": ".claude/agents/treatment/repo-translator.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/context/brand-rules.md"
-      },
-      {
-        "commits": 1,
-        "lines": 51,
-        "path": ".claude/context/current-priorities.md"
-      },
-      {
-        "commits": 1,
-        "lines": 34,
-        "path": ".claude/context/product-brief.md"
-      },
-      {
-        "commits": 1,
-        "lines": 108,
-        "path": ".claude/context/repo-map.md"
-      },
       {
         "commits": 2,
         "lines": 184,
@@ -440,107 +258,27 @@
       },
       {
         "commits": 1,
-        "lines": 39,
-        "path": ".claude/examples/feature-packet.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/examples/identity-packet.md"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": ".claude/examples/integration-packet.md"
-      },
-      {
-        "commits": 1,
-        "lines": 67,
-        "path": ".claude/handbook.md"
-      },
-      {
-        "commits": 1,
-        "lines": 15,
-        "path": ".claude/policy/done-definition.md"
-      },
-      {
-        "commits": 1,
-        "lines": 20,
-        "path": ".claude/policy/escalation-rules.md"
-      },
-      {
-        "commits": 1,
-        "lines": 199,
-        "path": ".claude/policy/routing-rules.md"
-      },
-      {
-        "commits": 1,
-        "lines": 134,
-        "path": ".claude/policy/tool-permissions.md"
-      },
-      {
-        "commits": 1,
-        "lines": 52,
-        "path": ".claude/schemas/handoff.md"
-      },
-      {
-        "commits": 1,
-        "lines": 26,
-        "path": ".claude/schemas/review-verdict.md"
-      },
-      {
-        "commits": 1,
-        "lines": 44,
-        "path": ".claude/schemas/task-packet.md"
-      },
-      {
-        "commits": 1,
-        "lines": 18,
-        "path": ".claude/workflows/fix-bug.md"
-      },
-      {
-        "commits": 1,
-        "lines": 176,
-        "path": ".claude/workflows/full-treatment.md"
-      },
-      {
-        "commits": 1,
-        "lines": 15,
-        "path": ".claude/workflows/launch-update.md"
-      },
-      {
-        "commits": 1,
-        "lines": 65,
-        "path": ".claude/workflows/protect-scaffold-contract.md"
-      },
-      {
-        "commits": 1,
-        "lines": 22,
-        "path": ".claude/workflows/ship-feature.md"
-      },
-      {
-        "commits": 1,
         "lines": 100,
         "path": ".github/workflows/ci-docs.yml"
       },
       {
-        "commits": 12,
-        "lines": 71,
+        "commits": 8,
+        "lines": 28,
         "path": ".github/workflows/ci.yml"
       },
       {
-        "commits": 5,
-        "lines": 207,
+        "commits": 3,
+        "lines": 36,
         "path": ".github/workflows/dogfood.yml"
       },
       {
-        "commits": 4,
-        "lines": 16,
+        "commits": 3,
+        "lines": 8,
         "path": ".github/workflows/pages.yml"
       },
       {
-        "commits": 3,
-        "lines": 56,
+        "commits": 2,
+        "lines": 52,
         "path": ".github/workflows/publish.yml"
       },
       {
@@ -549,8 +287,8 @@
         "path": ".github/workflows/release.yml"
       },
       {
-        "commits": 3,
-        "lines": 13,
+        "commits": 2,
+        "lines": 10,
         "path": ".gitignore"
       },
       {
@@ -559,8 +297,8 @@
         "path": "AGENTS.md"
       },
       {
-        "commits": 13,
-        "lines": 152,
+        "commits": 8,
+        "lines": 86,
         "path": "CHANGELOG.md"
       },
       {
@@ -589,8 +327,8 @@
         "path": "README.ja.md"
       },
       {
-        "commits": 10,
-        "lines": 217,
+        "commits": 7,
+        "lines": 136,
         "path": "README.md"
       },
       {
@@ -624,8 +362,33 @@
         "path": "assets/favicon.svg"
       },
       {
-        "commits": 2,
-        "lines": 30,
+        "commits": 1,
+        "lines": 99,
+        "path": "atlas/README.md"
+      },
+      {
+        "commits": 1,
+        "lines": 58,
+        "path": "atlas/boundaries.yaml"
+      },
+      {
+        "commits": 1,
+        "lines": 436,
+        "path": "atlas/page.json"
+      },
+      {
+        "commits": 1,
+        "lines": 1319,
+        "path": "atlas/statistics.json"
+      },
+      {
+        "commits": 1,
+        "lines": 3533,
+        "path": "atlas/structure.json"
+      },
+      {
+        "commits": 1,
+        "lines": 2,
         "path": "biome.json"
       },
       {
@@ -764,94 +527,19 @@
         "path": "cli/front-door/verify.mjs"
       },
       {
-        "commits": 8,
-        "lines": 517,
+        "commits": 4,
+        "lines": 108,
         "path": "cli/init.mjs"
       },
       {
-        "commits": 1,
-        "lines": 5,
-        "path": "components/ApiList.astro"
-      },
-      {
-        "commits": 4,
-        "lines": 114,
+        "commits": 2,
+        "lines": 96,
         "path": "components/BaseLayout.astro"
       },
       {
         "commits": 1,
-        "lines": 5,
-        "path": "components/CodeCardGrid.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "components/ContentSection.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 6,
-        "path": "components/CtaBanner.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "components/DataTable.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 7,
-        "path": "components/DocLayout.astro"
-      },
-      {
-        "commits": 1,
         "lines": 4,
-        "path": "components/FeatureGrid.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 99,
-        "path": "components/FilterBar.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 16,
         "path": "components/Hero.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 181,
-        "path": "components/PortfolioGrid.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 13,
-        "path": "components/PricingGrid.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 6,
-        "path": "components/Section.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 7,
-        "path": "components/Sidebar.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 5,
-        "path": "components/SocialProof.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 6,
-        "path": "components/TableOfContents.astro"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "components/TestimonialGrid.astro"
       },
       {
         "commits": 1,
@@ -879,13 +567,13 @@
         "path": "lib/package-link.mjs"
       },
       {
-        "commits": 11,
-        "lines": 5156,
+        "commits": 5,
+        "lines": 1223,
         "path": "package-lock.json"
       },
       {
-        "commits": 19,
-        "lines": 92,
+        "commits": 10,
+        "lines": 55,
         "path": "package.json"
       },
       {
@@ -925,32 +613,27 @@
       },
       {
         "commits": 1,
-        "lines": 189,
-        "path": "site/src/content/docs/handbook/beginners.md"
-      },
-      {
-        "commits": 3,
-        "lines": 243,
+        "lines": 11,
         "path": "site/src/content/docs/handbook/components.md"
       },
       {
-        "commits": 2,
-        "lines": 166,
+        "commits": 1,
+        "lines": 10,
         "path": "site/src/content/docs/handbook/configuration.md"
       },
       {
-        "commits": 2,
-        "lines": 9,
+        "commits": 1,
+        "lines": 2,
         "path": "site/src/content/docs/handbook/getting-started.md"
       },
       {
-        "commits": 2,
-        "lines": 7,
+        "commits": 1,
+        "lines": 2,
         "path": "site/src/content/docs/handbook/index.md"
       },
       {
-        "commits": 2,
-        "lines": 52,
+        "commits": 1,
+        "lines": 9,
         "path": "site/src/content/docs/handbook/templates.md"
       },
       {
@@ -990,43 +673,13 @@
       },
       {
         "commits": 1,
-        "lines": 13,
-        "path": "templates/portfolio/astro.config.mjs.tpl"
-      },
-      {
-        "commits": 1,
-        "lines": 3,
-        "path": "templates/portfolio/global.css.tpl"
-      },
-      {
-        "commits": 2,
-        "lines": 58,
+        "lines": 2,
         "path": "templates/portfolio/index.astro.tpl"
       },
       {
-        "commits": 3,
-        "lines": 21,
+        "commits": 2,
+        "lines": 4,
         "path": "templates/portfolio/package.json.tpl"
-      },
-      {
-        "commits": 1,
-        "lines": 50,
-        "path": "templates/portfolio/pages.yml.tpl"
-      },
-      {
-        "commits": 1,
-        "lines": 99,
-        "path": "templates/portfolio/site-config.ts.tpl"
-      },
-      {
-        "commits": 1,
-        "lines": 5,
-        "path": "templates/portfolio/template.json"
-      },
-      {
-        "commits": 1,
-        "lines": 5,
-        "path": "templates/portfolio/tsconfig.json.tpl"
       },
       {
         "commits": 1,
@@ -1084,14 +737,9 @@
         "path": "tests/base-layout.test.mjs"
       },
       {
-        "commits": 7,
-        "lines": 262,
+        "commits": 4,
+        "lines": 42,
         "path": "tests/cli.test.mjs"
-      },
-      {
-        "commits": 2,
-        "lines": 43,
-        "path": "tests/features.test.ts"
       },
       {
         "commits": 3,
@@ -1189,53 +837,33 @@
         "path": "tests/front-door/references.test.mjs"
       },
       {
-        "commits": 2,
-        "lines": 145,
-        "path": "tests/helpers.test.mjs"
-      },
-      {
         "commits": 1,
         "lines": 59,
         "path": "tests/package-link.test.mjs"
       },
       {
-        "commits": 2,
-        "lines": 40,
-        "path": "tests/policy.test.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 36,
+        "commits": 1,
+        "lines": 6,
         "path": "tests/version-alignment.test.ts"
       },
       {
-        "commits": 2,
-        "lines": 73,
-        "path": "tests/workspaces.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 14,
-        "path": "tsconfig.json"
-      },
-      {
-        "commits": 6,
-        "lines": 55,
+        "commits": 4,
+        "lines": 32,
         "path": "types/config.ts"
       },
       {
-        "commits": 2,
-        "lines": 8,
+        "commits": 1,
+        "lines": 6,
         "path": "types/docs-config.ts"
       },
       {
-        "commits": 2,
-        "lines": 76,
+        "commits": 1,
+        "lines": 6,
         "path": "types/portfolio-config.ts"
       },
       {
-        "commits": 2,
-        "lines": 8,
+        "commits": 1,
+        "lines": 6,
         "path": "types/product-config.ts"
       },
       {
@@ -1247,19 +875,19 @@
   },
   "confidence": {
     "level": "low",
-    "reason": "fewer than 20 source files reach 10 revisions in the window"
+    "reason": "fewer than 25 source files reach 10 revisions in the window"
   },
-  "generatedAt": "2026-09-25T09:17:52.906Z",
+  "generatedAt": "2026-09-25T16:16:57.402Z",
   "generatedFrom": {
-    "commit": "dbaeea5281510146a198468862a0e76a9287e071"
+    "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0"
   },
   "pairs": [
     {
       "a": "CHANGELOG.md",
       "b": "package.json",
-      "either": 17,
-      "shared": 9,
-      "strength": 0.529412
+      "either": 8,
+      "shared": 4,
+      "strength": 0.5
     },
     {
       "a": "cli/front-door/DESIGN.md",
@@ -1267,13 +895,6 @@
       "either": 13,
       "shared": 8,
       "strength": 0.615385
-    },
-    {
-      "a": "cli/init.mjs",
-      "b": "tests/cli.test.mjs",
-      "either": 8,
-      "shared": 5,
-      "strength": 0.625
     }
   ],
   "parameters": {
@@ -1286,16 +907,16 @@
     "floor": "fallen",
     "floorHeld": false,
     "floorTrigger": "revision-depth",
-    "headDate": "2026-09-07T05:36:50-07:00",
-    "inScopeFiles": 269,
+    "headDate": "2026-09-25T05:17:53-04:00",
+    "inScopeFiles": 274,
     "pinnedStart": null,
-    "priorFloor": null,
-    "qualifyingCommits": 54,
+    "priorFloor": "fallen",
+    "qualifyingCommits": 34,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-03-11T12:36:50.000Z",
+    "since": "2026-03-29T09:17:53.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
