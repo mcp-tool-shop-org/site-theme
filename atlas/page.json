@@ -63,61 +63,36 @@
   ],
   "changes": {
     "fileCounts": {
-      "added": 0,
-      "changed": 1,
+      "added": 1,
+      "changed": 3,
       "moved": 0,
-      "parts": 1,
+      "parts": 2,
       "removed": 0
     },
     "items": [
       {
-        "kind": "import-added",
-        "sentence": "components now imports lib.",
+        "kind": "door",
+        "sentence": "CI's pull request trigger now also names `codecov.yml`.",
         "subjects": [
-          "components",
-          "lib"
-        ]
-      },
-      {
-        "kind": "import-added",
-        "sentence": "the site now imports components.",
-        "subjects": [
-          "site",
-          "components"
-        ]
-      },
-      {
-        "kind": "import-added",
-        "sentence": "the site now imports types.",
-        "subjects": [
-          "site",
-          "types"
+          ".github/workflows/ci.yml"
         ]
       },
       {
         "kind": "door",
-        "sentence": "CI (docs gate)'s pull request trigger now also names `.github/workflows/**`, `cli/**`, `components/**`, `package-lock.json`, `package.json`, `styles/**`, `templates/**`, `tests/**`, `tsconfig.json` and `types/**`.",
+        "sentence": "CI's push trigger now also names `codecov.yml`.",
         "subjects": [
-          ".github/workflows/ci-docs.yml"
-        ]
-      },
-      {
-        "kind": "door",
-        "sentence": "CI now also runs cli/init.mjs.",
-        "subjects": [
-          ".github/workflows/ci.yml",
-          "cli/init.mjs"
+          ".github/workflows/ci.yml"
         ]
       },
       {
         "kind": "counts",
-        "sentence": "1 file changed content, across 1 part.",
+        "sentence": "1 file added and 3 changed content, across 2 parts.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "dbaeea5281510146a198468862a0e76a9287e071",
-      "generatedAt": "2026-09-25T09:17:52.906Z"
+      "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0",
+      "generatedAt": "2026-09-25T16:16:57.402Z"
     },
     "unchanged": false
   },
@@ -126,7 +101,7 @@
     "Window: 180 days; a pair counts from 3 shared commits, since 1 source file reaches 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0",
+  "commit": "0e0eb2edce8b953d9bfe6eaf18b0ad6f5d519f15",
   "defaultBranch": "main",
   "derived": "14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 7 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.",
   "doors": [
@@ -241,11 +216,13 @@
       ],
       "runsCount": 2,
       "runsMore": 0,
-      "sends": [],
+      "sends": [
+        "uploads coverage to Codecov"
+      ],
       "stages": [],
       "triggers": [
-        "on a pull request to main touching 11 paths",
-        "on a push to main touching 11 paths",
+        "on a pull request to main touching 12 paths",
+        "on a push to main touching 12 paths",
         "or by hand"
       ]
     },
@@ -456,8 +433,9 @@
       "to": "lib"
     }
   ],
+  "engine": "1.24.0",
   "generated": [],
-  "generatedAt": "2026-09-25T16:16:57.402Z",
+  "generatedAt": "2026-09-30T20:12:56.927Z",
   "limits": [
     "5 writes and 2 reads use paths built at run time and are not named here.",
     "12 writes and 44 reads go to the directory the command is run in, not to this repository.",

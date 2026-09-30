@@ -262,8 +262,8 @@
         "path": ".github/workflows/ci-docs.yml"
       },
       {
-        "commits": 8,
-        "lines": 28,
+        "commits": 10,
+        "lines": 226,
         "path": ".github/workflows/ci.yml"
       },
       {
@@ -363,7 +363,7 @@
       },
       {
         "commits": 1,
-        "lines": 99,
+        "lines": 117,
         "path": "atlas/README.md"
       },
       {
@@ -373,17 +373,17 @@
       },
       {
         "commits": 1,
-        "lines": 436,
+        "lines": 672,
         "path": "atlas/page.json"
       },
       {
         "commits": 1,
-        "lines": 1319,
+        "lines": 940,
         "path": "atlas/statistics.json"
       },
       {
         "commits": 1,
-        "lines": 3533,
+        "lines": 3891,
         "path": "atlas/structure.json"
       },
       {
@@ -533,6 +533,11 @@
       },
       {
         "commits": 2,
+        "lines": 36,
+        "path": "codecov.yml"
+      },
+      {
+        "commits": 2,
         "lines": 96,
         "path": "components/BaseLayout.astro"
       },
@@ -567,13 +572,13 @@
         "path": "lib/package-link.mjs"
       },
       {
-        "commits": 5,
-        "lines": 1223,
+        "commits": 7,
+        "lines": 1535,
         "path": "package-lock.json"
       },
       {
-        "commits": 10,
-        "lines": 55,
+        "commits": 12,
+        "lines": 57,
         "path": "package.json"
       },
       {
@@ -877,18 +882,11 @@
     "level": "low",
     "reason": "fewer than 25 source files reach 10 revisions in the window"
   },
-  "generatedAt": "2026-09-25T16:16:57.402Z",
+  "generatedAt": "2026-09-30T20:12:56.927Z",
   "generatedFrom": {
-    "commit": "0e76d24458711ea802bc1eaafa2f46c3a470e8e0"
+    "commit": "0e0eb2edce8b953d9bfe6eaf18b0ad6f5d519f15"
   },
   "pairs": [
-    {
-      "a": "CHANGELOG.md",
-      "b": "package.json",
-      "either": 8,
-      "shared": 4,
-      "strength": 0.5
-    },
     {
       "a": "cli/front-door/DESIGN.md",
       "b": "cli/front-door/index.mjs",
@@ -907,16 +905,16 @@
     "floor": "fallen",
     "floorHeld": false,
     "floorTrigger": "revision-depth",
-    "headDate": "2026-09-25T05:17:53-04:00",
-    "inScopeFiles": 274,
+    "headDate": "2026-09-29T16:48:16-07:00",
+    "inScopeFiles": 275,
     "pinnedStart": null,
     "priorFloor": "fallen",
-    "qualifyingCommits": 34,
+    "qualifyingCommits": 36,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-03-29T09:17:53.000Z",
+    "since": "2026-04-02T23:48:16.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
