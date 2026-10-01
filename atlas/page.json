@@ -64,28 +64,28 @@
   "changes": {
     "fileCounts": {
       "added": 0,
-      "changed": 1,
+      "changed": 0,
       "moved": 0,
       "parts": 1,
-      "removed": 0
+      "removed": 1
     },
     "items": [
       {
         "kind": "door",
-        "sentence": "CI's pull request trigger no longer names `.github/workflows/**`, `atlas/**`, `cli/**`, `codecov.yml`, `components/**`, `package-lock.json`, `package.json`, `styles/**`, `templates/**`, `tests/**`, `tsconfig.json` and `types/**`.",
+        "sentence": "CI (docs gate) (.github/workflows/ci-docs.yml) is no longer a door.",
         "subjects": [
-          ".github/workflows/ci.yml"
+          ".github/workflows/ci-docs.yml"
         ]
       },
       {
         "kind": "counts",
-        "sentence": "1 file changed content, across 1 part.",
+        "sentence": "1 file removed, across 1 part.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "0e0eb2edce8b953d9bfe6eaf18b0ad6f5d519f15",
-      "generatedAt": "2026-09-30T20:12:56.927Z"
+      "commit": "700f363248fa98202a8955f7fda32a0008ba9e62",
+      "generatedAt": "2026-10-01T02:13:11.371Z"
     },
     "unchanged": false
   },
@@ -94,9 +94,9 @@
     "Window: 180 days; a pair counts from 3 shared commits, since 1 source file reaches 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "700f363248fa98202a8955f7fda32a0008ba9e62",
+  "commit": "9300fba09a49c6f0f68a6dd20041f60e6ca69ca5",
   "defaultBranch": "main",
-  "derived": "14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 7 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.",
+  "derived": "14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 6 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.",
   "doors": [
     {
       "checks": [],
@@ -359,27 +359,6 @@
       "checks": [],
       "checksCount": 0,
       "checksMore": 0,
-      "echoOnly": true,
-      "file": ".github/workflows/ci-docs.yml",
-      "id": ".github/workflows/ci-docs.yml",
-      "landings": [],
-      "name": "CI (docs gate)",
-      "pushes": false,
-      "reach": [],
-      "runs": [],
-      "runsCount": 0,
-      "runsMore": 0,
-      "sends": [],
-      "stages": [],
-      "triggers": [
-        "on a pull request to main except when only the 10 paths it ignores change",
-        "or by hand"
-      ]
-    },
-    {
-      "checks": [],
-      "checksCount": 0,
-      "checksMore": 0,
       "file": "package.json",
       "id": "package.json#site-theme",
       "kind": "command",
@@ -428,7 +407,7 @@
   ],
   "engine": "1.24.0",
   "generated": [],
-  "generatedAt": "2026-10-01T02:13:11.371Z",
+  "generatedAt": "2026-10-01T02:26:13.020Z",
   "limits": [
     "5 writes and 2 reads use paths built at run time and are not named here.",
     "12 writes and 44 reads go to the directory the command is run in, not to this repository.",
