@@ -256,7 +256,7 @@
           "path": ".github/workflows/ci-docs.yml"
         },
         {
-          "hash": "9578a46ff1df9c8c36d6ddbc6c7928822b198388f0346bbc5209bce64b29e705",
+          "hash": "5cdb0f30fe4114aad61eee0ea6ae16a6caf77f977581e4a8bd105272ba4bfd0c",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -3125,21 +3125,7 @@
           "branches": [
             "main"
           ],
-          "event": "pull_request",
-          "paths": [
-            ".github/workflows/**",
-            "atlas/**",
-            "cli/**",
-            "codecov.yml",
-            "components/**",
-            "package-lock.json",
-            "package.json",
-            "styles/**",
-            "templates/**",
-            "tests/**",
-            "tsconfig.json",
-            "types/**"
-          ]
+          "event": "pull_request"
         },
         {
           "branches": [
@@ -3977,7 +3963,7 @@
   ],
   "engine": "1.24.0",
   "generatedFrom": {
-    "commit": "0e0eb2edce8b953d9bfe6eaf18b0ad6f5d519f15",
+    "commit": "700f363248fa98202a8955f7fda32a0008ba9e62",
     "tracked": 270
   },
   "landings": [
