@@ -1,21 +1,20 @@
 # site-theme: how it works
 
-Mapped at 2026-09-30 from commit 0e0eb2e by Atlas 1.24.0.
+Mapped at 2026-10-01 from commit 700f363 by Atlas 1.24.0.
 
 ## What this is
 
 14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 7 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.
 
-## What changed since 2026-09-25 (0e76d24)
+## What changed since 2026-09-30 (0e0eb2e)
 
-- CI's pull request trigger now also names `codecov.yml`.
-- CI's push trigger now also names `codecov.yml`.
-- 1 file added and 3 changed content, across 2 parts.
+- CI's pull request trigger no longer names `.github/workflows/**`, `atlas/**`, `cli/**`, `codecov.yml`, `components/**`, `package-lock.json`, `package.json`, `styles/**`, `templates/**`, `tests/**`, `tsconfig.json` and `types/**`.
+- 1 file changed content, across 1 part.
 
 ## What comes in
 
 1. **@mcptoolshop/site-theme** (the package people import). Loads types/config.ts, cli/front-door/index.mjs, cli/front-door/mcp.mjs and 21 more.
-2. **CI.** On a pull request to main touching 12 paths; on a push to main touching 12 paths; or by hand. Runs cli/init.mjs and tests/; checks types/.
+2. **CI.** On a pull request to main; on a push to main touching 12 paths; or by hand. Runs cli/init.mjs and tests/; checks types/.
 3. **Deploy site to GitHub Pages.** On a push to main touching 2 paths; or by hand. Runs site/astro.config.mjs and site/src/.
 4. **Release.** When a release is published; or by hand. Runs tests/; checks types/.
 5. **Dogfood.** On a push to main touching 4 paths; or by hand. On main, it runs cli/init.mjs.
