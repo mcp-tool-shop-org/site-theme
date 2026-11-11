@@ -252,7 +252,7 @@
       "externals": 0,
       "files": [
         {
-          "hash": "5cdb0f30fe4114aad61eee0ea6ae16a6caf77f977581e4a8bd105272ba4bfd0c",
+          "hash": "ad918836b65ddcb36a5736410a900cd7d944da7626c561dea69a82e9f35a29a4",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -1696,7 +1696,7 @@
           "path": "codecov.yml"
         },
         {
-          "hash": "8ad1bbd04bae7f7289e59b599a1e3b40ad31a3b8cfb400c66eb10f9bcfdbd35e",
+          "hash": "5377ab1d54dd60c70ac3bba78f6c64b9b5d993e79652fa12e9e3957c67aff1b6",
           "path": "package-lock.json"
         },
         {
@@ -1732,7 +1732,7 @@
           "path": "site/astro.config.mjs"
         },
         {
-          "hash": "558ad15a87431bc4df1a81d629a94c3cc83f290f1e6c0631f69d9ef6ea24c8f2",
+          "hash": "07b46126b83f8996e5b27f667caf47f6497ef71257d2beae84dab35d97617615",
           "path": "site/package-lock.json"
         },
         {
@@ -3044,6 +3044,13 @@
           "event": "workflow_dispatch"
         }
       ],
+      "unresolvedExpressions": [
+        {
+          "adds": "words",
+          "job": "validate-templates",
+          "step": "Scaffold with template"
+        }
+      ],
       "uses": [
         "actions/checkout",
         "actions/download-artifact",
@@ -3854,9 +3861,9 @@
       "to": "lib"
     }
   ],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generatedFrom": {
-    "commit": "9300fba09a49c6f0f68a6dd20041f60e6ca69ca5",
+    "commit": "1fac977af4eae6274af268808d882aabe62f5f24",
     "tracked": 269
   },
   "landings": [

@@ -257,8 +257,8 @@
         "path": ".claude/design/site-theme-visual-os.standalone.html"
       },
       {
-        "commits": 1,
-        "lines": 100,
+        "commits": 3,
+        "lines": 300,
         "path": ".github/workflows/ci-docs.yml"
       },
       {
@@ -362,8 +362,8 @@
         "path": "assets/favicon.svg"
       },
       {
-        "commits": 5,
-        "lines": 173,
+        "commits": 7,
+        "lines": 203,
         "path": "atlas/README.md"
       },
       {
@@ -372,18 +372,18 @@
         "path": "atlas/boundaries.yaml"
       },
       {
-        "commits": 5,
-        "lines": 842,
+        "commits": 7,
+        "lines": 924,
         "path": "atlas/page.json"
       },
       {
-        "commits": 5,
-        "lines": 1088,
+        "commits": 7,
+        "lines": 1152,
         "path": "atlas/statistics.json"
       },
       {
-        "commits": 5,
-        "lines": 5117,
+        "commits": 7,
+        "lines": 5339,
         "path": "atlas/structure.json"
       },
       {
@@ -572,8 +572,8 @@
         "path": "lib/package-link.mjs"
       },
       {
-        "commits": 7,
-        "lines": 1535,
+        "commits": 9,
+        "lines": 1547,
         "path": "package-lock.json"
       },
       {
@@ -597,8 +597,8 @@
         "path": "site/astro.config.mjs"
       },
       {
-        "commits": 1,
-        "lines": 6076,
+        "commits": 3,
+        "lines": 6090,
         "path": "site/package-lock.json"
       },
       {
@@ -882,9 +882,9 @@
     "level": "low",
     "reason": "fewer than 25 source files reach 10 revisions in the window"
   },
-  "generatedAt": "2026-10-01T02:26:13.020Z",
+  "generatedAt": "2026-11-11T22:41:56.098Z",
   "generatedFrom": {
-    "commit": "9300fba09a49c6f0f68a6dd20041f60e6ca69ca5"
+    "commit": "1fac977af4eae6274af268808d882aabe62f5f24"
   },
   "pairs": [
     {
@@ -905,16 +905,16 @@
     "floor": "fallen",
     "floorHeld": false,
     "floorTrigger": "revision-depth",
-    "headDate": "2026-09-30T19:25:04-07:00",
+    "headDate": "2026-10-01T13:43:43-07:00",
     "inScopeFiles": 274,
     "pinnedStart": null,
     "priorFloor": "fallen",
-    "qualifyingCommits": 38,
+    "qualifyingCommits": 40,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-04-04T02:25:04.000Z",
+    "since": "2026-04-04T20:43:43.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
