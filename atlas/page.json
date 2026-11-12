@@ -64,37 +64,30 @@
   "changes": {
     "fileCounts": {
       "added": 0,
-      "changed": 0,
+      "changed": 2,
       "moved": 0,
       "parts": 1,
-      "removed": 1
+      "removed": 0
     },
     "items": [
       {
-        "kind": "door",
-        "sentence": "CI (docs gate) (.github/workflows/ci-docs.yml) is no longer a door.",
-        "subjects": [
-          ".github/workflows/ci-docs.yml"
-        ]
-      },
-      {
         "kind": "counts",
-        "sentence": "1 file removed, across 1 part.",
+        "sentence": "Nothing structural changed since 2026-11-11; 2 files changed content.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "700f363248fa98202a8955f7fda32a0008ba9e62",
-      "generatedAt": "2026-10-01T02:13:11.371Z"
+      "commit": "1fac977af4eae6274af268808d882aabe62f5f24",
+      "generatedAt": "2026-11-11T22:41:56.098Z"
     },
-    "unchanged": false
+    "unchanged": true
   },
   "changesTogether": [],
   "changesTogetherNote": [
     "Window: 180 days; a pair counts from 3 shared commits, since 1 source file reaches 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "9300fba09a49c6f0f68a6dd20041f60e6ca69ca5",
+  "commit": "f7d102fd178586462cecb4f499acfc34f0999247",
   "defaultBranch": "main",
   "derived": "14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 6 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.",
   "doors": [
@@ -405,9 +398,9 @@
       "to": "lib"
     }
   ],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generated": [],
-  "generatedAt": "2026-10-01T02:26:13.020Z",
+  "generatedAt": "2026-11-12T00:47:32.103Z",
   "limits": [
     "5 writes and 2 reads use paths built at run time and are not named here.",
     "12 writes and 44 reads go to the directory the command is run in, not to this repository.",
@@ -583,6 +576,30 @@
       ]
     }
   ],
+  "startBeside": [
+    {
+      "files": [
+        "cli/front-door/report.mjs",
+        "cli/front-door/generate.mjs",
+        "cli/front-door/standard.mjs",
+        "cli/front-door/eval.mjs",
+        "cli/front-door/ablation/index.mjs",
+        "cli/front-door/mcp.mjs"
+      ],
+      "from": "cli/front-door/index.mjs"
+    },
+    {
+      "files": [
+        "cli/front-door/model.mjs",
+        "cli/front-door/minimality.mjs",
+        "cli/front-door/doctest.mjs",
+        "cli/front-door/attestation.mjs",
+        "cli/front-door/gherkin.mjs",
+        "cli/front-door/scorecard.mjs"
+      ],
+      "from": "cli/front-door/verify.mjs"
+    }
+  ],
   "startDoor": ".github/workflows/ci.yml",
   "startHere": [
     ".github/workflows/ci.yml",
@@ -600,6 +617,7 @@
     "lib": 1,
     "types": 0
   },
+  "testedCodeParts": 3,
   "unnamedWrites": 5,
   "unread": [],
   "unreadCode": [

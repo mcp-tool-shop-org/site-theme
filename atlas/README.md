@@ -1,15 +1,14 @@
 # site-theme: how it works
 
-Mapped at 2026-10-01 from commit 9300fba by Atlas 1.24.0.
+Mapped at 2026-11-12 from commit f7d102f by Atlas 1.26.0.
 
 ## What this is
 
 14 parts, in JavaScript (51 files), Astro (45 files), TypeScript (20 files), CSS (4 files) and HTML (2 files). Work enters through 6 doors; the busiest is @mcptoolshop/site-theme, which reaches 5 parts. It publishes to npm. It deploys a site to GitHub Pages. People run site-theme. People import @mcptoolshop/site-theme.
 
-## What changed since 2026-10-01 (700f363)
+## What changed since 2026-11-11 (1fac977)
 
-- CI (docs gate) (.github/workflows/ci-docs.yml) is no longer a door.
-- 1 file removed, across 1 part.
+Nothing structural changed since 2026-11-11; 2 files changed content.
 
 ## What comes in
 
@@ -95,6 +94,8 @@ People write .claude/, .github/, assets/, docs/, receipts/, the repository root,
 .github/workflows/ci.yml → cli/init.mjs → cli/front-door/index.mjs → cli/front-door/verify.mjs → cli/front-door/references.mjs → cli/front-door/extract.mjs
 
 Read those in order to follow one pull request end to end.
+
+Beside the path, cli/front-door/index.mjs also calls cli/front-door/report.mjs, cli/front-door/generate.mjs, cli/front-door/standard.mjs, cli/front-door/eval.mjs and 2 more files. Beside the path, cli/front-door/verify.mjs also calls cli/front-door/model.mjs, cli/front-door/minimality.mjs, cli/front-door/doctest.mjs, cli/front-door/attestation.mjs and 2 more files.
 
 ## What this map cannot see
 
